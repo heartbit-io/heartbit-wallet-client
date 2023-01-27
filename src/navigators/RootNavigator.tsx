@@ -1,10 +1,8 @@
-import {ScrollView, Text, View} from 'react-native';
-
-import Home from '../pages/home/Home';
-import MyData from '../pages/myData/MyData';
+import Home from '../screens/home/Home';
+import MyData from '../screens/myData/MyData';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import Settings from '../pages/settings/Settings';
+import Settings from '../screens/settings/Settings';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
