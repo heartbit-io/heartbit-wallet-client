@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import Settings from '../screens/settings/Settings';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Welcome from '../screens/welcome/Welcome';
 
 const Tab = createBottomTabNavigator();
 
@@ -11,6 +12,7 @@ function RootNavigator(): JSX.Element {
   return (
     <NavigationContainer>
       <Tab.Navigator>
+        <Tab.Screen name="Welcome" component={Welcome} options={{title: 'Welcome'}} />
         <Tab.Screen name="Home" component={Home} options={{title: 'Home'}} />
         <Tab.Screen
           name="MyData"
