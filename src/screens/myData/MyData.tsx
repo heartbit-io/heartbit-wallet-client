@@ -15,13 +15,13 @@ import {fatchMyDataList} from '../../apis/myDataAPI';
 const Item = ({dataInfo}: {dataInfo: DATAProps}) => (
   // TODO(hyunsub): isNew status update after clicked
   <View style={styles.item}>
-    {dataInfo.isNew ? <Badge badgeStyle={styles.isNew} /> : null}
-    <Text style={styles.title}>{dataInfo.title}</Text>
-    <Text style={styles.issuer}>{dataInfo.issuer}</Text>
+    {dataInfo?.isNew ? <Badge badgeStyle={styles.isNew} /> : null}
+    <Text style={styles.title}>{dataInfo?.title ?? 'None'}</Text>
+    <Text style={styles.issuer}>{dataInfo?.issuer ?? 'None'}</Text>
     <Text style={styles.issuedAt}>Issued at</Text>
-    <Text style={styles.issuedAt}>{dataInfo.issuedAt}</Text>
+    <Text style={styles.issuedAt}>{dataInfo?.issuedAt ?? 'None'}</Text>
     <Text style={styles.dataCnt}>
-      {dataInfo.dataCnt} {'data >'}
+      {dataInfo?.dataCnt ?? 0} {'data >'}
     </Text>
   </View>
 );
@@ -32,7 +32,7 @@ function MyData({navigation}: {navigation: any}) {
       data={fatchMyDataList()}
       style={styles.container}
       renderItem={data => {
-        const dataInfo: DATAProps = data.item;
+        const dataInfo: DATAProps = data?.item;
 
         return (
           <Pressable

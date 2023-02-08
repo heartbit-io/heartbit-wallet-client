@@ -1,11 +1,11 @@
+import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
 
 function MyDataDetail({navigation, route}: {navigation: any; route: any}) {
   const dataInfo = route.params.dataInfo;
   useEffect(() => {
     navigation.setOptions({
-      headerTitle: dataInfo.title,
+      headerTitle: dataInfo?.title,
     });
   });
   return (
@@ -14,7 +14,7 @@ function MyDataDetail({navigation, route}: {navigation: any; route: any}) {
         <View style={styles.row}>
           <Text style={styles.key}>Shared to</Text>
           <Text style={styles.value}>
-            {dataInfo.compatibleSystem} {'and 1 other >'}
+            {dataInfo?.compatibleSystem ?? 'None'} {'and 1 other >'}
           </Text>
         </View>
       </View>
@@ -23,41 +23,43 @@ function MyDataDetail({navigation, route}: {navigation: any; route: any}) {
       <View style={styles.rowContainer}>
         <View style={[styles.row, styles.rowBottomLine]}>
           <Text style={styles.key}>Title</Text>
-          <Text style={styles.value}>{dataInfo.title}</Text>
+          <Text style={styles.value}>{dataInfo?.title ?? 'None'}</Text>
         </View>
         <View style={[styles.row, styles.rowBottomLine]}>
           <Text style={styles.key}>Issuer</Text>
           <Text style={styles.value}>
-            {dataInfo.issuer} {' >'}
+            {dataInfo?.issuer ?? 'None'} {' >'}
           </Text>
         </View>
         <View style={[styles.row, styles.rowBottomLine]}>
           <Text style={styles.key}>Type</Text>
-          <Text style={styles.value}>{dataInfo.type}</Text>
+          <Text style={styles.value}>{dataInfo?.type ?? 'None'}</Text>
         </View>
         <View style={[styles.row, styles.rowBottomLine]}>
           <Text style={styles.key}>PI</Text>
-          <Text style={styles.value}>{dataInfo.PI}</Text>
+          <Text style={styles.value}>{dataInfo?.PI ?? 'None'}</Text>
         </View>
         <View style={[styles.row, styles.rowBottomLine]}>
           <Text style={styles.key}>Start date</Text>
-          <Text style={styles.value}>{dataInfo.startDate}</Text>
+          <Text style={styles.value}>{dataInfo?.startDate ?? 'None'}</Text>
         </View>
         <View style={[styles.row, styles.rowBottomLine]}>
           <Text style={styles.key}>End date</Text>
-          <Text style={styles.value}>{dataInfo.endDate}</Text>
+          <Text style={styles.value}>{dataInfo?.endDate ?? 'None'}</Text>
         </View>
         <View style={[styles.row, styles.rowBottomLine]}>
           <Text style={styles.key}>Jurisdiction</Text>
-          <Text style={styles.value}>{dataInfo.jurisdiction}</Text>
+          <Text style={styles.value}>{dataInfo?.jurisdiction ?? 'None'}</Text>
         </View>
         <View style={[styles.row, styles.rowBottomLine]}>
           <Text style={styles.key}>Compatible system</Text>
-          <Text style={styles.value}>{dataInfo.compatibleSystem}</Text>
+          <Text style={styles.value}>
+            {dataInfo?.compatibleSystem ?? 'None'}
+          </Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.key}>Issued at</Text>
-          <Text style={styles.value}>{dataInfo.issuedAt}</Text>
+          <Text style={styles.value}>{dataInfo?.issuedAt ?? 'None'}</Text>
         </View>
       </View>
       <Text style={styles.headerTitle}>Issued data</Text>
@@ -65,28 +67,41 @@ function MyDataDetail({navigation, route}: {navigation: any; route: any}) {
         These data are encrypted and stored only in your local and others’
         device you allowed.
       </Text>
-      <View style={styles.rowContainer}>
+      <Pressable
+        onPress={() => {
+          navigation.navigate('MyDataDemographics', {
+            demographics: dataInfo?.demographics ?? 'None',
+          });
+        }}
+        style={({pressed}) => [
+          styles.rowContainer,
+          {
+            backgroundColor: pressed ? '#f8f9fa' : 'white', // TODO(hyunsub): common style
+          },
+        ]}>
         <View style={styles.row}>
           <Text style={styles.key}>Demographics</Text>
           <Text style={styles.value}>
-            {dataInfo.dataCnt} {'data >'}
+            {dataInfo?.dataCnt ?? 0} {'data >'}
           </Text>
         </View>
-      </View>
+      </Pressable>
       <View style={styles.rowContainer}>
         <View style={[styles.row, styles.rowBottomLine]}>
           <Text style={styles.key}>Family Hx.</Text>
           <Text style={styles.value}>
-            {dataInfo.isFamilyHistory ? 'Yes' : 'No'}
+            {dataInfo?.isFamilyHistory ? 'Yes' : 'No'}
           </Text>
         </View>
         <View style={[styles.row, styles.rowBottomLine]}>
           <Text style={styles.key}>Familyhistory_diagnosis</Text>
-          <Text style={styles.value}>{dataInfo.familyHistoryDiagnosis}</Text>
+          <Text style={styles.value}>
+            {dataInfo?.familyHistoryDiagnosis ?? 'None'}
+          </Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.key}>NF1 mutation</Text>
-          <Text style={styles.value}>{dataInfo.NF1Mutation}</Text>
+          <Text style={styles.value}>{dataInfo?.NF1Mutation ?? 'None'}</Text>
         </View>
       </View>
     </ScrollView>
@@ -108,6 +123,7 @@ const styles = StyleSheet.create({
   },
   headerDescription: {
     fontSize: 10,
+    marginBottom: 10,
     color: '#828282',
   },
   rowContainer: {
