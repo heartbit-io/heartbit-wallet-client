@@ -10,12 +10,12 @@ const Tab = createBottomTabNavigator();
 function TabNavigator(): JSX.Element {
   return (
     <NavigationContainer>
-      <Tab.Screen
-        name="Welcome"
-        component={Welcome}
-        options={{title: 'Welcome'}}
-      />
       <Tab.Navigator>
+        <Tab.Screen
+          name="Welcome"
+          component={Welcome}
+          options={{title: 'Welcome'}}
+        />
         <Tab.Screen name="Home" component={Home} options={{title: 'Home'}} />
         <Tab.Screen
           name="MyDataStackNavigator"
