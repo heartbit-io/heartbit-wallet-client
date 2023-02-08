@@ -7,20 +7,13 @@ const Stack = createNativeStackNavigator();
 
 function MyDataStackNavigator(): JSX.Element {
   return (
-    <Stack.Navigator
-      screenOptions={() => ({
-        headerShown: false,
-      })}>
+    <Stack.Navigator>
       <Stack.Screen
         name="MyData"
         component={MyData}
         options={{title: 'My Data'}}
       />
-      <Stack.Screen
-        name="MyDataDetail"
-        component={MyDataDetail}
-        options={{title: 'My Data'}}
-      />
+      <Stack.Screen name="MyDataDetail" component={MyDataDetail} />
     </Stack.Navigator>
   );
 }
