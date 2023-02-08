@@ -10,7 +10,10 @@ const Tab = createBottomTabNavigator();
 function TabNavigator(): JSX.Element {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={() => ({
+          headerShown: false,
+        })}>
         <Tab.Screen
           name="Welcome"
           component={Welcome}
@@ -20,7 +23,7 @@ function TabNavigator(): JSX.Element {
         <Tab.Screen
           name="MyDataStackNavigator"
           component={MyDataStackNavigator}
-          options={{title: 'My Data', tabBarBadge: 3}}
+          options={{title: 'My Data', tabBarBadge: 1}}
         />
         <Tab.Screen
           name="Settings"

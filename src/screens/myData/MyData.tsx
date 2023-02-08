@@ -1,7 +1,6 @@
 import {
   FlatList,
   Pressable,
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
@@ -29,34 +28,33 @@ const Item = ({dataInfo}: {dataInfo: DATAProps}) => (
 
 function MyData({navigation}: {navigation: any}) {
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={fatchMyDataList()}
-        renderItem={data => {
-          const dataInfo: DATAProps = data.item;
+    <FlatList
+      data={fatchMyDataList()}
+      style={styles.container}
+      renderItem={data => {
+        const dataInfo: DATAProps = data.item;
 
-          return (
-            <Pressable
-              onPress={() => {
-                navigation.navigate('MyDataDetail', {
-                  title: dataInfo?.title,
-                });
-              }}
-              style={({pressed}) => [
-                {
-                  backgroundColor: pressed ? '#f8f9fa' : 'white', // TODO(hyunsub): common style
-                },
-                styles.wrapperCustom,
-              ]}>
-              <View>
-                <Item dataInfo={dataInfo} />
-              </View>
-            </Pressable>
-          );
-        }}
-        keyExtractor={data => data.id}
-      />
-    </SafeAreaView>
+        return (
+          <Pressable
+            onPress={() => {
+              navigation.navigate('MyDataDetail', {
+                dataInfo,
+              });
+            }}
+            style={({pressed}) => [
+              {
+                backgroundColor: pressed ? '#f8f9fa' : 'white', // TODO(hyunsub): common style
+              },
+              styles.wrapperCustom,
+            ]}>
+            <View>
+              <Item dataInfo={dataInfo} />
+            </View>
+          </Pressable>
+        );
+      }}
+      keyExtractor={data => data.id}
+    />
   );
 }
 

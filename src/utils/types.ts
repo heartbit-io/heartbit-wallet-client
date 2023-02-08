@@ -23,7 +23,7 @@ export type DATAProps = {
   startDate: string;
   endDate: string;
   jurisdiction: string;
-  CompatibleSystem: string;
+  compatibleSystem: string;
   demographics: demographicsProps;
   isFamilyHistory: boolean;
   familyHistoryDiagnosis: string;
