@@ -5,13 +5,14 @@ import {
 } from './mnemonicSlice';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import Clipboard from '@react-native-clipboard/clipboard';
+import { ThunkDispatch } from '@reduxjs/toolkit';
 
 export function Mnemonic() {
-  const dispatch = useAppDispatch();
+  const dispatch : ThunkDispatch = useAppDispatch();
 
-  const mnemonic = useAppSelector(selectMnemonic);
+  const mnemonic : string = useAppSelector(selectMnemonic);
 
-  const copyToClipboard = () => {
+  const copyToClipboard = () : void => {
     Clipboard.setString(mnemonic);
   };
 
@@ -21,12 +22,17 @@ export function Mnemonic() {
       <Button onPress={() => dispatch(generateMnemonic())} 
       title="generate mnemonic" />
     </Text>
+    <Text></Text>
     <Text>
-      ***Touch below to copy your mnemonic to clipboard***
+        {mnemonic.split(" ").slice(0, 6).map(word => word + " ")}
     </Text>
+    <Text>
+        {mnemonic.split(" ").slice(6, 12).map(word => word + " ")}
+    </Text>
+    <Text></Text>
     <TouchableOpacity onPress={() => copyToClipboard()}>
       <Text>
-        {mnemonic}
+        Copy To Clipboard
       </Text>
     </TouchableOpacity>
     </>
