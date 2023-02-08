@@ -19,7 +19,7 @@ export function fatchMyDataList() {
       startDate: '21. Jan. 2020.',
       endDate: '23. May. 2022',
       jurisdiction: 'South Korea',
-      CompatibleSystem: 'Raredata',
+      compatibleSystem: 'Raredata',
       // 2 depth issued data
       demographics: {
         birthDate: '28. April. 1987.',
@@ -51,7 +51,7 @@ export function fatchMyDataList() {
       startDate: '21. Jan. 2020.',
       endDate: '23. May. 2022',
       jurisdiction: 'South Korea',
-      CompatibleSystem: 'Raredata',
+      compatibleSystem: 'Raredata',
       // 2 depth issued data
       demographics: {
         birthDate: '28. April. 1987.',
@@ -82,7 +82,7 @@ export function fatchMyDataList() {
       startDate: '21. Jan. 2020.',
       endDate: '23. May. 2022',
       jurisdiction: 'South Korea',
-      CompatibleSystem: 'Raredata',
+      compatibleSystem: 'Raredata',
       // 2 depth issued data
       demographics: {
         birthDate: '28. April. 1987.',
