@@ -1,8 +1,8 @@
 import React from 'react';
-import RootNavigator from './navigators/RootNavigator';
+import TabNavigator from './navigators/TabNavigator';
 
 function RootApp(): JSX.Element {
-  return <RootNavigator />;
+  return <TabNavigator />;
 }
 
 export default RootApp;

@@ -1,28 +1,14 @@
-import Home from '../screens/home/Home';
-import MyData from '../screens/myData/MyData';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import Settings from '../screens/settings/Settings';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import TabNavigator from './TabNavigator';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const Tab = createBottomTabNavigator();
+const RootStack = createNativeStackNavigator();
 
 function RootNavigator(): JSX.Element {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={Home} options={{title: 'Home'}} />
-        <Tab.Screen
-          name="MyData"
-          component={MyData}
-          options={{title: 'MyData', tabBarBadge: 3}}
-        />
-        <Tab.Screen
-          name="Settings"
-          component={Settings}
-          options={{title: 'Settings'}}
-        />
-      </Tab.Navigator>
+      <RootStack.Screen name="Tab" component={TabNavigator} />
     </NavigationContainer>
   );
 }
