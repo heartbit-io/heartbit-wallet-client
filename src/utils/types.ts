@@ -1,3 +1,9 @@
+export type issuerProps = {
+  name: string;
+  did: string;
+  isVerified: boolean;
+};
+
 export type demographicsProps = {
   birthDate: string;
   race: string;
@@ -14,7 +20,7 @@ export type DATAProps = {
   id: string;
   title: string;
   logoUrl: string;
-  issuer: string;
+  issuer: issuerProps;
   issuedAt: string;
   dataCnt: number;
   isNew: boolean;

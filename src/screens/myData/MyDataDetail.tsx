@@ -2,7 +2,7 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 
 function MyDataDetail({navigation, route}: {navigation: any; route: any}) {
-  const dataInfo = route.params.dataInfo;
+  const {dataInfo} = route.params;
   useEffect(() => {
     navigation.setOptions({
       headerTitle: dataInfo?.title,
@@ -25,12 +25,25 @@ function MyDataDetail({navigation, route}: {navigation: any; route: any}) {
           <Text style={styles.key}>Title</Text>
           <Text style={styles.value}>{dataInfo?.title ?? 'None'}</Text>
         </View>
-        <View style={[styles.row, styles.rowBottomLine]}>
-          <Text style={styles.key}>Issuer</Text>
-          <Text style={styles.value}>
-            {dataInfo?.issuer ?? 'None'} {' >'}
-          </Text>
-        </View>
+        <Pressable
+          onPress={() => {
+            navigation.navigate('MyDataIssuer', {
+              issuer: dataInfo?.issuer ?? 'None',
+            });
+          }}
+          style={({pressed}) => [
+            {
+              backgroundColor: pressed ? '#f8f9fa' : 'white', // TODO(hyunsub): common style
+              width: '100%',
+            },
+          ]}>
+          <View style={[styles.row, styles.rowBottomLine]}>
+            <Text style={styles.key}>Issuer</Text>
+            <Text style={styles.value}>
+              {dataInfo?.issuer?.name ?? 'None'} {' >'}
+            </Text>
+          </View>
+        </Pressable>
         <View style={[styles.row, styles.rowBottomLine]}>
           <Text style={styles.key}>Type</Text>
           <Text style={styles.value}>{dataInfo?.type ?? 'None'}</Text>

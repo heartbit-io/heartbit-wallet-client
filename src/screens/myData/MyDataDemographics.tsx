@@ -8,7 +8,7 @@ function MyDataDemographics({
   navigation: any;
   route: any;
 }) {
-  const demographics = route.params.demographics;
+  const {demographics} = route.params;
   useEffect(() => {
     navigation.setOptions({
       headerTitle: 'Demographics',

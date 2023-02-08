@@ -17,7 +17,7 @@ const Item = ({dataInfo}: {dataInfo: DATAProps}) => (
   <View style={styles.item}>
     {dataInfo?.isNew ? <Badge badgeStyle={styles.isNew} /> : null}
     <Text style={styles.title}>{dataInfo?.title ?? 'None'}</Text>
-    <Text style={styles.issuer}>{dataInfo?.issuer ?? 'None'}</Text>
+    <Text style={styles.issuer}>{dataInfo?.issuer?.name ?? 'None'}</Text>
     <Text style={styles.issuedAt}>Issued at</Text>
     <Text style={styles.issuedAt}>{dataInfo?.issuedAt ?? 'None'}</Text>
     <Text style={styles.dataCnt}>
