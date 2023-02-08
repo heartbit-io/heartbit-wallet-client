@@ -3,8 +3,9 @@ import MyDataStackNavigator from './MyDataStackNavigator';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import Settings from '../screens/settings/Settings';
-import Welcome from '../screens/welcome/Welcome';
+import Welcome from '../screens/wallet/Welcome';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import SignUp from '../screens/wallet/SignUp';
 const Tab = createBottomTabNavigator();
 
 function TabNavigator(): JSX.Element {
@@ -14,6 +15,11 @@ function TabNavigator(): JSX.Element {
         screenOptions={() => ({
           headerShown: false,
         })}>
+        <Tab.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{title: 'Sign Up'}}
+        />
         <Tab.Screen
           name="Welcome"
           component={Welcome}
