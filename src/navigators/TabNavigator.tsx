@@ -3,12 +3,18 @@ import MyDataStackNavigator from './MyDataStackNavigator';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import Settings from '../screens/settings/Settings';
+import Welcome from '../screens/welcome/Welcome';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 const Tab = createBottomTabNavigator();
 
 function TabNavigator(): JSX.Element {
   return (
     <NavigationContainer>
+      <Tab.Screen
+        name="Welcome"
+        component={Welcome}
+        options={{title: 'Welcome'}}
+      />
       <Tab.Navigator>
         <Tab.Screen name="Home" component={Home} options={{title: 'Home'}} />
         <Tab.Screen
