@@ -1,4 +1,4 @@
-import {Button, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {Button, Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
 import {
   generateMnemonic, selectMnemonic
@@ -25,12 +25,18 @@ export function Mnemonic() {
       title="generate recovery phrase" />
     </Text>
     <Text></Text>
-    <Text style={styles.bigText}>
-        {mnemonic.split(" ").slice(0, 6).map(word => word + " ")}
+    <View style={styles.mnemonic}>
+    <Text style={styles.text}>
+        {mnemonic.length === 0 ? "" :
+        mnemonic.split(" ").slice(0, 4).map((word, index) => index+1 + ". " + word + "  ")}
     </Text>
-    <Text style={styles.bigText}>
-        {mnemonic.split(" ").slice(6, 12).map(word => word + " ")}
+    <Text style={styles.text}>
+        {mnemonic.split(" ").slice(4, 8).map((word, index) => index+5 + ". " + word + "  ")}
     </Text>
+    <Text style={styles.text}>
+        {mnemonic.split(" ").slice(8, 12).map((word, index) => index+9 + ". " + word + "  ")}
+    </Text>
+    </View>
     <Text></Text>
     <TouchableOpacity onPress={() => copyToClipboard()}>
       <Text style={styles.smallText}>
@@ -47,7 +53,7 @@ export function Mnemonic() {
 const styles = StyleSheet.create({
   text: {
     fontSize: 14,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   smallText: {
     fontSize: 10,
@@ -56,6 +62,16 @@ const styles = StyleSheet.create({
   bigText: {
     fontSize: 18,
     fontWeight: 'bold'
+  },
+  mnemonic: {
+    height: '15%',
+    width: '80%',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: 'black',
+    alignItems: 'center',
+    textAlign: 'center',
+    justifyContent: 'center',
   }
 });
 
