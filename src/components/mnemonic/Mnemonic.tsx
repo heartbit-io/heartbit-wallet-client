@@ -1,4 +1,4 @@
-import {Button, Text, TouchableOpacity} from 'react-native';
+import {Button, Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
 import {
   generateMnemonic, selectMnemonic
@@ -18,23 +18,60 @@ export function Mnemonic() {
 
   return (
     <>
+    <Text style={styles.text}>Generate your own recovery pharse</Text>
+    <Text></Text>  
     <Text>
       <Button onPress={() => dispatch(generateMnemonic())} 
-      title="generate mnemonic" />
+      title="generate recovery phrase" />
     </Text>
     <Text></Text>
-    <Text>
-        {mnemonic.split(" ").slice(0, 6).map(word => word + " ")}
+    <View style={styles.mnemonic}>
+    <Text style={styles.text}>
+        {mnemonic.length === 0 ? "" :
+        mnemonic.split(" ").slice(0, 4).map((word, index) => index+1 + ". " + word + "  ")}
     </Text>
-    <Text>
-        {mnemonic.split(" ").slice(6, 12).map(word => word + " ")}
+    <Text style={styles.text}>
+        {mnemonic.split(" ").slice(4, 8).map((word, index) => index+5 + ". " + word + "  ")}
     </Text>
+    <Text style={styles.text}>
+        {mnemonic.split(" ").slice(8, 12).map((word, index) => index+9 + ". " + word + "  ")}
+    </Text>
+    </View>
     <Text></Text>
     <TouchableOpacity onPress={() => copyToClipboard()}>
-      <Text>
+      <Text style={styles.smallText}>
         Copy To Clipboard
       </Text>
     </TouchableOpacity>
+    <Text></Text>
+    <Text style={styles.text}>Please save your recovery phrase in very safe place</Text>
+    <Text style={styles.text}>If revealed, your fund and data will be stolen</Text>
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  smallText: {
+    fontSize: 10,
+    fontWeight: 'bold'
+  },
+  bigText: {
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  mnemonic: {
+    height: '15%',
+    width: '80%',
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: 'black',
+    alignItems: 'center',
+    textAlign: 'center',
+    justifyContent: 'center',
+  }
+});
+

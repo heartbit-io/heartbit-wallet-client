@@ -10,6 +10,9 @@ export function MnemonicRestore() {
   }
 
   return (
+    <>
+    <Text>Sign up with your existing recovery pharse</Text>
+    <Text></Text>
     <TextInput secureTextEntry={true} textAlign='center'
      returnKeyType='next' multiline={true} blurOnSubmit={true}
      onChangeText={text => mnemonicHandler(text)}
@@ -18,16 +21,30 @@ export function MnemonicRestore() {
       console.log(mnemonic)
       : alert(`Invalid mnemonic. \nPlease check again.`)}}
      style={styles.mnemonic}
+     placeholder='Recovery Phrase of 12 words'
     />
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   mnemonic: {
-    height: '20%',
+    height: '15%',
     width: '80%',
     borderWidth: 1,
     borderColor: 'black',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+  },
+  text: {
+    fontSize: 14,
+    fontWeight: 'bold'
+  },
+  smallText: {
+    fontSize: 10,
+    fontWeight: 'bold'
+  },
+  bigText: {
+    fontSize: 18,
+    fontWeight: 'bold'
   }
 })
