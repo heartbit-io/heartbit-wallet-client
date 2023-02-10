@@ -25,9 +25,6 @@ function SignUp() {
     subtitleConfirm={" "}
     stylePinCodeColorTitle={'black'}
     stylePinCodeButtonNumber={'black'}
-    stylePinCodeColumnDeleteButton={{marginTop: 15, marginRight: 5}}
-    stylePinCodeDeleteButtonSize={40}
-    buttonDeleteText={""}
     />
   );
 }

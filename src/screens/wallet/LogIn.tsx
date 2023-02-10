@@ -23,10 +23,6 @@ function LogIn() {
     stylePinCodeColorTitle={'black'}
     stylePinCodeButtonNumber={'black'}
     touchIDDisabled={true}
-    buttonDeleteText={"delete"}
-    stylePinCodeColumnDeleteButton={{marginTop: 15, marginRight: 5}}
-    stylePinCodeDeleteButtonSize={40}
-    buttonDeleteText={""}
     />
   );
 }
