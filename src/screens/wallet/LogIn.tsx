@@ -10,8 +10,8 @@ function LogIn() {
     status={'enter'} maxAttempts={10}
     endProcessFunction={async(pinCode) => {
       try {
-        const vault = await AsyncStorage.getItem("vault");
-        const mnemonic = await hippocrat.BtcWallet.decryptVault(vault, pinCode);
+        const vault : string = await AsyncStorage.getItem("vault");
+        const mnemonic : string = await hippocrat.BtcWallet.decryptVault(vault, pinCode);
         console.log(mnemonic);
       } catch (e) {
         console.log(e);
