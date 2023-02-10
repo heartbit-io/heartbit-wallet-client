@@ -3,13 +3,17 @@ import PINCode, {deleteUserPinCode} from '@haskkor/react-native-pincode';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as hippocrat from '../../utils/hippocrat';
 import React from 'react';
+import {useAppSelector} from '../../hooks/hooks';
 
 function SignUp() {
+
+  const mnemonic : string = useAppSelector(state => state.mnemonic.value);
+
   return (
     <PINCode 
     status={'choose'} maxAttempts={10}
-    finishProcess={async(pinCode) => {
-      const vault = await hippocrat.BtcWallet.generateEncryptedVault("mnemonic", pinCode);
+    finishProcess={async(pinCode : string) => {
+      const vault : string = await hippocrat.BtcWallet.generateEncryptedVault(mnemonic, pinCode);
       await AsyncStorage.setItem("vault", vault);
       await deleteUserPinCode();
     }}
