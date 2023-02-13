@@ -18,7 +18,6 @@ function SignUp({navigation}: {navigation: any}) {
       await deleteUserPinCode();
       navigation.replace('LogIn');
     }}
-    onFail={(err)=> navigation.replace('SignUp')}
     passwordLength={6}
     titleChoose={"Set Your Password for Wallet"}
     subtitleChoose={" "}
