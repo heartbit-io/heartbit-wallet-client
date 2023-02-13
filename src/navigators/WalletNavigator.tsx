@@ -11,15 +11,11 @@ const Stack = createNativeStackNavigator();
 function WalletNavigator(): JSX.Element {
   return (
     <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{headerShown:false}}>
             <Stack.Screen name="Welcome" component={Welcome} />
             <Stack.Screen name="SignUp" component={SignUp} />
-            <Stack.Screen name="LogIn" component={LogIn} options={{
-              title: 'Log In',
-            }} />
-            <Stack.Screen name="Tab" component={TabNavigator} options={{
-              title: 'HeartBit',
-            }}/>
+            <Stack.Screen name="LogIn" component={LogIn} />
+            <Stack.Screen name="Tab" component={TabNavigator}/>
         </Stack.Navigator>
     </NavigationContainer>
   );
