@@ -18,7 +18,9 @@ export function Mnemonic() {
 
   return (
     <>
-    <Text style={styles.text}>Generate your own recovery pharse</Text>
+    <Text style={styles.text}>Welcome to HeartBit Wallet!</Text>
+    <Text style={styles.text}>To use our service,</Text>
+    <Text style={styles.text}>Please generate your own recovery phrase!</Text>
     <Text></Text>  
     <Text>
       <Button onPress={() => dispatch(generateMnemonic())} 
