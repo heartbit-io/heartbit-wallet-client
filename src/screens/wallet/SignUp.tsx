@@ -5,7 +5,7 @@ import * as hippocrat from '../../utils/hippocrat';
 import React from 'react';
 import {useAppSelector} from '../../hooks/hooks';
 
-function SignUp() {
+function SignUp({navigation}: {navigation: any}) {
 
   const mnemonic : string = useAppSelector(state => state.mnemonic.value);
 
@@ -16,8 +16,9 @@ function SignUp() {
       const vault : string = await hippocrat.BtcWallet.generateEncryptedVault(mnemonic, pinCode);
       await AsyncStorage.setItem("vault", vault);
       await deleteUserPinCode();
+      navigation.replace('LogIn');
     }}
-    onFail={(err)=> console.log(err)}
+    onFail={(err)=> navigation.replace('SignUp')}
     passwordLength={6}
     titleChoose={"Set Your Password for Wallet"}
     subtitleChoose={" "}

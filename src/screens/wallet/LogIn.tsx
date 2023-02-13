@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as hippocrat from '../../utils/hippocrat';
 import React from 'react';
 
-function LogIn() {
+function LogIn({navigation}: {navigation: any}) {
   return (
     <PINCode 
     status={'enter'} maxAttempts={10}
@@ -12,7 +12,8 @@ function LogIn() {
       try {
         const vault : string = await AsyncStorage.getItem("vault");
         const mnemonic : string = await hippocrat.BtcWallet.decryptVault(vault, pinCode);
-        console.log(mnemonic);
+        console.log(mnemonic); // must be deleted in production
+        navigation.replace('Tab')
       } catch (e) {
         console.log(e);
         alert("Password is incorrect")
