@@ -1,17 +1,25 @@
 import {ScrollView, Text, View} from 'react-native';
 import PINCode, {deleteUserPinCode} from '@haskkor/react-native-pincode';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
+import { ThunkDispatch } from '@reduxjs/toolkit';
+import {mnemonicSlice} from '../../components/mnemonic/mnemonicSlice';
 import * as hippocrat from '../../utils/hippocrat';
 import React from 'react';
 
 function LogIn({navigation}: {navigation: any}) {
+
+  const dispatch : ThunkDispatch = useAppDispatch();
+
   return (
     <PINCode 
     status={'enter'} maxAttempts={10}
     endProcessFunction={async(pinCode) => {
       try {
         const vault : string = await AsyncStorage.getItem("vault");
-        await hippocrat.BtcWallet.decryptVault(vault, pinCode);
+        dispatch(mnemonicSlice.actions.setMnemonic(
+          await hippocrat.BtcWallet.decryptVault(vault, pinCode)
+        ));
         navigation.replace('Tab');
       } catch (e) {
         console.log(e);
