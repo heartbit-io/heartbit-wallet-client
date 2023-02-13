@@ -11,12 +11,12 @@ function LogIn({navigation}: {navigation: any}) {
     endProcessFunction={async(pinCode) => {
       try {
         const vault : string = await AsyncStorage.getItem("vault");
-        const mnemonic : string = await hippocrat.BtcWallet.decryptVault(vault, pinCode);
-        console.log(mnemonic); // must be deleted in production
-        navigation.replace('Tab')
+        await hippocrat.BtcWallet.decryptVault(vault, pinCode);
+        navigation.replace('Tab');
       } catch (e) {
         console.log(e);
-        alert("Password is incorrect")
+        alert("Password is incorrect");
+        navigation.replace('LogIn')
       }
     }}
     passwordLength={6}
