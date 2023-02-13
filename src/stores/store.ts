@@ -1,11 +1,9 @@
 import {Action, ThunkAction, configureStore} from '@reduxjs/toolkit';
 
-import counterReducer from '../components/counter/counterSlice';
 import mnemonicReducer from '../components/mnemonic/mnemonicSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     mnemonic: mnemonicReducer,
   },
 });
