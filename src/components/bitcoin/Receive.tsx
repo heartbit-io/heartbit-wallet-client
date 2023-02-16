@@ -2,6 +2,7 @@ import {Button, Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
 import Clipboard from '@react-native-clipboard/clipboard';
 import QRCode from 'react-native-qrcode-svg';
+import Logo from '../../assets/Logo';
 
 export function Receive() {
 
@@ -13,7 +14,8 @@ export function Receive() {
     <>
     <Text style={styles.text}>Show Your QR to Sender</Text>
     <Text></Text>
-    <QRCode value='bc1qgdd50x082gaakk2j36xy7dt9kf7wwnfct3phy4' size={120} />
+    <QRCode value='bc1qgdd50x082gaakk2j36xy7dt9kf7wwnfct3phy4' size={120} 
+    logo={{uri: Logo}}/>
     <Text></Text>
     <Text>OR</Text>
     <Text></Text>
