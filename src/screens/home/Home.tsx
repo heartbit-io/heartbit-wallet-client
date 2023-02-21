@@ -3,6 +3,7 @@ import {ScrollView, Text, View} from 'react-native';
 import React from 'react';
 import { Receive } from '../../components/bitcoin/Receive';
 import { Balance } from '../../components/bitcoin/Balance';
+import { DID } from '../../components/did/DID'
 
 function Home() {
   return (
@@ -13,6 +14,8 @@ function Home() {
         <Balance />
         <Text></Text>
         <Receive />
+        <Text></Text>
+        <DID />
       </View>
     </ScrollView>
   );

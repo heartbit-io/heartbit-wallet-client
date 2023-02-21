@@ -3,9 +3,9 @@ import PINCode, {deleteUserPinCode} from '@haskkor/react-native-pincode';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import { ThunkDispatch } from '@reduxjs/toolkit';
-import {mnemonicSlice} from '../../components/mnemonic/mnemonicSlice';
 import * as hippocrat from '../../utils/hippocrat';
 import React from 'react';
+import { DIDSlice } from '../../components/did/DIDSlice';
 
 function LogIn({navigation}: {navigation: any}) {
 
@@ -17,9 +17,9 @@ function LogIn({navigation}: {navigation: any}) {
     endProcessFunction={async(pinCode) => {
       try {
         const vault : string = await AsyncStorage.getItem("vault");
-        dispatch(mnemonicSlice.actions.setMnemonic(
-          await hippocrat.BtcWallet.decryptVault(vault, pinCode)
-        ));
+        const mnemonic : string = await hippocrat.BtcWallet.decryptVault(vault, pinCode);
+        const DID : hippocrat.BtcAccount = await hippocrat.BtcWallet.getNonBtcAccountFromMnemonic(mnemonic);
+        dispatch(DIDSlice.actions.setDID(DID));
         navigation.replace('Tab');
       } catch (e) {
         console.log(e);
