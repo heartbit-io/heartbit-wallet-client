@@ -19,7 +19,7 @@ export function Balance() {
   })
 
   return (
-    <Text style={styles.text}>{satoshi.toLocaleString()} SATS</Text>
+    <Text style={styles.text}>Balance: {satoshi.toLocaleString()} Sats</Text>
   );
 }
 

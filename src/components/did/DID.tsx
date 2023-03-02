@@ -18,12 +18,13 @@ export function DID() {
 
   return (
     <>
-    <Text style={styles.text}>Your DID</Text>
-    <Text style={styles.smallText}>did:btc:{DID.publicKey.toString('hex')}</Text>
+    <Text style={styles.text}>My Hippocrat DID</Text>
+    <Text style={styles.text} ellipsizeMode='middle' numberOfLines={1}>
+      did:hpo:{DID.publicKey.toString('hex')}</Text>
     <TouchableOpacity onPress={() => 
-      copyToClipboard('did:btc:'+DID.publicKey.toString('hex'))}>
+      copyToClipboard('did:hpo:'+DID.publicKey.toString('hex'))}>
       <Text style={styles.smallText}>
-        Copy To Clipboard
+        Click Here To Copy DID To Clipboard
       </Text>
     </TouchableOpacity>
     </>
@@ -34,6 +35,8 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 14,
     fontWeight: 'bold',
+    width: '80%',
+    textAlign: 'center'
   },
   smallText: {
     fontSize: 10,
