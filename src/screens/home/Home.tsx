@@ -4,6 +4,7 @@ import React from 'react';
 import { Receive } from '../../components/bitcoin/Receive';
 import { Balance } from '../../components/bitcoin/Balance';
 import { DID } from '../../components/did/DID'
+import { Withdraw } from '../../components/bitcoin/Withdraw';
 
 function Home() {
   return (
@@ -16,6 +17,8 @@ function Home() {
         <Receive />
         <Text></Text>
         <DID />
+        <Text></Text>
+        <Withdraw />
       </View>
     </ScrollView>
   );
