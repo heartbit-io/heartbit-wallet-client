@@ -2,7 +2,7 @@ import {Button, Text, TouchableOpacity, StyleSheet, TextInput} from 'react-nativ
 import React, {useEffect, useState} from 'react';
 import { BtcNetwork, BtcSigner, TxFee, BtcReceiver, BtcPayment } from '../../utils/hippocrat';
 
-export function Withdraw() {
+export function Send() {
     const [satoshi, setSatoshi] = useState(0);
     const [toAddress, setToAddress] = useState("");
     const satoshiHandler = (satoshi : string) => {
@@ -15,7 +15,6 @@ export function Withdraw() {
     return (
       <>
       <Text>Enter Satoshi To Send</Text>
-      <Text></Text>
       <TextInput textAlign='center' returnKeyType='next' 
       multiline={false} blurOnSubmit={true}
       onChangeText={satoshi => satoshiHandler(satoshi)}

@@ -1,8 +1,8 @@
 import Home from '../screens/home/Home';
 import MyDataStackNavigator from './MyDataStackNavigator';
 import React from 'react';
-import Settings from '../screens/settings/Settings';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Wallet from '../screens/wallet/Wallet';
 const Tab = createBottomTabNavigator();
 
 function TabNavigator(): JSX.Element {
@@ -18,9 +18,9 @@ function TabNavigator(): JSX.Element {
         options={{title: 'My Data', tabBarBadge: 1}}
       />
       <Tab.Screen
-        name="Settings"
-        component={Settings}
-        options={{title: 'Settings'}}
+        name="Wallet"
+        component={Wallet}
+        options={{title: 'Wallet'}}
       />
     </Tab.Navigator>
   );
