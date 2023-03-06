@@ -4,7 +4,7 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import QRCode from 'react-native-qrcode-svg';
 import Logo from '../../assets/Logo';
 
-export function Receive() {
+export function BtcReceive() {
 
   const copyToClipboard = () : void => {
     Clipboard.setString('bc1qgdd50x082gaakk2j36xy7dt9kf7wwnfct3phy4');

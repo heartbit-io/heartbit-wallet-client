@@ -2,7 +2,7 @@ import {Button, Text, TouchableOpacity, StyleSheet, TextInput} from 'react-nativ
 import React, {useEffect, useState} from 'react';
 import { BtcNetwork, BtcSigner, TxFee, BtcReceiver, BtcPayment } from '../../utils/hippocrat';
 
-export function Send() {
+export function BtcSend() {
     const [satoshi, setSatoshi] = useState(0);
     const [toAddress, setToAddress] = useState("");
     const satoshiHandler = (satoshi : string) => {
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   input: {
-    height: '6%',
+    height: '10%',
     width: '80%',
     borderWidth: 0.5,
     backgroundColor: 'white',

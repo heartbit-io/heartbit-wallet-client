@@ -4,7 +4,7 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import QRCode from 'react-native-qrcode-svg';
 import { UTXO, BtcRpcNode } from '../../utils/hippocrat';
 
-export function Balance() {
+export function BtcBalance() {
 
   const [satoshi, setSatoshi] : [number, Function] = useState(0);
 
@@ -19,7 +19,7 @@ export function Balance() {
   })
 
   return (
-    <Text style={styles.text}>{satoshi.toLocaleString()} Sats</Text>
+    <Text style={styles.veryBigText}>{satoshi.toLocaleString()} sats</Text>
   );
 }
 
@@ -32,19 +32,9 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: 'bold'
   },
-  bigText: {
-    fontSize: 18,
+  veryBigText: {
+    fontSize: 36,
     fontWeight: 'bold'
   },
-  mnemonic: {
-    height: '15%',
-    width: '80%',
-    borderRadius: 10,
-    borderWidth: 0.5,
-    borderColor: 'black',
-    alignItems: 'center',
-    textAlign: 'center',
-    justifyContent: 'center',
-  }
 });
 
