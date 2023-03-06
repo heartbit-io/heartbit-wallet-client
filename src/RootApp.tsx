@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import WalletNavigator from './navigators/WalletNavigator';
+import WelcomeNavigator from './navigators/WelcomeNavigator';
 import LogInNavigator from './navigators/LogInNavigator';
 
 function RootApp(): JSX.Element {
@@ -17,7 +17,7 @@ function RootApp(): JSX.Element {
     checkMnemonic();
   })
 
-  return isUser? <LogInNavigator /> : <WalletNavigator />
+  return isUser? <LogInNavigator /> : <WelcomeNavigator />
 
 }
 

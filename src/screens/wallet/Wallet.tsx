@@ -1,4 +1,4 @@
-import {ScrollView, Text, View} from 'react-native';
+import {Button, ScrollView, Text, View} from 'react-native';
 
 import React from 'react';
 import { Receive } from '../../components/bitcoin/Receive';
@@ -12,11 +12,11 @@ function Wallet() {
         <Text>HeartBit</Text>
         <Text></Text>
         <Balance />
+        <Button onPress={() => navigation.navigate('Receive')} 
+        title="Receive" />
+        <Button onPress={() => navigation.navigate('Send')} 
+        title="Send" />
         <Text></Text>
-        <Receive />
-        <Text></Text>
-        <Text></Text>
-        <Send />
       </View>
     </ScrollView>
   );
