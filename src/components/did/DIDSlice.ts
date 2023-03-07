@@ -18,10 +18,10 @@ export const DIDSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    setDID: (state, action : PayloadAction<BtcAccount>) => {
+    setDID: (state, action: PayloadAction<BtcAccount>) => {
       state.value = action.payload;
-    }
-  }
+    },
+  },
 });
 
 // The function below is called a selector and allows us to select a value from

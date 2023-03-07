@@ -1,7 +1,7 @@
 import {Button, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 
 import React from 'react';
-import { BtcSend } from '../../components/bitcoin/BtcSend';
+import {BtcSend} from '../../components/bitcoin/BtcSend';
 
 function Send({navigation}: {navigation: any}) {
   return (
@@ -37,5 +37,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  }
-})
+  },
+});

@@ -9,10 +9,10 @@ const Stack = createNativeStackNavigator();
 function LogInNavigator(): JSX.Element {
   return (
     <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown:false}}>
-            <Stack.Screen name="LogIn" component={LogIn} />
-            <Stack.Screen name="Tab" component={TabNavigator} />
-        </Stack.Navigator>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="LogIn" component={LogIn} />
+        <Stack.Screen name="Tab" component={TabNavigator} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

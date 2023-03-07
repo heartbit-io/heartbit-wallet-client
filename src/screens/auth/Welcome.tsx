@@ -1,4 +1,10 @@
-import {SafeAreaView, TouchableOpacity, Text, View, StyleSheet} from 'react-native';
+import {
+  SafeAreaView,
+  TouchableOpacity,
+  Text,
+  View,
+  StyleSheet,
+} from 'react-native';
 import {Mnemonic} from '../../components/mnemonic/Mnemonic';
 import React from 'react';
 
@@ -6,7 +12,7 @@ function Welcome({navigation}: {navigation: any}) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.columnContainer}>
-        <Mnemonic navigation = {navigation} />
+        <Mnemonic navigation={navigation} />
       </View>
     </SafeAreaView>
   );
@@ -42,7 +48,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderColor: 'black',
     borderWidth: 2,
-    borderRadius: 10
+    borderRadius: 10,
   },
   mnemonic: {
     height: '15%',
@@ -53,14 +59,14 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   smallText: {
     fontSize: 10,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   bigText: {
     fontSize: 18,
-    fontWeight: 'bold'
-  }
-})
+    fontWeight: 'bold',
+  },
+});

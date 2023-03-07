@@ -1,4 +1,9 @@
-import {Action, ThunkAction, configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
+import {
+  Action,
+  ThunkAction,
+  configureStore,
+  getDefaultMiddleware,
+} from '@reduxjs/toolkit';
 
 import MnemonicReducer from '../components/mnemonic/MnemonicSlice';
 import BtcAddressReducer from '../components/bitcoin/BtcAddressSlice';

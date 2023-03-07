@@ -1,7 +1,7 @@
 import {Button, SafeAreaView, Text, StyleSheet, View} from 'react-native';
 
 import React from 'react';
-import { BtcReceive } from '../../components/bitcoin/BtcReceive';
+import {BtcReceive} from '../../components/bitcoin/BtcReceive';
 
 function Receive({navigation}: {navigation: any}) {
   return (
@@ -37,5 +37,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  }
-})
+  },
+});

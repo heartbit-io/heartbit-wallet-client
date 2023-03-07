@@ -1,37 +1,41 @@
 import {SafeAreaView, View, Text, TextInput, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
-import { ThunkDispatch } from '@reduxjs/toolkit';
+import {ThunkDispatch} from '@reduxjs/toolkit';
 import * as hippocrat from '../../utils/hippocrat';
-import { MnemonicSlice } from './MnemonicSlice';
+import {MnemonicSlice} from './MnemonicSlice';
 
 export function MnemonicRestore({navigation}: {navigation: any}) {
-
-  const [mnemonic, setMnemonic] = useState("empty");
-  const mnemonicHandler = (text : string) => {
+  const [mnemonic, setMnemonic] = useState('empty');
+  const mnemonicHandler = (text: string) => {
     setMnemonic(text);
-  }
+  };
 
-  const dispatch : ThunkDispatch = useAppDispatch();
+  const dispatch: ThunkDispatch = useAppDispatch();
 
   return (
     <>
-        <Text style={styles.bigText}>Import My Wallet Key</Text>
-        <Text></Text>
-        <TextInput secureTextEntry={true} textAlign='center'
-         returnKeyType='next' multiline={true} blurOnSubmit={true}
-         onChangeText={text => mnemonicHandler(text)}
-         onSubmitEditing={async () => {
+      <Text style={styles.bigText}>Import My Wallet Key</Text>
+      <Text></Text>
+      <TextInput
+        secureTextEntry={true}
+        textAlign="center"
+        returnKeyType="next"
+        multiline={true}
+        blurOnSubmit={true}
+        onChangeText={text => mnemonicHandler(text)}
+        onSubmitEditing={async () => {
           const isValid = await hippocrat.BtcWallet.isMnemonicValid(mnemonic);
           if (isValid) {
             dispatch(MnemonicSlice.actions.setMnemonic(mnemonic));
             navigation.replace('SignUp');
-          } else { 
+          } else {
             alert(`Invalid mnemonic. \nPlease check again.`);
-          }}}
-         style={styles.mnemonic}
-         placeholder='Recovery Phrase of 12 words'
-        />
+          }
+        }}
+        style={styles.mnemonic}
+        placeholder="Recovery Phrase of 12 words"
+      />
     </>
   );
 }
@@ -64,7 +68,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderColor: 'black',
     borderWidth: 2,
-    borderRadius: 10
+    borderRadius: 10,
   },
   mnemonic: {
     height: '15%',
@@ -75,14 +79,14 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   smallText: {
     fontSize: 10,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   bigText: {
     fontSize: 18,
-    fontWeight: 'bold'
-  }
-})
+    fontWeight: 'bold',
+  },
+});

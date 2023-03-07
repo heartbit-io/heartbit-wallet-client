@@ -1,7 +1,13 @@
-import {TouchableOpacity, SafeAreaView, Text, View, StyleSheet} from 'react-native';
+import {
+  TouchableOpacity,
+  SafeAreaView,
+  Text,
+  View,
+  StyleSheet,
+} from 'react-native';
 
 import React from 'react';
-import { BtcBalance } from '../../components/bitcoin/BtcBalance';
+import {BtcBalance} from '../../components/bitcoin/BtcBalance';
 
 function Wallet({navigation}: {navigation: any}) {
   return (
@@ -12,11 +18,15 @@ function Wallet({navigation}: {navigation: any}) {
         </View>
       </View>
       <View style={styles.rowContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Receive')} 
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Receive')}
           title="Receive">
           <Text style={styles.bigText}>Receive</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Send')} 
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Send')}
           title="Send">
           <Text style={styles.bigText}>Send</Text>
         </TouchableOpacity>
@@ -55,10 +65,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderColor: 'black',
     borderWidth: 2,
-    borderRadius: 10
+    borderRadius: 10,
   },
   bigText: {
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
-})
+});

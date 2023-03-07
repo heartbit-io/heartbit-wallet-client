@@ -1,18 +1,16 @@
 import {Button, Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
-import {
-  generateMnemonic, selectMnemonic
-} from './MnemonicSlice';
+import {generateMnemonic, selectMnemonic} from './MnemonicSlice';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import Clipboard from '@react-native-clipboard/clipboard';
-import { ThunkDispatch } from '@reduxjs/toolkit';
+import {ThunkDispatch} from '@reduxjs/toolkit';
 
 export function Mnemonic({navigation}: {navigation: any}) {
-  const dispatch : ThunkDispatch = useAppDispatch();
+  const dispatch: ThunkDispatch = useAppDispatch();
 
-  const mnemonic : string = useAppSelector(selectMnemonic);
+  const mnemonic: string = useAppSelector(selectMnemonic);
 
-  const copyToClipboard = () : void => {
+  const copyToClipboard = (): void => {
     Clipboard.setString(mnemonic);
   };
 
@@ -21,44 +19,63 @@ export function Mnemonic({navigation}: {navigation: any}) {
       <Text style={styles.text}>Welcome to HeartBit Wallet👋</Text>
       <Text style={styles.text}>To use our service,</Text>
       <Text style={styles.text}>Please create your own wallet key🙏</Text>
-      <Text></Text>  
-      <TouchableOpacity style={styles.button} onPress={() => dispatch(generateMnemonic())}>
+      <Text></Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => dispatch(generateMnemonic())}>
         <Text style={styles.bigText}>Create Wallet Key</Text>
       </TouchableOpacity>
       <Text></Text>
       <View style={styles.mnemonic}>
-      <Text style={styles.text}>
-          {mnemonic.length === 0 ? "" :
-          mnemonic.split(" ").slice(0, 4).map((word, index) => index+1 + ". " + word + "  ")}
-      </Text>
-      <Text style={styles.text}>
-          {mnemonic.split(" ").slice(4, 8).map((word, index) => index+5 + ". " + word + "  ")}
-      </Text>
-      <Text style={styles.text}>
-          {mnemonic.split(" ").slice(8, 12).map((word, index) => index+9 + ". " + word + "  ")}
-      </Text>
+        <Text style={styles.text}>
+          {mnemonic.length === 0
+            ? ''
+            : mnemonic
+                .split(' ')
+                .slice(0, 4)
+                .map((word, index) => index + 1 + '. ' + word + '  ')}
+        </Text>
+        <Text style={styles.text}>
+          {mnemonic
+            .split(' ')
+            .slice(4, 8)
+            .map((word, index) => index + 5 + '. ' + word + '  ')}
+        </Text>
+        <Text style={styles.text}>
+          {mnemonic
+            .split(' ')
+            .slice(8, 12)
+            .map((word, index) => index + 9 + '. ' + word + '  ')}
+        </Text>
       </View>
       <Text></Text>
       <TouchableOpacity onPress={() => copyToClipboard()}>
-        <Text style={styles.smallText}>
-          Copy To Clipboard
-        </Text>
+        <Text style={styles.smallText}>Copy To Clipboard</Text>
       </TouchableOpacity>
       <Text></Text>
-      <Text style={styles.text}>Please save your wallet key somewhere safe for back up,</Text>
+      <Text style={styles.text}>
+        Please save your wallet key somewhere safe for back up,
+      </Text>
       <Text style={styles.text}>In case to recover in other device💻</Text>
-      <Text style={styles.text}>Be aware! If revealed, your fund and data could be stolen😱</Text>
+      <Text style={styles.text}>
+        Be aware! If revealed, your fund and data could be stolen😱
+      </Text>
       <Text></Text>
-      <TouchableOpacity style={styles.button} onPress={() => 
-        mnemonic === "" ?
-        alert("Please create your own wallet key first!")
-        : navigation.replace('SignUp')}>
-         <Text style={styles.bigText}>Set Password to Login</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() =>
+          mnemonic === ''
+            ? alert('Please create your own wallet key first!')
+            : navigation.replace('SignUp')
+        }>
+        <Text style={styles.bigText}>Set Password to Login</Text>
       </TouchableOpacity>
       <Text></Text>
       <Text></Text>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.replace('Restore')}>
-         <Text style={styles.bigText}>Already Have Wallet Key? Click Here!</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.replace('Restore')}>
+        <Text style={styles.bigText}>Already Have Wallet Key? Click Here!</Text>
       </TouchableOpacity>
     </>
   );
@@ -92,7 +109,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderColor: 'black',
     borderWidth: 2,
-    borderRadius: 10
+    borderRadius: 10,
   },
   text: {
     fontSize: 14,
@@ -100,11 +117,11 @@ const styles = StyleSheet.create({
   },
   smallText: {
     fontSize: 10,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   bigText: {
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   mnemonic: {
     height: '15%',
@@ -116,5 +133,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
     justifyContent: 'center',
-  }
-})
+  },
+});

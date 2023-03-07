@@ -3,31 +3,29 @@ import React, {useState} from 'react';
 import Clipboard from '@react-native-clipboard/clipboard';
 import QRCode from 'react-native-qrcode-svg';
 import Logo from '../../assets/Logo';
-import { selectBtcAddress } from './BtcAddressSlice';
+import {selectBtcAddress} from './BtcAddressSlice';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 
 export function BtcReceive() {
+  const btcAddress: string = useAppSelector(selectBtcAddress);
 
-  const btcAddress : string = useAppSelector(selectBtcAddress);
-
-  const copyToClipboard = () : void => {
+  const copyToClipboard = (): void => {
     Clipboard.setString(btcAddress);
   };
 
   return (
     <>
-    <Text style={styles.text}>My BTC Address</Text>
-    <Text></Text>
-    <QRCode value={btcAddress} size={200} 
-    logo={{uri: Logo}}/>
-    <Text></Text>
-    <Text style={styles.text}>{btcAddress}</Text>
-    <Text></Text>
-    <TouchableOpacity onPress={() => copyToClipboard()}>
-      <Text style={styles.smallText}>
-        Click Here To Copy Address To Clipboard
-      </Text>
-    </TouchableOpacity>
+      <Text style={styles.text}>My BTC Address</Text>
+      <Text></Text>
+      <QRCode value={btcAddress} size={200} logo={{uri: Logo}} />
+      <Text></Text>
+      <Text style={styles.text}>{btcAddress}</Text>
+      <Text></Text>
+      <TouchableOpacity onPress={() => copyToClipboard()}>
+        <Text style={styles.smallText}>
+          Click Here To Copy Address To Clipboard
+        </Text>
+      </TouchableOpacity>
     </>
   );
 }
@@ -39,11 +37,11 @@ const styles = StyleSheet.create({
   },
   smallText: {
     fontSize: 10,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   bigText: {
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   mnemonic: {
     height: '15%',
@@ -54,6 +52,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
     justifyContent: 'center',
-  }
+  },
 });
-

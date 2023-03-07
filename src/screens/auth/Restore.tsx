@@ -1,6 +1,6 @@
 import {SafeAreaView, View, Text, TextInput, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
-import { MnemonicRestore } from '../../components/mnemonic/MnemonicRestore';
+import {MnemonicRestore} from '../../components/mnemonic/MnemonicRestore';
 
 function Restore({navigation}: {navigation: any}) {
   return (
@@ -12,7 +12,7 @@ function Restore({navigation}: {navigation: any}) {
   );
 }
 
-export default Restore
+export default Restore;
 
 const styles = StyleSheet.create({
   container: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderColor: 'black',
     borderWidth: 2,
-    borderRadius: 10
+    borderRadius: 10,
   },
   mnemonic: {
     height: '15%',
@@ -53,14 +53,14 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   smallText: {
     fontSize: 10,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   bigText: {
     fontSize: 18,
-    fontWeight: 'bold'
-  }
-})
+    fontWeight: 'bold',
+  },
+});

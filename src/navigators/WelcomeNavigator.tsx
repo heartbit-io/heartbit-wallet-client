@@ -12,13 +12,13 @@ const Stack = createNativeStackNavigator();
 function WelcomeNavigator(): JSX.Element {
   return (
     <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown:false}}>
-            <Stack.Screen name="Welcome" component={Welcome} />
-            <Stack.Screen name="Restore" component={Restore} />
-            <Stack.Screen name="SignUp" component={SignUp} />
-            <Stack.Screen name="LogIn" component={LogIn} />
-            <Stack.Screen name="Tab" component={TabNavigator}/>
-        </Stack.Navigator>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Welcome" component={Welcome} />
+        <Stack.Screen name="Restore" component={Restore} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="LogIn" component={LogIn} />
+        <Stack.Screen name="Tab" component={TabNavigator} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

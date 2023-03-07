@@ -2,29 +2,26 @@ import {Button, Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Clipboard from '@react-native-clipboard/clipboard';
 import QRCode from 'react-native-qrcode-svg';
-import { UTXO, BtcRpcNode } from '../../utils/hippocrat';
-import { selectBtcAddress } from './BtcAddressSlice';
+import {UTXO, BtcRpcNode} from '../../utils/hippocrat';
+import {selectBtcAddress} from './BtcAddressSlice';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 
 export function BtcBalance() {
+  const [satoshi, setSatoshi]: [number, Function] = useState(0);
 
-  const [satoshi, setSatoshi] : [number, Function] = useState(0);
-
-  const btcAddress : string = useAppSelector(selectBtcAddress);
+  const btcAddress: string = useAppSelector(selectBtcAddress);
 
   useEffect(() => {
-    const getBalance = async () : Promise<void> => {
-        const userUTXO : UTXO[] = await BtcRpcNode.getUTXOList(btcAddress);
-        let balance = 0;
-        userUTXO.forEach((UTXO) => balance += UTXO.value);
-        setSatoshi(balance);
+    const getBalance = async (): Promise<void> => {
+      const userUTXO: UTXO[] = await BtcRpcNode.getUTXOList(btcAddress);
+      let balance = 0;
+      userUTXO.forEach(UTXO => (balance += UTXO.value));
+      setSatoshi(balance);
     };
     getBalance();
-  })
+  });
 
-  return (
-    <Text style={styles.veryBigText}>{satoshi.toLocaleString()} sat</Text>
-  );
+  return <Text style={styles.veryBigText}>{satoshi.toLocaleString()} sat</Text>;
 }
 
 const styles = StyleSheet.create({
@@ -34,11 +31,10 @@ const styles = StyleSheet.create({
   },
   smallText: {
     fontSize: 10,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   veryBigText: {
     fontSize: 36,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
 });
-
