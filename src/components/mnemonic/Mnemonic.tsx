@@ -17,7 +17,7 @@ export function Mnemonic({navigation}: {navigation: any}) {
   };
 
   return (
-    <View style={styles.columnContainer}>
+    <>
       <Text style={styles.text}>Welcome to HeartBit Wallet👋</Text>
       <Text style={styles.text}>To use our service,</Text>
       <Text style={styles.text}>Please create your own wallet key🙏</Text>
@@ -52,7 +52,12 @@ export function Mnemonic({navigation}: {navigation: any}) {
       <TouchableOpacity style={styles.button} onPress={() => navigation.replace('SignUp')}>
          <Text style={styles.bigText}>Set Password to Login</Text>
       </TouchableOpacity>
-    </View>
+      <Text></Text>
+      <Text></Text>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.replace('Restore')}>
+         <Text style={styles.bigText}>Already Have Wallet Key? Click Here!</Text>
+      </TouchableOpacity>
+    </>
   );
 }
 
@@ -79,7 +84,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '80%',
-    height: '10%',
+    height: '7.5%',
     alignItems: 'center',
     justifyContent: 'center',
     borderColor: 'black',

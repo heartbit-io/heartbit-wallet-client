@@ -1,18 +1,18 @@
-import {SafeAreaView, TouchableOpacity, Text, View, StyleSheet} from 'react-native';
-import {Mnemonic} from '../../components/mnemonic/Mnemonic';
-import React from 'react';
+import {SafeAreaView, View, Text, TextInput, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import { MnemonicRestore } from '../../components/mnemonic/MnemonicRestore';
 
-function Welcome({navigation}: {navigation: any}) {
+function Restore({navigation}: {navigation: any}) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.columnContainer}>
-        <Mnemonic navigation = {navigation} />
+        <MnemonicRestore navigation={navigation} />
       </View>
     </SafeAreaView>
   );
 }
 
-export default Welcome;
+export default Restore
 
 const styles = StyleSheet.create({
   container: {
