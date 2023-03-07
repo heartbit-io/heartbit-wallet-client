@@ -1,11 +1,23 @@
-import {Action, ThunkAction, configureStore} from '@reduxjs/toolkit';
+import {
+  Action,
+  ThunkAction,
+  configureStore,
+  getDefaultMiddleware,
+} from '@reduxjs/toolkit';
 
-import counterReducer from '../components/counter/counterSlice';
+import MnemonicReducer from '../components/mnemonic/MnemonicSlice';
+import BtcAddressReducer from '../components/bitcoin/BtcAddressSlice';
+import DIDReducer from '../components/did/DIDSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    mnemonic: MnemonicReducer,
+    btcAddress: BtcAddressReducer,
+    DID: DIDReducer,
   },
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });
 
 export type AppDispatch = typeof store.dispatch;
