@@ -6,6 +6,7 @@ import { ThunkDispatch } from '@reduxjs/toolkit';
 import * as hippocrat from '../../utils/hippocrat';
 import React from 'react';
 import { DIDSlice } from '../../components/did/DIDSlice';
+import { BtcAddressSlice } from '../../components/bitcoin/BtcAddressSlice';
 
 function LogIn({navigation}: {navigation: any}) {
 
@@ -18,7 +19,12 @@ function LogIn({navigation}: {navigation: any}) {
       try {
         const vault : string = await AsyncStorage.getItem("vault");
         const mnemonic : string = await hippocrat.BtcWallet.decryptVault(vault, pinCode);
+        const btcAddress : string = await hippocrat.BtcWallet.generateBtcAddress(
+          await hippocrat.BtcWallet.getAddressFromAccount(
+            await hippocrat.BtcWallet.getAccountFromMnemonic(mnemonic)
+        ));
         const DID : hippocrat.BtcAccount = await hippocrat.BtcWallet.getNonBtcAccountFromMnemonic(mnemonic);
+        dispatch(BtcAddressSlice.actions.setBtcAddress(btcAddress));
         dispatch(DIDSlice.actions.setDID(DID));
         navigation.replace('Tab');
       } catch (e) {

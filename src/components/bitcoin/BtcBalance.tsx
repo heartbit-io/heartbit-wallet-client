@@ -3,14 +3,18 @@ import React, {useEffect, useState} from 'react';
 import Clipboard from '@react-native-clipboard/clipboard';
 import QRCode from 'react-native-qrcode-svg';
 import { UTXO, BtcRpcNode } from '../../utils/hippocrat';
+import { selectBtcAddress } from './BtcAddressSlice';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 
 export function BtcBalance() {
 
   const [satoshi, setSatoshi] : [number, Function] = useState(0);
 
+  const btcAddress : string = useAppSelector(selectBtcAddress);
+
   useEffect(() => {
     const getBalance = async () : Promise<void> => {
-        const userUTXO : UTXO[] = await BtcRpcNode.getUTXOList('bc1qgdd50x082gaakk2j36xy7dt9kf7wwnfct3phy4');
+        const userUTXO : UTXO[] = await BtcRpcNode.getUTXOList(btcAddress);
         let balance = 0;
         userUTXO.forEach((UTXO) => balance += UTXO.value);
         setSatoshi(balance);
@@ -19,7 +23,7 @@ export function BtcBalance() {
   })
 
   return (
-    <Text style={styles.veryBigText}>{satoshi.toLocaleString()} sats</Text>
+    <Text style={styles.veryBigText}>{satoshi.toLocaleString()} sat</Text>
   );
 }
 

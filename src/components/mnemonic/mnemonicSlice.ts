@@ -27,7 +27,7 @@ const initialState: mnemonicState = {
   status: 'idle',
 };
 
-export const mnemonicSlice = createSlice({
+export const MnemonicSlice = createSlice({
   name: 'mnemomnic',
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
@@ -58,4 +58,4 @@ export const mnemonicSlice = createSlice({
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectMnemonic = (state: RootState) => state.mnemonic.value
 
-export default mnemonicSlice.reducer;
+export default MnemonicSlice.reducer;

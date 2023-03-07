@@ -2,7 +2,7 @@ import {Button, Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 import React, {useState} from 'react';
 import {
   generateMnemonic, selectMnemonic
-} from './mnemonicSlice';
+} from './MnemonicSlice';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { ThunkDispatch } from '@reduxjs/toolkit';

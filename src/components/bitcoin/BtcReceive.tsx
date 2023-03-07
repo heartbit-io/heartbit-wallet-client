@@ -3,21 +3,25 @@ import React, {useState} from 'react';
 import Clipboard from '@react-native-clipboard/clipboard';
 import QRCode from 'react-native-qrcode-svg';
 import Logo from '../../assets/Logo';
+import { selectBtcAddress } from './BtcAddressSlice';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 
 export function BtcReceive() {
 
+  const btcAddress : string = useAppSelector(selectBtcAddress);
+
   const copyToClipboard = () : void => {
-    Clipboard.setString('bc1qgdd50x082gaakk2j36xy7dt9kf7wwnfct3phy4');
+    Clipboard.setString(btcAddress);
   };
 
   return (
     <>
     <Text style={styles.text}>My BTC Address</Text>
     <Text></Text>
-    <QRCode value='bc1qgdd50x082gaakk2j36xy7dt9kf7wwnfct3phy4' size={200} 
+    <QRCode value={btcAddress} size={200} 
     logo={{uri: Logo}}/>
     <Text></Text>
-    <Text style={styles.text}>bc1qgdd50x082gaakk2j36xy7dt9kf7wwnfct3phy4</Text>
+    <Text style={styles.text}>{btcAddress}</Text>
     <Text></Text>
     <TouchableOpacity onPress={() => copyToClipboard()}>
       <Text style={styles.smallText}>
