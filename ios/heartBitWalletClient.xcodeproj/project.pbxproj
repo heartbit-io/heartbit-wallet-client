@@ -14,6 +14,8 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		898E7FB5563E3F3049AEE08E /* libPods-heartBitWalletClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA6587000D125D9FE785971 /* libPods-heartBitWalletClient.a */; };
 		E62B2918C64ED72915D1861F /* libPods-heartBitWalletClient-heartBitWalletClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D56AFB52A0CEB350B23D10 /* libPods-heartBitWalletClient-heartBitWalletClientTests.a */; };
+		01EE390450E34C2CAC053366 /* Logo.ts in Resources */ = {isa = PBXBuildFile; fileRef = A2236E3365544920A0C3F041 /* Logo.ts */; };
+		BB4D9057EDBD4F3E98D6E07D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2209BDF409BB4BFCB57754B0 /* logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		D55ABA2C3ADDB61BEA0BA7B9 /* Pods-heartBitWalletClient-heartBitWalletClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartBitWalletClient-heartBitWalletClientTests.debug.xcconfig"; path = "Target Support Files/Pods-heartBitWalletClient-heartBitWalletClientTests/Pods-heartBitWalletClient-heartBitWalletClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D765A9A61FFB0A7B6943D004 /* Pods-heartBitWalletClient-heartBitWalletClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartBitWalletClient-heartBitWalletClientTests.release.xcconfig"; path = "Target Support Files/Pods-heartBitWalletClient-heartBitWalletClientTests/Pods-heartBitWalletClient-heartBitWalletClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		A2236E3365544920A0C3F041 /* Logo.ts */ = {isa = PBXFileReference; name = "Logo.ts"; path = "../src/assets/Logo.ts"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2209BDF409BB4BFCB57754B0 /* logo.png */ = {isa = PBXFileReference; name = "logo.png"; path = "../src/assets/logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				5ACA9C5DCF434093A2DAE5ED /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,6 +154,16 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		5ACA9C5DCF434093A2DAE5ED /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				A2236E3365544920A0C3F041 /* Logo.ts */,
+				2209BDF409BB4BFCB57754B0 /* logo.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -246,6 +261,8 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				01EE390450E34C2CAC053366 /* Logo.ts in Resources */,
+				BB4D9057EDBD4F3E98D6E07D /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
