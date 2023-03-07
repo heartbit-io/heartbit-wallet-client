@@ -49,7 +49,10 @@ export function Mnemonic({navigation}: {navigation: any}) {
       <Text style={styles.text}>In case to recover in other device💻</Text>
       <Text style={styles.text}>Be aware! If revealed, your fund and data could be stolen😱</Text>
       <Text></Text>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.replace('SignUp')}>
+      <TouchableOpacity style={styles.button} onPress={() => 
+        mnemonic === "" ?
+        alert("Please create your own wallet key first!")
+        : navigation.replace('SignUp')}>
          <Text style={styles.bigText}>Set Password to Login</Text>
       </TouchableOpacity>
       <Text></Text>
