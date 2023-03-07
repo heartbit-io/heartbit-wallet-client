@@ -5,7 +5,7 @@ import LogInNavigator from './navigators/LogInNavigator';
 
 function RootApp(): JSX.Element {
 
-  const [isUser, setIsUser] = useState(false);
+  const [isUser, setIsUser] = useState(undefined);
 
   useEffect(() => {
     const checkMnemonic = async () => {
