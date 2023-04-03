@@ -14,11 +14,6 @@ function TabNavigator(): JSX.Element {
       })}>
       <Tab.Screen name="Home" component={Home} options={{title: 'Home'}} />
       <Tab.Screen
-        name="MyDataStackNavigator"
-        component={MyDataStackNavigator}
-        options={{title: 'My Data', tabBarBadge: 1}}
-      />
-      <Tab.Screen
         name="WalletNavigator"
         component={WalletNavigator}
         options={{title: 'Wallet'}}
