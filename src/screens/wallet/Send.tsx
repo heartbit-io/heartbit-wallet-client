@@ -1,4 +1,12 @@
-import {Button, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {
+  Button,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 
 import React from 'react';
 import {BtcSend} from '../../components/bitcoin/BtcSend';
@@ -7,9 +15,11 @@ function Send({navigation}: {navigation: any}) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        <View style={styles.contentArea}>
+        <KeyboardAvoidingView
+          behavior={Platform.select({ios: 'padding', android: undefined})}
+          style={styles.contentArea}>
           <BtcSend />
-        </View>
+        </KeyboardAvoidingView>
       </View>
     </SafeAreaView>
   );
