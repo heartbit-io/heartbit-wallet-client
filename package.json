@@ -5,9 +5,11 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint 'src/**/*.ts' --ignore-path ./.eslintignore",
+    "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}' --ignore-path ./.eslintignore",
+    "format": "prettier 'src/**/*.{ts,tsx}' --ignore-path ./.prettierignore"
   },
   "dependencies": {
     "@haskkor/react-native-pincode": "^1.22.6",
@@ -49,17 +51,19 @@
     "@babel/core": "^7.20.0",
     "@babel/preset-env": "^7.20.0",
     "@babel/runtime": "^7.20.0",
-    "@humanscape/eslint-config": "^1.0.1",
-    "@react-native-community/eslint-config": "^3.0.0",
     "@tsconfig/react-native": "^2.0.2",
     "@types/jest": "^29.2.1",
     "@types/react": "^18.0.24",
     "@types/react-test-renderer": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
     "babel-jest": "^29.2.1",
-    "eslint": "^8.19.0",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "jest": "^29.2.1",
     "metro-react-native-babel-preset": "0.73.7",
-    "prettier": "^2.4.1",
+    "prettier": "^2.8.4",
     "react-test-renderer": "18.2.0",
     "typescript": "4.8.4"
   },
