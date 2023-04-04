@@ -12,6 +12,6 @@ import BtcSigner from './src/models/BtcSigner';
 import UTXO from './src/models/UTXO';
 import BOLT11 from './src/models/BOLT11';
 
-export {BtcPayment, BtcWallet, BtcRpcNode, RareData, LNPayment};
-export {BtcNetwork, BtcRpcUrl, TxFee};
-export {BtcAccount, BtcReceiver, BtcSigner, UTXO, BOLT11};
+export { BtcPayment, BtcWallet, BtcRpcNode, RareData, LNPayment };
+export { BtcNetwork, BtcRpcUrl, TxFee };
+export { BtcAccount, BtcReceiver, BtcSigner, UTXO, BOLT11 };
