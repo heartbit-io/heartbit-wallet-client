@@ -1,9 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../screens/home/Home';
-import MyDataStackNavigator from './MyDataStackNavigator';
 import WalletNavigator from './WalletNavigator';
-import Wallet from '../screens/wallet/Wallet';
+import HomeNavigator from './HomeNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,7 +12,11 @@ function TabNavigator(): JSX.Element {
 				headerShown: false,
 			})}
 		>
-			<Tab.Screen name="Home" component={Home} options={{ title: 'Home' }} />
+			<Tab.Screen
+				name="HomeNavigator"
+				component={HomeNavigator}
+				options={{ title: 'Home' }}
+			/>
 			<Tab.Screen
 				name="WalletNavigator"
 				component={WalletNavigator}
