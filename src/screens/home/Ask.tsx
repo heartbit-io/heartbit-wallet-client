@@ -1,47 +1,13 @@
-import {
-	SafeAreaView,
-	StyleSheet,
-	Text,
-	View,
-	KeyboardAvoidingView,
-	Platform,
-	TextInput,
-} from 'react-native';
-
-import React, { useState } from 'react';
+import { ScrollView, StyleSheet, Text } from 'react-native';
+import React from 'react';
+import AskContent from '../../components/home/AskContent';
 
 function Ask({ navigation }: { navigation: any }) {
-	const [question, setQuestion] = useState('');
-	const questionHandler = (question: string) => {
-		setQuestion(question);
-	};
-
 	return (
-		<SafeAreaView style={styles.container}>
-			<View style={styles.columnContainer}>
-				<Text style={styles.veryBigText}>What do you want to ask?</Text>
-				<KeyboardAvoidingView
-					behavior={Platform.select({ ios: 'padding', android: undefined })}
-					style={styles.contentArea}
-				>
-					<TextInput
-						textAlign="center"
-						returnKeyType="go"
-						multiline={true}
-						blurOnSubmit
-						onChangeText={question => questionHandler(question)}
-						onSubmitEditing={async () => {
-							try {
-								navigation.navigate('Bounty');
-								console.log(question);
-							} catch (e) {}
-						}}
-						style={styles.input}
-						placeholder="Write here"
-					/>
-				</KeyboardAvoidingView>
-			</View>
-		</SafeAreaView>
+		<ScrollView keyboardShouldPersistTaps="always" style={styles.container}>
+			<Text style={styles.veryBigText}>What do you want to ask?</Text>
+			<AskContent navigation={navigation} />
+		</ScrollView>
 	);
 }
 
@@ -73,6 +39,7 @@ const styles = StyleSheet.create({
 	veryBigText: {
 		fontSize: 28,
 		fontWeight: 'bold',
+		marginLeft: '3%',
 	},
 	input: {
 		backgroundColor: '#FFF5ED',

@@ -1,25 +1,13 @@
-import {
-	SafeAreaView,
-	StyleSheet,
-	Text,
-	View,
-	KeyboardAvoidingView,
-	Platform,
-	TextInput,
-} from 'react-native';
-
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
+import { BountyChoice } from '../../components/home/BountyChoice';
 
 function Bounty({ navigation }: { navigation: any }) {
-	const [bounty, setBounty] = useState('');
-	const bountyHandler = (bounty: string) => {
-		setBounty(bounty);
-	};
-
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.columnContainer}>
 				<Text style={styles.veryBigText}>Set a bounty for human answers</Text>
+				<BountyChoice navigation={navigation} />
 			</View>
 		</SafeAreaView>
 	);
