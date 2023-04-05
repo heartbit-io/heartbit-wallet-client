@@ -23,6 +23,7 @@ export default Welcome;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		backgroundColor: 'white',
 	},
 	columnContainer: {
 		flex: 1,
