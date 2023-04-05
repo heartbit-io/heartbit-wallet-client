@@ -17,7 +17,7 @@ export default Restore;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'white',
+		backgroundColor: '#FFF5ED',
 	},
 	columnContainer: {
 		flex: 1,
