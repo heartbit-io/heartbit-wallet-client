@@ -15,7 +15,7 @@ function BountyConfirm({
 				style={styles.button}
 				onPress={() => {
 					console.log(bounty);
-					navigation.navigate('Home');
+					navigation.navigate('Forum');
 				}}
 				title="bounty"
 			>

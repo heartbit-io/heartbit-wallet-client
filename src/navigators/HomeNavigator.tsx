@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../screens/home/Home';
 import Ask from '../screens/home/Ask';
 import Bounty from '../screens/home/Bounty';
+import Forum from '../screens/forum/Forum';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,17 @@ function HomeNavigator(): JSX.Element {
 			<Stack.Screen
 				name="Bounty"
 				component={Bounty}
+				options={{
+					title: '',
+					headerStyle: {
+						backgroundColor: '#FFF5ED',
+					},
+					headerShadowVisible: false,
+				}}
+			/>
+			<Stack.Screen
+				name="Forum"
+				component={Forum}
 				options={{
 					title: '',
 					headerStyle: {
