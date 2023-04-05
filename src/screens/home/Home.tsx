@@ -1,11 +1,14 @@
-import { ScrollView, StyleSheet, View } from 'react-native';
+import React, {useEffect} from 'react';
+import { ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 
 import AskButton from '../../components/home/AskButton';
 import Intro from '../../components/home/Intro';
 import LinearGradient from 'react-native-linear-gradient';
-import React from 'react';
 
 function Home({ navigation }: { navigation: any }) {
+	useEffect(() => {
+		StatusBar.setBackgroundColor('#F58A25');
+	  }, []);
 	return (
 		<ScrollView style={styles.container}>
 			<LinearGradient

@@ -21,7 +21,7 @@ export default AskButton;
 const styles = StyleSheet.create({
 	button: {
 		flex: 0.1,
-		width: '80%',
+		width: '85%',
 		height: '10%',
 		alignItems: 'center',
 		justifyContent: 'center',
