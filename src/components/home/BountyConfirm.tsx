@@ -19,7 +19,7 @@ function BountyConfirm({
 				}}
 				title="bounty"
 			>
-				<Text style={styles.whiteText}>Next</Text>
+				<Text style={styles.whiteText}>Confirm</Text>
 			</TouchableOpacity>
 		</>
 	);
@@ -29,13 +29,10 @@ export default BountyConfirm;
 
 const styles = StyleSheet.create({
 	button: {
-		marginTop: '20%',
 		width: '100%',
 		height: 60,
 		alignItems: 'center',
 		justifyContent: 'center',
-		borderColor: 'white',
-		borderWidth: 2,
 		backgroundColor: '#F68F2A',
 		borderRadius: 14,
 	},

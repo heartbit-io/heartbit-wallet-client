@@ -1,5 +1,6 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+
 import { BountyChoice } from '../../components/home/BountyChoice';
 
 function Bounty({ navigation }: { navigation: any }) {
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-start',
 	},
 	veryBigText: {
-		fontSize: 28,
+		fontSize: 34,
 		fontWeight: 'bold',
 	},
 	input: {

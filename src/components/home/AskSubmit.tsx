@@ -29,15 +29,14 @@ export default AskSubmit;
 
 const styles = StyleSheet.create({
 	button: {
-		flex: 0.1,
-		width: '85%',
-		height: '10%',
+		marginTop: '20%',
+		height: 60,
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#F68F2A',
-		padding: '2%',
-		margin: '10%',
 		borderRadius: 14,
+		marginLeft: '3%',
+		marginRight: '3%',
 	},
 	whiteText: {
 		color: 'white',

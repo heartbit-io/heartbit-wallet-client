@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-start',
 	},
 	veryBigText: {
-		fontSize: 28,
+		fontSize: 34,
 		fontWeight: 'bold',
 		marginLeft: '3%',
 	},
