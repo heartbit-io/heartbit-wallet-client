@@ -1,17 +1,25 @@
-import { ScrollView, View, StyleSheet } from 'react-native';
-import React from 'react';
-import Intro from '../../components/home/Intro';
+import { ScrollView, StyleSheet, View } from 'react-native';
+
 import AskButton from '../../components/home/AskButton';
+import Intro from '../../components/home/Intro';
+import LinearGradient from 'react-native-linear-gradient';
+import React from 'react';
 
 function Home({ navigation }: { navigation: any }) {
 	return (
 		<ScrollView style={styles.container}>
-			<View style={styles.columnContainer}>
-				<View style={styles.contentArea}>
-					<Intro />
+			<LinearGradient
+  				// start={{x: 0.75=, y: 0.0}} end={{x: 0.5, y: 0.75}}
+				colors={['#F58A25', '#FFF5ED']}
+				style={styles.gradient}
+			>
+				<View style={styles.columnContainer}>
+					<View style={styles.contentArea}>
+						<Intro />
+					</View>
+					<AskButton navigation={navigation} />
 				</View>
-				<AskButton navigation={navigation} />
-			</View>
+			</LinearGradient>
 		</ScrollView>
 	);
 }
@@ -40,5 +48,9 @@ const styles = StyleSheet.create({
 		paddingTop: '20%',
 		alignItems: 'center',
 		justifyContent: 'center',
+	},
+	gradient: {
+		width: '100%',
+		height: '100%',
 	},
 });

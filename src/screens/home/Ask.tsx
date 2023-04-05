@@ -1,6 +1,7 @@
 import { ScrollView, StyleSheet, Text } from 'react-native';
-import React from 'react';
+
 import AskContent from '../../components/home/AskContent';
+import React from 'react';
 
 function Ask({ navigation }: { navigation: any }) {
 	return (
