@@ -1,6 +1,6 @@
 import { ScrollView, Text, View, Image, StyleSheet } from 'react-native';
-import Logo from '../../../android/app/src/main/assets/custom/Logo';
 import React from 'react';
+import LogoNoBackground from '../../assets/LogoNoBackground';
 
 function Intro() {
 	return (
@@ -8,10 +8,10 @@ function Intro() {
 			<Image
 				style={styles.logo}
 				source={{
-					uri: Logo,
+					uri: LogoNoBackground,
 				}}
 			/>
-			<Text style={styles.text}>365, 24/7 health consultations</Text>
+			<Text style={styles.text}>365, 24/7 lightning health consultations</Text>
 			<Text style={styles.text}>by AI and human doctors</Text>
 		</>
 	);
@@ -29,8 +29,7 @@ const styles = StyleSheet.create({
 		height: 150,
 	},
 	text: {
-		fontSize: 14,
-		fontWeight: 'bold',
+		fontSize: 15,
 	},
 	smallText: {
 		fontSize: 10,

@@ -33,7 +33,7 @@ export default Home;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'white',
+		backgroundColor: '#FFF5ED',
 	},
 	columnContainer: {
 		flex: 1,
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
 	},
 	contentArea: {
 		flex: 1,
+		paddingTop: '20%',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
@@ -60,9 +61,10 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		borderColor: 'white',
 		borderWidth: 2,
-		backgroundColor: '#F57C00',
+		backgroundColor: '#F68F2A',
 		padding: '2%',
 		margin: '10%',
+		borderRadius: 14,
 	},
 	whiteText: {
 		color: 'white',
