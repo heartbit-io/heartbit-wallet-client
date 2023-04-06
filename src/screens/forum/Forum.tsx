@@ -1,26 +1,25 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 import AskContent from '../../components/home/AskContent';
+import BestAnswer from '../../components/forum/BestAnswer';
+import Doctor from '../../components/forum/Doctor';
+import GPT4 from '../../components/forum/GPT4';
+import Question from '../../components/forum/Question';
 import React from 'react';
-
-// import GPT4 from '../../components/forum/GPT4';
-// import Question from '../../components/forum/Question';
-// import Doctor from '../../components/forum/Doctor';
-// import BestAnswer from '../../components/forum/BestAnswer';
 
 function Forum({ navigation }: { navigation: any }) {
 	return (
 		<ScrollView style={styles.container}>
 			<View style={styles.columnContainerTop}>
-				{/* <Question /> */}
+				<Question />
 			</View>
 			<View style={styles.columnContainer}>
-				{/* <GPT4 /> */}
+				<GPT4 />
 			</View>
 			<View style={styles.columnContainer}>
-				{/* <Doctor /> */}
+				<Doctor />
 			</View>
-			{/* <BestAnswer navigation={navigation} /> */}
+			<BestAnswer navigation={navigation} />
 		</ScrollView>
 	);
 }
