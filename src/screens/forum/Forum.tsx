@@ -1,7 +1,5 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
-
-import AskContent from '../../components/home/AskContent';
-import BestAnswer from '../../components/forum/BestAnswer';
+import AnswerChoice from '../../components/forum/AnswerChoice';
 import Doctor from '../../components/forum/Doctor';
 import GPT4 from '../../components/forum/GPT4';
 import Question from '../../components/forum/Question';
@@ -9,8 +7,8 @@ import React from 'react';
 
 function Forum({ navigation }: { navigation: any }) {
 	return (
-		<ScrollView style={styles.container}>
-			<View style={styles.columnContainerTop}>
+		<ScrollView style={styles.containerWhite}>
+			<View style={styles.columnContainerOrange}>
 				<Question />
 			</View>
 			<View style={styles.columnContainer}>
@@ -19,7 +17,7 @@ function Forum({ navigation }: { navigation: any }) {
 			<View style={styles.columnContainer}>
 				<Doctor />
 			</View>
-			<BestAnswer navigation={navigation} />
+			<AnswerChoice navigation={navigation} />
 		</ScrollView>
 	);
 }
@@ -27,17 +25,20 @@ function Forum({ navigation }: { navigation: any }) {
 export default Forum;
 
 const styles = StyleSheet.create({
-	container: {
+	containerWhite: {
 		flex: 1,
-		backgroundColor: '#FFF5ED',
+		backgroundColor: 'white',
 	},
-	columnContainerTop: {
+	columnContainerOrange: {
 		flex: 1,
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
 		borderColor: '#BDBDBD',
-		borderTopWidth: 0.5,
+		borderTopWidth: 1,
+		paddingVertical: '4%',
+		paddingHorizontal: '2%',
+		backgroundColor: '#FFF5ED',
 	},
 	columnContainer: {
 		flex: 1,
@@ -45,9 +46,9 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		borderColor: '#BDBDBD',
-		borderTopWidth: 0.5,
-		borderBottomWidth: 0.5,
-		backgroundColor: 'white',
+		borderTopWidth: 1,
+		paddingVertical: '4%',
+		paddingHorizontal: '2%',
 	},
 	rowContainer: {
 		flex: 0.3,
