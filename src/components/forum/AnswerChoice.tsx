@@ -8,9 +8,9 @@ function AnswerChoice({ navigation }: { navigation: any }) {
 			<TouchableOpacity
 				style={styles.button}
 				onPress={() => {
-					navigation.navigate('Forum');
+					navigation.navigate('BestAnswer');
 				}}
-				title="Forum"
+				title="Best Answer"
 			>
 				<Text style={styles.whiteText}>Choose the best answer</Text>
 				<Text style={styles.whiteSmallText}>2 days 23 hours left</Text>
