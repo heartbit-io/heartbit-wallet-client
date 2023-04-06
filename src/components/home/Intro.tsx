@@ -37,6 +37,8 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		fontSize: 15,
+		textAlign: 'center',
+		paddingHorizontal: '10%',
 	},
 	smallText: {
 		fontSize: 10,

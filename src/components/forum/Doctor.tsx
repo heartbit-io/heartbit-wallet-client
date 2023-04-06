@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
 	doctorProfileTextYellow: {
 		color: 'white',
 		fontSize: 28,
+		lineHeight: 40,
 		fontWeight: 'bold',
 		backgroundColor: '#FFCC00',
 		width: 40,
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
 	doctorProfileTextGreen: {
 		color: 'white',
 		fontSize: 28,
+		lineHeight: 40,
 		fontWeight: 'bold',
 		backgroundColor: '#34C759',
 		width: 40,
@@ -69,6 +71,7 @@ const styles = StyleSheet.create({
 	doctorProfileTextBlue: {
 		color: 'white',
 		fontSize: 28,
+		lineHeight: 40,
 		fontWeight: 'bold',
 		backgroundColor: '#007AFF',
 		width: 40,
@@ -81,6 +84,7 @@ const styles = StyleSheet.create({
 	doctorProfileTextIndigo: {
 		color: 'white',
 		fontSize: 28,
+		lineHeight: 40,
 		fontWeight: 'bold',
 		backgroundColor: '#5856D6',
 		width: 40,
@@ -94,6 +98,7 @@ const styles = StyleSheet.create({
 		color: 'white',
 		fontSize: 28,
 		fontWeight: 'bold',
+		lineHeight: 40,
 		backgroundColor: '#AF52DE',
 		width: 40,
 		height: 40,
@@ -105,6 +110,7 @@ const styles = StyleSheet.create({
 	doctorProfileTextRed: {
 		color: 'white',
 		fontSize: 28,
+		lineHeight: 40,
 		fontWeight: 'bold',
 		backgroundColor: '#FF3B30',
 		width: 40,

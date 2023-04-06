@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
 	},
 	rightText: {
 		marginRight: '3%',
-		fontSize: 17,
+		fontSize: 14,
 		fontWeight: 'bold',
 		marginLeft: 'auto',
 	},

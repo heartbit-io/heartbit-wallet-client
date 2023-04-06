@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
 	userProfileText: {
 		color: 'white',
 		fontSize: 28,
+		lineHeight: 40,
 		fontWeight: 'bold',
 		backgroundColor: '#5AC8FA',
 		width: 40,

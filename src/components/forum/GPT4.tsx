@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
 	gptProfileText: {
 		color: 'white',
 		fontSize: 28,
+		lineHeight: 40,
 		fontWeight: 'bold',
 		backgroundColor: '#189B70',
 		width: 40,
