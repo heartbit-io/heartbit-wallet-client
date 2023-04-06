@@ -17,8 +17,9 @@ function Intro() {
 				source={require('../../assets/img/ic_text_logo.png')}
 				resizeMode="stretch"
 			/>
-			<Text style={styles.text}>365, 24/7 lightning health consultations</Text>
-			<Text style={styles.text}>by AI and human doctors</Text>
+			<Text style={styles.text}>
+				365, 24/7 lightning health consultations by AI and human doctors
+			</Text>
 		</>
 	);
 }
@@ -50,5 +51,5 @@ const styles = StyleSheet.create({
 		height: 40,
 		marginTop: 20,
 		marginBottom: 40,
-	}
+	},
 });

@@ -51,6 +51,8 @@ const styles = StyleSheet.create({
 		height: 40,
 		borderRadius: 20,
 		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	doctorProfileTextGreen: {
 		color: 'white',
@@ -61,6 +63,8 @@ const styles = StyleSheet.create({
 		height: 40,
 		borderRadius: 20,
 		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	doctorProfileTextBlue: {
 		color: 'white',
@@ -71,6 +75,8 @@ const styles = StyleSheet.create({
 		height: 40,
 		borderRadius: 20,
 		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	doctorProfileTextIndigo: {
 		color: 'white',
@@ -81,6 +87,8 @@ const styles = StyleSheet.create({
 		height: 40,
 		borderRadius: 20,
 		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	doctorProfileTextPurple: {
 		color: 'white',
@@ -91,6 +99,8 @@ const styles = StyleSheet.create({
 		height: 40,
 		borderRadius: 20,
 		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	doctorProfileTextRed: {
 		color: 'white',
@@ -101,6 +111,8 @@ const styles = StyleSheet.create({
 		height: 40,
 		borderRadius: 20,
 		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	text: {
 		fontSize: 14,

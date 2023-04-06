@@ -109,6 +109,8 @@ const styles = StyleSheet.create({
 		height: 40,
 		borderRadius: 20,
 		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	chosenProfile: {
 		color: 'white',
@@ -120,6 +122,8 @@ const styles = StyleSheet.create({
 		height: 40,
 		borderRadius: 20,
 		textAlign: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
 		backgroundColor: '#F68F2A',
 		transform: [{ rotate: '15deg' }],
 	},

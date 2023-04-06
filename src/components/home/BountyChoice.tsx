@@ -77,8 +77,8 @@ export function BountyChoice({ navigation }: { navigation: any }) {
 							</Text>
 							<Text style={styles.modalContentText}>
 								A bounty goes to doctor who writes the best answer of your
-								choice. {'\n\n'} If no answer is received, 100 sats go to AI,
-								and the rest will be refunded to you.
+								choice. {'\n\n'}If no answer is received, 100 sats go to AI, and
+								the rest will be refunded to you.
 							</Text>
 							<TouchableOpacity style={styles.modalButton} onPress={hideModal}>
 								<Text style={styles.modalButtonText}>OK</Text>
