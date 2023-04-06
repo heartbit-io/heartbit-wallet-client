@@ -10,9 +10,39 @@ const Stack = createNativeStackNavigator();
 function WalletNavigator(): JSX.Element {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: true }}>
-			<Stack.Screen name="HeartBit Wallet" component={Wallet} />
-			<Stack.Screen name="Receive" component={Receive} />
-			<Stack.Screen name="Send" component={Send} />
+			<Stack.Screen
+				name="HeartBit Wallet"
+				component={Wallet}
+				options={{
+					title: '',
+					headerStyle: {
+						backgroundColor: '#FFF5ED',
+					},
+					headerShadowVisible: false,
+				}}
+			/>
+			<Stack.Screen
+				name="Receive"
+				component={Receive}
+				options={{
+					title: '',
+					headerStyle: {
+						backgroundColor: '#FFF5ED',
+					},
+					headerShadowVisible: false,
+				}}
+			/>
+			<Stack.Screen
+				name="Send"
+				component={Send}
+				options={{
+					title: '',
+					headerStyle: {
+						backgroundColor: '#FFF5ED',
+					},
+					headerShadowVisible: false,
+				}}
+			/>
 		</Stack.Navigator>
 	);
 }

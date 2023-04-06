@@ -20,6 +20,7 @@ export default Receive;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		backgroundColor: '#FFF5ED',
 	},
 	columnContainer: {
 		flex: 1,
