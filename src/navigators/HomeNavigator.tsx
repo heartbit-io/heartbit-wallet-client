@@ -11,9 +11,7 @@ const Stack = createNativeStackNavigator();
 
 function HomeNavigator(): JSX.Element {
 	return (
-		<Stack.Navigator
-			screenOptions={{ headerShown: true, statusBarColor: '#FFF5ED' }}
-		>
+		<Stack.Navigator screenOptions={{ headerShown: true }}>
 			<Stack.Screen
 				name="Home"
 				component={Home}
