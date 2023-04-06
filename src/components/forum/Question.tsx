@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
 	},
 	userProfileText: {
 		color: 'white',
-		fontSize: 28,
-		lineHeight: 40,
+		fontSize: 20,
+		verticalAlign: 'middle',
 		fontWeight: 'bold',
 		backgroundColor: '#5AC8FA',
 		width: 40,

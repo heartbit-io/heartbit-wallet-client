@@ -101,8 +101,8 @@ const styles = StyleSheet.create({
 	},
 	emptyProfile: {
 		color: 'white',
-		fontSize: 28,
-		lineHeight: 40,
+		fontSize: 20,
+		verticalAlign: 'middle',
 		fontWeight: 'bold',
 		borderColor: '#BDBDBD',
 		borderWidth: 1,
@@ -115,8 +115,8 @@ const styles = StyleSheet.create({
 	},
 	chosenProfile: {
 		color: 'white',
-		fontSize: 28,
-		lineHeight: 40,
+		fontSize: 20,
+		verticalAlign: 'middle',
 		fontWeight: 'bold',
 		borderColor: '#F68F2A' /*#FF2D55'*/,
 		borderWidth: 1,
