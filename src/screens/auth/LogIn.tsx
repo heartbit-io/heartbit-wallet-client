@@ -21,7 +21,7 @@ function LogIn({ navigation }: { navigation: any }) {
 					const mnemonic: string = await hippocrat.BtcWallet.decryptVault(
 						vault,
 						pinCode,
-					);
+					); /*
 					const btcAddress: string =
 						await hippocrat.BtcWallet.generateBtcAddress(
 							await hippocrat.BtcWallet.getAddressFromAccount(
@@ -31,7 +31,7 @@ function LogIn({ navigation }: { navigation: any }) {
 					const DID: hippocrat.BtcAccount =
 						await hippocrat.BtcWallet.getNonBtcAccountFromMnemonic(mnemonic);
 					dispatch(BtcAddressSlice.actions.setBtcAddress(btcAddress));
-					dispatch(DIDSlice.actions.setDID(DID));
+					dispatch(DIDSlice.actions.setDID(DID));*/
 					navigation.replace('Tab');
 				} catch (e) {
 					console.log(e);

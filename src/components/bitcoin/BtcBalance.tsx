@@ -5,14 +5,14 @@ import QRCode from 'react-native-qrcode-svg';
 import { UTXO, BtcRpcNode } from '../../utils/hippocrat';
 import { selectBtcAddress } from './BtcAddressSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function BtcBalance() {
 	const [satoshi, setSatoshi]: [number, Function] = useState(0);
 
-	const btcAddress: string = useAppSelector(selectBtcAddress);
-
 	useEffect(() => {
 		const getBalance = async (): Promise<void> => {
+			const btcAddress: string = await AsyncStorage.getItem('btcAddress');
 			const userUTXO: UTXO[] = await BtcRpcNode.getUTXOList(btcAddress);
 			let balance = 0;
 			userUTXO.forEach(UTXO => (balance += UTXO.value));

@@ -1,19 +1,27 @@
 import { Button, Text, TouchableOpacity, StyleSheet, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Clipboard from '@react-native-clipboard/clipboard';
 import QRCode from 'react-native-qrcode-svg';
 import Logo from '../../assets/Logo';
-import { selectBtcAddress } from './BtcAddressSlice';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function BtcReceive() {
-	const btcAddress: string = useAppSelector(selectBtcAddress);
+	const [btcAddress, setBtcAddress]: [string, Function] = useState('');
+
+	useEffect(() => {
+		const getAddress = async (): Promise<void> => {
+			setBtcAddress(await AsyncStorage.getItem('btcAddress'));
+		};
+		getAddress();
+	});
 
 	const copyToClipboard = (): void => {
 		Clipboard.setString(btcAddress);
 	};
 
-	return (
+	return btcAddress === '' ? (
+		<Text>Waiting to load</Text>
+	) : (
 		<>
 			<Text style={styles.text}>My BTC Address</Text>
 			<Text />

@@ -17,7 +17,16 @@ function SignUp({ navigation }: { navigation: any }) {
 					mnemonic,
 					pinCode,
 				);
+				const btcAddress: string = await hippocrat.BtcWallet.generateBtcAddress(
+					await hippocrat.BtcWallet.getAddressFromAccount(
+						await hippocrat.BtcWallet.getAccountFromMnemonic(mnemonic),
+					),
+				);
+				const DID: hippocrat.BtcAccount =
+					await hippocrat.BtcWallet.getNonBtcAccountFromMnemonic(mnemonic);
 				await AsyncStorage.setItem('vault', vault);
+				await AsyncStorage.setItem('btcAddress', btcAddress);
+				await AsyncStorage.setItem('hpoDid', DID.toBase58());
 				await deleteUserPinCode();
 				navigation.replace('LogIn');
 			}}
