@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, { useEffect } from 'react';
 
-import ConfirmButton from '../../components/home/ConfirmButton';
+import DismissButton from '../../components/home/DismissButton';
 import LinearGradient from 'react-native-linear-gradient';
 import LogoNoBackground from '../../assets/LogoNoBackground';
 
@@ -32,7 +32,7 @@ function TransactionConfirm({ navigation }: { navigation: any }) {
 						<Text style={styles.balanceText}> 1,000 sats</Text>
 						<Text style={styles.txText}>sent to x5c3ad !</Text>
 					</View>
-					<ConfirmButton navigation={navigation} />
+					<DismissButton navigation={navigation} />
 				</View>
 			</LinearGradient>
 		</ScrollView>

@@ -2,21 +2,21 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import React from 'react';
 
-function ConfirmButton({ navigation }: { navigation: any }) {
+function DismissButton({ navigation }: { navigation: any }) {
 	return (
 		<>
 			<TouchableOpacity
 				style={styles.button}
 				onPress={() => navigation.navigate('Home')}
-				title="Confirm"
+				title="Dismiss"
 			>
-				<Text style={styles.whiteText}>Confirm</Text>
+				<Text style={styles.whiteText}>Dismiss</Text>
 			</TouchableOpacity>
 		</>
 	);
 }
 
-export default ConfirmButton;
+export default DismissButton;
 
 const styles = StyleSheet.create({
 	button: {
