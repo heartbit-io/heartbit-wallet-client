@@ -1,6 +1,7 @@
-import { ScrollView, Text, View, Image, StyleSheet } from 'react-native';
-import React from 'react';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+
 import LogoNoBackground from '../../assets/LogoNoBackground';
+import React from 'react';
 
 function Intro() {
 	return (
@@ -10,6 +11,11 @@ function Intro() {
 				source={{
 					uri: LogoNoBackground,
 				}}
+			/>
+			<Image
+				style={styles.textLogo}
+				source={require('../../assets/img/ic_text_logo.png')}
+				resizeMode="stretch"
 			/>
 			<Text style={styles.text}>365, 24/7 lightning health consultations</Text>
 			<Text style={styles.text}>by AI and human doctors</Text>
@@ -25,8 +31,8 @@ const styles = StyleSheet.create({
 		height: 50,
 	},
 	logo: {
-		width: 150,
-		height: 150,
+		width: 120,
+		height: 120,
 	},
 	text: {
 		fontSize: 15,
@@ -39,4 +45,10 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		fontWeight: 'bold',
 	},
+	textLogo: {
+		width: 190,
+		height: 40,
+		marginTop: 20,
+		marginBottom: 40,
+	}
 });

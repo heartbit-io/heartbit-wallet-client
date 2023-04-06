@@ -29,19 +29,18 @@ export default AskSubmit;
 
 const styles = StyleSheet.create({
 	button: {
-		width: '100%',
+		marginTop: '20%',
 		height: 60,
 		alignItems: 'center',
 		justifyContent: 'center',
-		borderColor: 'white',
-		borderWidth: 2,
 		backgroundColor: '#F68F2A',
 		borderRadius: 14,
-		position: 'relative',
+		marginLeft: '3%',
+		marginRight: '3%',
 	},
 	whiteText: {
 		color: 'white',
 		fontSize: 18,
-		fontWeight: 'bold',
+		padding: 5,
 	},
 });

@@ -1,5 +1,6 @@
-import { Image, Text, TouchableOpacity, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
+
 import BountyConfirm from './BountyConfirm';
 
 export function BountyChoice({ navigation }: { navigation: any }) {
@@ -9,7 +10,13 @@ export function BountyChoice({ navigation }: { navigation: any }) {
 	};
 	return (
 		<>
-			<Text style={styles.smallGrayText}>ℹ️ About bounty</Text>
+			<View style={styles.infoContainer}>
+				<Image
+					style={styles.infoLogo}
+					source={require('../../assets/img/ic_info.png')}
+				/>
+				<Text style={styles.smallGrayText}>About bounty</Text>
+			</View>
 			<Text></Text>
 			<TouchableOpacity
 				style={bounty === 100 ? styles.buttonSelected : styles.button}
@@ -18,7 +25,12 @@ export function BountyChoice({ navigation }: { navigation: any }) {
 					console.log(bounty);
 				}}
 			>
-				<Text style={styles.text}>An AI answer guaranteed : 100 sats</Text>
+				<View style={styles.bountyItemContainer}>
+					<Text style={styles.leftText}>An AI answer guaranteed</Text>
+					<View style={styles.flexSpacer} />
+					<Text style={styles.rightText}>100 sats</Text>
+				</View>
+				<Text style={styles.rightTextBottom}>$0.03</Text>
 			</TouchableOpacity>
 			<TouchableOpacity
 				style={bounty === 1000 ? styles.buttonSelected : styles.button}
@@ -27,7 +39,12 @@ export function BountyChoice({ navigation }: { navigation: any }) {
 					console.log(bounty);
 				}}
 			>
-				<Text style={styles.text}>May receive less than 1d : 1,000 sats</Text>
+				<View style={styles.bountyItemContainer}>
+					<Text style={styles.leftText}>May receive less than <Text style={styles.boldText}>1d</Text></Text>
+					<View style={styles.flexSpacer} />
+					<Text style={styles.rightText}>1,000 sats</Text>
+				</View>
+				<Text style={styles.rightTextBottom}>$0.28</Text>
 			</TouchableOpacity>
 			<TouchableOpacity
 				style={bounty === 10000 ? styles.buttonSelected : styles.button}
@@ -36,8 +53,17 @@ export function BountyChoice({ navigation }: { navigation: any }) {
 					console.log(bounty);
 				}}
 			>
-				<Text style={styles.text}>May receive less than 3h : 10,000 sats</Text>
+				<View style={styles.bountyItemContainer}>
+					<Text style={styles.leftText}>May receive less than <Text style={styles.boldText}>3h</Text></Text>
+					<View style={styles.flexSpacer} />
+					<Text style={styles.rightText}>10,000 sats</Text>
+				</View>
+				<Text style={styles.rightTextBottom}>$2.85</Text>
 			</TouchableOpacity>
+
+			<View style={styles.balanceContainer}>
+				<Text style={styles.balanceText}>Balance: 2,393,042 sats</Text>
+			</View>
 			<BountyConfirm navigation={navigation} bounty={bounty} />
 		</>
 	);
@@ -46,6 +72,27 @@ export function BountyChoice({ navigation }: { navigation: any }) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+	},
+	infoContainer: {
+		marginTop: '4%',
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	balanceContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: '100%',
+	},
+	bountyItemContainer: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	infoLogo: {
+		width: 20,
+		height: 20,
 	},
 	columnContainer: {
 		flex: 1,
@@ -86,15 +133,41 @@ const styles = StyleSheet.create({
 		borderWidth: 2,
 		borderRadius: 10,
 	},
-	text: {
-		fontSize: 14,
+	leftText: {
+		marginTop: 14,
+		marginLeft: '3%',
+		fontSize: 13,
+		marginRight: 'auto',
+	},
+	rightText: {
+		marginRight: '3%',
+		fontSize: 17,
+		fontWeight: 'bold',
+		marginLeft: 'auto',
+	},
+	rightTextBottom: {
+		marginRight: '3%',
+		fontSize: 12,
+		fontWeight: 'bold',
+		marginLeft: 'auto',
+		color: '#8E8E93',
+	},
+	balanceText: {
+		fontSize: 15,
+		color: '#8E8E93',
+		textAlign: 'center',
+	},
+	flexSpacer: {
+	  flex: 1,
+	},
+	boldText: {
 		fontWeight: 'bold',
 	},
 	smallGrayText: {
-		marginTop: '4%',
 		fontSize: 12,
 		fontWeight: 'bold',
 		color: 'gray',
+		marginHorizontal: 8,
 	},
 	bigText: {
 		fontSize: 18,

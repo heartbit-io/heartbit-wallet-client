@@ -1,10 +1,11 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
-import React from 'react';
+
 import AskContent from '../../components/home/AskContent';
+import BestAnswer from '../../components/forum/BestAnswer';
+import Doctor from '../../components/forum/Doctor';
 import GPT4 from '../../components/forum/GPT4';
 import Question from '../../components/forum/Question';
-import Doctor from '../../components/forum/Doctor';
-import BestAnswer from '../../components/forum/BestAnswer';
+import React from 'react';
 
 function Forum({ navigation }: { navigation: any }) {
 	return (

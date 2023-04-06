@@ -21,12 +21,10 @@ export default AskButton;
 const styles = StyleSheet.create({
 	button: {
 		flex: 0.1,
-		width: '80%',
+		width: '85%',
 		height: '10%',
 		alignItems: 'center',
 		justifyContent: 'center',
-		borderColor: 'white',
-		borderWidth: 2,
 		backgroundColor: '#F68F2A',
 		padding: '2%',
 		margin: '10%',
@@ -35,6 +33,6 @@ const styles = StyleSheet.create({
 	whiteText: {
 		color: 'white',
 		fontSize: 18,
-		fontWeight: 'bold',
+		padding: 5,
 	},
 });
