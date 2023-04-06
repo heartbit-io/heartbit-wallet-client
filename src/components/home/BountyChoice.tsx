@@ -16,7 +16,7 @@ const windowHeight = Dimensions.get('window').height;
 
 export function BountyChoice({ navigation }: { navigation: any }) {
 	const [bounty, setBounty] = useState(0);
-	const [modalVisible, setModalVisible] = useState(0);
+	const [modalVisible, setModalVisible] = useState(false);
 	const bountyHandler = (bounty: number) => {
 		setBounty(bounty);
 	};
@@ -46,12 +46,14 @@ export function BountyChoice({ navigation }: { navigation: any }) {
 		<>
 			<View style={styles.infoContainer}>
 				<TouchableOpacity onPress={showModal}>
-					<Image
-						style={styles.infoLogo}
-						source={require('../../assets/img/ic_info.png')}
-					/>
+					<Text>
+						<Image
+							style={styles.infoLogo}
+							source={require('../../assets/img/ic_info.png')}
+						/>
+						<Text style={styles.smallGrayText}> About bounty</Text>
+					</Text>
 				</TouchableOpacity>
-				<Text style={styles.smallGrayText}>About bounty</Text>
 			</View>
 
 			<Modal
