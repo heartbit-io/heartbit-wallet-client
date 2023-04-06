@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
-import AnswerChoice from '../../components/forum/AnswerChoice';
+import BestAnswerChoice from '../../components/forum/BestAnswerChoice';
 import React from 'react';
 import AnswerToChoose from '../../components/forum/AnswerToChoose';
 
@@ -19,7 +19,7 @@ function BestAnswer({ navigation }: { navigation: any }) {
 			<View style={styles.columnContainer}>
 				<AnswerToChoose />
 			</View>
-			<AnswerChoice navigation={navigation} />
+			<BestAnswerChoice navigation={navigation} />
 		</ScrollView>
 	);
 }

@@ -5,6 +5,7 @@ import Home from '../screens/home/Home';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BestAnswer from '../screens/forum/BestAnswer';
+import TransactionConfirm from '../screens/home/TransactionConfirm';
 
 const Stack = createNativeStackNavigator();
 
@@ -63,6 +64,14 @@ function HomeNavigator(): JSX.Element {
 						backgroundColor: '#FFF5ED',
 					},
 					headerShadowVisible: false,
+				}}
+			/>
+			<Stack.Screen
+				name="TransactionConfirm"
+				component={TransactionConfirm}
+				options={{
+					title: '',
+					headerTransparent: true,
 				}}
 			/>
 		</Stack.Navigator>
