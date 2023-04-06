@@ -1,22 +1,90 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useState } from 'react';
+import {
+	Animated,
+	Dimensions,
+	Image,
+	Modal,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from 'react-native';
+import React, { useRef, useState } from 'react';
 
 import BountyConfirm from './BountyConfirm';
 
+const windowHeight = Dimensions.get('window').height;
+
 export function BountyChoice({ navigation }: { navigation: any }) {
 	const [bounty, setBounty] = useState(0);
+	const [modalVisible, setModalVisible] = useState(0);
 	const bountyHandler = (bounty: number) => {
 		setBounty(bounty);
 	};
+
+	const translateY = useRef(new Animated.Value(windowHeight)).current;
+
+	const showModal = () => {
+		setModalVisible(true);
+		Animated.timing(translateY, {
+			toValue: 0,
+			duration: 300,
+			useNativeDriver: true,
+		}).start();
+	};
+
+	const hideModal = () => {
+		Animated.timing(translateY, {
+			toValue: windowHeight,
+			duration: 300,
+			useNativeDriver: true,
+		}).start(() => {
+			setModalVisible(false);
+		});
+	};
+
 	return (
 		<>
 			<View style={styles.infoContainer}>
-				<Image
-					style={styles.infoLogo}
-					source={require('../../assets/img/ic_info.png')}
-				/>
+				<TouchableOpacity onPress={showModal}>
+					<Image
+						style={styles.infoLogo}
+						source={require('../../assets/img/ic_info.png')}
+					/>
+				</TouchableOpacity>
 				<Text style={styles.smallGrayText}>About bounty</Text>
 			</View>
+
+			<Modal
+				animationType="none"
+				transparent={true}
+				visible={modalVisible}
+				onRequestClose={hideModal}
+			>
+				<View style={styles.modalContainer}>
+					<Animated.View
+						style={[
+							styles.modalContent,
+							{
+								transform: [{ translateY }],
+							},
+						]}
+					>
+						<View style={styles.modalContent}>
+							<Text style={styles.modalTitleText}>
+								How does the bounty work?
+							</Text>
+							<Text style={styles.modalContentText}>
+								A bounty goes to doctor who writes the best answer of your
+								choice. {'\n\n'} If no answer is received, 100 sats go to AI,
+								and the rest will be refunded to you.
+							</Text>
+							<TouchableOpacity style={styles.modalButton} onPress={hideModal}>
+								<Text style={styles.modalButtonText}>OK</Text>
+							</TouchableOpacity>
+						</View>
+					</Animated.View>
+				</View>
+			</Modal>
 			<Text></Text>
 			<TouchableOpacity
 				style={bounty === 100 ? styles.buttonSelected : styles.button}
@@ -40,7 +108,9 @@ export function BountyChoice({ navigation }: { navigation: any }) {
 				}}
 			>
 				<View style={styles.bountyItemContainer}>
-					<Text style={styles.leftText}>May receive less than <Text style={styles.boldText}>1d</Text></Text>
+					<Text style={styles.leftText}>
+						May receive less than <Text style={styles.boldText}>1d</Text>
+					</Text>
 					<View style={styles.flexSpacer} />
 					<Text style={styles.rightText}>1,000 sats</Text>
 				</View>
@@ -54,7 +124,9 @@ export function BountyChoice({ navigation }: { navigation: any }) {
 				}}
 			>
 				<View style={styles.bountyItemContainer}>
-					<Text style={styles.leftText}>May receive less than <Text style={styles.boldText}>3h</Text></Text>
+					<Text style={styles.leftText}>
+						May receive less than <Text style={styles.boldText}>3h</Text>
+					</Text>
 					<View style={styles.flexSpacer} />
 					<Text style={styles.rightText}>10,000 sats</Text>
 				</View>
@@ -158,7 +230,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 	},
 	flexSpacer: {
-	  flex: 1,
+		flex: 1,
 	},
 	boldText: {
 		fontWeight: 'bold',
@@ -176,5 +248,41 @@ const styles = StyleSheet.create({
 	logo: {
 		width: 15,
 		height: 15,
+	},
+	modalContainer: {
+		flex: 1,
+		justifyContent: 'flex-end',
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+	},
+	modalContent: {
+		backgroundColor: '#FFF5ED',
+		borderRadius: 40,
+		paddingTop: '5%',
+		paddingLeft: '3%',
+		paddingRight: '3%',
+		paddingBottom: '2%',
+		marginLeft: '3%',
+		marginRight: '3%',
+		marginBottom: '5%',
+	},
+	modalButton: {
+		padding: 10,
+		backgroundColor: '#F68F2A',
+		alignItems: 'center',
+		justifyContent: 'center',
+		borderRadius: 14,
+	},
+	modalButtonText: {
+		fontSize: 17,
+		color: '#FFFFFF',
+	},
+	modalTitleText: {
+		fontSize: 28,
+		fontWeight: 'bold',
+	},
+	modalContentText: {
+		fontSize: 17,
+		paddingTop: 20,
+		paddingBottom: 25,
 	},
 });
