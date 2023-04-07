@@ -19,7 +19,9 @@ function BestAnswer({ navigation }: { navigation: any }) {
 			<View style={styles.columnContainer}>
 				<AnswerToChoose />
 			</View>
-			<BestAnswerChoice navigation={navigation} />
+			<View style={styles.columnContainerNoBorder}>
+				<BestAnswerChoice navigation={navigation} />
+			</View>
 		</ScrollView>
 	);
 }
@@ -45,6 +47,13 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
+	},
+	columnContainerNoBorder: {
+		flex: 1,
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
+		paddingVertical: '4%',
 	},
 	veryBigText: {
 		fontSize: 34,

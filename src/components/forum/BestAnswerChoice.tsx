@@ -13,7 +13,7 @@ function BestAnswerChoice({ navigation }: { navigation: any }) {
 				title="Transaction Confirm"
 			>
 				<Text style={styles.whiteText}>Choose the best answer</Text>
-				<Text style={styles.whiteSmallText}>2 days 23 hours left</Text>
+				<Text style={styles.whiteSmallText}>1 days 23 hours left</Text>
 			</TouchableOpacity>
 		</>
 	);
@@ -23,15 +23,15 @@ export default BestAnswerChoice;
 
 const styles = StyleSheet.create({
 	button: {
-		width: '100%',
-		height: 60,
+		flex: 0.1,
+		width: '90%',
+		height: '10%',
 		alignItems: 'center',
 		justifyContent: 'center',
-		borderColor: 'white',
-		borderWidth: 2,
 		backgroundColor: '#F68F2A',
+		padding: '2%',
+		marginRight: '2%',
 		borderRadius: 14,
-		position: 'relative',
 	},
 	whiteText: {
 		color: 'white',

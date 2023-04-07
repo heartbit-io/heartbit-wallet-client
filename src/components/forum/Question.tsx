@@ -4,19 +4,21 @@ import React from 'react';
 
 function Question() {
 	return (
-		<View style={styles.postContainer}>
-			<View style={styles.rowContainer}>
-				<Text style={styles.userProfileText}>Q</Text>
-				<View style={styles.columnContainer}>
-					<Text style={styles.bigText}>You</Text>
-					<Text style={styles.smallGrayText}>23 Mar 2023 ・ 1000 sats</Text>
+		<View style={styles.container}>
+			<View style={styles.postContainer}>
+				<View style={styles.rowContainer}>
+					<Text style={styles.userProfileText}>Q</Text>
+					<View style={styles.columnContainer}>
+						<Text style={styles.bigText}>You</Text>
+						<Text style={styles.smallGrayText}>23 Mar 2023 ・ 1000 sats</Text>
+					</View>
 				</View>
+				<Text style={styles.bigTextWithoutBold}>
+					I have early cataracts. I've been taking MTX steroid 1.5 tablets for 2
+					weeks now for arthritis, is it okay to take it? I'm scared because my
+					eyes feel like they've gotten worse.
+				</Text>
 			</View>
-			<Text style={styles.bigTextWithoutBold}>
-				I have early cataracts. I've been taking MTX steroid 1.5 tablets for 2
-				weeks now for arthritis, is it okay to take it? I'm scared because my
-				eyes feel like they've gotten worse.
-			</Text>
 		</View>
 	);
 }
@@ -24,9 +26,13 @@ function Question() {
 export default Question;
 
 const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		width: '100%',
+	},
 	postContainer: {
 		flex: 1,
-		width: '90%',
+		paddingHorizontal: '5%',
 	},
 	columnContainer: {
 		flex: 1,

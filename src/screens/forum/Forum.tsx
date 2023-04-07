@@ -14,10 +14,12 @@ function Forum({ navigation }: { navigation: any }) {
 			<View style={styles.columnContainer}>
 				<GPT4 />
 			</View>
-			<View style={styles.columnContainer}>
+			<View style={styles.columnListContainer}>
 				<Doctor />
 			</View>
-			<AnswerChoice navigation={navigation} />
+			<View style={styles.columnContainerNoBorder}>
+				<AnswerChoice navigation={navigation} />
+			</View>
 		</ScrollView>
 	);
 }
@@ -37,7 +39,6 @@ const styles = StyleSheet.create({
 		borderColor: '#BDBDBD',
 		borderTopWidth: 1,
 		paddingVertical: '4%',
-		paddingHorizontal: '2%',
 		backgroundColor: '#FFF5ED',
 	},
 	columnContainer: {
@@ -48,7 +49,19 @@ const styles = StyleSheet.create({
 		borderColor: '#BDBDBD',
 		borderTopWidth: 1,
 		paddingVertical: '4%',
-		paddingHorizontal: '2%',
+	},
+	columnListContainer: {
+		flex: 1,
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	columnContainerNoBorder: {
+		flex: 1,
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
+		paddingVertical: '4%',
 	},
 	rowContainer: {
 		flex: 0.3,

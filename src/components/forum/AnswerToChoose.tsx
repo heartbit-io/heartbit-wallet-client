@@ -33,9 +33,13 @@ function AnswerToChoose() {
 						</View>
 					</View>
 					<Text style={styles.bigTextWithoutBold}>
-						I have early cataracts. I've been taking MTX steroid 1.5 tablets for
-						2 weeks now for arthritis, is it okay to take it? I'm scared because
-						my eyes feel like they've gotten worse.
+						Methotrexate (MTX) is a common medication used to treat rheumatoid
+						arthritis and other inflammatory conditions. While it can help
+						control inflammation, it's not typically associated with cataract
+						development. If you feel that your eyes have gotten worse, it's
+						important to consult with an ophthalmologist or your primary care
+						doctor. They can assess your situation and provide appropriate
+						advice based on your medical history and current medications.
 					</Text>
 				</TouchableOpacity>
 			</View>
@@ -56,16 +60,23 @@ function AnswerToChoose() {
 							₿
 						</Text>
 						<View style={styles.columnContainer}>
-							<Text style={styles.bigText}>x5c3ad</Text>
+							<Text style={styles.bigText}>kf30afc</Text>
 							<Text style={styles.smallGrayText}>
 								General physician ・ 24 Mar 2023
 							</Text>
 						</View>
 					</View>
 					<Text style={styles.bigTextWithoutBold}>
-						I have early cataracts. I've been taking MTX steroid 1.5 tablets for
-						2 weeks now for arthritis, is it okay to take it? I'm scared because
-						my eyes feel like they've gotten worse.
+						In general, some alternative treatments for arthritis include
+						nonsteroidal anti-inflammatory drugs (NSAIDs), physical therapy, and
+						lifestyle changes like exercise and weight management. However, it's
+						crucial to talk to your doctor before making any changes to your
+						treatment plan, as they can assess the risks and benefits of each
+						option for your specific situation. Regarding cataracts, the
+						progression can vary from person to person, and factors like age,
+						genetics, and lifestyle may contribute to their development. It's
+						important to have regular eye exams, especially if you have a family
+						history of cataracts or other eye conditions.
 					</Text>
 				</TouchableOpacity>
 			</View>
