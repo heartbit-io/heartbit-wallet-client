@@ -1,4 +1,4 @@
-import { Animated, StyleSheet, Text, View } from 'react-native';
+import { Animated, Image, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
 const Word = ({ word, onAnimationEnd }) => {
@@ -24,7 +24,7 @@ const Word = ({ word, onAnimationEnd }) => {
 };
 
 function GPT4Answer({
-	text = "I have early cataracts. I've been taking MTX steroid 1.5 tablets for 2 weeks now for arthritis, is it okay to take it? I'm scared because my eyes feel like they've gotten worse.",
+	text = "I'm an AI language model and not a licensed doctor. However, I can provide you with some general information. Methotrexate (MTX) is a medication commonly used for treating arthritis. It's important to discuss your concerns with your healthcare provider, especially if you feel your eyes have gotten worse. Your doctor will be able to give you personalized advice based on your medical history and current condition.",
 	interval = 5,
 }: {
 	text: string;
@@ -53,7 +53,13 @@ function GPT4Answer({
 		<View style={styles.container}>
 			<View style={styles.postContainer}>
 				<View style={styles.rowContainer}>
-					<Text style={styles.gptProfileText}>A</Text>
+					<Text style={styles.gptProfileText}>
+						<Image
+							style={styles.gptLogo}
+							source={require('../../assets/img/ic_gpt_logo.png')}
+						/>
+					</Text>
+
 					<View style={styles.columnContainer}>
 						<Text style={styles.bigText}>GPT-4</Text>
 						<Text style={styles.smallGrayText}>Open AI ・ 23 Mar 2023</Text>
@@ -147,4 +153,5 @@ const styles = StyleSheet.create({
 	gptAnswerText: {
 		fontSize: 18,
 	},
+	gptLogo: { width: 18, height: 18 },
 });
