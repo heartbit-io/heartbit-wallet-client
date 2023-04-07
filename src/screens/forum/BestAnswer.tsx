@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, View, Text } from 'react-native';
-import BestAnswerChoice from '../../components/forum/BestAnswerChoice';
 import React from 'react';
-import AnswerToChoose from '../../components/forum/AnswerToChoose';
+import AnswerChoiceList from '../../components/forum/AnswerChoiceList';
+import BestAnswerButton from '../../components/forum/BestAnswerButton';
 
 function BestAnswer({ navigation }: { navigation: any }) {
 	return (
@@ -17,10 +17,10 @@ function BestAnswer({ navigation }: { navigation: any }) {
 				</Text>
 			</View>
 			<View style={styles.columnContainer}>
-				<AnswerToChoose />
+				<AnswerChoiceList />
 			</View>
 			<View style={styles.columnContainerNoBorder}>
-				<BestAnswerChoice navigation={navigation} />
+				<BestAnswerButton navigation={navigation} />
 			</View>
 		</ScrollView>
 	);

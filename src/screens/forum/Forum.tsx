@@ -1,9 +1,9 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
-import AnswerChoice from '../../components/forum/AnswerChoice';
-import Doctor from '../../components/forum/Doctor';
-import GPT4 from '../../components/forum/GPT4';
+import AnswerChoiceButton from '../../components/forum/AnswerChoiceButton';
 import Question from '../../components/forum/Question';
 import React from 'react';
+import GPT4Answer from '../../components/forum/GPT4Answer';
+import DoctorAnswerList from '../../components/forum/DoctorAnswerList';
 
 function Forum({ navigation }: { navigation: any }) {
 	return (
@@ -12,13 +12,13 @@ function Forum({ navigation }: { navigation: any }) {
 				<Question />
 			</View>
 			<View style={styles.columnContainer}>
-				<GPT4 />
+				<GPT4Answer />
 			</View>
 			<View style={styles.columnListContainer}>
-				<Doctor />
+				<DoctorAnswerList />
 			</View>
 			<View style={styles.columnContainerNoBorder}>
-				<AnswerChoice navigation={navigation} />
+				<AnswerChoiceButton navigation={navigation} />
 			</View>
 		</ScrollView>
 	);

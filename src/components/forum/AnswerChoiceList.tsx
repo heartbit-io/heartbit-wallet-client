@@ -2,7 +2,7 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import React, { useState } from 'react';
 
-function AnswerToChoose() {
+function AnswerChoiceList() {
 	const [bestAnswer, setBestAnswer] = useState(0);
 	const bestAnswerHandler = (bestAnswer: number) => {
 		setBestAnswer(bestAnswer);
@@ -84,7 +84,7 @@ function AnswerToChoose() {
 	);
 }
 
-export default AnswerToChoose;
+export default AnswerChoiceList;
 
 const styles = StyleSheet.create({
 	container: {

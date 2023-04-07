@@ -2,7 +2,7 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import React from 'react';
 
-function AnswerChoice({ navigation }: { navigation: any }) {
+function AnswerChoiceButton({ navigation }: { navigation: any }) {
 	return (
 		<>
 			<TouchableOpacity
@@ -19,7 +19,7 @@ function AnswerChoice({ navigation }: { navigation: any }) {
 	);
 }
 
-export default AnswerChoice;
+export default AnswerChoiceButton;
 
 const styles = StyleSheet.create({
 	button: {

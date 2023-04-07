@@ -2,7 +2,7 @@ import { View, StyleSheet, Text } from 'react-native';
 
 import React from 'react';
 
-function Doctor() {
+function DoctorAnswerList() {
 	return (
 		<>
 			<View style={styles.container}>
@@ -56,7 +56,7 @@ function Doctor() {
 	);
 }
 
-export default Doctor;
+export default DoctorAnswerList;
 
 const styles = StyleSheet.create({
 	container: {

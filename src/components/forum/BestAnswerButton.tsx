@@ -2,7 +2,7 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import React from 'react';
 
-function BestAnswerChoice({ navigation }: { navigation: any }) {
+function BestAnswerButton({ navigation }: { navigation: any }) {
 	return (
 		<>
 			<TouchableOpacity
@@ -19,7 +19,7 @@ function BestAnswerChoice({ navigation }: { navigation: any }) {
 	);
 }
 
-export default BestAnswerChoice;
+export default BestAnswerButton;
 
 const styles = StyleSheet.create({
 	button: {
