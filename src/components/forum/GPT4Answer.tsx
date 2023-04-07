@@ -1,8 +1,54 @@
-import { View, StyleSheet, Text } from 'react-native';
+import { Animated, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
 
-import React from 'react';
+const Word = ({ word, onAnimationEnd }) => {
+	const opacity = useRef(new Animated.Value(0)).current;
 
-function GPT4Answer() {
+	useEffect(() => {
+		Animated.timing(opacity, {
+			toValue: 1,
+			duration: 200,
+			useNativeDriver: true,
+		}).start(onAnimationEnd);
+	}, []);
+
+	const animatedStyle = {
+		opacity,
+	};
+
+	return (
+		<Animated.Text style={[styles.gptAnswerText, animatedStyle]}>
+			{word + ' '}
+		</Animated.Text>
+	);
+};
+
+function GPT4Answer({
+	text = "I have early cataracts. I've been taking MTX steroid 1.5 tablets for 2 weeks now for arthritis, is it okay to take it? I'm scared because my eyes feel like they've gotten worse.",
+	interval = 5,
+}: {
+	text: string;
+	interval: number;
+}) {
+	const words = text.split(' ');
+	const [shownWords, setShownWords] = useState([]);
+	const [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+	const onAnimationEnd = () => {
+		if (currentWordIndex < words.length) {
+			const timer = setTimeout(() => {
+				setCurrentWordIndex(currentWordIndex + 1);
+			}, interval);
+			return () => clearTimeout(timer);
+		}
+	};
+
+	useEffect(() => {
+		if (currentWordIndex < words.length) {
+			setShownWords([...shownWords, words[currentWordIndex]]);
+		}
+	}, [currentWordIndex]);
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.postContainer}>
@@ -13,11 +59,19 @@ function GPT4Answer() {
 						<Text style={styles.smallGrayText}>Open AI ・ 23 Mar 2023</Text>
 					</View>
 				</View>
-				<Text style={styles.bigTextWithoutBold}>
-					I have early cataracts. I've been taking MTX steroid 1.5 tablets for 2
-					weeks now for arthritis, is it okay to take it? I'm scared because my
-					eyes feel like they've gotten worse.
-				</Text>
+				<View style={styles.gptAnswerContainer}>
+					<View style={styles.gptAnswerTextWrapper}>
+						{shownWords.map((word, index) => (
+							<Word
+								key={index}
+								word={word}
+								onAnimationEnd={
+									index === shownWords.length - 1 ? onAnimationEnd : null
+								}
+							/>
+						))}
+					</View>
+				</View>
 			</View>
 		</View>
 	);
@@ -59,10 +113,6 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	text: {
-		fontSize: 14,
-		fontWeight: 'bold',
-	},
 	smallText: {
 		fontSize: 10,
 		fontWeight: 'bold',
@@ -81,5 +131,20 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		color: 'gray',
 		paddingLeft: '4%',
+	},
+	gptAnswerContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	gptAnswerTextWrapper: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		alignItems: 'flex-start',
+		width: '100%',
+		paddingTop: '4%',
+	},
+	gptAnswerText: {
+		fontSize: 18,
 	},
 });
