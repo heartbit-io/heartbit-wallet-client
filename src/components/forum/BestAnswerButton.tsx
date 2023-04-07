@@ -23,7 +23,7 @@ export default BestAnswerButton;
 
 const styles = StyleSheet.create({
 	button: {
-		flex: 0.1,
+		flex: 1,
 		width: '90%',
 		height: '10%',
 		alignItems: 'center',

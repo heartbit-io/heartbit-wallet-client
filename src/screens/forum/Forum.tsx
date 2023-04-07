@@ -4,20 +4,23 @@ import Question from '../../components/forum/Question';
 import React, { useState } from 'react';
 import GPT4Answer from '../../components/forum/GPT4Answer';
 import DoctorAnswerList from '../../components/forum/DoctorAnswerList';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function Forum({ navigation }: { navigation: any }) {
 	const [isEmpty, setIsEmpty] = useState(true);
 	return (
-		<ScrollView style={styles.containerWhite}>
-			<View style={styles.columnContainerOrange}>
-				<Question />
-			</View>
-			<View style={styles.columnContainer}>
-				<GPT4Answer />
-			</View>
-			<View style={styles.columnListContainer}>
-				<DoctorAnswerList isEmpty={isEmpty} setIsEmpty={setIsEmpty} />
-			</View>
+		<SafeAreaView style={styles.containerOrange}>
+			<ScrollView style={styles.containerWhite}>
+				<View style={styles.columnContainerOrange}>
+					<Question />
+				</View>
+				<View style={styles.columnContainer}>
+					<GPT4Answer />
+				</View>
+				<View style={styles.columnListContainer}>
+					<DoctorAnswerList isEmpty={isEmpty} setIsEmpty={setIsEmpty} />
+				</View>
+			</ScrollView>
 			{isEmpty ? (
 				<></>
 			) : (
@@ -25,13 +28,17 @@ function Forum({ navigation }: { navigation: any }) {
 					<AnswerChoiceButton navigation={navigation} />
 				</View>
 			)}
-		</ScrollView>
+		</SafeAreaView>
 	);
 }
 
 export default Forum;
 
 const styles = StyleSheet.create({
+	containerOrange: {
+		flex: 1,
+		backgroundColor: '#FFF5ED',
+	},
 	containerWhite: {
 		flex: 1,
 		backgroundColor: 'white',
@@ -62,14 +69,13 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	columnContainerNoBorder: {
-		flex: 1,
+		flex: 0.1,
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
 		paddingVertical: '4%',
 	},
 	rowContainer: {
-		flex: 0.3,
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-around',
