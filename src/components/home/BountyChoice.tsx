@@ -97,10 +97,11 @@ export function BountyChoice({ navigation }: { navigation: any }) {
 			>
 				<View style={styles.bountyItemContainer}>
 					<Text style={styles.leftText}>An AI answer guaranteed</Text>
-					<View style={styles.flexSpacer} />
-					<Text style={styles.rightText}>100 sats</Text>
+					<View style={styles.columnContainer}>
+						<Text style={styles.rightText}>100 sats</Text>
+						<Text style={styles.rightTextBottom}>$0.03</Text>
+					</View>
 				</View>
-				<Text style={styles.rightTextBottom}>$0.03</Text>
 			</TouchableOpacity>
 			<TouchableOpacity
 				style={bounty === 1000 ? styles.buttonSelected : styles.button}
@@ -113,10 +114,11 @@ export function BountyChoice({ navigation }: { navigation: any }) {
 					<Text style={styles.leftText}>
 						May receive less than <Text style={styles.boldText}>1d</Text>
 					</Text>
-					<View style={styles.flexSpacer} />
-					<Text style={styles.rightText}>1,000 sats</Text>
+					<View style={styles.columnContainer}>
+						<Text style={styles.rightText}>1,000 sats</Text>
+						<Text style={styles.rightTextBottom}>$0.28</Text>
+					</View>
 				</View>
-				<Text style={styles.rightTextBottom}>$0.28</Text>
 			</TouchableOpacity>
 			<TouchableOpacity
 				style={bounty === 10000 ? styles.buttonSelected : styles.button}
@@ -129,10 +131,11 @@ export function BountyChoice({ navigation }: { navigation: any }) {
 					<Text style={styles.leftText}>
 						May receive less than <Text style={styles.boldText}>3h</Text>
 					</Text>
-					<View style={styles.flexSpacer} />
-					<Text style={styles.rightText}>10,000 sats</Text>
+					<View style={styles.columnContainer}>
+						<Text style={styles.rightText}>10,000 sats</Text>
+						<Text style={styles.rightTextBottom}>$2.85</Text>
+					</View>
 				</View>
-				<Text style={styles.rightTextBottom}>$2.85</Text>
 			</TouchableOpacity>
 
 			<View style={styles.balanceContainer}>
@@ -160,6 +163,7 @@ const styles = StyleSheet.create({
 		width: '100%',
 	},
 	bountyItemContainer: {
+		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -173,6 +177,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
+		margin: 3,
 	},
 	rowContainer: {
 		flex: 0.3,
@@ -208,7 +213,6 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 	},
 	leftText: {
-		marginTop: 14,
 		marginLeft: '3%',
 		fontSize: 13,
 		marginRight: 'auto',
@@ -218,6 +222,7 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		fontWeight: 'bold',
 		marginLeft: 'auto',
+		marginVertical: 1,
 	},
 	rightTextBottom: {
 		marginRight: '3%',
@@ -225,6 +230,7 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		marginLeft: 'auto',
 		color: '#8E8E93',
+		marginVertical: 1,
 	},
 	balanceText: {
 		fontSize: 15,
