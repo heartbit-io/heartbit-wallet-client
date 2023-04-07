@@ -53,13 +53,12 @@ function GPT4Answer({
 		<View style={styles.container}>
 			<View style={styles.postContainer}>
 				<View style={styles.rowContainer}>
-					<Text style={styles.gptProfileText}>
+					<View style={styles.gptProfile}>
 						<Image
 							style={styles.gptLogo}
 							source={require('../../assets/img/ic_gpt_logo.png')}
 						/>
-					</Text>
-
+					</View>
 					<View style={styles.columnContainer}>
 						<Text style={styles.bigText}>GPT-4</Text>
 						<Text style={styles.smallGrayText}>Open AI ・ 23 Mar 2023</Text>
@@ -106,9 +105,7 @@ const styles = StyleSheet.create({
 		alignItems: 'flex-start',
 		justifyContent: 'flex-start',
 	},
-	gptProfileText: {
-		color: 'white',
-		fontSize: 20,
+	gptProfile: {
 		verticalAlign: 'middle',
 		fontWeight: 'bold',
 		backgroundColor: '#189B70',
@@ -153,5 +150,5 @@ const styles = StyleSheet.create({
 	gptAnswerText: {
 		fontSize: 18,
 	},
-	gptLogo: { width: 18, height: 18 },
+	gptLogo: { width: 20, height: 20 },
 });
