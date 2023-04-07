@@ -1,11 +1,12 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
 import AnswerChoiceButton from '../../components/forum/AnswerChoiceButton';
 import Question from '../../components/forum/Question';
-import React from 'react';
+import React, { useState } from 'react';
 import GPT4Answer from '../../components/forum/GPT4Answer';
 import DoctorAnswerList from '../../components/forum/DoctorAnswerList';
 
 function Forum({ navigation }: { navigation: any }) {
+	const [isEmpty, setIsEmpty] = useState(true);
 	return (
 		<ScrollView style={styles.containerWhite}>
 			<View style={styles.columnContainerOrange}>
@@ -15,11 +16,15 @@ function Forum({ navigation }: { navigation: any }) {
 				<GPT4Answer />
 			</View>
 			<View style={styles.columnListContainer}>
-				<DoctorAnswerList />
+				<DoctorAnswerList isEmpty={isEmpty} setIsEmpty={setIsEmpty} />
 			</View>
-			<View style={styles.columnContainerNoBorder}>
-				<AnswerChoiceButton navigation={navigation} />
-			</View>
+			{isEmpty ? (
+				<></>
+			) : (
+				<View style={styles.columnContainerNoBorder}>
+					<AnswerChoiceButton navigation={navigation} />
+				</View>
+			)}
 		</ScrollView>
 	);
 }

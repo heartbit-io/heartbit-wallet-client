@@ -1,9 +1,34 @@
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 
-import React from 'react';
+import React, { useState } from 'react';
+import HourGlass from '../../assets/HourGlass';
 
-function DoctorAnswerList() {
-	return (
+function DoctorAnswerList({
+	isEmpty,
+	setIsEmpty,
+}: {
+	isEmpty: boolean;
+	setIsEmpty: Function;
+}) {
+	return isEmpty ? (
+		<TouchableOpacity
+			style={styles.imgContainer}
+			onPress={() => {
+				setIsEmpty(false);
+			}}
+		>
+			<Image
+				style={styles.logo}
+				source={{
+					uri: HourGlass,
+				}}
+			/>
+			<Text style={styles.bigGrayText}>2 days and 23 hours left</Text>
+			<Text style={styles.bigGrayTextWithoutBold}>
+				for receiving answers from human doctors
+			</Text>
+		</TouchableOpacity>
+	) : (
 		<>
 			<View style={styles.container}>
 				<View style={styles.postContainer}>
@@ -65,6 +90,15 @@ const styles = StyleSheet.create({
 		borderColor: '#BDBDBD',
 		borderTopWidth: 1,
 		paddingVertical: '4%',
+	},
+	imgContainer: {
+		flex: 1,
+		width: '100%',
+		borderColor: '#BDBDBD',
+		borderTopWidth: 1,
+		paddingVertical: '4%',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	postContainer: {
 		flex: 1,
@@ -182,5 +216,18 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		color: 'gray',
 		paddingLeft: '4%',
+	},
+	bigGrayText: {
+		fontSize: 18,
+		fontWeight: 'bold',
+		color: 'gray',
+	},
+	bigGrayTextWithoutBold: {
+		fontSize: 18,
+		color: 'gray',
+	},
+	logo: {
+		width: 120,
+		height: 120,
 	},
 });
