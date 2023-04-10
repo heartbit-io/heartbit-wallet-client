@@ -8,7 +8,6 @@ function AskButton({ navigation }: { navigation: any }) {
 			<TouchableOpacity
 				style={styles.button}
 				onPress={() => navigation.navigate('Ask')}
-				title="Ask"
 			>
 				<Text style={styles.whiteText}>Ask doctors anything</Text>
 			</TouchableOpacity>

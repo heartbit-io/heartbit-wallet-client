@@ -8,7 +8,6 @@ function DismissButton({ navigation }: { navigation: any }) {
 			<TouchableOpacity
 				style={styles.button}
 				onPress={() => navigation.navigate('Home')}
-				title="Dismiss"
 			>
 				<Text style={styles.whiteText}>Dismiss</Text>
 			</TouchableOpacity>

@@ -10,11 +10,11 @@ import {
 } from 'react-native';
 import React, { useRef, useState } from 'react';
 
-import BountyConfirm from './BountyConfirm';
+import BountyConfirmButton from './BountyConfirmButton';
 
 const windowHeight = Dimensions.get('window').height;
 
-export function BountyChoice({ navigation }: { navigation: any }) {
+export function BountyChoiceList({ navigation }: { navigation: any }) {
 	const [bounty, setBounty] = useState(0);
 	const [modalVisible, setModalVisible] = useState(false);
 	const bountyHandler = (bounty: number) => {
@@ -141,7 +141,7 @@ export function BountyChoice({ navigation }: { navigation: any }) {
 			<View style={styles.balanceContainer}>
 				<Text style={styles.balanceText}>Balance: 2,393,042 sats</Text>
 			</View>
-			<BountyConfirm navigation={navigation} bounty={bounty} />
+			<BountyConfirmButton navigation={navigation} bounty={bounty} />
 		</>
 	);
 }

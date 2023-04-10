@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import React, { useState } from 'react';
-import AskSubmit from './AskSubmit';
+import AskSubmitButton from './AskSubmitButton';
 
 function AskContent({ navigation }: { navigation: any }) {
 	const [question, setQuestion] = useState('');
@@ -34,7 +34,7 @@ function AskContent({ navigation }: { navigation: any }) {
 				style={styles.input}
 				placeholder="Write here"
 			/>
-			<AskSubmit navigation={navigation} question={question} />
+			<AskSubmitButton navigation={navigation} question={question} />
 		</>
 	);
 }

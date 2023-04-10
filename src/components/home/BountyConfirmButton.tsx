@@ -2,45 +2,42 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import React from 'react';
 
-function AskSubmit({
+function BountyConfirmButton({
 	navigation,
-	question,
+	bounty,
 }: {
 	navigation: any;
-	question: string;
+	bounty: number;
 }) {
 	return (
 		<>
 			<TouchableOpacity
 				style={styles.button}
 				onPress={() => {
-					console.log(question);
-					navigation.navigate('Bounty');
+					console.log(bounty);
+					navigation.navigate('Forum');
 				}}
-				title="Bounty"
 			>
-				<Text style={styles.whiteText}>Next</Text>
+				<Text style={styles.whiteText}>Confirm</Text>
 			</TouchableOpacity>
 		</>
 	);
 }
 
-export default AskSubmit;
+export default BountyConfirmButton;
 
 const styles = StyleSheet.create({
 	button: {
-		marginTop: '20%',
+		width: '100%',
 		height: 60,
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#F68F2A',
 		borderRadius: 14,
-		marginLeft: '3%',
-		marginRight: '3%',
 	},
 	whiteText: {
 		color: 'white',
 		fontSize: 18,
-		padding: 5,
+		fontWeight: 'bold',
 	},
 });

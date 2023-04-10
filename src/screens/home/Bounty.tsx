@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
-import { BountyChoice } from '../../components/home/BountyChoice';
+import { BountyChoiceList } from '../../components/home/BountyChoiceList';
 
 function Bounty({ navigation }: { navigation: any }) {
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.columnContainer}>
 				<Text style={styles.veryBigText}>Set a bounty for human answers</Text>
-				<BountyChoice navigation={navigation} />
+				<BountyChoiceList navigation={navigation} />
 			</View>
 		</SafeAreaView>
 	);
