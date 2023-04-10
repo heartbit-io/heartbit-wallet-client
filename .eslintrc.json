@@ -12,12 +12,13 @@
   ],
   "rules": {
       "prettier/prettier": ["error", {
-        "singleQuote": true,
+        "semi": true,
         "trailingComma": "all",
-      
-        "endOfLine": "auto",
-        "arrowParens": "avoid",
-        "tabWidth": 2
+        "singleQuote": true,
+        "printWidth": 80,
+        "tabWidth": 2,
+        "useTabs": true,
+        "arrowParens": "avoid"
       }],
           
       "arrow-body-style": "off",

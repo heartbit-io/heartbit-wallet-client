@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
 
 import AskButton from '../../components/home/AskButton';
@@ -8,13 +8,10 @@ import LinearGradient from 'react-native-linear-gradient';
 function Home({ navigation }: { navigation: any }) {
 	useEffect(() => {
 		StatusBar.setBackgroundColor('#F58A25');
-	  }, []);
+	}, []);
 	return (
 		<ScrollView style={styles.container}>
-			<LinearGradient
-				colors={['#F58A25', '#FFF5ED']}
-				style={styles.gradient}
-			>
+			<LinearGradient colors={['#F58A25', '#FFF5ED']} style={styles.gradient}>
 				<View style={styles.columnContainer}>
 					<View style={styles.contentArea}>
 						<Intro />
@@ -29,20 +26,34 @@ function Home({ navigation }: { navigation: any }) {
 					{/* FIXME(david): Just For demo */}
 					<View style={styles.recentQuestion}>
 						<Text style={styles.recentQuestionTopText}>Mild migraine</Text>
-						<Text style={styles.recentHeaderMiddleText}>2 mins ago, No answer 1,000 sats</Text>
-						<Text style={styles.recentHeaderBottomText_blue}>Collecting answers: 2 days 23 hours left</Text>
+						<Text style={styles.recentHeaderMiddleText}>
+							2 mins ago, No answer 1,000 sats
+						</Text>
+						<Text style={styles.recentHeaderBottomText_blue}>
+							Collecting answers: 2 days 23 hours left
+						</Text>
 						<View style={styles.line} />
 					</View>
 					<View style={styles.recentQuestion}>
-						<Text style={styles.recentQuestionTopText}>Cataracts and MTX steroids</Text>
-						<Text style={styles.recentHeaderMiddleText}>13 Mar 2023, 2 answers 10,000 sats</Text>
-						<Text style={styles.recentHeaderBottomText_red}>Select an answer within 1 day 1 hour {'>'} </Text>
+						<Text style={styles.recentQuestionTopText}>
+							Cataracts and MTX steroids
+						</Text>
+						<Text style={styles.recentHeaderMiddleText}>
+							13 Mar 2023, 2 answers 10,000 sats
+						</Text>
+						<Text style={styles.recentHeaderBottomText_red}>
+							Select an answer within 1 day 1 hour {'>'}{' '}
+						</Text>
 						<View style={styles.line} />
 					</View>
 					<View style={styles.recentQuestion}>
 						<Text style={styles.recentQuestionTopText}>Stomachache</Text>
-						<Text style={styles.recentHeaderMiddleText}>2 mins ago, No answer 1,000 sats</Text>
-						<Text style={styles.recentHeaderBottomText_blue}>Collecting answers: 2 days 23 hours left</Text>
+						<Text style={styles.recentHeaderMiddleText}>
+							2 mins ago, No answer 1,000 sats
+						</Text>
+						<Text style={styles.recentHeaderBottomText_blue}>
+							Collecting answers: 2 days 23 hours left
+						</Text>
 						<View style={styles.line} />
 					</View>
 				</View>
@@ -71,7 +82,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
-	  },
+	},
 	recentHeaderLeftText: {
 		fontSize: 28,
 		fontWeight: 'bold',
@@ -135,5 +146,5 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		fontWeight: 'bold',
 		marginHorizontal: 8,
-	  },
+	},
 });
