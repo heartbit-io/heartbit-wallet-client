@@ -29,10 +29,11 @@ export default BountyConfirmButton;
 const styles = StyleSheet.create({
 	button: {
 		width: '100%',
-		height: 60,
+		height: '10%',
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#F68F2A',
+		padding: '3%',
 		borderRadius: 14,
 	},
 	whiteText: {

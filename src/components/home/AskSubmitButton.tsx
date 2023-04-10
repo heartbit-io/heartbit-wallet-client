@@ -4,17 +4,16 @@ import React from 'react';
 
 function AskSubmitButton({
 	navigation,
-	question,
+	askContent,
 }: {
 	navigation: any;
-	question: string;
+	askContent: string;
 }) {
 	return (
 		<>
 			<TouchableOpacity
 				style={styles.button}
 				onPress={() => {
-					console.log(question);
 					navigation.navigate('Bounty');
 				}}
 			>
@@ -28,18 +27,18 @@ export default AskSubmitButton;
 
 const styles = StyleSheet.create({
 	button: {
-		marginTop: '20%',
-		height: 60,
+		flex: 1,
+		width: '90%',
+		height: '10%',
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#F68F2A',
+		padding: '3%',
 		borderRadius: 14,
-		marginLeft: '3%',
-		marginRight: '3%',
 	},
 	whiteText: {
 		color: 'white',
 		fontSize: 18,
-		padding: 5,
+		fontWeight: 'bold',
 	},
 });

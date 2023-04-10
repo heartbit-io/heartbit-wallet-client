@@ -19,19 +19,19 @@ export default AskButton;
 
 const styles = StyleSheet.create({
 	button: {
-		flex: 0.1,
-		width: '85%',
+		flex: 1,
+		width: '90%',
 		height: '10%',
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#F68F2A',
-		padding: '2%',
-		margin: '10%',
+		padding: '3%',
+		marginVertical: '10%',
 		borderRadius: 14,
 	},
 	whiteText: {
 		color: 'white',
 		fontSize: 18,
-		padding: 5,
+		fontWeight: 'bold',
 	},
 });
