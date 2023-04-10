@@ -11,30 +11,32 @@ import {
 import React, { useState } from 'react';
 import AskSubmitButton from './AskSubmitButton';
 
-function AskContent({ navigation }: { navigation: any }) {
-	const [question, setQuestion] = useState('');
-	const questionHandler = (question: string) => {
-		setQuestion(question);
-	};
-
+function AskContent({
+	navigation,
+	askContent,
+	setAskContent,
+}: {
+	navigation: any;
+	askContent: string;
+	setAskContent: Function;
+}) {
 	return (
 		<>
+			<Text style={styles.veryBigText}>What do you want to ask?</Text>
 			<TextInput
 				textAlign="center"
 				returnKeyType="go"
 				multiline={true}
 				blurOnSubmit
-				onChangeText={question => questionHandler(question)}
+				onChangeText={question => setAskContent(question)}
 				onSubmitEditing={async () => {
 					try {
 						navigation.navigate('Bounty');
-						console.log(question);
 					} catch (e) {}
 				}}
 				style={styles.input}
 				placeholder="Write here"
 			/>
-			<AskSubmitButton navigation={navigation} question={question} />
 		</>
 	);
 }
@@ -43,13 +45,12 @@ export default AskContent;
 
 const styles = StyleSheet.create({
 	veryBigText: {
-		fontSize: 28,
+		fontSize: 34,
 		fontWeight: 'bold',
 	},
 	input: {
 		backgroundColor: '#FFF5ED',
 		textAlign: 'left',
 		fontSize: 28,
-		margin: '3%',
 	},
 });

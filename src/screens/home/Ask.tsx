@@ -1,13 +1,23 @@
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import AskContent from '../../components/home/AskContent';
-import React from 'react';
+import React, { useState } from 'react';
+import AskSubmitButton from '../../components/home/AskSubmitButton';
 
 function Ask({ navigation }: { navigation: any }) {
+	const [askContent, setAskContent] = useState('');
 	return (
 		<ScrollView keyboardShouldPersistTaps="always" style={styles.container}>
-			<Text style={styles.veryBigText}>What do you want to ask?</Text>
-			<AskContent navigation={navigation} />
+			<View style={styles.columnContainerLeftSided}>
+				<AskContent
+					navigation={navigation}
+					askContent={askContent}
+					setAskContent={setAskContent}
+				/>
+			</View>
+			<View style={styles.columnContainer}>
+				<AskSubmitButton navigation={navigation} askContent={askContent} />
+			</View>
 		</ScrollView>
 	);
 }
@@ -21,30 +31,21 @@ const styles = StyleSheet.create({
 	},
 	columnContainer: {
 		flex: 1,
-		margin: '5%',
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginVertical: '10%',
+	},
+	columnContainerLeftSided: {
+		flex: 1,
 		flexDirection: 'column',
 		alignItems: 'flex-start',
 		justifyContent: 'flex-start',
-	},
-	rowContainer: {
-		flex: 0.3,
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-around',
+		marginHorizontal: '5%',
 	},
 	contentArea: {
 		flex: 1,
 		alignItems: 'flex-start',
 		justifyContent: 'flex-start',
-	},
-	veryBigText: {
-		fontSize: 34,
-		fontWeight: 'bold',
-		marginLeft: '3%',
-	},
-	input: {
-		backgroundColor: '#FFF5ED',
-		textAlign: 'left',
-		fontSize: 28,
 	},
 });
