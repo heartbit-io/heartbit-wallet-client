@@ -1,6 +1,6 @@
 import {
 	Image,
-	ScrollView,
+	SafeAreaView,
 	StatusBar,
 	StyleSheet,
 	Text,
@@ -17,25 +17,25 @@ function TransactionConfirm({ navigation }: { navigation: any }) {
 		StatusBar.setBackgroundColor('#F58A25');
 	}, []);
 	return (
-		<ScrollView style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<LinearGradient colors={['#F58A25', '#FFF5ED']} style={styles.gradient}>
 				<View style={styles.columnContainer}>
-					<View style={styles.contentArea}>
-						<Image
-							style={styles.logo}
-							source={{
-								uri: LogoNoBackground,
-							}}
-						/>
-					</View>
-					<View style={styles.textContainer}>
+					<Image
+						style={styles.logo}
+						source={{
+							uri: LogoNoBackground,
+						}}
+					/>
+					<View style={styles.columnContainer}>
 						<Text style={styles.balanceText}> 1,000 sats</Text>
 						<Text style={styles.txText}>sent to x5c3ad !</Text>
 					</View>
-					<DismissButton navigation={navigation} />
 				</View>
 			</LinearGradient>
-		</ScrollView>
+			<View style={styles.columnContainerButton}>
+				<DismissButton navigation={navigation} />
+			</View>
+		</SafeAreaView>
 	);
 }
 
@@ -57,21 +57,16 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
-	contentArea: {
+	columnContainerButton: {
 		flex: 1,
-		paddingTop: '20%',
+		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
+		marginBottom: '30%',
 	},
 	gradient: {
 		width: '100%',
 		height: '70%',
-	},
-	textContainer: {
-		width: 200,
-		height: 200,
-		justifyContent: 'center',
-		alignItems: 'center',
 	},
 	balanceText: {
 		fontSize: 28,
