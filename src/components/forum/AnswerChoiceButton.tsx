@@ -10,7 +10,6 @@ function AnswerChoiceButton({ navigation }: { navigation: any }) {
 				onPress={() => {
 					navigation.navigate('BestAnswer');
 				}}
-				title="Best Answer"
 			>
 				<Text style={styles.whiteText}>Choose the best answer</Text>
 				<Text style={styles.whiteSmallText}>1 days 23 hours left</Text>

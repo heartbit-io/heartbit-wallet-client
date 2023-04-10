@@ -10,7 +10,6 @@ function BestAnswerButton({ navigation }: { navigation: any }) {
 				onPress={() => {
 					navigation.navigate('TransactionConfirm');
 				}}
-				title="Transaction Confirm"
 			>
 				<Text style={styles.whiteText}>Choose the best answer</Text>
 				<Text style={styles.whiteSmallText}>1 days 23 hours left</Text>
