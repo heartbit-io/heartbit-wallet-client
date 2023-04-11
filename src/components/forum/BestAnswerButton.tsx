@@ -1,45 +1,14 @@
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-
 import React from 'react';
+import Button from '../Button';
 
 function BestAnswerButton({ navigation }: { navigation: any }) {
 	return (
-		<>
-			<TouchableOpacity
-				style={styles.button}
-				onPress={() => {
-					navigation.navigate('TransactionConfirm');
-				}}
-			>
-				<Text style={styles.whiteText}>Choose the best answer</Text>
-				<Text style={styles.whiteSmallText}>1 days 23 hours left</Text>
-			</TouchableOpacity>
-		</>
+		<Button
+			onPress={() => navigation.navigate('TransactionConfirm')}
+			text={'Choose the best answer'}
+		/>
 	);
 }
 
 export default BestAnswerButton;
-
-const styles = StyleSheet.create({
-	button: {
-		flex: 1,
-		width: '90%',
-		height: '10%',
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#F68F2A',
-		padding: '3%',
-		marginRight: '2%',
-		borderRadius: 14,
-	},
-	whiteText: {
-		color: 'white',
-		fontSize: 18,
-		fontWeight: 'bold',
-	},
-	whiteSmallText: {
-		color: 'white',
-		fontSize: 12,
-		fontWeight: 'bold',
-	},
-});

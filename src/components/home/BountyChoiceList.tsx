@@ -10,16 +10,16 @@ import {
 } from 'react-native';
 import React, { useRef, useState } from 'react';
 
-import BountyConfirmButton from './BountyConfirmButton';
-
 const windowHeight = Dimensions.get('window').height;
 
-export function BountyChoiceList({ navigation }: { navigation: any }) {
-	const [bounty, setBounty] = useState(0);
+export function BountyChoiceList({
+	bounty,
+	setBounty,
+}: {
+	bounty: number;
+	setBounty: Function;
+}) {
 	const [modalVisible, setModalVisible] = useState(false);
-	const bountyHandler = (bounty: number) => {
-		setBounty(bounty);
-	};
 
 	const translateY = useRef(new Animated.Value(windowHeight)).current;
 
@@ -137,11 +137,9 @@ export function BountyChoiceList({ navigation }: { navigation: any }) {
 					</View>
 				</View>
 			</TouchableOpacity>
-
 			<View style={styles.balanceContainer}>
 				<Text style={styles.balanceText}>Balance: 2,393,042 sats</Text>
 			</View>
-			<BountyConfirmButton navigation={navigation} bounty={bounty} />
 		</>
 	);
 }
