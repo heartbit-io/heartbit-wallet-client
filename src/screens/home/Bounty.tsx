@@ -2,13 +2,18 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 import { BountyChoiceList } from '../../components/home/BountyChoiceList';
+import BountyConfirmButton from '../../components/home/BountyConfirmButton';
 
 function Bounty({ navigation }: { navigation: any }) {
+	const [bounty, setBounty] = useState(0);
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.columnContainer}>
 				<Text style={styles.veryBigText}>Set a bounty for human answers</Text>
-				<BountyChoiceList navigation={navigation} />
+				<BountyChoiceList bounty={bounty} setBounty={setBounty} />
+			</View>
+			<View style={styles.buttonContainer}>
+				<BountyConfirmButton navigation={navigation} bounty={bounty} />
 			</View>
 		</SafeAreaView>
 	);
@@ -23,10 +28,17 @@ const styles = StyleSheet.create({
 	},
 	columnContainer: {
 		flex: 1,
-		margin: '5%',
+		marginHorizontal: '5%',
 		flexDirection: 'column',
 		alignItems: 'flex-start',
 		justifyContent: 'flex-start',
+	},
+	buttonContainer: {
+		flex: 0.1,
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
+		bottom: '5%',
 	},
 	rowContainer: {
 		flex: 0.3,
