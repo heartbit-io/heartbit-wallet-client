@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
-
 import AskButton from '../../components/home/AskButton';
-import Intro from '../../components/home/Intro';
 import LinearGradient from 'react-native-linear-gradient';
 import RecentQuestionList from '../../components/home/RecentQuestionList';
+import Logo from '../../components/Logo';
+import LogoText from '../../components/LogoText';
 
 function Home({ navigation }: { navigation: any }) {
 	useEffect(() => {
@@ -15,7 +15,8 @@ function Home({ navigation }: { navigation: any }) {
 			<LinearGradient colors={['#F58A25', '#FFF5ED']} style={styles.gradient}>
 				<View style={styles.columnContainer}>
 					<View style={styles.contentArea}>
-						<Intro />
+						<Logo />
+						<LogoText />
 					</View>
 				</View>
 				<View style={styles.buttonContainer}>

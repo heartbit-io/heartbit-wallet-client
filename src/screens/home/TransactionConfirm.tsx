@@ -11,6 +11,7 @@ import React, { useEffect } from 'react';
 import DismissButton from '../../components/home/DismissButton';
 import LinearGradient from 'react-native-linear-gradient';
 import LogoNoBackground from '../../assets/LogoNoBackground';
+import Logo from '../../components/Logo';
 
 function TransactionConfirm({ navigation }: { navigation: any }) {
 	useEffect(() => {
@@ -19,20 +20,16 @@ function TransactionConfirm({ navigation }: { navigation: any }) {
 	return (
 		<SafeAreaView style={styles.container}>
 			<LinearGradient colors={['#F58A25', '#FFF5ED']} style={styles.gradient}>
-				<View style={styles.columnContainer}>
-					<Image
-						style={styles.logo}
-						source={{
-							uri: LogoNoBackground,
-						}}
-					/>
-					<View style={styles.columnContainer}>
-						<Text style={styles.balanceText}> 1,000 sats</Text>
-						<Text style={styles.txText}>sent to x5c3ad !</Text>
-					</View>
+				<View style={styles.logoContainer}>
+					<Logo />
+				</View>
+
+				<View style={styles.textContainer}>
+					<Text style={styles.balanceText}> 1,000 sats</Text>
+					<Text style={styles.txText}>sent to x5c3ad !</Text>
 				</View>
 			</LinearGradient>
-			<View style={styles.columnContainerButton}>
+			<View style={styles.buttonContainer}>
 				<DismissButton navigation={navigation} />
 			</View>
 		</SafeAreaView>
@@ -46,27 +43,45 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: '#FFF5ED',
 	},
-	logo: {
-		marginTop: '25%',
-		width: 120,
-		height: 120,
-	},
-	columnContainer: {
+	logoContainer: {
 		flex: 1,
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
+		position: 'absolute',
+		left: '17.02%',
+		right: '16.87%',
+		top: '22.02%',
+		bottom: '18.1%',
 	},
-	columnContainerButton: {
+	buttonContainer: {
 		flex: 1,
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
-		marginBottom: '30%',
+		left: 25,
+		top: 480,
+		position: 'absolute',
+	},
+	textContainer: {
+		flex: 1,
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
+		position: 'absolute',
+		left: 75,
+		top: 330,
+		width: 257,
+		height: 40,
 	},
 	gradient: {
 		width: '100%',
 		height: '70%',
+	},
+	text: {
+		fontSize: 15,
+		lineHeight: 20,
+		textAlign: 'center',
 	},
 	balanceText: {
 		fontSize: 28,
