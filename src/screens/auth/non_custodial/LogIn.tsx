@@ -3,10 +3,10 @@ import PINCode, { deleteUserPinCode } from '@haskkor/react-native-pincode';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ThunkDispatch } from '@reduxjs/toolkit';
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import * as hippocrat from '../../utils/hippocrat';
-import { DIDSlice } from '../../components/did/DIDSlice';
-import { BtcAddressSlice } from '../../components/bitcoin/BtcAddressSlice';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import * as hippocrat from '../../../utils/hippocrat';
+import { DIDSlice } from '../../../components/did/DIDSlice';
+import { BtcAddressSlice } from '../../../components/bitcoin/BtcAddressSlice';
 
 function LogIn({ navigation }: { navigation: any }) {
 	const dispatch: ThunkDispatch = useAppDispatch();

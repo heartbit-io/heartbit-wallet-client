@@ -1,6 +1,6 @@
 import { SafeAreaView, View, Text, TextInput, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
-import { MnemonicRestore } from '../../components/mnemonic/MnemonicRestore';
+import { MnemonicRestore } from '../../../components/mnemonic/MnemonicRestore';
 
 function Restore({ navigation }: { navigation: any }) {
 	return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LogIn from '../screens/auth/LogIn';
+import LogIn from '../screens/auth/non_custodial/LogIn';
 import TabNavigator from './TabNavigator';
 
 const Stack = createNativeStackNavigator();

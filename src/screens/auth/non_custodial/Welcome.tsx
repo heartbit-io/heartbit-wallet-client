@@ -6,7 +6,7 @@ import {
 	StyleSheet,
 } from 'react-native';
 import React from 'react';
-import { Mnemonic } from '../../components/mnemonic/Mnemonic';
+import { Mnemonic } from '../../../components/mnemonic/Mnemonic';
 
 function Welcome({ navigation }: { navigation: any }) {
 	return (

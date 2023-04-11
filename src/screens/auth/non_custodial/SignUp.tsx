@@ -2,8 +2,8 @@ import { ScrollView, Text, View } from 'react-native';
 import PINCode, { deleteUserPinCode } from '@haskkor/react-native-pincode';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import * as hippocrat from '../../utils/hippocrat';
-import { useAppSelector } from '../../hooks/hooks';
+import * as hippocrat from '../../../utils/hippocrat';
+import { useAppSelector } from '../../../hooks/hooks';
 
 function SignUp({ navigation }: { navigation: any }) {
 	const mnemonic: string = useAppSelector(state => state.mnemonic.value);
