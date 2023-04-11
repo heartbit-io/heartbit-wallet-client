@@ -1,6 +1,7 @@
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import LogoNoBackground from '../assets/LogoNoBackground';
 import React from 'react';
+import { scale, verticalScale } from '../styles/responsive-size';
 
 function Logo() {
 	return (
@@ -17,7 +18,7 @@ export default Logo;
 
 const styles = StyleSheet.create({
 	logo: {
-		width: 80,
-		height: 70,
+		width: scale(80),
+		height: verticalScale(70),
 	},
 });
