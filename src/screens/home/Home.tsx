@@ -17,6 +17,8 @@ function Home({ navigation }: { navigation: any }) {
 					<View style={styles.contentArea}>
 						<Intro />
 					</View>
+				</View>
+				<View style={styles.buttonContainer}>
 					<AskButton navigation={navigation} />
 				</View>
 				<View style={styles.recentQuestionContainer}>
@@ -39,6 +41,13 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
+	},
+	buttonContainer: {
+		flex: 1,
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
+		marginVertical: '10%',
 	},
 	recentQuestionContainer: {
 		flex: 1,
