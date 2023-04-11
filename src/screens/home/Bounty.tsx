@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 import { BountyChoiceList } from '../../components/home/BountyChoiceList';
 import BountyConfirmButton from '../../components/home/BountyConfirmButton';
+import { scale } from '../../styles/responsive-size';
 
 function Bounty({ navigation }: { navigation: any }) {
 	const [bounty, setBounty] = useState(0);
@@ -52,12 +53,12 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-start',
 	},
 	veryBigText: {
-		fontSize: 34,
+		fontSize: scale(34),
 		fontWeight: 'bold',
 	},
 	input: {
 		backgroundColor: 'white',
 		textAlign: 'left',
-		fontSize: 28,
+		fontSize: scale(28),
 	},
 });

@@ -9,6 +9,7 @@ import {
 	View,
 } from 'react-native';
 import React, { useRef, useState } from 'react';
+import { scale, verticalScale } from '../../styles/responsive-size';
 
 const windowHeight = Dimensions.get('window').height;
 
@@ -167,15 +168,16 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	infoLogo: {
-		width: 20,
-		height: 20,
+		width: scale(20),
+		height: verticalScale(20),
 	},
 	columnContainer: {
 		flex: 1,
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
-		margin: 3,
+		marginHorizontal: scale(3),
+		marginVertical: verticalScale(3),
 	},
 	rowContainer: {
 		flex: 0.3,
@@ -196,7 +198,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		borderColor: 'gray',
 		backgroundColor: 'white',
-		borderWidth: 2,
+		borderWidth: scale(2),
 		borderRadius: 10,
 	},
 	buttonSelected: {
@@ -207,31 +209,31 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		borderColor: 'red',
 		backgroundColor: 'white',
-		borderWidth: 2,
+		borderWidth: scale(2),
 		borderRadius: 10,
 	},
 	leftText: {
 		marginLeft: '3%',
-		fontSize: 13,
+		fontSize: scale(13),
 		marginRight: 'auto',
 	},
 	rightText: {
 		marginRight: '3%',
-		fontSize: 14,
+		fontSize: scale(14),
 		fontWeight: 'bold',
 		marginLeft: 'auto',
-		marginVertical: 1,
+		marginVertical: verticalScale(1),
 	},
 	rightTextBottom: {
 		marginRight: '3%',
-		fontSize: 12,
+		fontSize: scale(12),
 		fontWeight: 'bold',
 		marginLeft: 'auto',
 		color: '#8E8E93',
-		marginVertical: 1,
+		marginVertical: verticalScale(1),
 	},
 	balanceText: {
-		fontSize: 15,
+		fontSize: scale(15),
 		color: '#8E8E93',
 		textAlign: 'center',
 	},
@@ -242,18 +244,18 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 	},
 	smallGrayText: {
-		fontSize: 12,
+		fontSize: scale(12),
 		fontWeight: 'bold',
 		color: 'gray',
-		marginHorizontal: 8,
+		marginHorizontal: scale(8),
 	},
 	bigText: {
-		fontSize: 18,
+		fontSize: scale(18),
 		fontWeight: 'bold',
 	},
 	logo: {
-		width: 15,
-		height: 15,
+		width: scale(15),
+		height: verticalScale(15),
 	},
 	modalContainer: {
 		flex: 1,
@@ -272,23 +274,24 @@ const styles = StyleSheet.create({
 		marginBottom: '5%',
 	},
 	modalButton: {
-		padding: 10,
+		paddingHorizontal: scale(10),
+		paddingVertical: verticalScale(10),
 		backgroundColor: '#F68F2A',
 		alignItems: 'center',
 		justifyContent: 'center',
 		borderRadius: 14,
 	},
 	modalButtonText: {
-		fontSize: 17,
+		fontSize: scale(17),
 		color: '#FFFFFF',
 	},
 	modalTitleText: {
-		fontSize: 28,
+		fontSize: scale(28),
 		fontWeight: 'bold',
 	},
 	modalContentText: {
-		fontSize: 17,
-		paddingTop: 20,
-		paddingBottom: 25,
+		fontSize: scale(17),
+		paddingTop: verticalScale(20),
+		paddingBottom: verticalScale(25),
 	},
 });

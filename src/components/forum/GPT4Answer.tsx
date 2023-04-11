@@ -1,5 +1,6 @@
 import { Animated, Image, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
+import { scale, verticalScale } from '../../styles/responsive-size';
 
 const Word = ({ word, onAnimationEnd }) => {
 	const opacity = useRef(new Animated.Value(0)).current;
@@ -109,28 +110,28 @@ const styles = StyleSheet.create({
 		verticalAlign: 'middle',
 		fontWeight: 'bold',
 		backgroundColor: '#189B70',
-		width: 40,
-		height: 40,
+		width: scale(40),
+		height: verticalScale(40),
 		borderRadius: 20,
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	smallText: {
-		fontSize: 10,
+		fontSize: scale(10),
 		fontWeight: 'bold',
 	},
 	bigText: {
-		fontSize: 18,
+		fontSize: scale(18),
 		fontWeight: 'bold',
 		paddingLeft: '4%',
 	},
 	bigTextWithoutBold: {
-		fontSize: 18,
+		fontSize: scale(18),
 		paddingTop: '4%',
 	},
 	smallGrayText: {
-		fontSize: 12,
+		fontSize: scale(12),
 		fontWeight: 'bold',
 		color: 'gray',
 		paddingLeft: '4%',
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
 		paddingTop: '4%',
 	},
 	gptAnswerText: {
-		fontSize: 18,
+		fontSize: scale(18),
 	},
-	gptLogo: { width: 20, height: 20 },
+	gptLogo: { width: scale(26), height: verticalScale(26) },
 });

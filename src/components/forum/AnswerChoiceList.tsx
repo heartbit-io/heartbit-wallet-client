@@ -1,6 +1,7 @@
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import React, { useState } from 'react';
+import { scale, verticalScale } from '../../styles/responsive-size';
 
 function AnswerChoiceList() {
 	const [bestAnswer, setBestAnswer] = useState(0);
@@ -112,13 +113,13 @@ const styles = StyleSheet.create({
 	},
 	emptyProfile: {
 		color: 'white',
-		fontSize: 20,
+		fontSize: scale(26),
 		verticalAlign: 'middle',
 		fontWeight: 'bold',
 		borderColor: '#BDBDBD',
 		borderWidth: 1,
-		width: 40,
-		height: 40,
+		width: scale(40),
+		height: verticalScale(40),
 		borderRadius: 20,
 		textAlign: 'center',
 		justifyContent: 'center',
@@ -126,13 +127,13 @@ const styles = StyleSheet.create({
 	},
 	chosenProfile: {
 		color: 'white',
-		fontSize: 20,
+		fontSize: scale(26),
 		verticalAlign: 'middle',
 		fontWeight: 'bold',
 		borderColor: '#F68F2A' /*#FF2D55'*/,
-		borderWidth: 1,
-		width: 40,
-		height: 40,
+		borderWidth: scale(1),
+		width: scale(40),
+		height: verticalScale(40),
 		borderRadius: 20,
 		textAlign: 'center',
 		justifyContent: 'center',
@@ -141,24 +142,24 @@ const styles = StyleSheet.create({
 		transform: [{ rotate: '15deg' }],
 	},
 	text: {
-		fontSize: 14,
+		fontSize: scale(14),
 		fontWeight: 'bold',
 	},
 	smallText: {
-		fontSize: 10,
+		fontSize: scale(10),
 		fontWeight: 'bold',
 	},
 	bigText: {
-		fontSize: 18,
+		fontSize: scale(18),
 		fontWeight: 'bold',
 		paddingLeft: '4%',
 	},
 	bigTextWithoutBold: {
-		fontSize: 18,
+		fontSize: scale(18),
 		paddingTop: '4%',
 	},
 	smallGrayText: {
-		fontSize: 12,
+		fontSize: scale(12),
 		fontWeight: 'bold',
 		color: 'gray',
 		paddingLeft: '4%',

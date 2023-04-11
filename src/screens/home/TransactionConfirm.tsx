@@ -10,8 +10,8 @@ import React, { useEffect } from 'react';
 
 import DismissButton from '../../components/home/DismissButton';
 import LinearGradient from 'react-native-linear-gradient';
-import LogoNoBackground from '../../assets/LogoNoBackground';
 import Logo from '../../components/Logo';
+import { scale, verticalScale } from '../../styles/responsive-size';
 
 function TransactionConfirm({ navigation }: { navigation: any }) {
 	useEffect(() => {
@@ -26,12 +26,12 @@ function TransactionConfirm({ navigation }: { navigation: any }) {
 
 				<View style={styles.textContainer}>
 					<Text style={styles.balanceText}> 1,000 sats</Text>
-					<Text style={styles.txText}>sent to x5c3ad !</Text>
+					<Text style={styles.txText}>sent to x5c3ad!</Text>
+				</View>
+				<View style={styles.buttonContainer}>
+					<DismissButton navigation={navigation} />
 				</View>
 			</LinearGradient>
-			<View style={styles.buttonContainer}>
-				<DismissButton navigation={navigation} />
-			</View>
 		</SafeAreaView>
 	);
 }
@@ -44,53 +44,49 @@ const styles = StyleSheet.create({
 		backgroundColor: '#FFF5ED',
 	},
 	logoContainer: {
-		flex: 1,
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
+		left: scale(70),
+		right: scale(70),
+		top: verticalScale(110),
 		position: 'absolute',
-		left: '17.02%',
-		right: '16.87%',
-		top: '22.02%',
-		bottom: '18.1%',
 	},
 	buttonContainer: {
-		flex: 1,
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
-		left: 25,
-		top: 480,
+		left: scale(70),
+		right: scale(70),
+		top: verticalScale(450),
 		position: 'absolute',
 	},
 	textContainer: {
-		flex: 1,
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
+		left: scale(70),
+		right: scale(70),
+		top: verticalScale(250),
 		position: 'absolute',
-		left: 75,
-		top: 330,
-		width: 257,
-		height: 40,
 	},
 	gradient: {
 		width: '100%',
 		height: '70%',
 	},
 	text: {
-		fontSize: 15,
-		lineHeight: 20,
+		fontSize: scale(15),
+		lineHeight: verticalScale(20),
 		textAlign: 'center',
 	},
 	balanceText: {
-		fontSize: 28,
+		fontSize: scale(28),
 		fontWeight: 'bold',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
 	txText: {
-		fontSize: 28,
+		fontSize: scale(28),
 		alignItems: 'center',
 		justifyContent: 'center',
 	},

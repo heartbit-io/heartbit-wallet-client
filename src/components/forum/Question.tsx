@@ -1,6 +1,7 @@
 import { View, StyleSheet, Text } from 'react-native';
 
 import React from 'react';
+import { scale, verticalScale } from '../../styles/responsive-size';
 
 function Question() {
 	return (
@@ -48,32 +49,32 @@ const styles = StyleSheet.create({
 	},
 	userProfileText: {
 		color: 'white',
-		fontSize: 20,
+		fontSize: scale(26),
 		verticalAlign: 'middle',
 		fontWeight: 'bold',
 		backgroundColor: '#5AC8FA',
-		width: 40,
-		height: 40,
+		width: scale(40),
+		height: verticalScale(40),
 		borderRadius: 20,
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	smallText: {
-		fontSize: 10,
+		fontSize: scale(10),
 		fontWeight: 'bold',
 	},
 	bigText: {
-		fontSize: 18,
+		fontSize: scale(18),
 		fontWeight: 'bold',
 		paddingLeft: '4%',
 	},
 	bigTextWithoutBold: {
-		fontSize: 18,
+		fontSize: scale(18),
 		paddingTop: '4%',
 	},
 	smallGrayText: {
-		fontSize: 12,
+		fontSize: scale(12),
 		fontWeight: 'bold',
 		color: 'gray',
 		paddingLeft: '4%',
