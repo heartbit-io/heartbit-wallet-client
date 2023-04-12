@@ -1,7 +1,11 @@
 import { View, StyleSheet, Text } from 'react-native';
 
 import React from 'react';
-import { scale, verticalScale } from '../../styles/responsive-size';
+import {
+	scale,
+	verticalScale,
+	radiusScale,
+} from '../../styles/responsive-size';
 
 function Question() {
 	return (
@@ -55,7 +59,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#5AC8FA',
 		width: scale(40),
 		height: verticalScale(40),
-		borderRadius: 20,
+		borderRadius: radiusScale(40, 40),
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',

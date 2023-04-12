@@ -1,7 +1,11 @@
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import React, { useState } from 'react';
-import { scale, verticalScale } from '../../styles/responsive-size';
+import {
+	radiusScale,
+	scale,
+	verticalScale,
+} from '../../styles/responsive-size';
 
 function AnswerChoiceList() {
 	const [bestAnswer, setBestAnswer] = useState(0);
@@ -120,7 +124,7 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		width: scale(40),
 		height: verticalScale(40),
-		borderRadius: 20,
+		borderRadius: radiusScale(40, 40),
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -134,7 +138,7 @@ const styles = StyleSheet.create({
 		borderWidth: scale(1),
 		width: scale(40),
 		height: verticalScale(40),
-		borderRadius: 20,
+		borderRadius: radiusScale(40, 40),
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',

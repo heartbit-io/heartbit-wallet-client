@@ -1,6 +1,10 @@
 import { Animated, Image, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
-import { scale, verticalScale } from '../../styles/responsive-size';
+import {
+	radiusScale,
+	scale,
+	verticalScale,
+} from '../../styles/responsive-size';
 
 const Word = ({ word, onAnimationEnd }) => {
 	const opacity = useRef(new Animated.Value(0)).current;
@@ -112,7 +116,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#189B70',
 		width: scale(40),
 		height: verticalScale(40),
-		borderRadius: 20,
+		borderRadius: radiusScale(40, 40),
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',

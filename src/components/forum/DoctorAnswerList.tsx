@@ -2,7 +2,11 @@ import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 
 import React, { useState } from 'react';
 import HourGlass from '../../assets/HourGlass';
-import { scale, verticalScale } from '../../styles/responsive-size';
+import {
+	radiusScale,
+	scale,
+	verticalScale,
+} from '../../styles/responsive-size';
 
 function DoctorAnswerList({
 	isEmpty,
@@ -125,7 +129,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#FFCC00',
 		width: scale(40),
 		height: verticalScale(40),
-		borderRadius: scale(20),
+		borderRadius: radiusScale(40, 40),
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -138,7 +142,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#34C759',
 		width: scale(40),
 		height: verticalScale(40),
-		borderRadius: 20,
+		borderRadius: radiusScale(40, 40),
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -151,7 +155,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#007AFF',
 		width: scale(40),
 		height: verticalScale(40),
-		borderRadius: 20,
+		borderRadius: radiusScale(40, 40),
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -164,7 +168,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#5856D6',
 		width: scale(40),
 		height: verticalScale(40),
-		borderRadius: 20,
+		borderRadius: radiusScale(40, 40),
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -177,7 +181,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#AF52DE',
 		width: scale(40),
 		height: verticalScale(40),
-		borderRadius: 20,
+		borderRadius: radiusScale(40, 40),
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -190,7 +194,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#FF3B30',
 		width: scale(40),
 		height: verticalScale(40),
-		borderRadius: 20,
+		borderRadius: radiusScale(40, 40),
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
