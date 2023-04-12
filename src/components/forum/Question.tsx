@@ -2,9 +2,9 @@ import { View, StyleSheet, Text } from 'react-native';
 
 import React from 'react';
 import {
+	fontSizeScale,
 	scale,
 	verticalScale,
-	radiusScale,
 } from '../../styles/responsive-size';
 
 function Question() {
@@ -53,32 +53,32 @@ const styles = StyleSheet.create({
 	},
 	userProfileText: {
 		color: 'white',
-		fontSize: scale(26),
+		fontSize: fontSizeScale(26),
 		verticalAlign: 'middle',
 		fontWeight: 'bold',
 		backgroundColor: '#5AC8FA',
 		width: scale(40),
-		height: verticalScale(40),
-		borderRadius: radiusScale(40, 40),
+		height: scale(40),
+		borderRadius: scale(20),
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	smallText: {
-		fontSize: scale(10),
+		fontSize: fontSizeScale(10),
 		fontWeight: 'bold',
 	},
 	bigText: {
-		fontSize: scale(18),
+		fontSize: fontSizeScale(18),
 		fontWeight: 'bold',
 		paddingLeft: '4%',
 	},
 	bigTextWithoutBold: {
-		fontSize: scale(18),
+		fontSize: fontSizeScale(18),
 		paddingTop: '4%',
 	},
 	smallGrayText: {
-		fontSize: scale(12),
+		fontSize: fontSizeScale(12),
 		fontWeight: 'bold',
 		color: 'gray',
 		paddingLeft: '4%',

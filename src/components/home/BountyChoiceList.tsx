@@ -9,7 +9,11 @@ import {
 	View,
 } from 'react-native';
 import React, { useRef, useState } from 'react';
-import { scale, verticalScale } from '../../styles/responsive-size';
+import {
+	scale,
+	verticalScale,
+	fontSizeScale,
+} from '../../styles/responsive-size';
 
 const windowHeight = Dimensions.get('window').height;
 
@@ -47,7 +51,7 @@ export function BountyChoiceList({
 		<>
 			<View style={styles.infoContainer}>
 				<TouchableOpacity onPress={showModal}>
-					<Text>
+					<Text style={styles.infoTextContainer}>
 						<Image
 							style={styles.infoLogo}
 							source={require('../../assets/img/ic_info.png')}
@@ -167,9 +171,14 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
+	infoTextContainer: {
+		fontSize: fontSizeScale(15),
+		fontWeight: 'bold',
+		color: 'gray',
+	},
 	infoLogo: {
-		width: scale(20),
-		height: verticalScale(20),
+		width: fontSizeScale(20),
+		height: fontSizeScale(20),
 	},
 	columnContainer: {
 		flex: 1,
@@ -214,26 +223,26 @@ const styles = StyleSheet.create({
 	},
 	leftText: {
 		marginLeft: '3%',
-		fontSize: scale(13),
+		fontSize: fontSizeScale(13),
 		marginRight: 'auto',
 	},
 	rightText: {
 		marginRight: '3%',
-		fontSize: scale(14),
+		fontSize: fontSizeScale(14),
 		fontWeight: 'bold',
 		marginLeft: 'auto',
 		marginVertical: verticalScale(1),
 	},
 	rightTextBottom: {
 		marginRight: '3%',
-		fontSize: scale(12),
+		fontSize: fontSizeScale(12),
 		fontWeight: 'bold',
 		marginLeft: 'auto',
 		color: '#8E8E93',
 		marginVertical: verticalScale(1),
 	},
 	balanceText: {
-		fontSize: scale(15),
+		fontSize: fontSizeScale(15),
 		color: '#8E8E93',
 		textAlign: 'center',
 	},
@@ -244,13 +253,13 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 	},
 	smallGrayText: {
-		fontSize: scale(12),
+		fontSize: fontSizeScale(12),
 		fontWeight: 'bold',
 		color: 'gray',
 		marginHorizontal: scale(8),
 	},
 	bigText: {
-		fontSize: scale(18),
+		fontSize: fontSizeScale(18),
 		fontWeight: 'bold',
 	},
 	logo: {
@@ -282,15 +291,15 @@ const styles = StyleSheet.create({
 		borderRadius: 14,
 	},
 	modalButtonText: {
-		fontSize: scale(17),
+		fontSize: fontSizeScale(17),
 		color: '#FFFFFF',
 	},
 	modalTitleText: {
-		fontSize: scale(28),
+		fontSize: fontSizeScale(28),
 		fontWeight: 'bold',
 	},
 	modalContentText: {
-		fontSize: scale(17),
+		fontSize: fontSizeScale(17),
 		paddingTop: verticalScale(20),
 		paddingBottom: verticalScale(25),
 	},

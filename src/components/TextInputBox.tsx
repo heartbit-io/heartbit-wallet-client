@@ -1,7 +1,7 @@
 import { KeyboardAvoidingView, StyleSheet, TextInput } from 'react-native';
 
 import React from 'react';
-import { scale, verticalScale } from '../styles/responsive-size';
+import { scale, verticalScale, fontSizeScale } from '../styles/responsive-size';
 
 function TextInputBox({
 	text,
@@ -46,15 +46,13 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		color: 'white',
-		fontSize: scale(17),
-		lineHeight: verticalScale(22),
+		fontSize: fontSizeScale(17),
 		textAlign: 'center',
 		fontWeight: 'bold',
 	},
 	subText: {
 		color: 'white',
-		fontSize: scale(11),
-		lineHeight: verticalScale(13),
+		fontSize: fontSizeScale(11),
 		textAlign: 'center',
 		fontWeight: 'bold',
 	},

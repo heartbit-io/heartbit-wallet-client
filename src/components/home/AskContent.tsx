@@ -10,7 +10,7 @@ import {
 
 import React, { useState } from 'react';
 import AskSubmitButton from './AskSubmitButton';
-import { scale } from '../../styles/responsive-size';
+import { fontSizeScale } from '../../styles/responsive-size';
 
 function AskContent({
 	navigation,
@@ -46,12 +46,12 @@ export default AskContent;
 
 const styles = StyleSheet.create({
 	veryBigText: {
-		fontSize: scale(34),
+		fontSize: fontSizeScale(34),
 		fontWeight: 'bold',
 	},
 	input: {
 		backgroundColor: '#FFF5ED',
 		textAlign: 'left',
-		fontSize: scale(28),
+		fontSize: fontSizeScale(28),
 	},
 });

@@ -3,7 +3,7 @@ import React from 'react';
 import AnswerChoiceList from '../../components/forum/AnswerChoiceList';
 import BestAnswerButton from '../../components/forum/BestAnswerButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { scale } from '../../styles/responsive-size';
+import { fontSizeScale } from '../../styles/responsive-size';
 
 function BestAnswer({ navigation }: { navigation: any }) {
 	return (
@@ -65,16 +65,16 @@ const styles = StyleSheet.create({
 		paddingVertical: '4%',
 	},
 	veryBigText: {
-		fontSize: 34,
+		fontSize: fontSizeScale(34),
 		fontWeight: 'bold',
 	},
 	smallGrayText: {
-		fontSize: scale(14),
+		fontSize: fontSizeScale(14),
 		fontWeight: 'bold',
 		color: 'gray',
 	},
 	smallGrayTextWithOutBold: {
-		fontSize: scale(14),
+		fontSize: fontSizeScale(14),
 		color: 'gray',
 	},
 });

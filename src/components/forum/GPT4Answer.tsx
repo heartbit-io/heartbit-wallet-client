@@ -1,7 +1,7 @@
 import { Animated, Image, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import {
-	radiusScale,
+	fontSizeScale,
 	scale,
 	verticalScale,
 } from '../../styles/responsive-size';
@@ -113,29 +113,29 @@ const styles = StyleSheet.create({
 	gptProfile: {
 		verticalAlign: 'middle',
 		fontWeight: 'bold',
-		backgroundColor: '#189B70',
+		backgroundColor: '#80CBC4',
 		width: scale(40),
-		height: verticalScale(40),
-		borderRadius: radiusScale(40, 40),
+		height: scale(40),
+		borderRadius: scale(20),
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	smallText: {
-		fontSize: scale(10),
+		fontSize: fontSizeScale(10),
 		fontWeight: 'bold',
 	},
 	bigText: {
-		fontSize: scale(18),
+		fontSize: fontSizeScale(18),
 		fontWeight: 'bold',
 		paddingLeft: '4%',
 	},
 	bigTextWithoutBold: {
-		fontSize: scale(18),
+		fontSize: fontSizeScale(18),
 		paddingTop: '4%',
 	},
 	smallGrayText: {
-		fontSize: scale(12),
+		fontSize: fontSizeScale(12),
 		fontWeight: 'bold',
 		color: 'gray',
 		paddingLeft: '4%',
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
 		paddingTop: '4%',
 	},
 	gptAnswerText: {
-		fontSize: scale(18),
+		fontSize: fontSizeScale(18),
 	},
-	gptLogo: { width: scale(26), height: verticalScale(26) },
+	gptLogo: { width: scale(26), height: scale(26) },
 });

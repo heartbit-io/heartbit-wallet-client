@@ -11,7 +11,11 @@ import React, { useEffect } from 'react';
 import DismissButton from '../../components/home/DismissButton';
 import LinearGradient from 'react-native-linear-gradient';
 import Logo from '../../components/Logo';
-import { scale, verticalScale } from '../../styles/responsive-size';
+import {
+	scale,
+	verticalScale,
+	fontSizeScale,
+} from '../../styles/responsive-size';
 
 function TransactionConfirm({ navigation }: { navigation: any }) {
 	useEffect(() => {
@@ -75,18 +79,17 @@ const styles = StyleSheet.create({
 		height: '70%',
 	},
 	text: {
-		fontSize: scale(15),
-		lineHeight: verticalScale(20),
+		fontSize: fontSizeScale(15),
 		textAlign: 'center',
 	},
 	balanceText: {
-		fontSize: scale(28),
+		fontSize: fontSizeScale(28),
 		fontWeight: 'bold',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
 	txText: {
-		fontSize: scale(28),
+		fontSize: fontSizeScale(28),
 		alignItems: 'center',
 		justifyContent: 'center',
 	},

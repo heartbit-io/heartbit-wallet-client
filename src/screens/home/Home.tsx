@@ -5,7 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import RecentQuestionList from '../../components/home/RecentQuestionList';
 import Logo from '../../components/Logo';
 import LogoText from '../../components/LogoText';
-import { scale } from '../../styles/responsive-size';
+import { scale, fontSizeScale } from '../../styles/responsive-size';
 
 function Home({ navigation }: { navigation: any }) {
 	useEffect(() => {
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
 		height: '50%',
 	},
 	text: {
-		fontSize: scale(16),
+		fontSize: fontSizeScale(16),
 		fontWeight: 'bold',
 		marginHorizontal: scale(8),
 	},

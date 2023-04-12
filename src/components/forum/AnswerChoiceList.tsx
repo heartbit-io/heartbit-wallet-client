@@ -1,7 +1,7 @@
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 
 import React, { useState } from 'react';
-import { scale, verticalScale } from '../../styles/responsive-size';
+import { scale, fontSizeScale } from '../../styles/responsive-size';
 import Bitcoin from '../../assets/Bitcoin';
 
 function AnswerChoiceList() {
@@ -136,24 +136,24 @@ const styles = StyleSheet.create({
 		height: scale(40),
 	},
 	text: {
-		fontSize: scale(14),
+		fontSize: fontSizeScale(14),
 		fontWeight: 'bold',
 	},
 	smallText: {
-		fontSize: scale(10),
+		fontSize: fontSizeScale(10),
 		fontWeight: 'bold',
 	},
 	bigText: {
-		fontSize: scale(18),
+		fontSize: fontSizeScale(18),
 		fontWeight: 'bold',
 		paddingLeft: '4%',
 	},
 	bigTextWithoutBold: {
-		fontSize: scale(18),
+		fontSize: fontSizeScale(18),
 		paddingTop: '4%',
 	},
 	smallGrayText: {
-		fontSize: scale(12),
+		fontSize: fontSizeScale(12),
 		fontWeight: 'bold',
 		color: 'gray',
 		paddingLeft: '4%',

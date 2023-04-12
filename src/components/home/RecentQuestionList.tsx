@@ -1,7 +1,11 @@
 import { View, StyleSheet, Text } from 'react-native';
 
 import React from 'react';
-import { scale, verticalScale } from '../../styles/responsive-size';
+import {
+	scale,
+	verticalScale,
+	fontSizeScale,
+} from '../../styles/responsive-size';
 
 function RecentQuestionList() {
 	return (
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	recentHeaderLeftText: {
-		fontSize: scale(28),
+		fontSize: fontSizeScale(28),
 		fontWeight: 'bold',
 		marginLeft: scale(16),
 		color: '#8E8E93',
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
 		marginRight: 'auto',
 	},
 	recentHeaderRightText: {
-		fontSize: scale(17),
+		fontSize: fontSizeScale(17),
 		marginRight: scale(16),
 		color: '#8E8E93',
 		marginBottom: verticalScale(10),
@@ -93,21 +97,21 @@ const styles = StyleSheet.create({
 		paddingTop: verticalScale(13),
 	},
 	recentQuestionTopText: {
-		fontSize: scale(20),
+		fontSize: fontSizeScale(20),
 		fontWeight: 'bold',
 	},
 	recentHeaderMiddleText: {
-		fontSize: scale(15),
+		fontSize: fontSizeScale(15),
 		color: '#8E8E93',
 		marginTop: verticalScale(5),
 		marginBottom: verticalScale(5),
 	},
 	recentHeaderBottomText_blue: {
-		fontSize: scale(15),
+		fontSize: fontSizeScale(15),
 		color: '#007AFF',
 	},
 	recentHeaderBottomText_red: {
-		fontSize: scale(15),
+		fontSize: fontSizeScale(15),
 		color: '#FF2D55',
 	},
 	rowContainer: {
@@ -127,7 +131,7 @@ const styles = StyleSheet.create({
 		height: '50%',
 	},
 	text: {
-		fontSize: scale(16),
+		fontSize: fontSizeScale(16),
 		fontWeight: 'bold',
 		marginHorizontal: scale(8),
 	},

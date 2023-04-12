@@ -5,7 +5,11 @@ import LogoText from '../../../components/LogoText';
 import LinearGradient from 'react-native-linear-gradient';
 import SignUpButton from '../../../components/email/SignUpButton';
 import EmailInputBox from '../../../components/email/EmailInputBox';
-import { scale, verticalScale } from '../../../styles/responsive-size';
+import {
+	scale,
+	verticalScale,
+	fontSizeScale,
+} from '../../../styles/responsive-size';
 
 function EmailSignUp({ navigation }: { navigation: any }) {
 	useEffect(() => {
@@ -83,8 +87,7 @@ const styles = StyleSheet.create({
 		height: '70%',
 	},
 	text: {
-		fontSize: scale(15),
-		lineHeight: verticalScale(20),
+		fontSize: fontSizeScale(15),
 		textAlign: 'center',
 	},
 });
