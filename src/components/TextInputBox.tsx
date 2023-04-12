@@ -43,17 +43,6 @@ const styles = StyleSheet.create({
 		borderColor: '#D1D1D6',
 		textAlign: 'center',
 		borderRadius: scale(14),
-	},
-	text: {
-		color: 'white',
 		fontSize: fontSizeScale(17),
-		textAlign: 'center',
-		fontWeight: 'bold',
-	},
-	subText: {
-		color: 'white',
-		fontSize: fontSizeScale(11),
-		textAlign: 'center',
-		fontWeight: 'bold',
 	},
 });
