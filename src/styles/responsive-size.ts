@@ -6,13 +6,17 @@ const guidelineBaseWidth = 411;
 const guidelineBaseHeight = 683;
 
 // based on viewport
-const scale = size => (width / guidelineBaseWidth) * size;
+const scale = (size: number) => (width / guidelineBaseWidth) * size;
 
 // based on height
-const verticalScale = size => (height / guidelineBaseHeight) * size;
+const verticalScale = (size: number) => (height / guidelineBaseHeight) * size;
 
 // factor control
-const moderateScale = (size, factor = 0.5) =>
+const moderateScale = (size: number, factor = 0.5) =>
 	size + (scale(size) - size) * factor;
 
-export { scale, verticalScale, moderateScale };
+// radius control to make responsive circle
+const radiusScale = (circleWidth: number, circleHeight: number) =>
+	Math.round(scale(circleWidth) + verticalScale(circleHeight)) / 2;
+
+export { scale, verticalScale, moderateScale, radiusScale };
