@@ -1,11 +1,8 @@
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 
 import React, { useState } from 'react';
-import {
-	radiusScale,
-	scale,
-	verticalScale,
-} from '../../styles/responsive-size';
+import { scale, verticalScale } from '../../styles/responsive-size';
+import Bitcoin from '../../assets/Bitcoin';
 
 function AnswerChoiceList() {
 	const [bestAnswer, setBestAnswer] = useState(0);
@@ -23,13 +20,16 @@ function AnswerChoiceList() {
 					}}
 				>
 					<View style={styles.rowContainer}>
-						<Text
-							style={
-								bestAnswer === 1 ? styles.chosenProfile : styles.emptyProfile
-							}
-						>
-							₿
-						</Text>
+						{bestAnswer === 1 ? (
+							<Image
+								style={styles.chosenProfile}
+								source={{
+									uri: Bitcoin,
+								}}
+							/>
+						) : (
+							<Text style={styles.emptyProfile}></Text>
+						)}
 						<View style={styles.columnContainer}>
 							<Text style={styles.bigText}>x5c3ad</Text>
 							<Text style={styles.smallGrayText}>
@@ -57,13 +57,16 @@ function AnswerChoiceList() {
 					}}
 				>
 					<View style={styles.rowContainer}>
-						<Text
-							style={
-								bestAnswer === 2 ? styles.chosenProfile : styles.emptyProfile
-							}
-						>
-							₿
-						</Text>
+						{bestAnswer === 2 ? (
+							<Image
+								style={styles.chosenProfile}
+								source={{
+									uri: Bitcoin,
+								}}
+							/>
+						) : (
+							<Text style={styles.emptyProfile}></Text>
+						)}
 						<View style={styles.columnContainer}>
 							<Text style={styles.bigText}>kf30afc</Text>
 							<Text style={styles.smallGrayText}>
@@ -117,33 +120,20 @@ const styles = StyleSheet.create({
 	},
 	emptyProfile: {
 		color: 'white',
-		fontSize: scale(26),
 		verticalAlign: 'middle',
 		fontWeight: 'bold',
 		borderColor: '#BDBDBD',
 		borderWidth: 1,
 		width: scale(40),
-		height: verticalScale(40),
-		borderRadius: radiusScale(40, 40),
+		height: scale(40),
+		borderRadius: scale(20),
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	chosenProfile: {
-		color: 'white',
-		fontSize: scale(26),
-		verticalAlign: 'middle',
-		fontWeight: 'bold',
-		borderColor: '#F68F2A' /*#FF2D55'*/,
-		borderWidth: scale(1),
 		width: scale(40),
-		height: verticalScale(40),
-		borderRadius: radiusScale(40, 40),
-		textAlign: 'center',
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#F68F2A',
-		transform: [{ rotate: '15deg' }],
+		height: scale(40),
 	},
 	text: {
 		fontSize: scale(14),
