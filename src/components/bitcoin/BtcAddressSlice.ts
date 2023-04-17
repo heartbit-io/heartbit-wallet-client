@@ -3,7 +3,7 @@
 scope for v2
 
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { AppThunk, RootState } from '../../stores/store';
+import { AppThunk, RootState } from '../../store';
 
 export interface btcAddressState {
 	value: string;

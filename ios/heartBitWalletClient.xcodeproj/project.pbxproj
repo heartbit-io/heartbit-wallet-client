@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* heartBitWalletClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* heartBitWalletClientTests.m */; };
+		01EE390450E34C2CAC053366 /* Logo.ts in Resources */ = {isa = PBXBuildFile; fileRef = A2236E3365544920A0C3F041 /* Logo.ts */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		898E7FB5563E3F3049AEE08E /* libPods-heartBitWalletClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA6587000D125D9FE785971 /* libPods-heartBitWalletClient.a */; };
-		E62B2918C64ED72915D1861F /* libPods-heartBitWalletClient-heartBitWalletClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D56AFB52A0CEB350B23D10 /* libPods-heartBitWalletClient-heartBitWalletClientTests.a */; };
-		01EE390450E34C2CAC053366 /* Logo.ts in Resources */ = {isa = PBXBuildFile; fileRef = A2236E3365544920A0C3F041 /* Logo.ts */; };
 		BB4D9057EDBD4F3E98D6E07D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2209BDF409BB4BFCB57754B0 /* logo.png */; };
+		E62B2918C64ED72915D1861F /* libPods-heartBitWalletClient-heartBitWalletClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D56AFB52A0CEB350B23D10 /* libPods-heartBitWalletClient-heartBitWalletClientTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,17 +38,17 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = heartBitWalletClient/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = heartBitWalletClient/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = heartBitWalletClient/main.m; sourceTree = "<group>"; };
+		2209BDF409BB4BFCB57754B0 /* logo.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = logo.png; path = ../src/assets/logo.png; sourceTree = "<group>"; };
 		2AA6587000D125D9FE785971 /* libPods-heartBitWalletClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-heartBitWalletClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D2852C2994B91F000E60CA /* heartBitWalletClient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = heartBitWalletClient.entitlements; path = heartBitWalletClient/heartBitWalletClient.entitlements; sourceTree = "<group>"; };
 		71D56AFB52A0CEB350B23D10 /* libPods-heartBitWalletClient-heartBitWalletClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-heartBitWalletClient-heartBitWalletClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = heartBitWalletClient/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92639FCCB1D4CEF3F1F86F31 /* Pods-heartBitWalletClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartBitWalletClient.release.xcconfig"; path = "Target Support Files/Pods-heartBitWalletClient/Pods-heartBitWalletClient.release.xcconfig"; sourceTree = "<group>"; };
+		A2236E3365544920A0C3F041 /* Logo.ts */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Logo.ts; path = ../src/assets/Logo.ts; sourceTree = "<group>"; };
 		A623E621952F5762C80952CA /* Pods-heartBitWalletClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartBitWalletClient.debug.xcconfig"; path = "Target Support Files/Pods-heartBitWalletClient/Pods-heartBitWalletClient.debug.xcconfig"; sourceTree = "<group>"; };
 		D55ABA2C3ADDB61BEA0BA7B9 /* Pods-heartBitWalletClient-heartBitWalletClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartBitWalletClient-heartBitWalletClientTests.debug.xcconfig"; path = "Target Support Files/Pods-heartBitWalletClient-heartBitWalletClientTests/Pods-heartBitWalletClient-heartBitWalletClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D765A9A61FFB0A7B6943D004 /* Pods-heartBitWalletClient-heartBitWalletClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartBitWalletClient-heartBitWalletClientTests.release.xcconfig"; path = "Target Support Files/Pods-heartBitWalletClient-heartBitWalletClientTests/Pods-heartBitWalletClient-heartBitWalletClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		A2236E3365544920A0C3F041 /* Logo.ts */ = {isa = PBXFileReference; name = "Logo.ts"; path = "../src/assets/Logo.ts"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		2209BDF409BB4BFCB57754B0 /* logo.png */ = {isa = PBXFileReference; name = "logo.png"; path = "../src/assets/logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +112,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5ACA9C5DCF434093A2DAE5ED /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A2236E3365544920A0C3F041 /* Logo.ts */,
+				2209BDF409BB4BFCB57754B0 /* logo.png */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,16 +164,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		5ACA9C5DCF434093A2DAE5ED /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				A2236E3365544920A0C3F041 /* Logo.ts */,
-				2209BDF409BB4BFCB57754B0 /* logo.png */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
