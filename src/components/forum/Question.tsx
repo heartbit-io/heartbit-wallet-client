@@ -12,7 +12,9 @@ function Question() {
 		<View style={styles.container}>
 			<View style={styles.postContainer}>
 				<View style={styles.rowContainer}>
-					<Text style={styles.userProfileText}>Q</Text>
+					<View style={styles.userProfile}>
+						<Text style={styles.userProfileText}>Q</Text>
+					</View>
 					<View style={styles.columnContainer}>
 						<Text style={styles.bigText}>You</Text>
 						<Text style={styles.smallGrayText}>23 Mar 2023 ・ 1000 sats</Text>
@@ -51,11 +53,8 @@ const styles = StyleSheet.create({
 		alignItems: 'flex-start',
 		justifyContent: 'flex-start',
 	},
-	userProfileText: {
-		color: 'white',
-		fontSize: fontSizeScale(26),
+	userProfile: {
 		verticalAlign: 'middle',
-		fontWeight: 'bold',
 		backgroundColor: '#5AC8FA',
 		width: scale(40),
 		height: scale(40),
@@ -63,6 +62,11 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	userProfileText: {
+		color: 'white',
+		fontSize: fontSizeScale(26),
+		fontWeight: 'bold',
 	},
 	smallText: {
 		fontSize: fontSizeScale(10),

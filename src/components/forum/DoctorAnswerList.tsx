@@ -38,7 +38,9 @@ function DoctorAnswerList({
 			<View style={styles.container}>
 				<View style={styles.postContainer}>
 					<View style={styles.rowContainer}>
-						<Text style={styles.doctorProfileTextIndigo}>A</Text>
+						<View style={styles.doctorProfileIndigo}>
+							<Text style={styles.doctorProfileText}>A</Text>
+						</View>
 						<View style={styles.columnContainer}>
 							<Text style={styles.bigText}>x5c3ad</Text>
 							<Text style={styles.smallGrayText}>
@@ -54,31 +56,6 @@ function DoctorAnswerList({
 						important to consult with an ophthalmologist or your primary care
 						doctor. They can assess your situation and provide appropriate
 						advice based on your medical history and current medications.
-					</Text>
-				</View>
-			</View>
-			<View style={styles.container}>
-				<View style={styles.postContainer}>
-					<View style={styles.rowContainer}>
-						<Text style={styles.doctorProfileTextRed}>A</Text>
-						<View style={styles.columnContainer}>
-							<Text style={styles.bigText}>kf30afc</Text>
-							<Text style={styles.smallGrayText}>
-								General physician ・ 24 Mar 2023
-							</Text>
-						</View>
-					</View>
-					<Text style={styles.bigTextWithoutBold}>
-						In general, some alternative treatments for arthritis include
-						nonsteroidal anti-inflammatory drugs (NSAIDs), physical therapy, and
-						lifestyle changes like exercise and weight management. However, it's
-						crucial to talk to your doctor before making any changes to your
-						treatment plan, as they can assess the risks and benefits of each
-						option for your specific situation. Regarding cataracts, the
-						progression can vary from person to person, and factors like age,
-						genetics, and lifestyle may contribute to their development. It's
-						important to have regular eye exams, especially if you have a family
-						history of cataracts or other eye conditions.
 					</Text>
 				</View>
 			</View>
@@ -121,11 +98,13 @@ const styles = StyleSheet.create({
 		alignItems: 'flex-start',
 		justifyContent: 'flex-start',
 	},
-	doctorProfileTextYellow: {
+	doctorProfileText: {
 		color: 'white',
 		fontSize: fontSizeScale(26),
-		verticalAlign: 'middle',
 		fontWeight: 'bold',
+	},
+	doctorProfileYellow: {
+		verticalAlign: 'middle',
 		backgroundColor: '#FFCC00',
 		width: scale(40),
 		height: scale(40),
@@ -134,11 +113,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	doctorProfileTextGreen: {
-		color: 'white',
-		fontSize: fontSizeScale(26),
+	doctorProfileGreen: {
 		verticalAlign: 'middle',
-		fontWeight: 'bold',
 		backgroundColor: '#34C759',
 		width: scale(40),
 		height: scale(40),
@@ -147,11 +123,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	doctorProfileTextBlue: {
-		color: 'white',
-		fontSize: fontSizeScale(26),
+	doctorProfileBlue: {
 		verticalAlign: 'middle',
-		fontWeight: 'bold',
 		backgroundColor: '#007AFF',
 		width: scale(40),
 		height: scale(40),
@@ -160,11 +133,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	doctorProfileTextIndigo: {
-		color: 'white',
-		fontSize: fontSizeScale(26),
+	doctorProfileIndigo: {
 		verticalAlign: 'middle',
-		fontWeight: 'bold',
 		backgroundColor: '#5856D6',
 		width: scale(40),
 		height: scale(40),
@@ -173,10 +143,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	doctorProfileTextPurple: {
-		color: 'white',
-		fontSize: fontSizeScale(26),
-		fontWeight: 'bold',
+	doctorProfilePurple: {
 		verticalAlign: 'middle',
 		backgroundColor: '#AF52DE',
 		width: scale(40),
@@ -186,11 +153,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	doctorProfileTextRed: {
-		color: 'white',
-		fontSize: fontSizeScale(26),
+	doctorProfileRed: {
 		verticalAlign: 'middle',
-		fontWeight: 'bold',
 		backgroundColor: '#FF3B30',
 		width: scale(40),
 		height: scale(40),
