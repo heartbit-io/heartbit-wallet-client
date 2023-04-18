@@ -1,3 +1,7 @@
+/*
+
+scope for v2
+
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from '../../stores/store';
 
@@ -28,3 +32,4 @@ export const BtcAddressSlice = createSlice({
 export const selectBtcAddress = (state: RootState) => state.btcAddress.value;
 
 export default BtcAddressSlice.reducer;
+*/

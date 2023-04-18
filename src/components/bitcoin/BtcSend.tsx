@@ -1,3 +1,7 @@
+/*
+
+scope for v2
+
 import {
 	Alert,
 	Text,
@@ -114,3 +118,5 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 });
+
+*/

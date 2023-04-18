@@ -1,3 +1,7 @@
+/*
+
+scope for v2
+
 import { SafeAreaView, View, Text, TextInput, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import { ThunkDispatch } from '@reduxjs/toolkit';
@@ -90,3 +94,5 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 	},
 });
+
+*/

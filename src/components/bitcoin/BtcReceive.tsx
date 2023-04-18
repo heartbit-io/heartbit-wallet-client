@@ -1,3 +1,7 @@
+/*
+
+scope for v2
+
 import { Button, Text, TouchableOpacity, StyleSheet, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import Clipboard from '@react-native-clipboard/clipboard';
@@ -62,3 +66,5 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 });
+
+*/

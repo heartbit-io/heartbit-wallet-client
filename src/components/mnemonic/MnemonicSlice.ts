@@ -1,3 +1,7 @@
+/*
+
+scope for v2
+
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from '../../stores/store';
 
@@ -59,3 +63,4 @@ export const MnemonicSlice = createSlice({
 export const selectMnemonic = (state: RootState) => state.mnemonic.value;
 
 export default MnemonicSlice.reducer;
+*/

@@ -7,32 +7,11 @@ import {
 } from 'react-native';
 
 import React from 'react';
-import { BtcBalance } from '../../components/bitcoin/BtcBalance';
 
 function Wallet({ navigation }: { navigation: any }) {
 	return (
 		<SafeAreaView style={styles.container}>
-			<View style={styles.container}>
-				<View style={styles.contentArea}>
-					<BtcBalance />
-				</View>
-			</View>
-			<View style={styles.rowContainer}>
-				<TouchableOpacity
-					style={styles.button}
-					onPress={() => navigation.navigate('Receive')}
-					title="Receive"
-				>
-					<Text style={styles.bigText}>Receive</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-					style={styles.button}
-					onPress={() => navigation.navigate('Send')}
-					title="Send"
-				>
-					<Text style={styles.bigText}>Send</Text>
-				</TouchableOpacity>
-			</View>
+			<Text>Lightning Wallet</Text>
 		</SafeAreaView>
 	);
 }

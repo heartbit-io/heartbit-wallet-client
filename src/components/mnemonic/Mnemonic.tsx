@@ -1,3 +1,7 @@
+/*
+
+scope for v2
+
 import { Button, Text, TouchableOpacity, StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
 import { generateMnemonic, selectMnemonic } from './MnemonicSlice';
@@ -138,3 +142,4 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 });
+*/
