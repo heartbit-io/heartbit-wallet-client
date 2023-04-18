@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import {
+	ScrollView,
+	StatusBar,
+	StyleSheet,
+	Platform,
+	View,
+} from 'react-native';
 import AskButton from '../../components/home/AskButton';
 import LinearGradient from 'react-native-linear-gradient';
 import RecentQuestionList from '../../components/home/RecentQuestionList';
@@ -8,9 +14,11 @@ import LogoText from '../../components/LogoText';
 import { scale, fontSizeScale } from '../../styles/responsive-size';
 
 function Home({ navigation }: { navigation: any }) {
-	useEffect(() => {
-		StatusBar.setBackgroundColor('#F58A25');
-	}, []);
+	Platform.OS != 'ios'
+		? useEffect(() => {
+				StatusBar.setBackgroundColor('#F58A25');
+		  }, [])
+		: '';
 	return (
 		<ScrollView style={styles.container}>
 			<LinearGradient colors={['#F58A25', '#FFF5ED']} style={styles.gradient}>
@@ -69,7 +77,7 @@ const styles = StyleSheet.create({
 	},
 	gradient: {
 		width: '100%',
-		height: '50%',
+		height: Platform.OS != 'ios' ? '70%' : '100%',
 	},
 	text: {
 		fontSize: fontSizeScale(16),

@@ -5,6 +5,7 @@ import {
 	StyleSheet,
 	Text,
 	View,
+	Platform,
 } from 'react-native';
 import React, { useEffect } from 'react';
 
@@ -18,9 +19,11 @@ import {
 } from '../../styles/responsive-size';
 
 function TransactionConfirm({ navigation }: { navigation: any }) {
-	useEffect(() => {
-		StatusBar.setBackgroundColor('#F58A25');
-	}, []);
+	Platform.OS != 'ios'
+		? useEffect(() => {
+				StatusBar.setBackgroundColor('#F58A25');
+		  }, [])
+		: '';
 	return (
 		<SafeAreaView style={styles.container}>
 			<LinearGradient colors={['#F58A25', '#FFF5ED']} style={styles.gradient}>
@@ -76,7 +79,7 @@ const styles = StyleSheet.create({
 	},
 	gradient: {
 		width: '100%',
-		height: '70%',
+		height: Platform.OS != 'ios' ? '70%' : '100%',
 	},
 	text: {
 		fontSize: fontSizeScale(15),

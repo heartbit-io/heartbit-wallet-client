@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import {
+	SafeAreaView,
+	StatusBar,
+	StyleSheet,
+	Text,
+	View,
+	Platform,
+} from 'react-native';
 import Logo from '../../../components/Logo';
 import LogoText from '../../../components/LogoText';
 import LinearGradient from 'react-native-linear-gradient';
@@ -12,9 +19,11 @@ import {
 } from '../../../styles/responsive-size';
 
 function EmailSignUp({ navigation }: { navigation: any }) {
-	useEffect(() => {
-		StatusBar.setBackgroundColor('#F58A25');
-	}, []);
+	Platform.OS != 'ios'
+		? useEffect(() => {
+				StatusBar.setBackgroundColor('#F58A25');
+		  }, [])
+		: '';
 	const [email, setEmail] = useState('');
 	return (
 		<SafeAreaView style={styles.container}>
@@ -84,7 +93,7 @@ const styles = StyleSheet.create({
 	},
 	gradient: {
 		width: '100%',
-		height: '70%',
+		height: Platform.OS != 'ios' ? '70%' : '100%',
 	},
 	text: {
 		fontSize: fontSizeScale(15),
