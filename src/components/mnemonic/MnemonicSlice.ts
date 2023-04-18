@@ -3,7 +3,7 @@
 scope for v2
 
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { AppThunk, RootState } from '../../stores/store';
+import { AppThunk, RootState } from '../../store';
 
 import * as hippocrat from '../../utils/hippocrat';
 
@@ -15,9 +15,9 @@ import * as hippocrat from '../../utils/hippocrat';
 export const generateMnemonic = createAsyncThunk(
 	'mnemonicGenerator',
 	async () => {
-		const mnemonic = await hippocrat.BtcWallet.generateWalletMnemonic();
-		// The value we return becomes the `fulfilled` action payload
-		return mnemonic;
+		// const mnemonic = await hippocrat.BtcWallet.generateWalletMnemonic();
+		// // The value we return becomes the `fulfilled` action payload
+		// return mnemonic;
 	},
 );
 

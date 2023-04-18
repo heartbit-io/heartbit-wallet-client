@@ -1,20 +1,23 @@
-import React, {useEffect} from 'react';
-
-import {Provider} from 'react-redux';
-import RootApp from './src/RootApp';
+import React, { useEffect } from 'react';
+import { Provider } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
-import {store} from './src/stores/store';
+
+// components
+import RootApp from 'RootApp';
+
+// store
+import { store } from 'store';
 
 function App(): JSX.Element {
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
+	useEffect(() => {
+		SplashScreen.hide();
+	}, []);
 
-  return (
-    <Provider store={store}>
-      <RootApp />
-    </Provider>
-  );
+	return (
+		<Provider store={store}>
+			<RootApp />
+		</Provider>
+	);
 }
 
 export default App;
