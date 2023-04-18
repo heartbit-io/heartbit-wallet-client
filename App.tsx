@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
-
 import { Provider } from 'react-redux';
-import RootApp from './src/RootApp';
 import SplashScreen from 'react-native-splash-screen';
-import { store } from './src/store';
+
+// components
+import RootApp from 'RootApp';
+
+// store
+import { store } from 'store';
 
 function App(): JSX.Element {
 	useEffect(() => {
