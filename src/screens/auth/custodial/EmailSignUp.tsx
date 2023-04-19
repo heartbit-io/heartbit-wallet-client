@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
 	},
 	gradient: {
 		width: '100%',
-		height: '70%',
+		height: '100%',
 	},
 	text: {
 		fontSize: fontSizeScale(15),
