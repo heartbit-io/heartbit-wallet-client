@@ -1,93 +1,65 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
-import Logo from '../../../components/Logo';
-import LogoText from '../../../components/LogoText';
-import LinearGradient from 'react-native-linear-gradient';
-import SignUpButton from '../../../components/email/SignUpButton';
-import EmailInputBox from '../../../components/email/EmailInputBox';
-import {
-	scale,
-	verticalScale,
-	fontSizeScale,
-} from '../../../styles/responsive-size';
+import { StatusBar } from 'react-native';
+import styled from 'styled-components/native';
+import { useNavigation } from '@react-navigation/native';
 
-function EmailSignUp({ navigation }: { navigation: any }) {
+// assets
+import logo from 'assets/logo/logo.svg';
+import heartBit from 'assets/logo/heartBit.svg';
+
+// components
+import { Gradient, InputField, MainButton } from 'components';
+
+function EmailSignUp() {
+	const navigation = useNavigation();
+	const [email, setEmail] = useState('');
+
 	useEffect(() => {
 		StatusBar.setBackgroundColor('#F58A25');
 	}, []);
-	const [email, setEmail] = useState('');
+
 	return (
-		<SafeAreaView style={styles.container}>
-			<LinearGradient colors={['#F58A25', '#FFF5ED']} style={styles.gradient}>
-				<View style={styles.logoContainer}>
-					<Logo />
-					<LogoText />
-				</View>
-				<View style={styles.textContainer}>
-					<Text style={styles.text}>
-						365, 24/7 lightning health consultations by AI and human doctors
-					</Text>
-				</View>
-				<View style={styles.inputContainer}>
-					<EmailInputBox email={email} setEmail={setEmail} />
-				</View>
-				<View style={styles.buttonContainer}>
-					<SignUpButton navigation={navigation} />
-				</View>
-			</LinearGradient>
-		</SafeAreaView>
+		<Gradient>
+			<Wrapper>
+				<Logo source={logo} />
+				<HeartBit source={heartBit} />
+
+				<Description>365, 24/7 lightning health consultations</Description>
+				<InputField
+					value={email}
+					onChangeText={setEmail}
+					placeholder="Your email address"
+					placeholderTextColor={'rgba(60, 60, 67, 0.6)'}
+					textAlign="center"
+				/>
+				<MainButton
+					text={'Get started'}
+					onPress={() => navigation.replace('Tab')}
+					buttonStyle={{ marginTop: 8 }}
+				/>
+			</Wrapper>
+		</Gradient>
 	);
 }
 
 export default EmailSignUp;
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#FFF5ED',
-	},
-	logoContainer: {
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'center',
-		left: scale(70),
-		right: scale(70),
-		top: verticalScale(60),
-		position: 'absolute',
-	},
-	buttonContainer: {
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'center',
-		left: scale(70),
-		right: scale(70),
-		top: verticalScale(340),
-		position: 'absolute',
-	},
-	inputContainer: {
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'center',
-		left: scale(70),
-		right: scale(70),
-		top: verticalScale(280),
-		position: 'absolute',
-	},
-	textContainer: {
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'center',
-		left: scale(40),
-		right: scale(40),
-		top: verticalScale(200),
-		position: 'absolute',
-	},
-	gradient: {
-		width: '100%',
-		height: '70%',
-	},
-	text: {
-		fontSize: fontSizeScale(15),
-		textAlign: 'center',
-	},
-});
+const Wrapper = styled.View`
+	flex: 1;
+	align-items: center;
+	padding-top: 180px;
+	padding-horizontal: 25px;
+`;
+
+const Logo = styled.Image``;
+
+const HeartBit = styled.Image`
+	margin-top: 39.73px;
+`;
+
+const Description = styled.Text`
+	font-size: 15px;
+	color: '#3A3A3C';
+	margin-top: 24px;
+	margin-bottom: 52px;
+`;
