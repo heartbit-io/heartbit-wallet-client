@@ -14,11 +14,11 @@ import LogoText from '../../components/LogoText';
 import { scale, fontSizeScale } from '../../styles/responsive-size';
 
 function Home({ navigation }: { navigation: any }) {
-	Platform.OS != 'ios'
-		? useEffect(() => {
+	Platform.OS === 'ios'
+		? ''
+		: useEffect(() => {
 				StatusBar.setBackgroundColor('#F58A25');
-		  }, [])
-		: '';
+		  }, []);
 	return (
 		<ScrollView style={styles.container}>
 			<LinearGradient colors={['#F58A25', '#FFF5ED']} style={styles.gradient}>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
 	},
 	gradient: {
 		width: '100%',
-		height: Platform.OS != 'ios' ? '70%' : '100%',
+		height: Platform.OS === 'ios' ? '100%' : '70%',
 	},
 	text: {
 		fontSize: fontSizeScale(16),

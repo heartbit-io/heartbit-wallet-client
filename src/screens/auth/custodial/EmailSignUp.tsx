@@ -19,14 +19,14 @@ import {
 } from '../../../styles/responsive-size';
 
 function EmailSignUp({ navigation }: { navigation: any }) {
-	Platform.OS != 'ios'
-		? useEffect(() => {
+	Platform.OS === 'ios'
+		? ''
+		: useEffect(() => {
 				StatusBar.setBackgroundColor('#F58A25');
-		  }, [])
-		: '';
+		  }, []);
 	const [email, setEmail] = useState('');
 	return (
-		<SafeAreaView style={styles.container}>
+		<View style={styles.container}>
 			<LinearGradient colors={['#F58A25', '#FFF5ED']} style={styles.gradient}>
 				<View style={styles.logoContainer}>
 					<Logo />
@@ -44,7 +44,7 @@ function EmailSignUp({ navigation }: { navigation: any }) {
 					<SignUpButton navigation={navigation} />
 				</View>
 			</LinearGradient>
-		</SafeAreaView>
+		</View>
 	);
 }
 
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
 	},
 	gradient: {
 		width: '100%',
-		height: Platform.OS != 'ios' ? '70%' : '100%',
+		height: '70%',
 	},
 	text: {
 		fontSize: fontSizeScale(15),
