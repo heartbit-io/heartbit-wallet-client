@@ -12,7 +12,7 @@ import { Gradient, InputField, MainButton } from 'components';
 
 type Props = NativeStackScreenProps<WelcomeNavigatorParamList, 'EmailSignUp'>;
 
-const EmailSignUp: React.FC<Props> = ({ navigation }) => {
+const EmailSignUp = ({ navigation }: Props) => {
 	const [email, setEmail] = useState('');
 
 	return (

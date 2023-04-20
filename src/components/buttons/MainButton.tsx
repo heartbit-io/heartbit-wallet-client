@@ -9,12 +9,7 @@ type Props = {
 	buttonStyle?: ViewStyle;
 };
 
-const MainButton: React.FC<Props> = ({
-	text,
-	onPress,
-	active = true,
-	buttonStyle,
-}) => {
+const MainButton = ({ text, onPress, active = true, buttonStyle }: Props) => {
 	return (
 		<Wrapper style={buttonStyle} active={active} onPress={onPress}>
 			<Text>{text}</Text>

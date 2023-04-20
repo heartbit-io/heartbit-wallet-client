@@ -6,7 +6,7 @@ type Props = {
 	children: ReactNode;
 };
 
-const Gradient: React.FC<Props> = ({ children }) => {
+const Gradient = ({ children }: Props) => {
 	return (
 		<GradientWrapper
 			start={{ x: 1.6, y: 0 }}

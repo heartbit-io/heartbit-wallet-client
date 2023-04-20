@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInputProps } from 'react-native';
 import styled from 'styled-components/native';
 
-const InputField: React.FC<TextInputProps> = props => {
+const InputField = (props: TextInputProps) => {
 	return <Input {...props} />;
 };
 
