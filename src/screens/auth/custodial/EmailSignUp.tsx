@@ -7,7 +7,7 @@ import logo from 'assets/logo/logo.svg';
 import heartBit from 'assets/logo/heartBit.svg';
 
 // components
-import { Gradient, InputField, MainButton } from 'components';
+import { Gradient, InputField, MainButton, Subheadline } from 'components';
 
 type Props = NativeStackScreenProps<WelcomeNavigatorParamList, 'EmailSignUp'>;
 
@@ -19,7 +19,6 @@ const EmailSignUp = ({ navigation }: Props) => {
 			<Wrapper>
 				<Logo source={logo} />
 				<HeartBit source={heartBit} />
-
 				<Description>365, 24/7 lightning health consultations</Description>
 				<InputField
 					value={email}
@@ -53,8 +52,7 @@ const HeartBit = styled.Image`
 	margin-top: 39.73px;
 `;
 
-const Description = styled.Text`
-	font-size: 15px;
+const Description = styled(Subheadline)`
 	color: '#3A3A3C';
 	margin-top: 24px;
 	margin-bottom: 52px;

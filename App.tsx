@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -7,7 +8,9 @@ import RootApp from 'RootApp';
 
 // store
 import { store } from 'store';
-import { StatusBar } from 'react-native';
+
+// utils
+import 'utils/initializeDefaultProps';
 
 function App(): JSX.Element {
 	useEffect(() => {
