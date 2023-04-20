@@ -15,4 +15,5 @@ const Input = styled.TextInput`
 	border: 1px solid #d1d1d6;
 	border-radius: 14px;
 	font-size: 17px;
+	font-family: 'Pretendard-Regular';
 `;

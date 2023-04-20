@@ -2,6 +2,9 @@ import React from 'react';
 import { ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
 
+// components
+import { Body } from 'components/common';
+
 type Props = {
 	text: string;
 	onPress: () => void;
@@ -27,7 +30,6 @@ const Wrapper = styled.TouchableOpacity<{ active?: boolean }>`
 	border-radius: 14px;
 	background-color: ${({ active }) => (active ? '#F68F2A' : '#E5E5EA')};
 `;
-const Text = styled.Text`
-	font-size: 17px;
+const Text = styled(Body)`
 	color: #fff;
 `;
