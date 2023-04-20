@@ -8,7 +8,7 @@ import heartBit from 'assets/logo/heartBit.svg';
 
 // components
 import { Gradient, InputField, MainButton } from 'components';
-import { scale } from 'styles/responsive-size';
+import { scale, verticalScale } from 'styles/responsive-size';
 
 type Props = NativeStackScreenProps<WelcomeNavigatorParamList, 'EmailSignUp'>;
 
@@ -32,7 +32,7 @@ const EmailSignUp = ({ navigation }: Props) => {
 				<MainButton
 					text={'Get started'}
 					onPress={() => navigation.replace('Tab')}
-					buttonStyle={{ marginTop: 8 }}
+					buttonStyle={{ marginTop: verticalScale(8) }}
 				/>
 			</Wrapper>
 		</Gradient>
@@ -44,18 +44,18 @@ export default EmailSignUp;
 const Wrapper = styled.View`
 	flex: 1;
 	align-items: center;
-	padding-top: ${scale(180)};
+	padding-top: ${verticalScale(180)};
 `;
 
 const Logo = styled.Image``;
 
 const HeartBit = styled.Image`
-	margin-top: ${scale(39.73)};
+	margin-top: ${verticalScale(39.73)};
 `;
 
 const Description = styled.Text`
 	font-size: 15px;
 	color: '#3A3A3C';
-	margin-top: ${scale(24)};
-	margin-bottom: ${scale(52)};
+	margin-top: ${verticalScale(24)};
+	margin-bottom: ${verticalScale(52)};
 `;
