@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { StatusBar } from 'react-native';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
@@ -9,6 +8,7 @@ import heartBit from 'assets/logo/heartBit.svg';
 
 // components
 import { Gradient, InputField, MainButton } from 'components';
+import { scale } from 'styles/responsive-size';
 
 type Props = NativeStackScreenProps<WelcomeNavigatorParamList, 'EmailSignUp'>;
 
@@ -44,19 +44,18 @@ export default EmailSignUp;
 const Wrapper = styled.View`
 	flex: 1;
 	align-items: center;
-	padding-top: 180px;
-	padding-horizontal: 25px;
+	padding-top: ${scale(180)};
 `;
 
 const Logo = styled.Image``;
 
 const HeartBit = styled.Image`
-	margin-top: 39.73px;
+	margin-top: ${scale(39.73)};
 `;
 
 const Description = styled.Text`
 	font-size: 15px;
 	color: '#3A3A3C';
-	margin-top: 24px;
-	margin-bottom: 52px;
+	margin-top: ${scale(24)};
+	margin-bottom: ${scale(52)};
 `;

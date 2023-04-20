@@ -1,6 +1,7 @@
 import React from 'react';
 import { ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
+import { scale, verticalScale } from 'styles/responsive-size';
 
 type Props = {
 	text: string;
@@ -20,11 +21,11 @@ const MainButton = ({ text, onPress, active = true, buttonStyle }: Props) => {
 export default MainButton;
 
 const Wrapper = styled.TouchableOpacity<{ active?: boolean }>`
-	height: 44px;
-	width: 100%;
+	height: ${verticalScale(44)};
+	width: ${scale(340)};
 	justify-content: center;
 	align-items: center;
-	border-radius: 14px;
+	border-radius: ${scale(14)};
 	background-color: ${({ active }) => (active ? '#F68F2A' : '#E5E5EA')};
 `;
 const Text = styled.Text`
