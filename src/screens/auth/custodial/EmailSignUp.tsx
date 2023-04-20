@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
 import styled from 'styled-components/native';
-import { useNavigation } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 // assets
 import logo from 'assets/logo/logo.svg';
@@ -10,13 +10,10 @@ import heartBit from 'assets/logo/heartBit.svg';
 // components
 import { Gradient, InputField, MainButton } from 'components';
 
-function EmailSignUp() {
-	const navigation = useNavigation();
-	const [email, setEmail] = useState('');
+type Props = NativeStackScreenProps<WelcomeNavigatorParamList, 'EmailSignUp'>;
 
-	useEffect(() => {
-		StatusBar.setBackgroundColor('#F58A25');
-	}, []);
+const EmailSignUp: React.FC<Props> = ({ navigation }) => {
+	const [email, setEmail] = useState('');
 
 	return (
 		<Gradient>
@@ -40,7 +37,7 @@ function EmailSignUp() {
 			</Wrapper>
 		</Gradient>
 	);
-}
+};
 
 export default EmailSignUp;
 

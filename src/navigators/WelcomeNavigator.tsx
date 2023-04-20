@@ -1,10 +1,14 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import TabNavigator from './TabNavigator';
-import EmailSignUp from '../screens/auth/custodial/EmailSignUp';
 
-const Stack = createNativeStackNavigator();
+// stacks
+import TabNavigator from './TabNavigator';
+
+// screens
+import EmailSignUp from 'screens/auth/custodial/EmailSignUp';
+
+const Stack = createNativeStackNavigator<WelcomeNavigatorParamList>();
 
 function WelcomeNavigator(): JSX.Element {
 	return (
