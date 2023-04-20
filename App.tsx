@@ -7,6 +7,7 @@ import RootApp from 'RootApp';
 
 // store
 import { store } from 'store';
+import { StatusBar } from 'react-native';
 
 function App(): JSX.Element {
 	useEffect(() => {
@@ -16,6 +17,7 @@ function App(): JSX.Element {
 	return (
 		<Provider store={store}>
 			<RootApp />
+			<StatusBar backgroundColor={'#000'} />
 		</Provider>
 	);
 }
