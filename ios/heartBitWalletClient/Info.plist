@@ -19,6 +19,12 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>Pretendard-Bold.otf</string>
+		<string>Pretendard-Medium.otf</string>
+		<string>Pretendard-Regular.otf</string>
+		<string>Pretendard-SemiBold.otf</string>
+		<string>RedHatDisplay-Bold.otf</string>
+		<string>RedHatDisplay-Regular.otf</string>
 	</array>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Read and understand health data.</string>
