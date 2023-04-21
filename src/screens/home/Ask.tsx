@@ -23,7 +23,7 @@ function Ask({ navigation }: Props) {
 							navigation.navigate('Bounty');
 						} catch (e) {}
 					}}
-					placeholder="Write here"
+					placeholder="Ask questions along with explaining your symptoms, medical history, and current medications."
 				/>
 			</WrapperLeft>
 			<Wrapper>
