@@ -43,7 +43,6 @@ const Text = styled(LargeTitle)`
 `;
 
 const Input = styled.TextInput`
-	background-color: #fff5ed;
 	text-align: left;
 	font-size: 20px;
 	margin-top: 18px;

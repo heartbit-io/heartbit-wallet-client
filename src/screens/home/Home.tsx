@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
-import RecentQuestionList from '../../components/home/RecentQuestionList';
+import RecentQuestionList from './RecentQuestionList';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styled from 'styled-components/native';
 // assets

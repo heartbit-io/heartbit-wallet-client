@@ -1,64 +1,39 @@
+import styled from 'styled-components/native';
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { MainButton } from 'components';
 
-import { BountyChoiceList } from '../../components/home/BountyChoiceList';
-import BountyConfirmButton from '../../components/home/BountyConfirmButton';
-import { fontSizeScale } from '../../styles/responsive-size';
+import { BountyChoiceList } from './BountyChoiceList';
+import { LargeTitle } from 'components/common';
 
-function Bounty({ navigation }: { navigation: any }) {
+type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Bounty'>;
+
+function Bounty({ navigation }: Props) {
 	const [bounty, setBounty] = useState(0);
 	return (
-		<SafeAreaView style={styles.container}>
-			<View style={styles.columnContainer}>
-				<Text style={styles.veryBigText}>Set a bounty for human answers</Text>
-				<BountyChoiceList bounty={bounty} setBounty={setBounty} />
-			</View>
-			<View style={styles.buttonContainer}>
-				<BountyConfirmButton navigation={navigation} bounty={bounty} />
-			</View>
-		</SafeAreaView>
+		<Wrapper>
+			<Text>Set a bounty for human answers</Text>
+			<BountyChoiceList bounty={bounty} setBounty={setBounty} />
+			<MainButton
+				onPress={() => navigation.navigate('Forum')}
+				text={'Confirm'}
+				buttonStyle={{ marginBottom: 37 }}
+			/>
+		</Wrapper>
 	);
 }
 
 export default Bounty;
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#FFF5ED',
-	},
-	columnContainer: {
-		flex: 1,
-		marginHorizontal: '5%',
-		flexDirection: 'column',
-		alignItems: 'flex-start',
-		justifyContent: 'flex-start',
-	},
-	buttonContainer: {
-		flex: 0.1,
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'center',
-		bottom: '5%',
-	},
-	rowContainer: {
-		flex: 0.3,
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-around',
-	},
-	contentArea: {
-		flex: 1,
-		alignItems: 'flex-start',
-		justifyContent: 'flex-start',
-	},
-	veryBigText: {
-		fontSize: fontSizeScale(34),
-		fontWeight: 'bold',
-	},
-	input: {
-		backgroundColor: 'white',
-		textAlign: 'left',
-		fontSize: fontSizeScale(28),
-	},
-});
+const Text = styled(LargeTitle)`
+	font-weight: bold;
+`;
+
+const Wrapper = styled.View`
+	flex: 1;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	padding-horizontal: 25px;
+	background-color: #fff5ed;
+`;
