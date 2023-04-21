@@ -32,4 +32,5 @@ const Wrapper = styled.TouchableOpacity<{ active?: boolean }>`
 `;
 const Text = styled(Body)`
 	color: #fff;
+	font-weight: bold;
 `;
