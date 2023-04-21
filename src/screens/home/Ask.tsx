@@ -1,8 +1,8 @@
-import { BigText } from 'components/texts';
 import styled from 'styled-components/native';
 import React, { useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainButton } from 'components';
+import { LargeTitle } from 'components/common';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Ask'>;
 
@@ -11,9 +11,8 @@ function Ask({ navigation }: Props) {
 	return (
 		<ScrollWrapper>
 			<WrapperLeft>
-				<BigText>What do you want to ask?</BigText>
+				<Text>What do you want to ask?</Text>
 				<Input
-					allowFontScaling={false}
 					textAlign="center"
 					returnKeyType="go"
 					multiline={true}
@@ -39,6 +38,10 @@ function Ask({ navigation }: Props) {
 
 export default Ask;
 
+const Text = styled(LargeTitle)`
+	font-weight: bold;
+`;
+
 const Input = styled.TextInput`
 	background-color: #fff5ed;
 	text-align: left;
@@ -57,7 +60,7 @@ const Wrapper = styled.View`
 	align-items: center;
 	justify-content: center;
 	margin-top: 300px;
-	margin-horizontal: 25px;
+	padding-horizontal: 25px;
 `;
 
 const WrapperLeft = styled.View`

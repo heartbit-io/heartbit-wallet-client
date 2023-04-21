@@ -37,6 +37,7 @@ const Wrapper = styled.View`
 	flex: 1;
 	align-items: center;
 	padding-top: 191px;
+	padding-horizontal: 25px;
 `;
 const WrapperNotCenter = styled.View`
 	flex: 1;
