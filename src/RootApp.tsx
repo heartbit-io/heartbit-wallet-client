@@ -7,7 +7,7 @@ import RootNavigator from './navigators/RootNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 
 function RootApp(): JSX.Element {
-	const [isUser, setIsUser] = useState(undefined);
+	const [isUser, setIsUser] = useState<boolean>(false);
 
 	useEffect(() => {
 		const checkEmailAndMnemonic = async () => {
