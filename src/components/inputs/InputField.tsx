@@ -1,7 +1,6 @@
 import React from 'react';
 import { TextInputProps } from 'react-native';
 import styled from 'styled-components/native';
-import { scale, verticalScale } from 'styles/responsive-size';
 
 const InputField = (props: TextInputProps) => {
 	return <Input {...props} />;
@@ -10,10 +9,11 @@ const InputField = (props: TextInputProps) => {
 export default InputField;
 
 const Input = styled.TextInput`
-	height: ${verticalScale(44)};
-	width: ${scale(340)};
+	height: 44px;
+	width: 100%;
 	background-color: #fff;
-	border: ${scale(1)}px solid #d1d1d6;
-	border-radius: ${scale(14)};
+	border: 1px solid #d1d1d6;
+	border-radius: 14px;
 	font-size: 17px;
+	font-family: 'Pretendard-Regular';
 `;

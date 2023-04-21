@@ -7,8 +7,7 @@ import logo from 'assets/logo/logo.svg';
 import heartBit from 'assets/logo/heartBit.svg';
 
 // components
-import { Gradient, InputField, MainButton } from 'components';
-import { scale, verticalScale } from 'styles/responsive-size';
+import { Gradient, InputField, MainButton, Subheadline } from 'components';
 
 type Props = NativeStackScreenProps<WelcomeNavigatorParamList, 'EmailSignUp'>;
 
@@ -20,7 +19,6 @@ const EmailSignUp = ({ navigation }: Props) => {
 			<Wrapper>
 				<Logo source={logo} />
 				<HeartBit source={heartBit} />
-
 				<Description>365, 24/7 lightning health consultations</Description>
 				<InputField
 					value={email}
@@ -32,7 +30,7 @@ const EmailSignUp = ({ navigation }: Props) => {
 				<MainButton
 					text={'Get started'}
 					onPress={() => navigation.replace('Tab')}
-					buttonStyle={{ marginTop: verticalScale(8) }}
+					buttonStyle={{ marginTop: 8 }}
 				/>
 			</Wrapper>
 		</Gradient>
@@ -44,18 +42,18 @@ export default EmailSignUp;
 const Wrapper = styled.View`
 	flex: 1;
 	align-items: center;
-	padding-top: ${verticalScale(180)};
+	padding-top: 180px;
+	padding-horizontal: 25px;
 `;
 
 const Logo = styled.Image``;
 
 const HeartBit = styled.Image`
-	margin-top: ${verticalScale(39.73)};
+	margin-top: 39.73px;
 `;
 
-const Description = styled.Text`
-	font-size: 15px;
+const Description = styled(Subheadline)`
 	color: '#3A3A3C';
-	margin-top: ${verticalScale(24)};
-	margin-bottom: ${verticalScale(52)};
+	margin-top: 24px;
+	margin-bottom: 52px;
 `;
