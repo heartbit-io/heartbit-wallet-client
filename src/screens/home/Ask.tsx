@@ -1,51 +1,69 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-
-import AskContent from '../../components/home/AskContent';
+import { BigText } from 'components/texts';
+import styled from 'styled-components/native';
 import React, { useState } from 'react';
-import AskSubmitButton from '../../components/home/AskSubmitButton';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { MainButton } from 'components';
 
-function Ask({ navigation }: { navigation: any }) {
+type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Ask'>;
+
+function Ask({ navigation }: Props) {
 	const [askContent, setAskContent] = useState('');
 	return (
-		<ScrollView keyboardShouldPersistTaps="always" style={styles.container}>
-			<View style={styles.columnContainerLeftSided}>
-				<AskContent
-					navigation={navigation}
-					askContent={askContent}
-					setAskContent={setAskContent}
+		<ScrollWrapper>
+			<WrapperLeft>
+				<BigText>What do you want to ask?</BigText>
+				<Input
+					allowFontScaling={false}
+					textAlign="center"
+					returnKeyType="go"
+					multiline={true}
+					blurOnSubmit
+					onChangeText={question => setAskContent(question)}
+					onSubmitEditing={async () => {
+						try {
+							navigation.navigate('Bounty');
+						} catch (e) {}
+					}}
+					placeholder="Write here"
 				/>
-			</View>
-			<View style={styles.columnContainer}>
-				<AskSubmitButton navigation={navigation} askContent={askContent} />
-			</View>
-		</ScrollView>
+			</WrapperLeft>
+			<Wrapper>
+				<MainButton
+					onPress={() => navigation.navigate('Bounty')}
+					text={'Next'}
+				/>
+			</Wrapper>
+		</ScrollWrapper>
 	);
 }
 
 export default Ask;
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#FFF5ED',
-	},
-	columnContainer: {
-		flex: 1,
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'center',
-		marginVertical: '10%',
-	},
-	columnContainerLeftSided: {
-		flex: 1,
-		flexDirection: 'column',
-		alignItems: 'flex-start',
-		justifyContent: 'flex-start',
-		marginHorizontal: '5%',
-	},
-	contentArea: {
-		flex: 1,
-		alignItems: 'flex-start',
-		justifyContent: 'flex-start',
-	},
-});
+const Input = styled.TextInput`
+	background-color: #fff5ed;
+	text-align: left;
+	font-size: 20px;
+	margin-top: 18px;
+`;
+
+const ScrollWrapper = styled.ScrollView`
+	flex: 1;
+	background-color: #fff5ed;
+`;
+
+const Wrapper = styled.View`
+	flex: 1;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 300px;
+	margin-horizontal: 25px;
+`;
+
+const WrapperLeft = styled.View`
+	flex: 1;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	margin-horizontal: 25px;
+`;
