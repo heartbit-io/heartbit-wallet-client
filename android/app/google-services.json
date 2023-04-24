@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "54710886479",
+    "project_id": "heartbit-wallet-dev",
+    "storage_bucket": "heartbit-wallet-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54710886479:android:8953e593957ff537f98a3a",
+        "android_client_info": {
+          "package_name": "com.heartbitwalletclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "54710886479-95iq0glcn2dd89sq3sbqg936oflt35k0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.heartbitwalletclient",
+            "certificate_hash": "0212c3c938e45c7a056bb1439ae8001757a9d558"
+          }
+        },
+        {
+          "client_id": "54710886479-bj91iq3chv8ntcegkd1l5n4pivh6inat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARPwrj2HnQpS0KXaZfk61HHsZYmRohSCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "54710886479-bj91iq3chv8ntcegkd1l5n4pivh6inat.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
