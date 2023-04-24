@@ -23,7 +23,7 @@ function Ask({ navigation }: Props) {
 							navigation.navigate('Bounty');
 						} catch (e) {}
 					}}
-					placeholder="Write here"
+					placeholder="Ask questions along with explaining your symptoms, medical history, and current medications."
 				/>
 			</WrapperLeft>
 			<Wrapper>
@@ -43,7 +43,6 @@ const Text = styled(LargeTitle)`
 `;
 
 const Input = styled.TextInput`
-	background-color: #fff5ed;
 	text-align: left;
 	font-size: 20px;
 	margin-top: 18px;

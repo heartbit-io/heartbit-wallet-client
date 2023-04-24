@@ -114,9 +114,9 @@ const styles = StyleSheet.create({
 		verticalAlign: 'middle',
 		fontWeight: 'bold',
 		backgroundColor: '#80CBC4',
-		width: scale(40),
-		height: scale(40),
-		borderRadius: scale(20),
+		width: 40,
+		height: 40,
+		borderRadius: 20,
 		textAlign: 'center',
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -155,5 +155,5 @@ const styles = StyleSheet.create({
 	gptAnswerText: {
 		fontSize: fontSizeScale(18),
 	},
-	gptLogo: { width: scale(26), height: scale(26) },
+	gptLogo: { width: 26, height: 26 },
 });
