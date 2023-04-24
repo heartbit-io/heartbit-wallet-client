@@ -152,7 +152,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				86F9B47229F907740020F181 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* heartBitWalletClient */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* heartBitWalletClientTests */,
@@ -221,8 +220,6 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				C7A2CDC410E78B74306340DA /* [CP] Copy Pods Resources */,
-				A60331BB146FD8DD7B0124B3 /* [CP-User] [RNFB] Core Configuration */,
-				E131290CF462DE9C978ED12A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -277,7 +274,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86F9B47429F907740020F181 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +290,7 @@
 				86F9B46329F1A1C40020F181 /* Pretendard-Regular.otf in Resources */,
 				86F9B46729F1A1C40020F181 /* Pretendard-SemiBold.otf in Resources */,
 				01EE390450E34C2CAC053366 /* Logo.ts in Resources */,
+				86F9B46C29F265BA0020F181 /* GoogleService-Info.plist in Resources */,
 				BB4D9057EDBD4F3E98D6E07D /* logo.png in Resources */,
 				86F9B46829F1A1C40020F181 /* RedHatDisplay-Bold.otf in Resources */,
 			);
