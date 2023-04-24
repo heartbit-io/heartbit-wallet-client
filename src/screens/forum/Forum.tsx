@@ -18,10 +18,10 @@ function Forum({ navigation }: Props) {
 					<CircleSky>
 						<ProfileText>Q</ProfileText>
 					</CircleSky>
-					<View style={{ marginTop: 2 }}>
+					<PostInfoWrapper>
 						<TextBold>You</TextBold>
 						<TextCaption>23 Mar 2023 ・ 1000 sats</TextCaption>
-					</View>
+					</PostInfoWrapper>
 				</ProfileWrapper>
 				<Text>{question}</Text>
 			</PostWrapper>
@@ -36,10 +36,10 @@ function Forum({ navigation }: Props) {
 							<CircleIndigo>
 								<ProfileText>A</ProfileText>
 							</CircleIndigo>
-							<View style={{ marginTop: 2 }}>
+							<PostInfoWrapper>
 								<TextBold>x5c3ad</TextBold>
 								<TextCaption>General physician ・ 1 Apr 2023</TextCaption>
-							</View>
+							</PostInfoWrapper>
 						</ProfileWrapper>
 						<Text>{answer}</Text>
 					</PostWrapper>
@@ -63,6 +63,10 @@ const PostWrapper = styled.View`
 	border-color: #bdbdbd;
 	border-top-width: 1px;
 	padding-vertical: 25px;
+`;
+
+const PostInfoWrapper = styled.View`
+	margin-top: 2px;
 `;
 
 const ScrollWrapper = styled.ScrollView`
