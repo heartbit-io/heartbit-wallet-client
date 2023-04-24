@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // assets
 import logo from 'assets/logo/logo.svg';
@@ -16,23 +17,29 @@ const EmailSignUp = ({ navigation }: Props) => {
 
 	return (
 		<Gradient>
-			<Wrapper>
-				<Logo source={logo} />
-				<HeartBit source={heartBit} />
-				<Description>365, 24/7 lightning health consultations</Description>
-				<InputField
-					value={email}
-					onChangeText={setEmail}
-					placeholder="Your email address"
-					placeholderTextColor={'rgba(60, 60, 67, 0.6)'}
-					textAlign="center"
-				/>
-				<MainButton
-					text={'Get started'}
-					onPress={() => navigation.replace('Tab')}
-					buttonStyle={{ marginTop: 8 }}
-				/>
-			</Wrapper>
+			<KeyboardAwareScrollView
+				enableOnAndroid
+				scrollEnabled={false}
+				extraScrollHeight={20}
+			>
+				<Wrapper>
+					<Logo source={logo} />
+					<HeartBit source={heartBit} />
+					<Description>365, 24/7 lightning health consultations</Description>
+					<InputField
+						value={email}
+						onChangeText={setEmail}
+						placeholder="Your email address"
+						placeholderTextColor={'rgba(60, 60, 67, 0.6)'}
+						textAlign="center"
+					/>
+					<MainButton
+						text={'Get started'}
+						onPress={() => navigation.replace('Tab')}
+						buttonStyle={{ marginTop: 8 }}
+					/>
+				</Wrapper>
+			</KeyboardAwareScrollView>
 		</Gradient>
 	);
 };
