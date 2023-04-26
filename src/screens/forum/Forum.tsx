@@ -1,6 +1,4 @@
-import { View } from 'react-native';
 import React, { useState } from 'react';
-import GPT4Answer from './GPT4Answer';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styled from 'styled-components/native';
 import { Body, Caption1, Title1 } from 'components/common';
@@ -8,9 +6,10 @@ import { Body, Caption1, Title1 } from 'components/common';
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Forum'>;
 
 function Forum({ navigation }: Props) {
-	const [question, setQuestion] = useState('I have early cataracts.');
+	const [question, setQuestion] = useState('');
+	const [GPTAnswer, setGPTAnswer] = useState('');
 	// if doctor has answered or not
-	const [answer, setAnswer] = useState('Dear patient,');
+	const [doctorAnswer, setDoctorAnswer] = useState('');
 	return (
 		<Wrapper>
 			<PostWrapper>
@@ -26,9 +25,20 @@ function Forum({ navigation }: Props) {
 				<Text>{question}</Text>
 			</PostWrapper>
 			<ScrollWrapper>
-				{answer === '' ? (
+				{doctorAnswer === '' ? (
 					<PostWrapper>
-						<GPT4Answer />
+						<ProfileWrapper>
+							<GPTLogo source={require('../../assets/img/ic_gpt_logo.png')} />
+							<PostInfoWrapper>
+								<TextBold>Triage by GPT-3.5</TextBold>
+								<TextCaption>Open AI ・ 23 Mar 2023</TextCaption>
+							</PostInfoWrapper>
+						</ProfileWrapper>
+						<Text>
+							{GPTAnswer == ''
+								? `I’m preparing my answer. (Could take up to 10 ~ 20 secs)`
+								: GPTAnswer}
+						</Text>
 					</PostWrapper>
 				) : (
 					<PostWrapper>
@@ -41,7 +51,7 @@ function Forum({ navigation }: Props) {
 								<TextCaption>General physician ・ 1 Apr 2023</TextCaption>
 							</PostInfoWrapper>
 						</ProfileWrapper>
-						<Text>{answer}</Text>
+						<Text>{doctorAnswer}</Text>
 					</PostWrapper>
 				)}
 			</ScrollWrapper>
@@ -123,5 +133,11 @@ const CircleIndigo = styled.View`
 	text-align: center;
 	justify-content: center;
 	align-items: center;
+	margin-left: 25px;
+`;
+
+const GPTLogo = styled.Image`
+	width: 45px;
+	height: 45px;
 	margin-left: 25px;
 `;
