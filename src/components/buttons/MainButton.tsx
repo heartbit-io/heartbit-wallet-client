@@ -14,7 +14,12 @@ type Props = {
 
 const MainButton = ({ text, onPress, active = true, buttonStyle }: Props) => {
 	return (
-		<Wrapper style={buttonStyle} active={active} onPress={onPress}>
+		<Wrapper
+			disabled={!active}
+			style={buttonStyle}
+			active={active}
+			onPress={onPress}
+		>
 			<Text>{text}</Text>
 		</Wrapper>
 	);
