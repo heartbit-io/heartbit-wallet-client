@@ -28,7 +28,10 @@ function Ask({ navigation }: Props) {
 			</WrapperLeft>
 			<Wrapper>
 				<MainButton
-					onPress={() => navigation.navigate('Bounty')}
+					onPress={() =>
+						askContent === '' ? '' : navigation.navigate('Bounty')
+					}
+					active={askContent === '' ? false : true}
 					text={'Next'}
 				/>
 			</Wrapper>
