@@ -14,7 +14,12 @@ type Props = {
 
 const MainButton = ({ text, onPress, active = true, buttonStyle }: Props) => {
 	return (
-		<Wrapper style={buttonStyle} active={active} onPress={onPress}>
+		<Wrapper
+			style={buttonStyle}
+			active={active}
+			onPress={onPress}
+			activeOpacity={active ? 0.2 : 1}
+		>
 			<Text>{text}</Text>
 		</Wrapper>
 	);

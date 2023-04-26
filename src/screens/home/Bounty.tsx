@@ -15,9 +15,10 @@ function Bounty({ navigation }: Props) {
 			<Text>Set a bounty for human answers</Text>
 			<BountyChoiceList bounty={bounty} setBounty={setBounty} />
 			<MainButton
-				onPress={() => navigation.navigate('Forum')}
+				onPress={() => (bounty === 0 ? '' : navigation.navigate('Forum'))}
 				text={'Confirm'}
 				buttonStyle={{ marginBottom: 37 }}
+				active={bounty === 0 ? false : true}
 			/>
 		</Wrapper>
 	);
