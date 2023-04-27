@@ -17,10 +17,10 @@ function Ask({ navigation }: Props) {
 					returnKeyType="go"
 					multiline={true}
 					blurOnSubmit
-					onChangeText={question => setAskContent(question)}
+					onChangeText={(question: string) => setAskContent(question)}
 					onSubmitEditing={async () => {
 						try {
-							navigation.navigate('Bounty');
+							navigation.navigate('Bounty', { askContent: askContent });
 						} catch (e) {}
 					}}
 					placeholder="Ask questions along with explaining your symptoms, medical history, and current medications."
@@ -29,7 +29,9 @@ function Ask({ navigation }: Props) {
 			<Wrapper>
 				<MainButton
 					onPress={() =>
-						askContent === '' ? '' : navigation.navigate('Bounty')
+						askContent === ''
+							? ''
+							: navigation.navigate('Bounty', { askContent: askContent })
 					}
 					active={askContent === '' ? false : true}
 					text={'Next'}
