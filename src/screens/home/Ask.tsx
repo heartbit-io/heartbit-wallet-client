@@ -1,12 +1,15 @@
 import styled from 'styled-components/native';
 import React, { useState } from 'react';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import {
+	NativeStackNavigationProp,
+	NativeStackScreenProps,
+} from '@react-navigation/native-stack';
 import { MainButton } from 'components';
 import { LargeTitle } from 'components/common';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Ask'>;
 
-function Ask({ navigation }: Props) {
+function Ask(props: Props) {
 	const [askContent, setAskContent] = useState('');
 	return (
 		<ScrollWrapper>
@@ -18,21 +21,15 @@ function Ask({ navigation }: Props) {
 					multiline={true}
 					blurOnSubmit
 					onChangeText={(question: string) => setAskContent(question)}
-					onSubmitEditing={async () => {
-						try {
-							navigation.navigate('Bounty', { askContent: askContent });
-						} catch (e) {}
+					onSubmitEditing={() => {
+						navigateToBounty(askContent, props);
 					}}
 					placeholder="Ask questions along with explaining your symptoms, medical history, and current medications."
 				/>
 			</WrapperLeft>
 			<Wrapper>
 				<MainButton
-					onPress={() =>
-						askContent === ''
-							? ''
-							: navigation.navigate('Bounty', { askContent: askContent })
-					}
+					onPress={() => navigateToBounty(askContent, props)}
 					active={askContent === '' ? false : true}
 					text={'Next'}
 				/>
@@ -40,6 +37,12 @@ function Ask({ navigation }: Props) {
 		</ScrollWrapper>
 	);
 }
+
+const navigateToBounty = (askContent: string, { navigation }: Props) => {
+	askContent === ''
+		? ''
+		: navigation.navigate('Bounty', { askContent: askContent });
+};
 
 export default Ask;
 
