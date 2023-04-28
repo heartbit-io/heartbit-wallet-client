@@ -19,6 +19,7 @@ const MainButton = ({ text, onPress, active = true, buttonStyle }: Props) => {
 			active={active}
 			onPress={onPress}
 			activeOpacity={active ? 0.2 : 1}
+			disabled={!active}
 		>
 			<Text>{text}</Text>
 		</Wrapper>
