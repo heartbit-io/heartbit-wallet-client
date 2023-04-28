@@ -3,24 +3,27 @@ import { useEffect, useState } from 'react';
 
 const useAuth = () => {
 	const [idToken, onIdTokenChange] = useState<string | undefined>();
-	const [isSignedIn, onSignedInChange] = useState<boolean | undefined>();
+	const [isAuthorized, onAuthorizationChanged] = useState<
+		boolean | undefined
+	>();
 
 	useEffect(() => {
 		const unsubscribe = auth().onIdTokenChanged(async user => {
+			console.log('AUTH USER>>>>', user);
 			if (!user) {
-				onSignedInChange(false);
+				onAuthorizationChanged(false);
 
 				return;
 			}
 			// auth().signOut();
 			const token = await user.getIdToken();
 			onIdTokenChange(token);
-			onSignedInChange(true);
+			onAuthorizationChanged(true);
 		});
 
 		return () => unsubscribe();
 	}, []);
 
-	return { idToken, isSignedIn };
+	return { idToken, isAuthorized };
 };
 export default useAuth;

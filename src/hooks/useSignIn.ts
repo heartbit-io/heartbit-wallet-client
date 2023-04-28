@@ -3,9 +3,10 @@ import auth from '@react-native-firebase/auth';
 
 type OnSignIn = (emailLink: string, email?: string | null) => void;
 
-const useSignIn = (): [OnSignIn, boolean, boolean] => {
+const useSignIn = (): [OnSignIn, boolean, boolean, boolean] => {
 	const [loading, onLoadingChange] = useState(false);
 	const [emailError, setEmailError] = useState(false);
+	const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
 
 	const onSignIn = useCallback<OnSignIn>(async (emailLink, email) => {
 		try {
@@ -18,7 +19,10 @@ const useSignIn = (): [OnSignIn, boolean, boolean] => {
 				return;
 			}
 
-			await auth().signInWithEmailLink(email, emailLink);
+			const res = await auth().signInWithEmailLink(email, emailLink);
+			if (res.user) {
+				setIsSignedIn(true);
+			}
 		} catch (error) {
 			setEmailError(!!error);
 			console.error(error);
@@ -27,7 +31,7 @@ const useSignIn = (): [OnSignIn, boolean, boolean] => {
 		}
 	}, []);
 
-	return [onSignIn, loading, emailError];
+	return [onSignIn, isSignedIn, loading, emailError];
 };
 
 export default useSignIn;

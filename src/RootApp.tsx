@@ -9,10 +9,10 @@ import TabNavigator from './navigators/TabNavigator';
 import { useAuth, useFirebaseLink } from 'hooks';
 
 function RootApp(): JSX.Element {
-	const { isSignedIn } = useAuth();
-	const [isLoading, isError] = useFirebaseLink();
+	const { isAuthorized } = useAuth();
+	const [isSignedIn, isLoading, isError] = useFirebaseLink();
 
-	if (isSignedIn) {
+	if (isAuthorized || isSignedIn) {
 		return (
 			<NavigationContainer>
 				<TabNavigator />
