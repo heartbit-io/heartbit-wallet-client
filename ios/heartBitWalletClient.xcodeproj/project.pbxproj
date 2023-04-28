@@ -20,9 +20,7 @@
 		86F9B46629F1A1C40020F181 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86F9B46029F1A1C40020F181 /* Pretendard-Bold.otf */; };
 		86F9B46729F1A1C40020F181 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86F9B46129F1A1C40020F181 /* Pretendard-SemiBold.otf */; };
 		86F9B46829F1A1C40020F181 /* RedHatDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86F9B46229F1A1C40020F181 /* RedHatDisplay-Bold.otf */; };
-		86F9B47329F907740020F181 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86F9B47229F907740020F181 /* GoogleService-Info.plist */; };
-		86F9B47429F907740020F181 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86F9B47229F907740020F181 /* GoogleService-Info.plist */; };
-		88AC6D4919DCC1BED7CC5895 /* Pods_heartBitWalletClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8808CE97BAA7746BED7D5FD6 /* Pods_heartBitWalletClient.framework */; };
+		898E7FB5563E3F3049AEE08E /* libPods-heartBitWalletClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA6587000D125D9FE785971 /* libPods-heartBitWalletClient.a */; };
 		BB4D9057EDBD4F3E98D6E07D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2209BDF409BB4BFCB57754B0 /* logo.png */; };
 /* End PBXBuildFile section */
 
@@ -56,8 +54,6 @@
 		86F9B46029F1A1C40020F181 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Bold.otf"; path = "../src/assets/fonts/Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		86F9B46129F1A1C40020F181 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "../src/assets/fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		86F9B46229F1A1C40020F181 /* RedHatDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RedHatDisplay-Bold.otf"; path = "../src/assets/fonts/RedHatDisplay-Bold.otf"; sourceTree = "<group>"; };
-		86F9B47229F907740020F181 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8808CE97BAA7746BED7D5FD6 /* Pods_heartBitWalletClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_heartBitWalletClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92639FCCB1D4CEF3F1F86F31 /* Pods-heartBitWalletClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartBitWalletClient.release.xcconfig"; path = "Target Support Files/Pods-heartBitWalletClient/Pods-heartBitWalletClient.release.xcconfig"; sourceTree = "<group>"; };
 		A2236E3365544920A0C3F041 /* Logo.ts */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Logo.ts; path = ../src/assets/Logo.ts; sourceTree = "<group>"; };
 		A623E621952F5762C80952CA /* Pods-heartBitWalletClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartBitWalletClient.debug.xcconfig"; path = "Target Support Files/Pods-heartBitWalletClient/Pods-heartBitWalletClient.debug.xcconfig"; sourceTree = "<group>"; };
@@ -152,7 +148,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				86F9B47229F907740020F181 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* heartBitWalletClient */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* heartBitWalletClientTests */,
@@ -221,8 +216,6 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				C7A2CDC410E78B74306340DA /* [CP] Copy Pods Resources */,
-				A60331BB146FD8DD7B0124B3 /* [CP-User] [RNFB] Core Configuration */,
-				E131290CF462DE9C978ED12A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -277,7 +270,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86F9B47429F907740020F181 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +286,7 @@
 				86F9B46329F1A1C40020F181 /* Pretendard-Regular.otf in Resources */,
 				86F9B46729F1A1C40020F181 /* Pretendard-SemiBold.otf in Resources */,
 				01EE390450E34C2CAC053366 /* Logo.ts in Resources */,
+				86F9B46C29F265BA0020F181 /* GoogleService-Info.plist in Resources */,
 				BB4D9057EDBD4F3E98D6E07D /* logo.png in Resources */,
 				86F9B46829F1A1C40020F181 /* RedHatDisplay-Bold.otf in Resources */,
 			);
