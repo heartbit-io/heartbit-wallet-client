@@ -1,32 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import WelcomeNavigator from './navigators/WelcomeNavigator';
-import TabNavigator from './navigators/TabNavigator';
-import EmailSignUp from './screens/auth/custodial/EmailSignUp';
-import RootNavigator from './navigators/RootNavigator';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
+// stack screens
+import WelcomeNavigator from './navigators/WelcomeNavigator';
+import TabNavigator from './navigators/TabNavigator';
+
+// hooks
+import { useAuth, useFirebaseLink } from 'hooks';
+
 function RootApp(): JSX.Element {
-	const [isUser, setIsUser] = useState<boolean>(false);
+	const { isSignedIn } = useAuth();
+	const [isLoading, isError] = useFirebaseLink();
 
-	useEffect(() => {
-		const checkEmailAndMnemonic = async () => {
-			setIsUser(false);
-			/* will be implemented in v2
-			const mnemonicState = await AsyncStorage.getItem('vault');
-			mnemonicState === null ? setIsUser(false) : setIsUser(true);
-			*/
-		};
-		checkEmailAndMnemonic();
-	});
-
-	return isUser ? (
-		<NavigationContainer>
-			<TabNavigator />
-		</NavigationContainer>
-	) : (
-		<WelcomeNavigator />
-	);
+	if (isSignedIn) {
+		return (
+			<NavigationContainer>
+				<TabNavigator />
+			</NavigationContainer>
+		);
+	}
+	return <WelcomeNavigator />;
 }
 
 export default RootApp;

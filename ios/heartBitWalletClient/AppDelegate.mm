@@ -8,11 +8,13 @@
 
 // (hyunsub): add react-native-health
 #import "RCTAppleHealthKit.h"
+#import <RNFBDynamicLinksAppDelegateInterceptor.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [RNFBDynamicLinksAppDelegateInterceptor sharedInstance];
   [FIRApp configure];
   self.moduleName = @"heartBitWalletClient";
   // You can add your custom initial props in the dictionary below.
