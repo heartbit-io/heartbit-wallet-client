@@ -1,9 +1,6 @@
 import styled from 'styled-components/native';
 import React, { useState } from 'react';
-import {
-	NativeStackNavigationProp,
-	NativeStackScreenProps,
-} from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MainButton } from 'components';
 import { LargeTitle } from 'components/common';
 
@@ -11,6 +8,13 @@ type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Ask'>;
 
 function Ask(props: Props) {
 	const [askContent, setAskContent] = useState('');
+
+	const navigateToBounty = (askContent: string, { navigation }: Props) => {
+		askContent === ''
+			? ''
+			: navigation.navigate('Bounty', { askContent: askContent });
+	};
+
 	return (
 		<ScrollWrapper>
 			<WrapperLeft>
@@ -37,12 +41,6 @@ function Ask(props: Props) {
 		</ScrollWrapper>
 	);
 }
-
-const navigateToBounty = (askContent: string, { navigation }: Props) => {
-	askContent === ''
-		? ''
-		: navigation.navigate('Bounty', { askContent: askContent });
-};
 
 export default Ask;
 
