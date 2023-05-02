@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { API_URL } from '@env';
 
 export const api = axios.create({
-	baseURL: 'https://dev-wallet-api.heartbit.io/api/v1/',
+	baseURL: API_URL,
 	timeout: 1000,
 });
