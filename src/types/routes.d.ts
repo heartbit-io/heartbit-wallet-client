@@ -1,3 +1,18 @@
+type RootStackType = {
+	SplashScreen: undefined;
+	EmailSignUp: undefined;
+	BottomTabs: undefined;
+	Ask: undefined;
+	Bounty: { askContent: string };	
+	Forum: { askContent?: string };
+
+}
+
+type BottomTabTypes ={ 
+	Home: undefined;
+	Wallet: undefined;
+}
+
 type WelcomeNavigatorParamList = {
 	EmailSignUp: undefined;
 	Tab: undefined;

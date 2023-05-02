@@ -3,27 +3,22 @@ import { useEffect, useState } from 'react';
 
 const useAuth = () => {
 	const [idToken, onIdTokenChange] = useState<string | undefined>();
-	const [isAuthorized, onAuthorizationChanged] = useState<
-		boolean | undefined
-	>();
+	const [authStatus, setAuthStatus] = useState<string>('loading');
 
 	useEffect(() => {
 		const unsubscribe = auth().onIdTokenChanged(async user => {
-			console.log('AUTH USER>>>>', user);
 			if (!user) {
-				onAuthorizationChanged(false);
-
+				setAuthStatus('unauthorized');
 				return;
 			}
 			// auth().signOut();
 			const token = await user.getIdToken();
 			onIdTokenChange(token);
-			onAuthorizationChanged(true);
+			setAuthStatus('authorized');
 		});
-
 		return () => unsubscribe();
 	}, []);
 
-	return { idToken, isAuthorized };
+	return { idToken, authStatus };
 };
 export default useAuth;

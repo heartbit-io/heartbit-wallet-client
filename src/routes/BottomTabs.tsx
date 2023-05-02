@@ -1,12 +1,13 @@
-import HomeNavigator from './HomeNavigator';
-import { Image } from 'react-native';
 import React from 'react';
-import WalletNavigator from './WalletNavigator';
+import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const Tab = createBottomTabNavigator();
+// screens
+import { Home, Wallet } from 'screens';
 
-function TabNavigator(): JSX.Element {
+const Tab = createBottomTabNavigator<BottomTabTypes>();
+
+const BottomTabs = () => {
 	return (
 		<Tab.Navigator
 			screenOptions={({ route }) => ({
@@ -16,11 +17,11 @@ function TabNavigator(): JSX.Element {
 				tabBarStyle: { height: 60, paddingBottom: 5 },
 				tabBarIcon: ({ focused, color, size }) => {
 					let iconName;
-					if (route.name === 'HomeNavigator') {
+					if (route.name === 'Home') {
 						iconName = focused
 							? require('../assets/img/ic_home_selected.png')
 							: require('../assets/img/ic_home_unselected.png');
-					} else if (route.name === 'WalletNavigator') {
+					} else if (route.name === 'Wallet') {
 						iconName = focused
 							? require('../assets/img/ic_wallet_selected.png')
 							: require('../assets/img/ic_wallet_unselected.png');
@@ -32,18 +33,14 @@ function TabNavigator(): JSX.Element {
 				},
 			})}
 		>
+			<Tab.Screen name="Home" component={Home} options={{ title: 'Home' }} />
 			<Tab.Screen
-				name="HomeNavigator"
-				component={HomeNavigator}
-				options={{ title: 'Home' }}
-			/>
-			<Tab.Screen
-				name="WalletNavigator"
-				component={WalletNavigator}
+				name="Wallet"
+				component={Wallet}
 				options={{ title: 'Wallet' }}
 			/>
 		</Tab.Navigator>
 	);
-}
+};
 
-export default TabNavigator;
+export default BottomTabs;
