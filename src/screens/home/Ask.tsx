@@ -10,7 +10,7 @@ function Ask(props: Props) {
 	const [askContent, setAskContent] = useState('');
 
 	const navigateToBounty = (askContent: string, { navigation }: Props) => {
-		askContent === ''
+		askContent.length < 50
 			? ''
 			: navigation.navigate('Bounty', { askContent: askContent });
 	};
@@ -28,13 +28,13 @@ function Ask(props: Props) {
 					onSubmitEditing={() => {
 						navigateToBounty(askContent, props);
 					}}
-					placeholder="Ask questions along with explaining your symptoms, medical history, and current medications."
+					placeholder="Ask questions along with explaining your symptoms, medical history, and current medications. At least 50 characters."
 				/>
 			</WrapperLeft>
 			<Wrapper>
 				<MainButton
 					onPress={() => navigateToBounty(askContent, props)}
-					active={askContent === '' ? false : true}
+					active={askContent.length < 50 ? false : true}
 					text={'Next'}
 				/>
 			</Wrapper>
