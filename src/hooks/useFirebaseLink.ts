@@ -2,29 +2,37 @@ import { useCallback, useEffect, useState } from 'react';
 import { Linking } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import dynamicLinks from '@react-native-firebase/dynamic-links';
-
-// hooks
-import useSignIn from './useSignIn';
+import auth from '@react-native-firebase/auth';
 
 // utils
 import { OS } from 'utils/utility';
 
-const useFirebaseLink = (): [boolean, boolean, boolean] => {
-	const [onSignIn, isSignedIn, isLoading, isError] = useSignIn();
+const useFirebaseLink = () => {
 	const [isSignInError, setSignInError] = useState(false);
+	const [signInStatus, setSignInStatus] = useState<string>('loading');
 
-	const handleDynamicLink = useCallback<(url: string) => void>(
-		async url => {
-			try {
-				const email = await AsyncStorage.getItem('email');
-				onSignIn(url, email);
-			} catch (error) {
-				console.error('Error while signing user in:', error);
-				setSignInError(true);
+	const handleDynamicLink = useCallback<(url: string) => void>(async url => {
+		try {
+			const email = await AsyncStorage.getItem('email');
+			if (!auth().isSignInWithEmailLink(url)) {
+				setSignInStatus('notSignedIn');
+				return;
 			}
-		},
-		[onSignIn],
-	);
+
+			if (!email) {
+				setSignInStatus('notSignedIn');
+				return;
+			}
+
+			const res = await auth().signInWithEmailLink(email, url);
+			if (res.user) {
+				setSignInStatus('signedIn');
+			}
+		} catch (error) {
+			console.error('Error while signing user in:', error);
+			setSignInError(true);
+		}
+	}, []);
 
 	useEffect(() => {
 		if (OS === 'android') {
@@ -46,6 +54,8 @@ const useFirebaseLink = (): [boolean, boolean, boolean] => {
 
 				if (initialLink && !unsubscribed) {
 					handleDynamicLink(initialLink.url);
+				} else {
+					setSignInStatus('notSignedIn');
 				}
 			}
 			getInitialLink();
@@ -68,11 +78,20 @@ const useFirebaseLink = (): [boolean, boolean, boolean] => {
 				handleDynamicLink(url);
 			});
 
+			const getInitLink = async () => {
+				const initialLink = await Linking.getInitialURL();
+				if (!initialLink) {
+					setSignInStatus('notSignedIn');
+				}
+			};
+
+			getInitLink();
+
 			return () => linking.remove();
 		}
 	}, []);
 
-	return [isSignedIn, isLoading, isError || isSignInError];
+	return { signInStatus, isSignInError };
 };
 
 export default useFirebaseLink;

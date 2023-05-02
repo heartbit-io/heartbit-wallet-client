@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 
 // components
-import RootApp from 'RootApp';
+import Layout from 'routes';
 
 // store
 import { store } from 'store';
@@ -19,7 +19,7 @@ function App(): JSX.Element {
 
 	return (
 		<Provider store={store}>
-			<RootApp />
+			<Layout />
 			<StatusBar backgroundColor={'#000'} />
 		</Provider>
 	);
