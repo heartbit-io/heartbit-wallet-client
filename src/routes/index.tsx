@@ -16,26 +16,22 @@ const Root = () => {
 			initialRouteName="SplashScreen"
 			screenOptions={{
 				headerTitle: '',
+				headerShown: false,
 				headerShadowVisible: false,
 				headerStyle: { backgroundColor: '#FFF5ED' },
 			}}
 		>
-			<Stack.Screen
-				name="SplashScreen"
-				component={SplashScreen}
-				options={{ headerShown: false }}
-			/>
+			<Stack.Screen name="SplashScreen" component={SplashScreen} />
 			<Stack.Screen
 				name="EmailSignUp"
 				component={EmailSignUp}
-				options={{ headerShown: false, gestureEnabled: false }}
+				options={{ gestureEnabled: false }}
 			/>
 			<Stack.Screen
 				name={'BottomTabs'}
 				component={BottomTabs}
 				options={{
 					animation: 'fade',
-					headerShown: false,
 					gestureEnabled: false,
 				}}
 			/>
