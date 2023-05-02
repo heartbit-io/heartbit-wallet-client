@@ -12,6 +12,7 @@ import {
 } from 'components/common';
 import { postQuestion } from 'apis/postQuestion';
 import { Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Bounty'>;
 
@@ -26,7 +27,7 @@ function Bounty({ navigation, route }: Props) {
 			? ''
 			: (async () => {
 					const responseDto: ResponseDto = await postQuestion(
-						'test@heartbit.io', // just for test
+						(await AsyncStorage.getItem('email')) as string,
 						route.params.askContent,
 						bounty,
 					);
@@ -42,7 +43,6 @@ function Bounty({ navigation, route }: Props) {
 		<ScrollWrapper>
 			<Text>Set a bounty for consultation</Text>
 			<BountyInfoModal />
-			<Text></Text>
 			<BountyButton10000
 				bounty={bounty}
 				onPress={() => {
@@ -91,7 +91,7 @@ function Bounty({ navigation, route }: Props) {
 					await navigateToForum({ navigation, route }, bounty)
 				}
 				text={'Confirm'}
-				buttonStyle={{ marginBottom: 37 }}
+				buttonStyle={{ marginBottom: 50 }}
 				active={bounty === 0 ? false : true}
 			/>
 		</ScrollWrapper>
