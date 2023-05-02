@@ -1,8 +1,9 @@
-import styled from 'styled-components/native';
 import React, { useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { MainButton } from 'components';
-import { LargeTitle } from 'components/common';
+import styled from 'styled-components/native';
+
+// components
+import { Header, LargeTitle, MainButton } from 'components';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Ask'>;
 
@@ -17,6 +18,7 @@ function Ask(props: Props) {
 
 	return (
 		<ScrollWrapper>
+			<Header headerLeft={true} headerRight={true} />
 			<WrapperLeft>
 				<Text>What do you want to ask?</Text>
 				<Input
