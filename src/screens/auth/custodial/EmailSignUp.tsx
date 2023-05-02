@@ -85,7 +85,7 @@ const HeartBit = styled.Image`
 `;
 
 const Description = styled(Subheadline)`
-	color: '#3A3A3C';
+	color: #3a3a3c;
 	margin-top: 24px;
 	margin-bottom: 52px;
 `;
