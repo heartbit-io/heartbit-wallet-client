@@ -1,46 +1,81 @@
 import React from 'react';
-import { Image } from 'react-native';
+import styled from 'styled-components/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // screens
 import { Home, Wallet } from 'screens';
 
+// utils
+import { OS } from 'utils/utility';
+
 const Tab = createBottomTabNavigator<BottomTabTypes>();
 
+const Icons = [
+	{
+		active: require('assets/img/ic_home_selected.png'),
+		inactive: require('assets/img/ic_home_unselected.png'),
+	},
+	{
+		active: require('assets/img/ic_wallet_selected.png'),
+		inactive: require('assets/img/ic_wallet_unselected.png'),
+	},
+];
+
 const BottomTabs = () => {
+	const renderTabBarIcon =
+		(i: number) =>
+		({ focused }: { focused: boolean }) =>
+			<Image source={focused ? Icons[i].active : Icons[i].inactive} />;
+
+	const renderTabBarLabel =
+		(label: string) =>
+		({ focused }: { focused: boolean }) =>
+			<Text focused={focused}>{label}</Text>;
+
 	return (
 		<Tab.Navigator
 			screenOptions={({ route }) => ({
 				headerShown: false,
-				tabBarActiveTintColor: '#FF2D55',
-				tabBarInactiveTintColor: '#8E8E93',
-				tabBarStyle: { height: 60, paddingBottom: 5 },
-				tabBarIcon: ({ focused, color, size }) => {
-					let iconName;
-					if (route.name === 'Home') {
-						iconName = focused
-							? require('../assets/img/ic_home_selected.png')
-							: require('../assets/img/ic_home_unselected.png');
-					} else if (route.name === 'Wallet') {
-						iconName = focused
-							? require('../assets/img/ic_wallet_selected.png')
-							: require('../assets/img/ic_wallet_unselected.png');
-					}
-
-					return (
-						<Image source={iconName} style={{ width: size, height: size }} />
-					);
+				tabBarStyle: {
+					height: OS === 'ios' ? 84 : 60,
+					paddingBottom: OS === 'ios' ? 37 : 24,
+					paddingTop: 7,
+					borderTopWidth: 0.5,
+					borderColor: 'rgba(60, 60, 67, 0.36)',
+					elevation: 0,
+					backgroundColor: 'rgba(255, 255, 255, 0.8);',
 				},
 			})}
 		>
-			<Tab.Screen name="Home" component={Home} options={{ title: 'Home' }} />
+			<Tab.Screen
+				name="Home"
+				component={Home}
+				options={{
+					tabBarIcon: renderTabBarIcon(0),
+					tabBarLabel: renderTabBarLabel('Home'),
+				}}
+			/>
 			<Tab.Screen
 				name="Wallet"
 				component={Wallet}
-				options={{ title: 'Wallet' }}
+				options={{
+					tabBarIcon: renderTabBarIcon(1),
+					tabBarLabel: renderTabBarLabel('Wallet'),
+				}}
 			/>
 		</Tab.Navigator>
 	);
 };
 
 export default BottomTabs;
+
+const Image = styled.Image``;
+
+const Text = styled.Text<{ focused: boolean }>`
+	font-size: 10px;
+	font-family: 'Pretendard-Regular';
+	font-weight: 500;
+	color: ${({ focused }) => (focused ? '#FF2D55' : '#8E8E93')};
+	text-align: center;
+	margin-top: 4px;
+`;
