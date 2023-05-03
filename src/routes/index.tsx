@@ -20,7 +20,7 @@ const Stack = createNativeStackNavigator<RootStackType>();
 const Root = () => {
 	return (
 		<Stack.Navigator
-			initialRouteName="EmailSent"
+			initialRouteName="SplashScreen"
 			screenOptions={{
 				headerTitle: '',
 				headerShown: false,
