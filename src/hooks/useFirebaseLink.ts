@@ -7,6 +7,9 @@ import auth from '@react-native-firebase/auth';
 // utils
 import { OS } from 'utils/utility';
 
+// apis
+import { api } from 'apis';
+
 const useFirebaseLink = () => {
 	const [isSignInError, setSignInError] = useState(false);
 	const [signInStatus, setSignInStatus] = useState<string>('loading');
@@ -27,6 +30,16 @@ const useFirebaseLink = () => {
 			const res = await auth().signInWithEmailLink(email, url);
 			if (res.user) {
 				setSignInStatus('signedIn');
+				const token = await auth().currentUser?.getIdToken();
+				if (token) {
+					api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+					api.post('/users', {
+						pubkey: email,
+						email: email,
+						role: 'user',
+						btcBalance: 10000,
+					});
+				}
 			}
 		} catch (error) {
 			console.error('Error while signing user in:', error);

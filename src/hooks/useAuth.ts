@@ -13,6 +13,7 @@ const useAuth = () => {
 			}
 			// auth().signOut();
 			const token = await user.getIdToken();
+			console.log('REFRESHED TOKEN>>>>', token);
 			onIdTokenChange(token);
 			setAuthStatus('authorized');
 		});
