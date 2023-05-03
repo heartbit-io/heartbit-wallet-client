@@ -15,7 +15,7 @@ import { Gradient, InputField, MainButton, Subheadline } from 'components';
 // utils
 import { validateEmail } from 'utils/utility';
 
-type Props = NativeStackScreenProps<WelcomeNavigatorParamList, 'EmailSignUp'>;
+type Props = NativeStackScreenProps<RootStackType, 'EmailSignUp'>;
 
 const EmailSignUp = ({ navigation }: Props) => {
 	const [email, setEmail] = useState('');
@@ -29,7 +29,10 @@ const EmailSignUp = ({ navigation }: Props) => {
 				iOS: { bundleId: 'com.heartbit.heartBitWalletClient' },
 				url: 'https://heartbit.page.link/ghHK',
 			})
-			.then(res => AsyncStorage.setItem('email', email))
+			.then(res => {
+				AsyncStorage.setItem('email', email);
+				navigation.navigate('EmailSent', { email });
+			})
 			.catch(err => console.log(err));
 	};
 
