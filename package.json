@@ -5,7 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react-native start",
+    "start": "NODE_ENV=development react-native start -- --reset-cache",
     "test": "jest",
     "lint": "eslint 'src/**/*.ts' --ignore-path ./.eslintignore",
     "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}' --ignore-path ./.eslintignore",
@@ -25,6 +25,7 @@
     "@reduxjs/toolkit": "^1.9.4",
     "@rneui/base": "^4.0.0-rc.7",
     "@rneui/themed": "^4.0.0-rc.7",
+    "@types/react-native-dotenv": "^0.2.0",
     "@types/styled-components-react-native": "^5.2.1",
     "axios": "^1.4.0",
     "buffer": "^6.0.3",
