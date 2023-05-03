@@ -13,3 +13,22 @@ interface CreateQuestionResponse {
 	updatedAt: string;
 	createdAt: string;
 }
+
+interface GetQuestionResponse {
+	id: number;
+	userId: string;
+	content: string;
+	bountyAmount: number;
+	status: string;
+	updatedAt: string;
+	createdAt: string;
+	replies: ReplyResponse[];
+}
+
+interface ReplyResponse {
+	replyType: 'Doctor' | 'AI' | undefiend;
+	name: string;
+	classfication: string;
+	reply: string;
+	createdAt: string;
+}
