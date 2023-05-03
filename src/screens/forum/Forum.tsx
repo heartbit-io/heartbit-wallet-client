@@ -2,16 +2,39 @@ import React, { useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styled from 'styled-components/native';
 import { Body, Caption1, Title1 } from 'components/common';
+import loading_dot from 'assets/gif/loading_dot.gif';
+import Header from 'components/common/Header';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Forum'>;
 
-function Forum({ navigation }: Props) {
-	const [question, setQuestion] = useState('');
-	const [GPTAnswer, setGPTAnswer] = useState('');
-	// if doctor has answered or not
-	const [doctorAnswer, setDoctorAnswer] = useState('');
+function Forum({ navigation, route }: Props) {
+	const [question, setQuestion] = useState<GetQuestionResponse>({
+		id: 0,
+		userId: '',
+		content: '',
+		bountyAmount: 0,
+		status: '',
+		updatedAt: '',
+		createdAt: '',
+		replies: [],
+	});
+	const [answer, setAnswer] = useState<ReplyResponse>({
+		replyType: undefined,
+		name: '',
+		classfication: '',
+		reply: '',
+		createdAt: '',
+	});
+	const getDateFormatted = (timestamp?: string) => {
+		const dateList: string[] = new Date(timestamp as string)
+			.toDateString()
+			.split(' ');
+		return `${date[2]} ${date[1]} ${date[3]}` as string;
+	};
+	const date: string[] = new Date().toDateString().split(' ');
 	return (
 		<Wrapper>
+			<Header headerLeft={true} headerRight={true} />
 			<PostWrapper>
 				<ProfileWrapper>
 					<CircleSky>
@@ -19,26 +42,45 @@ function Forum({ navigation }: Props) {
 					</CircleSky>
 					<PostInfoWrapper>
 						<TextBold>You</TextBold>
-						<TextCaption>23 Mar 2023 ・ 1000 sats</TextCaption>
+						<TextCaption>
+							{question.id === 0
+								? `${getDateFormatted()} ・ ${route.params.bountyAmount} `
+								: `${getDateFormatted(question.createdAt)} ・ ${
+										question.bountyAmount
+								  } `}
+							sats
+						</TextCaption>
 					</PostInfoWrapper>
 				</ProfileWrapper>
-				<Text>{question}</Text>
+				<Text>
+					{question.id === 0 ? route.params.askContent : question.content}
+				</Text>
 			</PostWrapper>
 			<ScrollWrapper>
-				{doctorAnswer === '' ? (
+				{answer.replyType === undefined || answer.replyType === 'AI' ? (
 					<PostWrapper>
 						<ProfileWrapper>
 							<GPTLogo source={require('../../assets/img/ic_gpt_logo.png')} />
 							<PostInfoWrapper>
-								<TextBold>Triage by GPT-3.5</TextBold>
-								<TextCaption>Open AI ・ 23 Mar 2023</TextCaption>
+								<TextBold>Advice by GPT-3.5</TextBold>
+								<TextCaption>
+									Open AI ・{' '}
+									{answer.replyType === undefined
+										? `${getDateFormatted()}`
+										: `${getDateFormatted(question.createdAt)}`}
+								</TextCaption>
 							</PostInfoWrapper>
 						</ProfileWrapper>
-						<Text>
-							{GPTAnswer == ''
-								? `I’m preparing my answer. (Could take up to 10 ~ 20 secs)`
-								: GPTAnswer}
-						</Text>
+						{answer.replyType === undefined ? (
+							<GPTLoadingWrapper>
+								<Text>
+									I’m preparing my answer. (Could take up to 10 ~ 20 secs)
+								</Text>
+								<LoadingGif source={loading_dot} />
+							</GPTLoadingWrapper>
+						) : (
+							<Text>{answer.reply}</Text>
+						)}
 					</PostWrapper>
 				) : (
 					<PostWrapper>
@@ -47,11 +89,13 @@ function Forum({ navigation }: Props) {
 								<ProfileText>A</ProfileText>
 							</CircleIndigo>
 							<PostInfoWrapper>
-								<TextBold>x5c3ad</TextBold>
-								<TextCaption>General physician ・ 1 Apr 2023</TextCaption>
+								<TextBold>{answer.name}</TextBold>
+								<TextCaption>
+									{answer.classfication} ・ {getDateFormatted(answer.createdAt)}
+								</TextCaption>
 							</PostInfoWrapper>
 						</ProfileWrapper>
-						<Text>{doctorAnswer}</Text>
+						<Text>{answer.reply}</Text>
 					</PostWrapper>
 				)}
 			</ScrollWrapper>
@@ -140,4 +184,15 @@ const GPTLogo = styled.Image`
 	width: 45px;
 	height: 45px;
 	margin-left: 25px;
+`;
+
+const GPTLoadingWrapper = styled.View`
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+`;
+
+const LoadingGif = styled.Image`
+	width: 100px;
+	height: 100px;
 `;
