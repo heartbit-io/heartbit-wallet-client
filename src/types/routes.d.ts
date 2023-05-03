@@ -4,7 +4,7 @@ type RootStackType = {
 	BottomTabs: undefined;
 	Ask: undefined;
 	Bounty: { askContent: string };
-	Forum: { askContent?: string };
+	Forum: { questionId?: string; askContent?: string };
 };
 
 type BottomTabTypes = {
