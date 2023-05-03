@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import React, { useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { MainButton } from 'components';
+import { Header, MainButton } from 'components';
 import { BountyInfoModal } from './BountyInfoModal';
 import {
 	LargeTitle,
@@ -12,7 +12,6 @@ import {
 } from 'components/common';
 import { postQuestion } from 'apis/postQuestion';
 import { Alert } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Bounty'>;
 
@@ -26,13 +25,11 @@ function Bounty({ navigation, route }: Props) {
 		bounty === 0
 			? ''
 			: (async () => {
-					const responseDto: ResponseDto = await postQuestion(
-						(await AsyncStorage.getItem('email')) as string,
-						route.params.askContent,
-						bounty,
-					);
+					const responseDto: ResponseDto<CreateQuestionResponse> =
+						await postQuestion(route.params.askContent, bounty);
 					responseDto.statusCode === 201
 						? navigation.navigate('Forum', {
+								questionId: responseDto.data?.id,
 								askContent: route.params.askContent,
 						  })
 						: Alert.alert(responseDto.message, 'Try again later');
@@ -41,6 +38,7 @@ function Bounty({ navigation, route }: Props) {
 
 	return (
 		<ScrollWrapper>
+			<Header headerLeft={true} headerRight={true} />
 			<Text>Set a bounty for consultation</Text>
 			<BountyInfoModal />
 			<BountyButton10000
