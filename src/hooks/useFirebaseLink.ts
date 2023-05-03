@@ -9,6 +9,7 @@ import { OS } from 'utils/utility';
 
 // apis
 import { api } from 'apis';
+import { postUser } from 'apis/userApi';
 
 const useFirebaseLink = () => {
 	const [isSignInError, setSignInError] = useState(false);
@@ -33,12 +34,7 @@ const useFirebaseLink = () => {
 				const token = await auth().currentUser?.getIdToken();
 				if (token) {
 					api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-					api.post('/users', {
-						pubkey: email,
-						email: email,
-						role: 'user',
-						btcBalance: 10000,
-					});
+					await postUser(email);
 				}
 			}
 		} catch (error) {
