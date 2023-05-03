@@ -4,7 +4,7 @@ type RootStackType = {
 	BottomTabs: undefined;
 	Ask: undefined;
 	Bounty: { askContent: string };
-	Forum: { questionId?: string; askContent?: string };
+	Forum: { questionId?: string; bountyAmount?: number; askContent?: string };
 };
 
 type BottomTabTypes = {
@@ -25,5 +25,5 @@ type HomeNavigatorParamList = {
 		When navigate to Forum right after post question, 
 		don't need to fetch userQuestion api which causes latency
 	*/
-	Forum: { questionId?: number; askContent?: string };
+	Forum: { questionId?: number; bountyAmount?: number; askContent?: string };
 };

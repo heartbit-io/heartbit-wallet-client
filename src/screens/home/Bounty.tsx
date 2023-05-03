@@ -10,7 +10,7 @@ import {
 	Footnote,
 	Subheadline,
 } from 'components/common';
-import { postQuestion } from 'apis/postQuestion';
+import { postQuestion } from 'apis/questionApi';
 import { Alert } from 'react-native';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Bounty'>;
@@ -30,6 +30,7 @@ function Bounty({ navigation, route }: Props) {
 					responseDto.statusCode === 201
 						? navigation.navigate('Forum', {
 								questionId: responseDto.data?.id,
+								bountyAmount: responseDto.data?.bountyAmount,
 								askContent: route.params.askContent,
 						  })
 						: Alert.alert(responseDto.message, 'Try again later');
