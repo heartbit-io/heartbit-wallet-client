@@ -1,26 +1,20 @@
-import { API_URL } from '@env';
+import { api } from 'apis';
 
 export const postQuestion = async (
-	userEmail: string,
 	askContent: string,
 	bounty: number,
-): Promise<ResponseDto> => {
+): Promise<ResponseDto<CreateQuestionResponse>> => {
 	try {
-		const path = 'questions';
-		const response = await fetch(API_URL + path, {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				user_email: userEmail,
-				content: askContent,
-				bounty_amount: bounty,
-			}),
+		const url = 'questions';
+
+		const response = await api.post(url, {
+			content: askContent,
+			bountyAmount: bounty,
 		});
-		const responseDto = await response.json();
-		return responseDto;
+
+		const responseDto = await response.data;
+
+		return responseDto as ResponseDto<CreateQuestionResponse>;
 	} catch (err: any) {
 		return err;
 	}

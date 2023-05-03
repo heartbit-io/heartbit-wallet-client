@@ -3,15 +3,14 @@ type RootStackType = {
 	EmailSignUp: undefined;
 	BottomTabs: undefined;
 	Ask: undefined;
-	Bounty: { askContent: string };	
-	Forum: { askContent?: string };
+	Bounty: { askContent: string };
+	Forum: { questionId?: string; askContent?: string };
+};
 
-}
-
-type BottomTabTypes ={ 
+type BottomTabTypes = {
 	Home: undefined;
 	Wallet: undefined;
-}
+};
 
 type WelcomeNavigatorParamList = {
 	EmailSignUp: undefined;
@@ -26,5 +25,5 @@ type HomeNavigatorParamList = {
 		When navigate to Forum right after post question, 
 		don't need to fetch userQuestion api which causes latency
 	*/
-	Forum: { askContent?: string };
+	Forum: { questionId?: number; askContent?: string };
 };

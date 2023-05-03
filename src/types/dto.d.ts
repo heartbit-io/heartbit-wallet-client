@@ -1,6 +1,15 @@
-interface ResponseDto {
-	success: Boolean;
+interface ResponseDto<T> {
+	success: boolean;
 	statusCode: number;
 	message: string;
-	data?: JSON;
+	data?: T;
+}
+
+interface CreateQuestionResponse {
+	id: number;
+	status: string;
+	content: string;
+	bountyAmount: number;
+	updatedAt: string;
+	createdAt: string;
 }
