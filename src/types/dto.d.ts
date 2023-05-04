@@ -22,13 +22,14 @@ interface GetQuestionResponse {
 	status: string;
 	updatedAt: string;
 	createdAt: string;
+	deletedAt: string;
 	replies: ReplyResponse[];
 }
 
 interface ReplyResponse {
-	replyType: 'Doctor' | 'AI' | undefiend;
+	replyType: 'Doctor' | 'ai' | undefiend;
 	name: string;
-	classfication: string;
+	classification: string;
 	reply: string;
 	createdAt: string;
 }
