@@ -18,23 +18,19 @@ type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Bounty'>;
 function Bounty({ navigation, route }: Props) {
 	const [bounty, setBounty] = useState(0);
 
-	const navigateToForum = async (
-		{ navigation, route }: Props,
-		bounty: number,
-	) => {
-		bounty === 0
-			? ''
-			: (async () => {
-					const responseDto: ResponseDto<CreateQuestionResponse> =
-						await postQuestion(route.params.askContent, bounty);
-					responseDto.statusCode === 201
-						? navigation.navigate('Forum', {
-								questionId: responseDto.data?.id,
-								bountyAmount: responseDto.data?.bountyAmount,
-								askContent: route.params.askContent,
-						  })
-						: Alert.alert(responseDto.message, 'Try again later');
-			  })();
+	const navigateToForum = async ({ navigation, route }: Props) => {
+		(async () => {
+			const responseDto: ResponseDto<CreateQuestionResponse> =
+				await postQuestion(route.params.askContent, bounty);
+			responseDto.statusCode === 201
+				? navigation.navigate('Forum', {
+						questionId: (responseDto.data as CreateQuestionResponse).id,
+						bountyAmount: (responseDto.data as CreateQuestionResponse)
+							.bountyAmount,
+						askContent: route.params.askContent,
+				  })
+				: Alert.alert(responseDto.message, 'Try again later');
+		})();
 	};
 
 	return (
@@ -68,31 +64,36 @@ function Bounty({ navigation, route }: Props) {
 					<BountyUSDText>0.28 USD</BountyUSDText>
 				</BountyAmountContainer>
 			</BountyButton1000>
-			<BountyButton100
+			<BountyButtonManual
 				bounty={bounty}
 				onPress={() => {
 					setBounty(100);
 				}}
 			>
-				<BountyTextBold>
-					Low: <BountyText>Likely get answered slower</BountyText>
-				</BountyTextBold>
+				<BountyTextBold>Set manually</BountyTextBold>
 				<BountyAmountContainer>
-					<BountySatoshiText>100 sats</BountySatoshiText>
-					<BountyUSDText>0.03 USD</BountyUSDText>
+					<BountySatoshiText>? sats</BountySatoshiText>
+					<BountyUSDText>? USD</BountyUSDText>
 				</BountyAmountContainer>
-			</BountyButton100>
+			</BountyButtonManual>
 			<BalanceWrapper>
 				<BalanceText>Balance: 2,393,042 sats</BalanceText>
 			</BalanceWrapper>
 			<MainButton
-				onPress={async () =>
-					await navigateToForum({ navigation, route }, bounty)
-				}
+				onPress={async () => await navigateToForum({ navigation, route })}
 				text={'Confirm'}
-				buttonStyle={{ marginBottom: 50 }}
 				active={bounty === 0 ? false : true}
 			/>
+			<SkipWrapper>
+				<SkipButton
+					onPress={async () => {
+						setBounty(0);
+						await navigateToForum({ navigation, route });
+					}}
+				>
+					<SkipText>Skip</SkipText>
+				</SkipButton>
+			</SkipWrapper>
 		</ScrollWrapper>
 	);
 }
@@ -166,16 +167,18 @@ const BountyButton1000 = styled.TouchableOpacity<{ bounty?: number }>`
 	margin-bottom: 8px;
 `;
 
-const BountyButton100 = styled.TouchableOpacity<{ bounty?: number }>`
+const BountyButtonManual = styled.TouchableOpacity<{ bounty?: number }>`
 	flex: 1;
 	flex-direction: row;
 	width: 100%;
 	height: 64px;
 	align-items: center;
 	justify-content: center;
-	border-color: ${({ bounty }) => (bounty === 100 ? 'red' : 'gray')};
+	border-color: ${({ bounty }) =>
+		bounty != 0 && bounty != 1000 && bounty != 10000 ? 'red' : 'gray'};
 	background-color: white;
-	border-width: ${({ bounty }) => (bounty === 100 ? '2px' : '1px')};
+	border-width: ${({ bounty }) =>
+		bounty != 0 && bounty != 1000 && bounty != 10000 ? '2px' : '1px'};
 	border-radius: 12px;
 `;
 
@@ -190,4 +193,24 @@ const BalanceWrapper = styled.View`
 	width: 100%;
 	margin-top: 144px;
 	margin-bottom: 32px;
+`;
+
+const SkipWrapper = styled.View`
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 22px;
+	margin-top: 22px;
+	margin-bottom: 64px;
+`;
+
+const SkipButton = styled.TouchableOpacity`
+	width: 35px;
+	height: 22px;
+	align-items: center;
+	justify-content: center;
+`;
+
+const SkipText = styled(Body)`
+	font-weight: bold;
 `;
