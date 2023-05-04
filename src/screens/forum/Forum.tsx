@@ -1,37 +1,47 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styled from 'styled-components/native';
 import { Body, Caption1, Title1 } from 'components/common';
 import loading_dot from 'assets/gif/loading_dot.gif';
 import Header from 'components/common/Header';
+import { Alert } from 'react-native';
+import { getReply, postGPTReply } from 'apis/questionApi';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Forum'>;
 
 function Forum({ navigation, route }: Props) {
-	const [question, setQuestion] = useState<GetQuestionResponse>({
-		id: 0,
-		userId: '',
-		content: '',
-		bountyAmount: 0,
-		status: '',
-		updatedAt: '',
-		createdAt: '',
-		replies: [],
-	});
 	const [answer, setAnswer] = useState<ReplyResponse>({
-		replyType: undefined,
-		name: '',
-		classfication: '',
-		reply: '',
+		replyType: 'ai',
+		name: 'Advice by GPT-3.5',
+		classification: 'Open AI',
+		reply: 'I’m preparing my answer. (Could take up to 10 ~ 20 secs)',
 		createdAt: '',
 	});
-	const getDateFormatted = (timestamp?: string) => {
-		const dateList: string[] = new Date(timestamp as string)
-			.toDateString()
-			.split(' ');
-		return `${date[2]} ${date[1]} ${date[3]}` as string;
+
+	const getDateFormatted = (createdAt?: string) => {
+		const dateList: string[] =
+			createdAt === undefined || createdAt === ''
+				? new Date().toDateString().split(' ')
+				: new Date(createdAt as string).toDateString().split(' ');
+		return `${dateList[2]} ${dateList[1]} ${dateList[3]}` as string;
 	};
-	const date: string[] = new Date().toDateString().split(' ');
+
+	useEffect(() => {
+		(async () => {
+			try {
+				let responseDto: ResponseDto<ReplyResponse>;
+
+				route.params.createdAt === undefined
+					? (responseDto = await postGPTReply(route.params.questionId))
+					: (responseDto = await getReply(route.params.questionId));
+
+				setAnswer({ ...responseDto.data } as ReplyResponse);
+			} catch (err) {
+				Alert.alert(err as string, 'Try again later');
+			}
+		})();
+	}, []);
+
 	return (
 		<Wrapper>
 			<Header headerLeft={true} headerRight={true} />
@@ -43,61 +53,41 @@ function Forum({ navigation, route }: Props) {
 					<PostInfoWrapper>
 						<TextBold>You</TextBold>
 						<TextCaption>
-							{question.id === 0
-								? `${getDateFormatted()} ・ ${route.params.bountyAmount} `
-								: `${getDateFormatted(question.createdAt)} ・ ${
-										question.bountyAmount
-								  } `}
-							sats
+							{getDateFormatted(route.params.createdAt)} ・{' '}
+							{route.params.bountyAmount} sats
 						</TextCaption>
 					</PostInfoWrapper>
 				</ProfileWrapper>
-				<Text>
-					{question.id === 0 ? route.params.askContent : question.content}
-				</Text>
+				<Text>{route.params.askContent}</Text>
 			</PostWrapper>
 			<ScrollWrapper>
-				{answer.replyType === undefined || answer.replyType === 'AI' ? (
-					<PostWrapper>
-						<ProfileWrapper>
+				<PostWrapper>
+					<ProfileWrapper>
+						{answer.replyType === 'ai' ? (
 							<GPTLogo source={require('../../assets/img/ic_gpt_logo.png')} />
-							<PostInfoWrapper>
-								<TextBold>Advice by GPT-3.5</TextBold>
-								<TextCaption>
-									Open AI ・{' '}
-									{answer.replyType === undefined
-										? `${getDateFormatted()}`
-										: `${getDateFormatted(question.createdAt)}`}
-								</TextCaption>
-							</PostInfoWrapper>
-						</ProfileWrapper>
-						{answer.replyType === undefined ? (
-							<GPTLoadingWrapper>
-								<Text>
-									I’m preparing my answer. (Could take up to 10 ~ 20 secs)
-								</Text>
-								<LoadingGif source={loading_dot} />
-							</GPTLoadingWrapper>
 						) : (
-							<Text>{answer.reply}</Text>
-						)}
-					</PostWrapper>
-				) : (
-					<PostWrapper>
-						<ProfileWrapper>
 							<CircleIndigo>
 								<ProfileText>A</ProfileText>
 							</CircleIndigo>
-							<PostInfoWrapper>
-								<TextBold>{answer.name}</TextBold>
-								<TextCaption>
-									{answer.classfication} ・ {getDateFormatted(answer.createdAt)}
-								</TextCaption>
-							</PostInfoWrapper>
-						</ProfileWrapper>
+						)}
+						<PostInfoWrapper>
+							<TextBold>{answer.name}</TextBold>
+							<TextCaption>
+								{answer.classification} ・ {getDateFormatted(answer.createdAt)}
+							</TextCaption>
+						</PostInfoWrapper>
+					</ProfileWrapper>
+					{answer.createdAt === '' ? (
+						<GPTLoadingWrapper>
+							<Text>
+								I’m preparing my answer. (Could take up to 10 ~ 20 secs)
+							</Text>
+							<LoadingGif source={loading_dot} />
+						</GPTLoadingWrapper>
+					) : (
 						<Text>{answer.reply}</Text>
-					</PostWrapper>
-				)}
+					)}
+				</PostWrapper>
 			</ScrollWrapper>
 		</Wrapper>
 	);
