@@ -54,7 +54,7 @@ function Forum({ navigation, route }: Props) {
 						<TextBold>You</TextBold>
 						<TextCaption>
 							{getDateFormatted(route.params.createdAt)} ・{' '}
-							{route.params.bountyAmount} sats
+							{route.params.bountyAmount.toLocaleString()} sats
 						</TextCaption>
 					</PostInfoWrapper>
 				</ProfileWrapper>
