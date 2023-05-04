@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styled from 'styled-components/native';
-import { Body, Caption1, Title1 } from 'components/common';
+import { Body, Caption1, Subheadline, Title1 } from 'components/common';
 import loading_dot from 'assets/gif/loading_dot.gif';
 import Header from 'components/common/Header';
 import { Alert } from 'react-native';
@@ -34,7 +34,7 @@ function Forum({ navigation, route }: Props) {
 				route.params.createdAt === undefined
 					? (responseDto = await postGPTReply(route.params.questionId))
 					: (responseDto = await getReply(route.params.questionId));
-
+				console.log(responseDto.data);
 				setAnswer({ ...responseDto.data } as ReplyResponse);
 			} catch (err) {
 				Alert.alert(err as string, 'Try again later');
@@ -64,7 +64,7 @@ function Forum({ navigation, route }: Props) {
 				<PostWrapper>
 					<ProfileWrapper>
 						{answer.replyType === 'ai' ? (
-							<GPTLogo source={require('../../assets/img/ic_gpt_logo.png')} />
+							<GPTLogo source={require('assets/img/ic_gpt_logo.png')} />
 						) : (
 							<CircleIndigo>
 								<ProfileText>A</ProfileText>
@@ -88,6 +88,18 @@ function Forum({ navigation, route }: Props) {
 						<Text>{answer.reply}</Text>
 					)}
 				</PostWrapper>
+				<CautionWrapper>
+					<CautionLogo source={require('assets/img/ic_alert_circle.png')} />
+					<TextCaution>
+						Answers provided by AI and human doctors are for reference purposes
+						only, not a substitute for professional medical advice, diagnosis,
+						or treatment. The answers should not be considered the final medical
+						opinion or legally binding for the providers involved. {'\n\n'} If
+						you think you may have a medical emergency, call doctors or
+						emergency services immediately. Reliance on any information AI or
+						online doctors provides is solely at your own risk.
+					</TextCaution>
+				</CautionWrapper>
 			</ScrollWrapper>
 		</Wrapper>
 	);
@@ -107,6 +119,7 @@ const PostWrapper = styled.View`
 	border-color: #bdbdbd;
 	border-top-width: 1px;
 	padding-vertical: 25px;
+	padding-horizontal: 25px;
 `;
 
 const PostInfoWrapper = styled.View`
@@ -118,9 +131,19 @@ const ScrollWrapper = styled.ScrollView`
 	background-color: white;
 `;
 
+const CautionWrapper = styled.View`
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	border-color: #bdbdbd;
+	border-top-width: 1px;
+	padding-vertical: 25px;
+	background-color: white;
+	padding-horizontal: 25px;
+`;
+
 const Text = styled(Body)`
 	text-align: left;
-	padding-horizontal: 25px;
 `;
 
 const TextBold = styled(Body)`
@@ -133,6 +156,10 @@ const TextCaption = styled(Caption1)`
 	color: gray;
 	padding-horizontal: 12px;
 	padding-top: 3px;
+`;
+const TextCaution = styled(Subheadline)`
+	color: gray;
+	margin-bottom: 66px;
 `;
 
 const ProfileWrapper = styled.View`
@@ -156,7 +183,6 @@ const CircleSky = styled.View`
 	text-align: center;
 	justify-content: center;
 	align-items: center;
-	margin-left: 25px;
 `;
 
 const CircleIndigo = styled.View`
@@ -167,13 +193,11 @@ const CircleIndigo = styled.View`
 	text-align: center;
 	justify-content: center;
 	align-items: center;
-	margin-left: 25px;
 `;
 
 const GPTLogo = styled.Image`
 	width: 45px;
 	height: 45px;
-	margin-left: 25px;
 `;
 
 const GPTLoadingWrapper = styled.View`
@@ -185,4 +209,11 @@ const GPTLoadingWrapper = styled.View`
 const LoadingGif = styled.Image`
 	width: 100px;
 	height: 100px;
+`;
+
+const CautionLogo = styled.Image`
+	width: 24px;
+	height: 24px;
+	margin-top: 27px;
+	margin-bottom: 11px;
 `;
