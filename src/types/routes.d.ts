@@ -1,6 +1,7 @@
 type RootStackType = {
 	SplashScreen: undefined;
 	EmailSignUp: undefined;
+	EmailSent: {email: string};
 	BottomTabs: undefined;
 	Ask: undefined;
 	Bounty: { askContent: string };

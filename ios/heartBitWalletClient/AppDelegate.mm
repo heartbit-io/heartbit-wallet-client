@@ -4,7 +4,6 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import "RNSplashScreen.h"
 
 // (hyunsub): add react-native-health
 #import "RCTAppleHealthKit.h"
@@ -28,7 +27,6 @@
   // XXX(hyunsub): This line was returned immediately with return command, but splash screen was not executed, so it was declared separately.
   [super application:application didFinishLaunchingWithOptions:launchOptions];
   
-  [RNSplashScreen show];
   return YES;
 }
 

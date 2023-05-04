@@ -6,7 +6,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomTabs from './BottomTabs';
 
 // screens
-import { Ask, Bounty, EmailSignUp, SplashScreen, Forum } from 'screens';
+import {
+	Ask,
+	Bounty,
+	EmailSignUp,
+	SplashScreen,
+	Forum,
+	EmailSent,
+} from 'screens';
 
 const Stack = createNativeStackNavigator<RootStackType>();
 
@@ -25,6 +32,11 @@ const Root = () => {
 			<Stack.Screen
 				name="EmailSignUp"
 				component={EmailSignUp}
+				options={{ gestureEnabled: false }}
+			/>
+			<Stack.Screen
+				name="EmailSent"
+				component={EmailSent}
 				options={{ gestureEnabled: false }}
 			/>
 			<Stack.Screen
