@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
-import SplashScreen from 'react-native-splash-screen';
 
 // components
 import Layout from 'routes';
@@ -13,10 +12,6 @@ import { store } from 'store';
 import 'utils/initializeDefaultProps';
 
 function App(): JSX.Element {
-	useEffect(() => {
-		SplashScreen.hide();
-	}, []);
-
 	return (
 		<Provider store={store}>
 			<Layout />
