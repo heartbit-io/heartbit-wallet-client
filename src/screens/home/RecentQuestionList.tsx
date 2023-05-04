@@ -20,9 +20,6 @@ function RecentQuestionList() {
 				<Text style={styles.recentHeaderMiddleText}>
 					2 mins ago, No answer 1,000 sats
 				</Text>
-				<Text style={styles.recentHeaderBottomText_blue}>
-					Collecting answers: 2 days 23 hours left
-				</Text>
 				<View style={styles.line} />
 			</View>
 			<View style={styles.recentQuestion}>
@@ -32,18 +29,12 @@ function RecentQuestionList() {
 				<Text style={styles.recentHeaderMiddleText}>
 					13 Mar 2023, 2 answers 10,000 sats
 				</Text>
-				<Text style={styles.recentHeaderBottomText_red}>
-					Select an answer within 1 day 1 hour {'>'}{' '}
-				</Text>
 				<View style={styles.line} />
 			</View>
 			<View style={styles.recentQuestion}>
 				<Text style={styles.recentQuestionTopText}>Stomachache</Text>
 				<Text style={styles.recentHeaderMiddleText}>
 					2 mins ago, No answer 1,000 sats
-				</Text>
-				<Text style={styles.recentHeaderBottomText_blue}>
-					Collecting answers: 2 days 23 hours left
 				</Text>
 				<View style={styles.line} />
 			</View>
