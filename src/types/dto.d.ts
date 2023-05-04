@@ -16,14 +16,12 @@ interface CreateQuestionResponse {
 
 interface GetQuestionResponse {
 	id: number;
-	userId: string;
+	userId: number;
 	content: string;
 	bountyAmount: number;
 	status: string;
 	updatedAt: string;
 	createdAt: string;
-	deletedAt: string;
-	replies: ReplyResponse[];
 }
 
 interface ReplyResponse {
