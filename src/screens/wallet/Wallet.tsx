@@ -1,6 +1,13 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
-import { Body, Button, HeaderTitle, LargeTitle, Space } from 'components';
+import {
+	ArrowButtonWithText,
+	Body,
+	Button,
+	HeaderTitle,
+	LargeTitle,
+	Space,
+} from 'components';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 type Props = NativeStackScreenProps<BottomTabTypes, 'Wallet'>;
@@ -10,7 +17,9 @@ const Wallet = ({ navigation }: Props) => {
 		<Wrapper>
 			<HeaderTitle />
 			<TextsWrapper>
-				<LargeTitle color={'#1C1C1E'}>2,393,042 sats</LargeTitle>
+				<LargeTitle weight="bold" color={'#1C1C1E'}>
+					2,393,042 sats
+				</LargeTitle>
 				<Body style={{ marginTop: 16, color: '#3A3A3C' }}>234.23 USD</Body>
 			</TextsWrapper>
 			<ButtonsWrapper>
@@ -22,6 +31,11 @@ const Wallet = ({ navigation }: Props) => {
 					btnStyle={{ backgroundColor: '#007AFF' }}
 				/>
 			</ButtonsWrapper>
+			<ArrowButtonWithText
+				title="Transactions"
+				btnText="See all"
+				onPress={() => {}}
+			/>
 		</Wrapper>
 	);
 };
@@ -42,5 +56,6 @@ const TextsWrapper = styled.View`
 const ButtonsWrapper = styled.View`
 	flex-direction: row;
 	margin-top: 65px;
+	margin-bottom: 64px;
 	margin-horizontal: 32px;
 `;
