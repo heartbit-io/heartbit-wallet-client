@@ -7,6 +7,7 @@ import {
 	HeaderTitle,
 	LargeTitle,
 	Space,
+	TransactionList,
 } from 'components';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
@@ -36,6 +37,7 @@ const Wallet = ({ navigation }: Props) => {
 				btnText="See all"
 				onPress={() => {}}
 			/>
+			<TransactionList />
 		</Wrapper>
 	);
 };
