@@ -13,6 +13,8 @@ import {
 	SplashScreen,
 	Forum,
 	EmailSent,
+	MyQuestions,
+	Transactions,
 } from 'screens';
 
 const Stack = createNativeStackNavigator<RootStackType>();
@@ -50,6 +52,8 @@ const Root = () => {
 			<Stack.Screen name="Ask" component={Ask} />
 			<Stack.Screen name="Bounty" component={Bounty} />
 			<Stack.Screen name="Forum" component={Forum} />
+			<Stack.Screen name="MyQuestions" component={MyQuestions} />
+			<Stack.Screen name="Transactions" component={Transactions} />
 		</Stack.Navigator>
 	);
 };
