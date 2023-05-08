@@ -136,7 +136,7 @@ const Satoshi = styled.View`
 	background: #ffffff66;
 	left: 16px;
 	top: 70px;
-	justify-content: flex-start;
+	justify-content: space-between;
 	align-items: center;
 `;
 
@@ -149,7 +149,9 @@ const BurgerIcon = styled.Image`
 	top: 70px;
 `;
 
-const TextCallout = styled(Callout)``;
+const TextCallout = styled(Callout)`
+	margin-right: 12px;
+`;
 
 const Logo = styled.Image``;
 
