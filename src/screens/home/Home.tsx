@@ -5,6 +5,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styled from 'styled-components/native';
 // assets
 import logo from 'assets/logo/logo.svg';
+import empty from 'assets/img/ic_empty_recent_q.png';
 
 // components
 import {
@@ -63,29 +64,35 @@ function Home({ navigation }: Props) {
 					/>
 				</Wrapper>
 				<WrapperNotCenter>
-					<RecentWrapper>
-						<HeaderWrapper>
-							<TextTitle>Recent</TextTitle>
-							<TextBody>See all {'>'}</TextBody>
-						</HeaderWrapper>
-						{questions[0].status === '' ? (
-							<></>
-						) : (
-							questions.map(question => {
+					{questions[0].status === '' ? (
+						<EmptyWrapper>
+							<Empty source={empty} />
+							<TextSubHeadline>
+								Get your first health consultation from doctors all over the
+								world
+							</TextSubHeadline>
+						</EmptyWrapper>
+					) : (
+						<RecentWrapper>
+							<HeaderWrapper>
+								<TextTitle>Recent</TextTitle>
+								<TextBody>See all {'>'}</TextBody>
+							</HeaderWrapper>
+							{questions.map(question => {
 								return (
 									<QuestionWrapper>
 										<TextHeadline>
 											{question.content.slice(0, 30).concat('...')}
 										</TextHeadline>
-										<TextSubHeadline>
+										<TextSubHeadlineGray>
 											{getDateFormatted(question.createdAt)} ・{' '}
 											{question.bountyAmount.toLocaleString()} sats
-										</TextSubHeadline>
+										</TextSubHeadlineGray>
 									</QuestionWrapper>
 								);
-							})
-						)}
-					</RecentWrapper>
+							})}
+						</RecentWrapper>
+					)}
 				</WrapperNotCenter>
 			</ScrollView>
 		</Gradient>
@@ -106,6 +113,14 @@ const WrapperNotCenter = styled.View`
 `;
 
 const Logo = styled.Image``;
+
+const EmptyWrapper = styled.View`
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+`;
+
+const Empty = styled.Image``;
 
 const RecentWrapper = styled.View`
 	flex-direction: column;
@@ -137,6 +152,11 @@ const TextHeadline = styled(Headline)`
 	font-weight: bold;
 	margin-bottom: 8px;
 `;
-const TextSubHeadline = styled(Subheadline)`
+const TextSubHeadlineGray = styled(Subheadline)`
 	color: gray;
+`;
+
+const TextSubHeadline = styled(Subheadline)`
+	margin-top: 40px;
+	margin-horizontal: 70px;
 `;
