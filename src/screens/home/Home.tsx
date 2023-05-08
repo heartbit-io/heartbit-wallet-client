@@ -64,7 +64,7 @@ function Home({ navigation }: Props) {
 					/>
 				</Wrapper>
 				<WrapperNotCenter>
-					{questions[0].status === '' ? (
+					{questions[0]?.status === '' ? (
 						<EmptyWrapper>
 							<Empty source={empty} />
 							<TextSubHeadline>
