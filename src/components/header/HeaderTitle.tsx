@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { DrawerActions } from '@react-navigation/native';
 
 // components
 import { LargeTitle } from 'components/common';
@@ -18,7 +19,7 @@ const HeaderTitle = () => {
 
 	const renderHeaderRight = () => {
 		return (
-			<Wrapper>
+			<Wrapper onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
 				<Icon source={MenuIcon} />
 			</Wrapper>
 		);
