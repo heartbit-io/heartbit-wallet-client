@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // tabs
-import BottomTabs from './BottomTabs';
+import DrawerTabs from './DrawerTabs';
 
 // screens
 import {
@@ -40,8 +40,8 @@ const Root = () => {
 				options={{ gestureEnabled: false }}
 			/>
 			<Stack.Screen
-				name={'BottomTabs'}
-				component={BottomTabs}
+				name={'DrawerTabs'}
+				component={DrawerTabs}
 				options={{
 					animation: 'fade',
 					gestureEnabled: false,

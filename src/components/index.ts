@@ -5,3 +5,4 @@ export * from './common';
 export * from './qrcode';
 export * from './header';
 export * from './list';
+export * from './modals';

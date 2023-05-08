@@ -7,7 +7,7 @@ import Header from 'components/common/Header';
 import { Alert } from 'react-native';
 import { getReply, postGPTReply } from 'apis/questionApi';
 
-type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Forum'>;
+type Props = NativeStackScreenProps<RootStackType, 'Forum'>;
 
 function Forum({ navigation, route }: Props) {
 	const [answer, setAnswer] = useState<ReplyResponse>({
