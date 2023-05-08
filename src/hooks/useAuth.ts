@@ -1,7 +1,12 @@
 import auth from '@react-native-firebase/auth';
 import { useEffect, useState } from 'react';
+import { useAppDispatch } from './hooks';
+
+// store
+import { getUserData } from 'store/slices/userSlice';
 
 const useAuth = () => {
+	const dispatch = useAppDispatch();
 	const [idToken, onIdTokenChange] = useState<string | undefined>();
 	const [authStatus, setAuthStatus] = useState<string>('loading');
 
@@ -16,6 +21,9 @@ const useAuth = () => {
 			console.log('REFRESHED TOKEN>>>>', token);
 			onIdTokenChange(token);
 			setAuthStatus('authorized');
+			if (user.email) {
+				dispatch(getUserData(user.email));
+			}
 		});
 		return () => unsubscribe();
 	}, []);
