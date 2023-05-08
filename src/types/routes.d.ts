@@ -1,12 +1,12 @@
 type RootStackType = {
 	SplashScreen: undefined;
 	EmailSignUp: undefined;
-	EmailSent: {email: string};
+	EmailSent: { email: string };
 	DrawerTabs: undefined;
 	Ask: undefined;
 	Bounty: { askContent: string };
 	Forum: {
-		questionId: string;
+		questionId: number;
 		bountyAmount: number;
 		askContent: string;
 		createdAt?: string;
@@ -20,7 +20,7 @@ type BottomTabTypes = {
 
 type DrawerTabTypes = {
 	BottomTabs: undefined;
-}
+};
 
 type WelcomeNavigatorParamList = {
 	EmailSignUp: undefined;
