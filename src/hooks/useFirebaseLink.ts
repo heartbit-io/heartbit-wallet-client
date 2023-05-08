@@ -3,6 +3,7 @@ import { Linking } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import dynamicLinks from '@react-native-firebase/dynamic-links';
 import auth from '@react-native-firebase/auth';
+import { useAppDispatch } from './hooks';
 
 // utils
 import { OS } from 'utils/utility';
@@ -11,7 +12,11 @@ import { OS } from 'utils/utility';
 import { api } from 'apis';
 import { postUser } from 'apis/userApi';
 
+// store
+import { setUserData } from 'store/slices/userSlice';
+
 const useFirebaseLink = () => {
+	const dispatch = useAppDispatch();
 	const [isSignInError, setSignInError] = useState(false);
 	const [signInStatus, setSignInStatus] = useState<string>('loading');
 
@@ -34,7 +39,10 @@ const useFirebaseLink = () => {
 				const token = await auth().currentUser?.getIdToken();
 				if (token) {
 					api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-					await postUser(email);
+					const res = await postUser(email);
+					if (res.success) {
+						dispatch(setUserData(res.data));
+					}
 				}
 			}
 		} catch (error) {
