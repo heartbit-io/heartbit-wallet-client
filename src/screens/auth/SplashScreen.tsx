@@ -23,7 +23,7 @@ const SplashScreen = ({ navigation }: Props) => {
 
 	useEffect(() => {
 		if (authStatus === 'authorized' || signInStatus === 'signedIn') {
-			navigation.navigate('BottomTabs');
+			navigation.navigate('DrawerTabs');
 		} else if (
 			authStatus === 'unauthorized' &&
 			signInStatus === 'notSignedIn'
