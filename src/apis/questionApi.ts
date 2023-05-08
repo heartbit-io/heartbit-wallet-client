@@ -20,6 +20,26 @@ export const postQuestion = async (
 	}
 };
 
+export const getQuestionList = async (
+	limit: number,
+	offset: number,
+	order?: 'ASC' | 'DESC',
+): Promise<ResponseDto<GetQuestionResponse[]>> => {
+	try {
+		const query: string = `?limit=${limit}&offset=${offset}${
+			order === undefined ? '' : order
+		}`;
+
+		const response = await api.get(url + query);
+
+		const responseDto = await response.data;
+
+		return responseDto as ResponseDto<GetQuestionResponse[]>;
+	} catch (err: any) {
+		return err;
+	}
+};
+
 export const postGPTReply = async (
 	questionId: number,
 ): Promise<ResponseDto<ReplyResponse>> => {
