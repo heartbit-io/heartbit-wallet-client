@@ -1,56 +1,63 @@
+import React, { useEffect } from 'react';
+import styled from 'styled-components/native';
 import {
-	TouchableOpacity,
-	SafeAreaView,
-	Text,
-	View,
-	StyleSheet,
-} from 'react-native';
+	ArrowButtonWithText,
+	Body,
+	Button,
+	HeaderTitle,
+	LargeTitle,
+	Space,
+	TransactionList,
+} from 'components';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import React from 'react';
+type Props = NativeStackScreenProps<BottomTabTypes, 'Wallet'>;
 
-function Wallet({ navigation }: { navigation: any }) {
+const Wallet = ({ navigation }: Props) => {
 	return (
-		<SafeAreaView style={styles.container}>
-			<Text>Lightning Wallet</Text>
-		</SafeAreaView>
+		<Wrapper>
+			<HeaderTitle />
+			<TextsWrapper>
+				<LargeTitle weight="bold" color={'#1C1C1E'}>
+					2,393,042 sats
+				</LargeTitle>
+				<Body style={{ marginTop: 16, color: '#3A3A3C' }}>234.23 USD</Body>
+			</TextsWrapper>
+			<ButtonsWrapper>
+				<Button text={'Withdraw'} onPress={() => {}} />
+				<Space width={24} />
+				<Button
+					text={'Deposit'}
+					onPress={() => {}}
+					btnStyle={{ backgroundColor: '#007AFF' }}
+				/>
+			</ButtonsWrapper>
+			<ArrowButtonWithText
+				title="Transactions"
+				btnText="See all"
+				onPress={() => {}}
+			/>
+			<TransactionList />
+		</Wrapper>
 	);
-}
+};
 
 export default Wallet;
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#FFF5ED',
-	},
-	columnContainer: {
-		flex: 1,
-		flexDirection: 'column',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	rowContainer: {
-		flex: 0.3,
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-around',
-	},
-	contentArea: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	button: {
-		flex: 0.3,
-		height: '30%',
-		alignItems: 'center',
-		justifyContent: 'center',
-		borderColor: 'black',
-		borderWidth: 2,
-		borderRadius: 10,
-	},
-	bigText: {
-		fontSize: 18,
-		fontWeight: 'bold',
-	},
-});
+const Wrapper = styled.View`
+	flex: 1;
+	background-color: #fff5ed;
+`;
+
+const TextsWrapper = styled.View`
+	margin-top: 117px;
+	align-items: center;
+	justify-content: center;
+`;
+
+const ButtonsWrapper = styled.View`
+	flex-direction: row;
+	margin-top: 65px;
+	margin-bottom: 64px;
+	margin-horizontal: 32px;
+`;

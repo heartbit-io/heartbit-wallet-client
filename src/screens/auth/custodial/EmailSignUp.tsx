@@ -59,6 +59,7 @@ const EmailSignUp = ({ navigation }: Props) => {
 						placeholderTextColor={'rgba(60, 60, 67, 0.6)'}
 						textAlign="center"
 						keyboardType={'email-address'}
+						autoCapitalize={'none'}
 					/>
 					<MainButton
 						text={'Get started'}

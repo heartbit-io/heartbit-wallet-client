@@ -35,7 +35,10 @@ const BottomTabs = () => {
 	return (
 		<Tab.Navigator
 			screenOptions={({ route }) => ({
+				headerTitle: '',
 				headerShown: false,
+				headerShadowVisible: false,
+				headerStyle: { backgroundColor: '#FFF5ED' },
 				tabBarStyle: {
 					height: OS === 'ios' ? 84 : 60,
 					paddingBottom: OS === 'ios' ? 37 : 24,

@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 const Text = styled.Text<{ weight?: 'bold' | 'regular'; color?: string }>`
-	color: ${({ color }) => (color ? color : '#000')};
+	color: ${({ color }) => (color ? color : '#1C1C1E')};
 	font-family: ${({ weight }) =>
 		weight === 'bold' ? 'Pretendard-Bold' : 'Pretendard-Regular'};
 `;
