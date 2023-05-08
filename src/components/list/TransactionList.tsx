@@ -4,6 +4,11 @@ import moment from 'moment';
 
 // components
 import { Headline, Subheadline } from 'components/common';
+import { ArrowButtonWithText } from 'components';
+import EmptyList from './EmptyList';
+
+// assets
+import EmptyArrow from 'assets/img/emptyArrow.svg';
 
 const data = [
 	{
@@ -41,13 +46,43 @@ const TransactionList = () => {
 		);
 	};
 
-	return <StyledFlatList data={data} renderItem={renderItemHandler} />;
+	const renderHeaderComponent = () => {
+		if (data.length > 0) {
+			return (
+				<ArrowButtonWithText
+					title="Transactions"
+					btnText="See all"
+					onPress={() => {}}
+				/>
+			);
+		}
+		return null;
+	};
+
+	const renderEmptyComponent = () => {
+		return (
+			<EmptyList
+				icon={EmptyArrow}
+				text={'Deposit some bitcoin(sats)\nto spend for bounties'}
+			/>
+		);
+	};
+
+	return (
+		<StyledFlatList
+			data={data}
+			renderItem={renderItemHandler}
+			ListHeaderComponent={renderHeaderComponent()}
+			ListEmptyComponent={renderEmptyComponent()}
+			stickyHeaderIndices={[0]}
+		/>
+	);
 };
 
 export default TransactionList;
 
-const StyledFlatList = styled.FlatList`
-	margin-top: 16px;
+const StyledFlatList = styled.FlatList<{ data: any[] }>`
+	margin-top: ${({ data }) => (data.length > 0 ? 64 : 22)}px;
 `;
 
 const ItemWrapper = styled.View`
