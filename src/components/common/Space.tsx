@@ -13,6 +13,6 @@ const Space = ({ width, height }: Props) => {
 export default Space;
 
 const Wrapper = styled.View<{ width?: number; height?: number }>`
-	width: ${({ width }) => width || 0};
-	height: ${({ height }) => height || 0};
+	width: ${({ width }) => width || 0}px;
+	height: ${({ height }) => height || 0}px;
 `;
