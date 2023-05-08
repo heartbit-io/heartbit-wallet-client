@@ -6,6 +6,7 @@ import loading_dot from 'assets/gif/loading_dot.gif';
 import Header from 'components/common/Header';
 import { Alert } from 'react-native';
 import { getReply, postGPTReply } from 'apis/questionApi';
+import moment from 'moment';
 
 type Props = NativeStackScreenProps<RootStackType, 'Forum'>;
 
@@ -19,11 +20,9 @@ function Forum({ navigation, route }: Props) {
 	});
 
 	const getDateFormatted = (createdAt?: string) => {
-		const dateList: string[] =
-			createdAt === undefined || createdAt === ''
-				? new Date().toDateString().split(' ')
-				: new Date(createdAt as string).toDateString().split(' ');
-		return `${dateList[2]} ${dateList[1]} ${dateList[3]}` as string;
+		return createdAt === undefined || createdAt === ''
+			? moment().format('MMM D YYYY')
+			: moment(createdAt).format('MMM D YYYY');
 	};
 
 	useEffect(() => {

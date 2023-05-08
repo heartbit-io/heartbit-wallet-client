@@ -3,20 +3,28 @@ import React, { useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Header, MainButton } from 'components';
 import { BountyInfoModal } from './BountyInfoModal';
+import { Modal, KeyboardAvoidingView } from 'react-native';
+
 import {
 	LargeTitle,
 	Body,
 	Caption1,
 	Footnote,
 	Subheadline,
+	Title3,
 } from 'components/common';
 import { postQuestion } from 'apis/questionApi';
 import { Alert } from 'react-native';
+import { useAppSelector } from 'hooks/hooks';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Bounty'>;
 
 function Bounty({ navigation, route }: Props) {
 	const [bounty, setBounty] = useState(0);
+	const [isManual, setIsManual] = useState(false);
+	const [modalVisible, setModalVisible] = useState(false);
+
+	const { userData } = useAppSelector(state => state.user);
 
 	const navigateToForum = async ({ navigation, route }: Props) => {
 		(async () => {
@@ -41,6 +49,7 @@ function Bounty({ navigation, route }: Props) {
 			<BountyButton10000
 				bounty={bounty}
 				onPress={() => {
+					setIsManual(false);
 					setBounty(10000);
 				}}
 			>
@@ -55,6 +64,7 @@ function Bounty({ navigation, route }: Props) {
 			<BountyButton1000
 				bounty={bounty}
 				onPress={() => {
+					setIsManual(false);
 					setBounty(1000);
 				}}
 			>
@@ -67,17 +77,63 @@ function Bounty({ navigation, route }: Props) {
 			<BountyButtonManual
 				bounty={bounty}
 				onPress={() => {
-					setBounty(100);
+					setModalVisible(true);
 				}}
 			>
 				<BountyTextBold>Set manually</BountyTextBold>
 				<BountyAmountContainer>
-					<BountySatoshiText>? sats</BountySatoshiText>
-					<BountyUSDText>? USD</BountyUSDText>
+					{isManual === true ? (
+						<>
+							<BountySatoshiText>
+								{bounty.toLocaleString()} sats
+							</BountySatoshiText>
+							<BountyUSDText>{bounty.toLocaleString()} USD</BountyUSDText>
+						</>
+					) : (
+						<BalanceText>{'>'}</BalanceText>
+					)}
 				</BountyAmountContainer>
 			</BountyButtonManual>
+			<Modal animationType="slide" transparent={true} visible={modalVisible}>
+				<KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+					<Wrapper
+						onPress={() => {
+							setBounty(0);
+							setModalVisible(false);
+						}}
+						activeOpacity={1}
+					>
+						<Container>
+							<RowWrapper>
+								<Title3 weight="bold">Set amount for bounty</Title3>
+							</RowWrapper>
+							<InputWrapper>
+								<Input
+									value={bounty.toLocaleString()}
+									onChangeText={bounty =>
+										setBounty(Number(bounty.replace(/,/g, '')))
+									}
+									keyboardType="numeric"
+									autoFocus
+								/>
+								<Subheadline>sats</Subheadline>
+							</InputWrapper>
+							<MainButton
+								text="Confirm"
+								onPress={() => {
+									setIsManual(true);
+									setModalVisible(false);
+								}}
+								buttonStyle={{ borderRadius: 8 }}
+							/>
+						</Container>
+					</Wrapper>
+				</KeyboardAvoidingView>
+			</Modal>
 			<BalanceWrapper>
-				<BalanceText>Balance: 2,393,042 sats</BalanceText>
+				<BalanceText>
+					Balance: {userData?.btcBalance.toLocaleString()} sats
+				</BalanceText>
 			</BalanceWrapper>
 			<MainButton
 				onPress={async () => await navigateToForum({ navigation, route })}
@@ -213,4 +269,44 @@ const SkipButton = styled.TouchableOpacity`
 
 const SkipText = styled(Body)`
 	font-weight: bold;
+`;
+
+const Wrapper = styled.TouchableOpacity`
+	flex: 1;
+	justify-content: flex-end;
+	background-color: rgba(0, 0, 0, 0.75);
+`;
+
+const Container = styled.View`
+	background-color: #fff5ed;
+	padding-top: 19px;
+	padding-bottom: 16px;
+	padding-horizontal: 16px;
+`;
+
+const RowWrapper = styled.View`
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 32px;
+`;
+
+const InputWrapper = styled.TouchableOpacity`
+	height: 48px;
+	flex-direction: row;
+	align-items: center;
+	border-bottom-width: 2px;
+	border-bottom-color: #ff2d55;
+	margin-bottom: 16px;
+	padding-horizontal: 12px;
+	margin-horizontal: 32px;
+`;
+
+const Input = styled.TextInput`
+	flex: 1;
+	height: 100%;
+	text-align: right;
+	margin-right: 12px;
+	font-size: 34px;
+	font-family: 'Pretendard-Regular';
 `;
