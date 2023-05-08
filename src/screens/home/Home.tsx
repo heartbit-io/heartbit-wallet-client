@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
-import RecentQuestionList from './RecentQuestionList';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styled from 'styled-components/native';
 // assets
 import logo from 'assets/logo/logo.svg';
 import empty from 'assets/img/ic_empty_recent_q.png';
+import menu from 'assets/img/ic_menu.svg';
+import sat from 'assets/img/ic_sat.png';
 
 // components
 import {
 	Body,
+	Callout,
 	Gradient,
 	Headline,
 	MainButton,
@@ -19,10 +21,12 @@ import {
 import { getQuestionList } from 'apis/questionApi';
 
 import moment from 'moment';
+import { useAppSelector } from 'hooks/hooks';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Home'>;
 
 function Home({ navigation }: Props) {
+	const { userData } = useAppSelector(state => state.user);
 	const [questions, setQuestions] = useState<GetQuestionResponse[]>([
 		{
 			id: 0,
@@ -55,6 +59,13 @@ function Home({ navigation }: Props) {
 	return (
 		<Gradient>
 			<ScrollView>
+				<SpaceWrapper>
+					<Satoshi>
+						<SatoshiIcon source={sat} />
+						<TextCallout> {userData?.btcBalance.toLocaleString()}</TextCallout>
+					</Satoshi>
+					<BurgerIcon source={menu} />
+				</SpaceWrapper>
 				<Wrapper>
 					<Logo source={logo} />
 					<MainButton
@@ -116,6 +127,29 @@ const WrapperNotCenter = styled.View`
 	flex: 1;
 	padding-top: 64px;
 `;
+
+const Satoshi = styled.View`
+	flex-direction: row;
+	height: 36px;
+	width: 124px;
+	border-radius: 8px;
+	background: #ffffff66;
+	left: 16px;
+	top: 70px;
+	justify-content: flex-start;
+	align-items: center;
+`;
+
+const SatoshiIcon = styled.Image`
+	margin-left: 6px;
+`;
+
+const BurgerIcon = styled.Image`
+	right: 16px;
+	top: 70px;
+`;
+
+const TextCallout = styled(Callout)``;
 
 const Logo = styled.Image``;
 
