@@ -9,7 +9,7 @@ interface TransactionsSlice {
 }
 
 const initialState: TransactionsSlice = {
-	transactions: null,
+	transactions: [],
 	loading: false,
 	error: '',
 };
@@ -44,9 +44,8 @@ export const getTransactionsList =
 	(): AppThunk => async (dispatch, getState) => {
 		try {
 			const { pubkey } = getState().user.userData;
-			console.log('>>>>>>>>><<<<<<<', pubkey);
 			const res: any = await getTransactions(pubkey);
-			console.log('TRANSACTIONS ????????????', res);
+
 			if (res.statusCode === 200 && res?.success) {
 				return true;
 			} else {

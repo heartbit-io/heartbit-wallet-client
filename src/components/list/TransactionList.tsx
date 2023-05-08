@@ -10,6 +10,9 @@ import EmptyList from './EmptyList';
 // assets
 import EmptyArrow from 'assets/img/emptyArrow.svg';
 
+// hooks
+import { useAppSelector } from 'hooks';
+
 const data = [
 	{
 		date: new Date(),
@@ -32,6 +35,8 @@ const data = [
 ];
 
 const TransactionList = () => {
+	const { transactions } = useAppSelector(state => state.transactions);
+
 	const renderItemHandler = ({ item }: { item: any }) => {
 		return (
 			<ItemWrapper>
@@ -47,7 +52,7 @@ const TransactionList = () => {
 	};
 
 	const renderHeaderComponent = () => {
-		if (data.length > 0) {
+		if (transactions.length > 0) {
 			return (
 				<ArrowButtonWithText
 					title="Transactions"
@@ -70,7 +75,7 @@ const TransactionList = () => {
 
 	return (
 		<StyledFlatList
-			data={data}
+			data={transactions}
 			renderItem={renderItemHandler}
 			ListHeaderComponent={renderHeaderComponent()}
 			ListEmptyComponent={renderEmptyComponent()}
