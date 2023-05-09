@@ -41,10 +41,10 @@ const TransactionList = () => {
 		return (
 			<ItemWrapper>
 				<Subheadline color="#8E8E93">
-					{moment(item.date).format('MMMM Do YYYY, h:mm:ss a')}
+					{moment(item.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
 				</Subheadline>
 				<RowWrapper>
-					<Headline>{item.trType}</Headline>
+					<Headline>{item.type}</Headline>
 					<Subheadline>{`${item.amount} sats (${item.fee} sats fee)`}</Subheadline>
 				</RowWrapper>
 			</ItemWrapper>

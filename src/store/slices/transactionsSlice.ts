@@ -47,6 +47,7 @@ export const getTransactionsList =
 			const res: any = await getTransactions(pubkey);
 
 			if (res.statusCode === 200 && res?.success) {
+				dispatch(setTransactions(res.data));
 				return true;
 			} else {
 				return false;
