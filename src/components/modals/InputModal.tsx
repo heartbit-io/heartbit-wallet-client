@@ -22,7 +22,7 @@ type Props = {
 	title: string;
 	type: 'deposit' | 'withdraw';
 	modalVisible: boolean;
-	onPressConfirm: () => void;
+	onPressConfirm: (value: number) => void;
 	closeModal: () => void;
 };
 
@@ -76,7 +76,7 @@ const InputModal = ({
 	};
 
 	return (
-		<Modal animationType="slide" transparent={true} visible={modalVisible}>
+		<Modal animationType="fade" transparent={true} visible={modalVisible}>
 			<KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
 				<Wrapper onPress={closeModal} activeOpacity={1}>
 					<Container>
@@ -100,7 +100,7 @@ const InputModal = ({
 						{renderInputBelow()}
 						<MainButton
 							text="Confirm"
-							onPress={onPressConfirm}
+							onPress={() => onPressConfirm(Number(value?.replace(/,/g, '')))}
 							buttonStyle={{ borderRadius: 8 }}
 						/>
 					</Container>
