@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
@@ -14,14 +14,22 @@ import {
 } from 'components';
 
 // hooks
-import { useAppSelector } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
+
+// store
+import { getTransactionsList } from 'store/slices/transactionsSlice';
 
 type Props = NativeStackScreenProps<BottomTabTypes, 'Wallet'>;
 
 const Wallet = ({ navigation }: Props) => {
+	const dispatch = useAppDispatch();
 	const { userData } = useAppSelector(state => state.user);
 	const [withdrawModalVisible, setWithdrawModalVisible] = useState(false);
 	const [depositModalVisible, setDepositModalVisible] = useState(false);
+
+	useEffect(() => {
+		dispatch(getTransactionsList());
+	}, []);
 
 	return (
 		<Wrapper>
