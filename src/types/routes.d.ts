@@ -11,6 +11,8 @@ type RootStackType = {
 		askContent: string;
 		createdAt?: string;
 	};
+	MyQuestions: undefined;
+	Transactions: undefined
 };
 
 type BottomTabTypes = {

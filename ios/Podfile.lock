@@ -405,14 +405,14 @@ PODS:
     - React-Core
   - RNCClipboard (1.11.2):
     - React-Core
-  - RNFBApp (17.4.2):
+  - RNFBApp (17.4.3):
     - Firebase/CoreOnly (= 10.7.0)
     - React-Core
-  - RNFBAuth (17.4.2):
+  - RNFBAuth (17.4.3):
     - Firebase/Auth (= 10.7.0)
     - React-Core
     - RNFBApp
-  - RNFBDynamicLinks (17.4.2):
+  - RNFBDynamicLinks (17.4.3):
     - Firebase/DynamicLinks (= 10.7.0)
     - GoogleUtilities/AppDelegateSwizzler
     - React-Core
@@ -679,6 +679,7 @@ SPEC CHECKSUMS:
   RNFBApp: 922564a99c97a8cab366d5a918f9fecff6b563d5
   RNFBAuth: 55fd07310abde3fa2f3a6568f6d3ef590383d241
   RNFBDynamicLinks: bd788341d17d727a68957deae4c995f275871c3f
+  RNGestureHandler: 071d7a9ad81e8b83fe7663b303d132406a7d8f39
   RNKeychain: ff836453cba46938e0e9e4c22e43d43fa2c90333
   RNReanimated: b1220a0e5168745283ff5d53bfc7d2144b2cee1b
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
@@ -688,4 +689,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 3169f74ba0cbf2fad8d6860e542aafe9f551b511
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.11.3
