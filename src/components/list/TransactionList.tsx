@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import moment from 'moment';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 // components
-import { Headline, Subheadline } from 'components/common';
+import { Footnote, Headline, Subheadline } from 'components/common';
 import { ArrowButtonWithText } from 'components';
 import EmptyList from './EmptyList';
 
@@ -11,30 +12,15 @@ import EmptyList from './EmptyList';
 import EmptyArrow from 'assets/img/emptyArrow.svg';
 
 // hooks
+import { useNavigation } from '@react-navigation/native';
 import { useAppSelector } from 'hooks';
 
-const data = [
-	{
-		date: new Date(),
-		amount: -1980,
-		fee: 20,
-		trType: 'Withdraw',
-	},
-	{
-		date: new Date(),
-		amount: +1862,
-		fee: 132,
-		trType: 'Bounty earned',
-	},
-	{
-		date: new Date(),
-		amount: -2000,
-		fee: 138,
-		trType: 'Bounty pledged',
-	},
-];
+type Props = {
+	isTransactionsScreen?: boolean;
+};
 
-const TransactionList = () => {
+const TransactionList = ({ isTransactionsScreen }: Props) => {
+	const navigation = useNavigation<NativeStackNavigationProp<RootStackType>>();
 	const { transactions } = useAppSelector(state => state.transactions);
 
 	const renderItemHandler = ({ item }: { item: any }) => {
@@ -52,12 +38,12 @@ const TransactionList = () => {
 	};
 
 	const renderHeaderComponent = () => {
-		if (transactions.length > 0) {
+		if (!isTransactionsScreen && transactions.length > 0) {
 			return (
 				<ArrowButtonWithText
 					title="Transactions"
 					btnText="See all"
-					onPress={() => {}}
+					onPress={() => navigation.navigate('Transactions')}
 				/>
 			);
 		}
@@ -65,12 +51,20 @@ const TransactionList = () => {
 	};
 
 	const renderEmptyComponent = () => {
-		return (
-			<EmptyList
-				icon={EmptyArrow}
-				text={'Deposit some bitcoin(sats)\nto spend for bounties'}
-			/>
-		);
+		if (isTransactionsScreen) {
+			return (
+				<Footnote style={{ textAlign: 'center', marginTop: 50 }}>
+					There is no any transactions
+				</Footnote>
+			);
+		} else {
+			return (
+				<EmptyList
+					icon={EmptyArrow}
+					text={'Deposit some bitcoin(sats)\nto spend for bounties'}
+				/>
+			);
+		}
 	};
 
 	return (
@@ -79,15 +73,16 @@ const TransactionList = () => {
 			renderItem={renderItemHandler}
 			ListHeaderComponent={renderHeaderComponent()}
 			ListEmptyComponent={renderEmptyComponent()}
-			stickyHeaderIndices={[0]}
+			stickyHeaderIndices={isTransactionsScreen ? [] : [0]}
+			marginTop={isTransactionsScreen ? 0 : transactions.length > 0 ? 64 : 22}
 		/>
 	);
 };
 
 export default TransactionList;
 
-const StyledFlatList = styled.FlatList<{ data: any[] }>`
-	margin-top: ${({ data }) => (data.length > 0 ? 64 : 22)}px;
+const StyledFlatList = styled.FlatList<{ marginTop: number }>`
+	margin-top: ${({ marginTop }) => marginTop}px;
 `;
 
 const ItemWrapper = styled.View`

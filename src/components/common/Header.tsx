@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import chevronLeft from 'assets/img/chevron.left.svg';
 
 type Props = {
+	headerTitle?: string;
 	headerLeft?: boolean;
 	headerRight?: boolean;
 	onPressHeaderLeft?: () => {};
@@ -16,6 +17,7 @@ type Props = {
 };
 
 const Header = ({
+	headerTitle = '',
 	headerLeft,
 	headerRight,
 	onPressHeaderLeft,
@@ -67,7 +69,7 @@ const Header = ({
 	useEffect(() => {
 		navigation.setOptions({
 			headerShown: true,
-			headerTitle: '',
+			headerTitle: headerTitle,
 			headerStyle: { backgroundColor: '#FFF5ED' },
 			headerLeft: renderHeaderLeft,
 			headerRight: renderHeaderRight,
