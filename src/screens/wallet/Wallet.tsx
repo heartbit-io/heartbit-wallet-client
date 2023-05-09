@@ -9,6 +9,7 @@ import {
 	HeaderTitle,
 	InputModal,
 	LargeTitle,
+	QRModal,
 	Space,
 	TransactionList,
 } from 'components';
@@ -25,9 +26,24 @@ type Props = NativeStackScreenProps<BottomTabTypes, 'Wallet'>;
 const Wallet = ({ navigation }: Props) => {
 	const dispatch = useAppDispatch();
 	const { userData } = useAppSelector(state => state.user);
+	const [satsValue, setSatsValue] = useState(0);
 	const [USDPerSat, setUSDPerSat] = useState(0);
 	const [withdrawModalVisible, setWithdrawModalVisible] = useState(false);
 	const [depositModalVisible, setDepositModalVisible] = useState(false);
+	const [depositQRVisible, setDepositQRVisible] = useState(false);
+	const [withdrawQRVisible, setWithdrawQRVisible] = useState(false);
+
+	const confirmHandler = (type: 'deposit' | 'withdraw', val: number) => {
+		setSatsValue(val);
+
+		if (type === 'deposit') {
+			setDepositModalVisible(false);
+			setDepositQRVisible(true);
+		} else {
+			setWithdrawModalVisible(false);
+			setWithdrawQRVisible(true);
+		}
+	};
 
 	useEffect(() => {
 		dispatch(getTransactionsList());
@@ -73,15 +89,27 @@ const Wallet = ({ navigation }: Props) => {
 				title={'Deposit with Lightning'}
 				type={'deposit'}
 				modalVisible={depositModalVisible}
-				onPressConfirm={() => {}}
+				onPressConfirm={val => confirmHandler('deposit', val)}
 				closeModal={() => setDepositModalVisible(false)}
 			/>
 			<InputModal
 				title={'Withdraw with Lightning'}
 				type={'withdraw'}
 				modalVisible={withdrawModalVisible}
-				onPressConfirm={() => {}}
+				onPressConfirm={val => confirmHandler('withdraw', val)}
 				closeModal={() => setWithdrawModalVisible(false)}
+			/>
+			<QRModal
+				title={'Deposit with Lightning'}
+				type="deposit"
+				modalVisible={depositQRVisible}
+				closeModal={() => setDepositQRVisible(false)}
+			/>
+			<QRModal
+				title={'Withdraw with Lightning'}
+				type="withdraw"
+				modalVisible={withdrawQRVisible}
+				closeModal={() => setWithdrawQRVisible(false)}
 			/>
 		</Wrapper>
 	);

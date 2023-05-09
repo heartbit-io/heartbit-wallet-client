@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import QRCode from 'react-native-qrcode-svg';
-import qrLogo from 'assets/logo/logo.svg';
-import copyImg from 'assets/img/ic_copy_clipboard.png';
 import Clipboard from '@react-native-clipboard/clipboard';
+
+// assets
+import qrLogo from 'assets/logo/logo.svg';
+import copyImg from 'assets/img/copy.svg';
+
+// components
 import { Caption1, Subheadline } from 'components/common';
 
 type Props = {
@@ -13,10 +17,12 @@ type Props = {
 const QRCodeHeartBit = ({ qrAddress }: Props) => {
 	const [copied, setCopied] = useState(false);
 
-	const copyToClipboard = (): void => {
-		Clipboard.setString(qrAddress);
-		setCopied(true);
-		setTimeout(() => setCopied(false), 3000);
+	const copyToClipboard = () => {
+		if (!copied) {
+			Clipboard.setString(qrAddress);
+			setCopied(true);
+			setTimeout(() => setCopied(false), 3000);
+		}
 	};
 
 	return (
@@ -34,7 +40,9 @@ const QRCodeHeartBit = ({ qrAddress }: Props) => {
 			</QRWrapper>
 			<CopyButton onPress={copyToClipboard} copied={copied}>
 				<CopyImg source={copyImg} />
-				<LabelText>{qrAddress.substring(0, 27).concat('...')}</LabelText>
+				<Subheadline numberOfLines={1} color={'#FF2D55'}>
+					{qrAddress}
+				</Subheadline>
 			</CopyButton>
 			<CopyText>
 				{copied ? 'Copied To clipboard' : 'Copy To clipboard'}
@@ -49,7 +57,6 @@ const Wrapper = styled.View`
 	align-items: center;
 	justify-content: center;
 	margin-top: 20px;
-	margin-bottom: 50px;
 `;
 
 const QRWrapper = styled.View`
@@ -58,25 +65,24 @@ const QRWrapper = styled.View`
 	background-color: white;
 	align-items: center;
 	justify-content: center;
+	margin-bottom: 24px;
 `;
 
 const CopyButton = styled.TouchableOpacity<{ copied?: boolean }>`
 	flex-direction: row;
-	width: 262px;
-	height: 29px;
-	border-width: 2px;
-	margin-top: 26px;
-	border-color: #ff2d55;
-	background-color: ${({ copied }) => (copied ? '#FF2D5533' : '')};
+	border: 1px solid #ff2d55;
+	border-radius: 4px;
+	background-color: ${p =>
+		p.copied ? 'rgba(255, 45, 85, 0.2)' : 'transparent'};
+	margin-bottom: 8px;
+	padding-vertical: 4.5px;
+	padding-horizontal: 9.5px;
+	margin-horizontal: 21px;
 `;
 
-const LabelText = styled(Subheadline)`
-	color: #ff2d55;
-	margin-left: 12px;
-	line-height: 22px;
+const CopyImg = styled.Image`
+	margin-right: 7px;
 `;
-
-const CopyImg = styled.Image``;
 
 const CopyText = styled(Caption1)`
 	color: #3a3a3c;
