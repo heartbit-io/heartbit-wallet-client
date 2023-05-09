@@ -34,7 +34,7 @@ const Root = () => {
 			<Stack.Screen
 				name="EmailSignUp"
 				component={EmailSignUp}
-				options={{ gestureEnabled: false }}
+				options={{ animation: 'fade', gestureEnabled: false }}
 			/>
 			<Stack.Screen
 				name="EmailSent"
