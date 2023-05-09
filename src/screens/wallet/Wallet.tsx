@@ -30,12 +30,12 @@ const Wallet = ({ navigation }: Props) => {
 	const [depositModalVisible, setDepositModalVisible] = useState(false);
 
 	useEffect(() => {
+		dispatch(getTransactionsList());
 		(async () => {
 			try {
 				const responseDto: ResponseDto<ExchangeRateResponse> =
 					await getBtcRates();
 				setUSDPerSat(responseDto.data?.customSatoshi as number);
-				dispatch(getTransactionsList());
 			} catch (err) {
 				console.error(err);
 			}
