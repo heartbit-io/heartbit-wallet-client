@@ -41,7 +41,7 @@ const QRCodeHeartBit = ({ qrAddress }: Props) => {
 			<CopyButton onPress={copyToClipboard} copied={copied}>
 				<CopyImg source={copyImg} />
 				<Subheadline numberOfLines={1} color={'#FF2D55'}>
-					lnbc1m1pjr8fhcpp5g4zlq6sqya0cfspd3sa7kmyamuu8z7qp9r2a2ev3ulxsrsm42usqdqu2askcmr9wssx7e3q2dshgmmndp5scqzpgxqyz5vqsp5xeksml74k3k3u968z73276ajswa24p9nq9g4zqpl8emaqgcdmy7q9qyyssqz7jly7j33u5f66dvu0kkd94mh96zwmq26k26t9q56nzk2ecwaqwst89lnktkjn0rkp4swv4z2sjhardpff8easl45cgd2aldscxy9cgqt4dwmg
+					{qrAddress}
 				</Subheadline>
 			</CopyButton>
 			<CopyText>
