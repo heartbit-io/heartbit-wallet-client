@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Header, MainButton } from 'components';
 import { BountyInfoModal } from './BountyInfoModal';
@@ -16,11 +16,13 @@ import {
 import { postQuestion } from 'apis/questionApi';
 import { Alert } from 'react-native';
 import { useAppSelector } from 'hooks/hooks';
+import { getBtcRates } from 'apis/coinApi';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Bounty'>;
 
 function Bounty({ navigation, route }: Props) {
 	const [bounty, setBounty] = useState(0);
+	const [USDPerSat, setUSDPerSat] = useState(0);
 	const [isManual, setIsManual] = useState(false);
 	const [modalVisible, setModalVisible] = useState(false);
 
@@ -41,6 +43,18 @@ function Bounty({ navigation, route }: Props) {
 		})();
 	};
 
+	useEffect(() => {
+		(async () => {
+			try {
+				const responseDto: ResponseDto<ExchangeRateResponse> =
+					await getBtcRates();
+				setUSDPerSat(responseDto.data?.customSatoshi as number);
+			} catch (err) {
+				console.error(err);
+			}
+		})();
+	}, []);
+
 	return (
 		<ScrollWrapper>
 			<Header headerLeft={true} headerRight={true} />
@@ -58,7 +72,12 @@ function Bounty({ navigation, route }: Props) {
 				</BountyTextBold>
 				<BountyAmountContainer>
 					<BountySatoshiText>10,000 sats</BountySatoshiText>
-					<BountyUSDText>2.85 USD</BountyUSDText>
+					<BountyUSDText>
+						{(10000 * USDPerSat).toLocaleString(undefined, {
+							maximumFractionDigits: 2,
+						})}{' '}
+						USD
+					</BountyUSDText>
 				</BountyAmountContainer>
 			</BountyButton10000>
 			<BountyButton1000
@@ -71,7 +90,12 @@ function Bounty({ navigation, route }: Props) {
 				<BountyTextBold>Medium</BountyTextBold>
 				<BountyAmountContainer>
 					<BountySatoshiText>1,000 sats</BountySatoshiText>
-					<BountyUSDText>0.28 USD</BountyUSDText>
+					<BountyUSDText>
+						{(1000 * USDPerSat).toLocaleString(undefined, {
+							maximumFractionDigits: 2,
+						})}{' '}
+						USD
+					</BountyUSDText>
 				</BountyAmountContainer>
 			</BountyButton1000>
 			<BountyButtonManual
@@ -87,7 +111,12 @@ function Bounty({ navigation, route }: Props) {
 							<BountySatoshiText>
 								{bounty.toLocaleString()} sats
 							</BountySatoshiText>
-							<BountyUSDText>{bounty.toLocaleString()} USD</BountyUSDText>
+							<BountyUSDText>
+								{(bounty * USDPerSat).toLocaleString(undefined, {
+									maximumFractionDigits: 2,
+								})}{' '}
+								USD
+							</BountyUSDText>
 						</>
 					) : (
 						<BalanceText>{'>'}</BalanceText>
@@ -118,12 +147,16 @@ function Bounty({ navigation, route }: Props) {
 								/>
 								<Subheadline>sats</Subheadline>
 							</InputWrapper>
+							<BountyMinimumText>
+								Bounty must be at least 1,000 sats
+							</BountyMinimumText>
 							<MainButton
 								text="Confirm"
 								onPress={() => {
 									setIsManual(true);
 									setModalVisible(false);
 								}}
+								active={modalVisible === true && bounty >= 1000 ? true : false}
 								buttonStyle={{ borderRadius: 8 }}
 							/>
 						</Container>
@@ -185,6 +218,12 @@ const BountySatoshiText = styled(Body)`
 const BountyUSDText = styled(Caption1)`
 	color: #8e8e93;
 	margin-bottom: 11px;
+`;
+
+const BountyMinimumText = styled(Caption1)`
+	color: #ff3b30;
+	margin-bottom: 8px;
+	text-align: center;
 `;
 
 const BountyAmountContainer = styled.View`

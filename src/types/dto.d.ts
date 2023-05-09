@@ -31,3 +31,9 @@ interface ReplyResponse {
 	reply: string;
 	createdAt: string;
 }
+
+interface ExchangeRateResponse {
+	'1000': number;
+	'10000': number;
+	customSatoshi: number;
+}

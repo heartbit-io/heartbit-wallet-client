@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
@@ -15,13 +15,19 @@ import {
 } from 'components';
 
 // hooks
-import { useAppSelector } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
+
+// store
+import { getTransactionsList } from 'store/slices/transactionsSlice';
+import { getBtcRates } from 'apis/coinApi';
 
 type Props = NativeStackScreenProps<BottomTabTypes, 'Wallet'>;
 
 const Wallet = ({ navigation }: Props) => {
+	const dispatch = useAppDispatch();
 	const { userData } = useAppSelector(state => state.user);
 	const [satsValue, setSatsValue] = useState(0);
+	const [USDPerSat, setUSDPerSat] = useState(0);
 	const [withdrawModalVisible, setWithdrawModalVisible] = useState(false);
 	const [depositModalVisible, setDepositModalVisible] = useState(false);
 	const [depositQRVisible, setDepositQRVisible] = useState(false);
@@ -39,6 +45,19 @@ const Wallet = ({ navigation }: Props) => {
 		}
 	};
 
+	useEffect(() => {
+		dispatch(getTransactionsList());
+		(async () => {
+			try {
+				const responseDto: ResponseDto<ExchangeRateResponse> =
+					await getBtcRates();
+				setUSDPerSat(responseDto.data?.customSatoshi as number);
+			} catch (err) {
+				console.error(err);
+			}
+		})();
+	}, []);
+
 	return (
 		<Wrapper>
 			<HeaderTitle />
@@ -46,7 +65,12 @@ const Wallet = ({ navigation }: Props) => {
 				<LargeTitle weight="bold">
 					{userData?.btcBalance?.toLocaleString()} sats
 				</LargeTitle>
-				<Body style={{ marginTop: 16, color: '#3A3A3C' }}>234.23 USD</Body>
+				<Body style={{ marginTop: 16, color: '#3A3A3C' }}>
+					{(userData?.btcBalance * USDPerSat).toLocaleString(undefined, {
+						maximumFractionDigits: 2,
+					})}{' '}
+					USD
+				</Body>
 			</TextsWrapper>
 			<ButtonsWrapper>
 				<Button

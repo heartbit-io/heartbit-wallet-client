@@ -20,6 +20,20 @@ export const postQuestion = async (
 	}
 };
 
+export const deleteQuestion = async (
+	questionId: number,
+): Promise<ResponseDto<any>> => {
+	try {
+		const response = await api.delete(url + `/${questionId}`);
+
+		const responseDto = await response.data;
+
+		return responseDto as ResponseDto<any>;
+	} catch (err: any) {
+		return err;
+	}
+};
+
 export const getQuestionList = async (
 	limit: number,
 	offset: number,
