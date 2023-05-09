@@ -11,6 +11,8 @@ type Props = {
 	headerRight?: boolean;
 	onPressHeaderLeft?: () => {};
 	onPressHeaderRight?: () => {};
+	headerLeftTitle?: string;
+	hearderRightTitle?: string;
 };
 
 const Header = ({
@@ -18,6 +20,8 @@ const Header = ({
 	headerRight,
 	onPressHeaderLeft,
 	onPressHeaderRight,
+	headerLeftTitle = 'Back',
+	hearderRightTitle = 'Cancel',
 }: Props) => {
 	const navigation = useNavigation<NativeStackNavigationProp<RootStackType>>();
 
@@ -32,6 +36,8 @@ const Header = ({
 	const onPressHeaderRightHandler = () => {
 		if (onPressHeaderRight) {
 			onPressHeaderRight();
+		} else {
+			navigation.replace('DrawerTabs');
 		}
 	};
 
@@ -40,7 +46,7 @@ const Header = ({
 			return (
 				<Wrapper onPress={onPressHeaderLeftHandler}>
 					<Icon source={chevronLeft} />
-					<Back>Back</Back>
+					<Back>{headerLeftTitle}</Back>
 				</Wrapper>
 			);
 		}
@@ -51,7 +57,7 @@ const Header = ({
 		if (headerRight) {
 			return (
 				<Wrapper onPress={onPressHeaderRightHandler}>
-					<Cancel>Cancel</Cancel>
+					<Cancel>{hearderRightTitle}</Cancel>
 				</Wrapper>
 			);
 		}

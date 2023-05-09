@@ -5,7 +5,7 @@ import { Body, Caption1, Subheadline, Title1 } from 'components/common';
 import loading_dot from 'assets/gif/loading_dot.gif';
 import Header from 'components/common/Header';
 import { Alert } from 'react-native';
-import { getReply, postGPTReply } from 'apis/questionApi';
+import { deleteQuestion, getReply, postGPTReply } from 'apis/questionApi';
 import moment from 'moment';
 
 type Props = NativeStackScreenProps<RootStackType, 'Forum'>;
@@ -43,7 +43,37 @@ function Forum({ navigation, route }: Props) {
 
 	return (
 		<Wrapper>
-			<Header headerLeft={true} headerRight={true} />
+			<Header
+				headerLeft={true}
+				headerRight={true}
+				hearderRightTitle={'Delete'}
+				onPressHeaderRight={async () => {
+					Alert.alert(
+						`Are you sure you want to permanently delete this? Your question, doctor's note, and medical record will be deleted.`,
+						'',
+						[
+							{
+								text: 'Delete',
+								onPress: async () => {
+									const responseDto: ResponseDto<any> = await deleteQuestion(
+										route.params.questionId,
+									);
+									if (responseDto.statusCode === 200) {
+										Alert.alert(responseDto.message);
+										navigation.replace('DrawerTabs');
+									} else {
+										Alert.alert(responseDto.message, 'Try again later');
+									}
+								},
+							},
+							{
+								text: 'Cancel',
+								onPress: async () => '',
+							},
+						],
+					);
+				}}
+			/>
 			<PostWrapper>
 				<ProfileWrapper>
 					<CircleSky>
