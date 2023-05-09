@@ -114,7 +114,9 @@ function Forum({ navigation, route }: Props) {
 							<LoadingGif source={loading_dot} />
 						</GPTLoadingWrapper>
 					) : (
-						<Text>{answer.reply}</Text>
+						<Text>
+							{answer.reply + '\n\n Please wait for an answer by human doctor.'}
+						</Text>
 					)}
 				</PostWrapper>
 				<CautionWrapper>

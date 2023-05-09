@@ -18,17 +18,28 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 
 // store
 import { getTransactionsList } from 'store/slices/transactionsSlice';
+import { getBtcRates } from 'apis/coinApi';
 
 type Props = NativeStackScreenProps<BottomTabTypes, 'Wallet'>;
 
 const Wallet = ({ navigation }: Props) => {
 	const dispatch = useAppDispatch();
 	const { userData } = useAppSelector(state => state.user);
+	const [USDPerSat, setUSDPerSat] = useState(0);
 	const [withdrawModalVisible, setWithdrawModalVisible] = useState(false);
 	const [depositModalVisible, setDepositModalVisible] = useState(false);
 
 	useEffect(() => {
-		dispatch(getTransactionsList());
+		(async () => {
+			try {
+				const responseDto: ResponseDto<ExchangeRateResponse> =
+					await getBtcRates();
+				setUSDPerSat(responseDto.data?.customSatoshi as number);
+				dispatch(getTransactionsList());
+			} catch (err) {
+				console.error(err);
+			}
+		})();
 	}, []);
 
 	return (
@@ -38,7 +49,12 @@ const Wallet = ({ navigation }: Props) => {
 				<LargeTitle weight="bold">
 					{userData?.btcBalance?.toLocaleString()} sats
 				</LargeTitle>
-				<Body style={{ marginTop: 16, color: '#3A3A3C' }}>234.23 USD</Body>
+				<Body style={{ marginTop: 16, color: '#3A3A3C' }}>
+					{(userData?.btcBalance * USDPerSat).toLocaleString(undefined, {
+						maximumFractionDigits: 2,
+					})}{' '}
+					USD
+				</Body>
 			</TextsWrapper>
 			<ButtonsWrapper>
 				<Button
