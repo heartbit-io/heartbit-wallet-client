@@ -12,7 +12,7 @@ type RootStackType = {
 		createdAt?: string;
 	};
 	MyQuestions: undefined;
-	Transactions: undefined
+	Transactions: undefined;
 };
 
 type BottomTabTypes = {
@@ -43,4 +43,6 @@ type HomeNavigatorParamList = {
 		askContent: string;
 		createdAt?: string;
 	};
+	MyQuestions: undefined;
+	DrawerTabs: undefined;
 };
