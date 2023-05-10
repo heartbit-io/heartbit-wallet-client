@@ -59,20 +59,20 @@ function Home({ navigation }: Props) {
 
 	return (
 		<Gradient>
+			<HeaderWrapper>
+				<Satoshi>
+					<SatoshiIcon source={sat} />
+					<TextCallout> {userData?.btcBalance.toLocaleString()}</TextCallout>
+				</Satoshi>
+				<ButtonWrapper
+					onPress={() => {
+						navigation.dispatch(DrawerActions.openDrawer());
+					}}
+				>
+					<BurgerIcon source={menu} />
+				</ButtonWrapper>
+			</HeaderWrapper>
 			<ScrollView>
-				<HeaderWrapper>
-					<Satoshi>
-						<SatoshiIcon source={sat} />
-						<TextCallout> {userData?.btcBalance.toLocaleString()}</TextCallout>
-					</Satoshi>
-					<ButtonWrapper
-						onPress={() => {
-							navigation.dispatch(DrawerActions.openDrawer());
-						}}
-					>
-						<BurgerIcon source={menu} />
-					</ButtonWrapper>
-				</HeaderWrapper>
 				<Wrapper>
 					<Logo source={logo} />
 					<MainButton
