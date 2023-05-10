@@ -51,10 +51,16 @@ const MyQuestionList = () => {
 				<RowWrapper>
 					<HeadlineText numberOfLines={1}>{item.content}</HeadlineText>
 				</RowWrapper>
-				<SubheadlineText>
-					{moment(item.createdAt).format('D MMM YYYY ・ ') + item.bountyAmount}{' '}
-					sats
-				</SubheadlineText>
+				<SpaceWrapper>
+					<SubheadlineText>
+						{moment(item.createdAt).format('D MMM YYYY ・ ') +
+							item.bountyAmount}{' '}
+						sats
+					</SubheadlineText>
+					<TextSubHeadlineBlue>
+						{item.status === 'Open' ? '' : 'Got answered ✓'}
+					</TextSubHeadlineBlue>
+				</SpaceWrapper>
 			</ItemWrapper>
 		);
 	};
@@ -91,6 +97,12 @@ const ItemWrapper = styled.TouchableOpacity`
 	margin-horizontal: 16px;
 `;
 
+const SpaceWrapper = styled.View`
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+`;
+
 const SubheadlineText = styled(Subheadline)`
 	color: #8e8e93;
 	margin-top: 8px;
@@ -105,4 +117,8 @@ const RowWrapper = styled.View`
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
+`;
+
+const TextSubHeadlineBlue = styled(Subheadline)`
+	color: #007aff;
 `;

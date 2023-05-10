@@ -58,7 +58,7 @@ function Bounty({ navigation, route }: Props) {
 	return (
 		<ScrollWrapper>
 			<Header headerLeft={true} headerRight={true} />
-			<Text>Set a bounty for consultation</Text>
+			<Text>Set a bounty for faster answer</Text>
 			<BountyInfoModal />
 			<BountyButton10000
 				bounty={bounty}
@@ -67,9 +67,7 @@ function Bounty({ navigation, route }: Props) {
 					setBounty(10000);
 				}}
 			>
-				<BountyTextBold>
-					High: <BountyText>Likely get answered faster</BountyText>
-				</BountyTextBold>
+				<BountyTextBold>Faster</BountyTextBold>
 				<BountyAmountContainer>
 					<BountySatoshiText>10,000 sats</BountySatoshiText>
 					<BountyUSDText>
@@ -87,7 +85,7 @@ function Bounty({ navigation, route }: Props) {
 					setBounty(1000);
 				}}
 			>
-				<BountyTextBold>Medium</BountyTextBold>
+				<BountyTextBold>Normal</BountyTextBold>
 				<BountyAmountContainer>
 					<BountySatoshiText>1,000 sats</BountySatoshiText>
 					<BountyUSDText>
@@ -180,7 +178,7 @@ function Bounty({ navigation, route }: Props) {
 						await navigateToForum({ navigation, route });
 					}}
 				>
-					<SkipText>Skip</SkipText>
+					<SkipText>Continue without setting a bounty</SkipText>
 				</SkipButton>
 			</SkipWrapper>
 		</ScrollWrapper>
@@ -244,7 +242,7 @@ const BountyButton10000 = styled.TouchableOpacity<{ bounty?: number }>`
 	width: 100%;
 	height: 64px;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	border-color: ${({ bounty }) => (bounty === 10000 ? 'red' : 'gray')};
 	background-color: white;
 	border-width: ${({ bounty }) => (bounty === 10000 ? '2px' : '1px')};
@@ -258,7 +256,7 @@ const BountyButton1000 = styled.TouchableOpacity<{ bounty?: number }>`
 	width: 100%;
 	height: 64px;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	border-color: ${({ bounty }) => (bounty === 1000 ? 'red' : 'gray')};
 	background-color: white;
 	border-width: ${({ bounty }) => (bounty === 1000 ? '2px' : '1px')};
@@ -272,7 +270,7 @@ const BountyButtonManual = styled.TouchableOpacity<{ bounty?: number }>`
 	width: 100%;
 	height: 64px;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	border-color: ${({ bounty }) =>
 		bounty != 0 && bounty != 1000 && bounty != 10000 ? 'red' : 'gray'};
 	background-color: white;
@@ -304,14 +302,14 @@ const SkipWrapper = styled.View`
 `;
 
 const SkipButton = styled.TouchableOpacity`
-	width: 35px;
-	height: 22px;
+	width: 90%;
 	align-items: center;
 	justify-content: center;
 `;
 
 const SkipText = styled(Body)`
 	font-weight: bold;
+	color: #f68f2a;
 `;
 
 const Wrapper = styled.TouchableOpacity`
