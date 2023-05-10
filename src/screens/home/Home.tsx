@@ -22,6 +22,7 @@ import { getQuestionList } from 'apis/questionApi';
 
 import moment from 'moment';
 import { useAppSelector } from 'hooks/hooks';
+import { DrawerActions } from '@react-navigation/native';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Home'>;
 
@@ -58,14 +59,20 @@ function Home({ navigation }: Props) {
 
 	return (
 		<Gradient>
-			<ScrollView>
-				<SpaceWrapper>
-					<Satoshi>
-						<SatoshiIcon source={sat} />
-						<TextCallout> {userData?.btcBalance.toLocaleString()}</TextCallout>
-					</Satoshi>
+			<HeaderWrapper>
+				<Satoshi>
+					<SatoshiIcon source={sat} />
+					<TextCallout> {userData?.btcBalance.toLocaleString()}</TextCallout>
+				</Satoshi>
+				<ButtonWrapper
+					onPress={() => {
+						navigation.dispatch(DrawerActions.openDrawer());
+					}}
+				>
 					<BurgerIcon source={menu} />
-				</SpaceWrapper>
+				</ButtonWrapper>
+			</HeaderWrapper>
+			<ScrollView>
 				<Wrapper>
 					<Logo source={logo} />
 					<MainButton
@@ -87,13 +94,17 @@ function Home({ navigation }: Props) {
 						<RecentWrapper>
 							<SpaceWrapper>
 								<TextTitle>Recent</TextTitle>
-								<TextBody>See all {'>'}</TextBody>
+								<ButtonWrapper
+									onPress={() => navigation.navigate('MyQuestions')}
+								>
+									<TextBody>See all {'>'}</TextBody>
+								</ButtonWrapper>
 							</SpaceWrapper>
 							{questions?.map(question => {
 								return (
 									<QuestionWrapper>
-										<TextHeadline>
-											{question.content.slice(0, 30).concat('...')}
+										<TextHeadline numberOfLines={1}>
+											{question.content}
 										</TextHeadline>
 										<SpaceWrapper>
 											<TextSubHeadlineGray>
@@ -120,7 +131,7 @@ export default Home;
 const Wrapper = styled.View`
 	flex: 1;
 	align-items: center;
-	padding-top: 191px;
+	padding-top: 121px;
 	padding-horizontal: 25px;
 `;
 const WrapperNotCenter = styled.View`
@@ -128,14 +139,22 @@ const WrapperNotCenter = styled.View`
 	padding-top: 64px;
 `;
 
+const HeaderWrapper = styled.View`
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 70px;
+	margin-horizontal: 16px;
+`;
+
+const ButtonWrapper = styled.TouchableOpacity``;
+
 const Satoshi = styled.View`
 	flex-direction: row;
 	height: 36px;
 	width: 124px;
 	border-radius: 8px;
 	background: #ffffff66;
-	left: 16px;
-	top: 70px;
 	justify-content: space-between;
 	align-items: center;
 `;
@@ -144,10 +163,7 @@ const SatoshiIcon = styled.Image`
 	margin-left: 6px;
 `;
 
-const BurgerIcon = styled.Image`
-	right: 16px;
-	top: 70px;
-`;
+const BurgerIcon = styled.Image``;
 
 const TextCallout = styled(Callout)`
 	margin-right: 12px;
@@ -180,6 +196,7 @@ const QuestionWrapper = styled.View`
 	border-bottom-width: 0.5px;
 	border-color: #bdbdbd;
 `;
+
 const TextBody = styled(Body)`
 	color: gray;
 	margin-bottom: 16px;
