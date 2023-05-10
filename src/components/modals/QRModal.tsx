@@ -22,7 +22,7 @@ const QRModal = ({ title, type, modalVisible, closeModal }: Props) => {
 				<Container>
 					<RowWrapper>
 						<Icon source={Lightening} />
-						<Title3 weight="bold">{title}</Title3>
+						<Title3Text>{title}</Title3Text>
 					</RowWrapper>
 					<Subheadline>
 						Scan the QR code or input the invoice address below with a{' '}
@@ -65,4 +65,8 @@ const RowWrapper = styled.View`
 
 const Icon = styled.Image`
 	margin-right: 7px;
+`;
+
+const Title3Text = styled(Title3)`
+	font-weight: bold;
 `;

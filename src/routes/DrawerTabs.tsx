@@ -41,19 +41,19 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 		<Wrapper>
 			<Container>
 				<RowWrapper onPress={() => navigation.navigate('MyQuestions')}>
-					<Headline weight="bold">My Questions</Headline>
+					<HeadLineText>My Questions</HeadLineText>
 					<Icon source={ChevronRight} />
 				</RowWrapper>
 				<RowWrapper onPress={() => navigation.navigate('Transactions')}>
-					<Headline weight="bold">Transactions</Headline>
+					<HeadLineText>Transactions</HeadLineText>
 					<Icon source={ChevronRight} />
 				</RowWrapper>
 				<RowWrapper>
-					<Headline weight="bold">Help</Headline>
+					<HeadLineText>Help</HeadLineText>
 					<Icon source={ChevronRight} />
 				</RowWrapper>
 				<RowWrapper>
-					<Headline weight="bold">Send Feedback</Headline>
+					<HeadLineText>Send Feedback</HeadLineText>
 					<Icon source={ChevronRight} />
 				</RowWrapper>
 				<SocialWrapper>
@@ -67,7 +67,7 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 			</Container>
 			<Container>
 				<RowWrapper borderTop={true}>
-					<Headline>{userData?.email}</Headline>
+					<HeadLineText>{userData?.email}</HeadLineText>
 					<Icon source={ChevronRight} />
 				</RowWrapper>
 				<RowWrapper removeBorderBottom={true}>
@@ -114,3 +114,7 @@ const Social = styled.TouchableOpacity`
 `;
 
 const Icon = styled.Image``;
+
+const HeadLineText = styled(Headline)`
+	font-weight: bold;
+`;

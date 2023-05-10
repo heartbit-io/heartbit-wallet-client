@@ -71,6 +71,7 @@ const Header = ({
 			headerShown: true,
 			headerTitle: headerTitle,
 			headerStyle: { backgroundColor: '#FFF5ED' },
+			headerTitleAlign: 'center',
 			headerLeft: renderHeaderLeft,
 			headerRight: renderHeaderRight,
 		});
