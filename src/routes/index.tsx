@@ -1,5 +1,8 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+	NavigationContainer,
+	createNavigationContainerRef,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // tabs
@@ -18,6 +21,7 @@ import {
 } from 'screens';
 
 const Stack = createNativeStackNavigator<RootStackType>();
+export const navigationRef = createNavigationContainerRef<any>();
 
 const Root = () => {
 	return (
@@ -60,7 +64,7 @@ const Root = () => {
 
 const Layout = () => {
 	return (
-		<NavigationContainer>
+		<NavigationContainer ref={navigationRef}>
 			<Root />
 		</NavigationContainer>
 	);

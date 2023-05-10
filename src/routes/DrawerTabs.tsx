@@ -5,6 +5,8 @@ import {
 	createDrawerNavigator,
 } from '@react-navigation/drawer';
 import { useAppSelector } from 'hooks';
+import auth from '@react-native-firebase/auth';
+import { navigationRef } from 'routes';
 
 // tabs
 import BottomTabs from './BottomTabs';
@@ -36,6 +38,14 @@ const DrawerTabs = () => {
 
 const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 	const { userData } = useAppSelector(state => state.user);
+
+	const signOutHandler = () => {
+		auth().signOut();
+		navigationRef.resetRoot({
+			index: 0,
+			routes: [{ name: 'EmailSignUp' }],
+		});
+	};
 
 	return (
 		<Wrapper>
@@ -70,7 +80,7 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 					<Headline>{userData?.email}</Headline>
 					<Icon source={ChevronRight} />
 				</RowWrapper>
-				<RowWrapper removeBorderBottom={true}>
+				<RowWrapper removeBorderBottom={true} onPress={signOutHandler}>
 					<Footnote color="#8E8E93">Sign out</Footnote>
 				</RowWrapper>
 			</Container>
