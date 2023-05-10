@@ -103,8 +103,8 @@ function Home({ navigation }: Props) {
 							{questions.map(question => {
 								return (
 									<QuestionWrapper>
-										<TextHeadline>
-											{question.content.slice(0, 30).concat('...')}
+										<TextHeadline numberOfLines={1}>
+											{question.content}
 										</TextHeadline>
 										<SpaceWrapper>
 											<TextSubHeadlineGray>
