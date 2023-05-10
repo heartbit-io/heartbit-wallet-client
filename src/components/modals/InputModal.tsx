@@ -22,6 +22,7 @@ type Props = {
 	title: string;
 	type: 'deposit' | 'withdraw';
 	modalVisible: boolean;
+	USDPerSat?: number;
 	onPressConfirm: (value: number) => void;
 	closeModal: () => void;
 };
@@ -30,6 +31,7 @@ const InputModal = ({
 	title,
 	type,
 	modalVisible,
+	USDPerSat,
 	onPressConfirm,
 	closeModal,
 }: Props) => {
@@ -51,14 +53,24 @@ const InputModal = ({
 							text="+100,000 sats"
 							onPress={() => setValue(value + 100000)}
 						/>
-						<Caption1 style={{ marginTop: 8 }}>($28.5)</Caption1>
+						<Caption1 style={{ marginTop: 8 }}>
+							${' '}
+							{(100000 * (USDPerSat as number)).toLocaleString(undefined, {
+								maximumFractionDigits: 2,
+							})}
+						</Caption1>
 					</SelectBtnWrapper>
 					<SelectBtnWrapper>
 						<SelectButton
 							text="+10,000 sats"
 							onPress={() => setValue(value + 10000)}
 						/>
-						<Caption1 style={{ marginTop: 8 }}>($2.85)</Caption1>
+						<Caption1 style={{ marginTop: 8 }}>
+							${' '}
+							{(10000 * (USDPerSat as number)).toLocaleString(undefined, {
+								maximumFractionDigits: 2,
+							})}
+						</Caption1>
 					</SelectBtnWrapper>
 				</SelectBtnsWrapper>
 			);

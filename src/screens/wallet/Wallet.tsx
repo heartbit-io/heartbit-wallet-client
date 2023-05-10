@@ -89,6 +89,7 @@ const Wallet = ({ navigation }: Props) => {
 				title={'Deposit with Lightning'}
 				type={'deposit'}
 				modalVisible={depositModalVisible}
+				USDPerSat={USDPerSat}
 				onPressConfirm={val => confirmHandler('deposit', val)}
 				closeModal={() => setDepositModalVisible(false)}
 			/>
