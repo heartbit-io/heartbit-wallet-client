@@ -34,7 +34,7 @@ const InputModal = ({
 	closeModal,
 }: Props) => {
 	const { userData } = useAppSelector(state => state.user);
-	const [value, setValue] = useState<string>();
+	const [value, setValue] = useState<number>(0);
 
 	useEffect(() => {
 		if (type === 'withdraw') {
@@ -49,14 +49,14 @@ const InputModal = ({
 					<SelectBtnWrapper>
 						<SelectButton
 							text="+100,000 sats"
-							onPress={() => setValue('100,000')}
+							onPress={() => setValue(value + 100000)}
 						/>
 						<Caption1 style={{ marginTop: 8 }}>($28.5)</Caption1>
 					</SelectBtnWrapper>
 					<SelectBtnWrapper>
 						<SelectButton
 							text="+10,000 sats"
-							onPress={() => setValue('10,000')}
+							onPress={() => setValue(value + 10000)}
 						/>
 						<Caption1 style={{ marginTop: 8 }}>($2.85)</Caption1>
 					</SelectBtnWrapper>
@@ -66,7 +66,9 @@ const InputModal = ({
 			return (
 				<Footnote style={{ textAlign: 'center', marginBottom: 16 }}>
 					Withdrawable balance:{' '}
-					<Footnote weight="bold" style={{ textDecorationLine: 'underline' }}>
+					<Footnote
+						style={{ textDecorationLine: 'underline', fontWeight: 'bold' }}
+					>
 						{userData?.btcBalance.toLocaleString()}
 					</Footnote>{' '}
 					sats
@@ -82,16 +84,14 @@ const InputModal = ({
 					<Container>
 						<RowWrapper>
 							<Icon source={Lightening} />
-							<Title3 weight="bold">{title}</Title3>
+							<Title3Text>{title}</Title3Text>
 						</RowWrapper>
 						<InputWrapper>
 							<Input
-								value={
-									value
-										? Number(value.replace(/,/g, '')).toLocaleString()
-										: value
+								value={value.toLocaleString()}
+								onChangeText={value =>
+									setValue(Number(value.replace(/,/g, '')))
 								}
-								onChangeText={setValue}
 								keyboardType="numeric"
 								autoFocus
 							/>
@@ -100,7 +100,7 @@ const InputModal = ({
 						{renderInputBelow()}
 						<MainButton
 							text="Confirm"
-							onPress={() => onPressConfirm(Number(value?.replace(/,/g, '')))}
+							onPress={() => onPressConfirm(value)}
 							buttonStyle={{ borderRadius: 8 }}
 						/>
 					</Container>
@@ -149,7 +149,7 @@ const InputWrapper = styled.TouchableOpacity`
 
 const Input = styled.TextInput`
 	flex: 1;
-	height: 100%;
+	height: 68px;
 	text-align: right;
 	margin-right: 12px;
 	font-size: 34px;
@@ -165,4 +165,8 @@ const SelectBtnsWrapper = styled.View`
 
 const SelectBtnWrapper = styled.View`
 	align-items: center;
+`;
+
+const Title3Text = styled(Title3)`
+	font-weight: bold;
 `;
