@@ -219,4 +219,5 @@ const TextSubHeadlineBlue = styled(Subheadline)`
 const TextSubHeadline = styled(Subheadline)`
 	margin-top: 40px;
 	margin-horizontal: 70px;
+	margin-bottom: 166px;
 `;

@@ -15,7 +15,7 @@ import {
 } from 'components';
 
 // hooks
-import { useAppDispatch, useAppSelector } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
 // store
 import { getTransactionsList } from 'store/slices/transactionsSlice';
