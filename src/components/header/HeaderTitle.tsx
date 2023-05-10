@@ -14,7 +14,7 @@ const HeaderTitle = () => {
 	const navigation = useNavigation<NativeStackNavigationProp<RootStackType>>();
 
 	const renderHeaderLeft = () => {
-		return <Title weight="bold">Wallet</Title>;
+		return <Title>Wallet</Title>;
 	};
 
 	const renderHeaderRight = () => {
@@ -39,6 +39,7 @@ const HeaderTitle = () => {
 export default HeaderTitle;
 
 const Title = styled(LargeTitle)`
+	font-weight: bold;
 	margin-left: 30px;
 	color: #1c1c1e;
 `;

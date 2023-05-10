@@ -62,9 +62,9 @@ const Wallet = ({ navigation }: Props) => {
 		<Wrapper>
 			<HeaderTitle />
 			<TextsWrapper>
-				<LargeTitle weight="bold">
+				<LargeTitleText>
 					{userData?.btcBalance?.toLocaleString()} sats
-				</LargeTitle>
+				</LargeTitleText>
 				<Body style={{ marginTop: 16, color: '#3A3A3C' }}>
 					{(userData?.btcBalance * USDPerSat).toLocaleString(undefined, {
 						maximumFractionDigits: 2,
@@ -132,4 +132,8 @@ const ButtonsWrapper = styled.View`
 	flex-direction: row;
 	margin-top: 65px;
 	margin-horizontal: 32px;
+`;
+
+const LargeTitleText = styled(LargeTitle)`
+	font-weight: bold;
 `;

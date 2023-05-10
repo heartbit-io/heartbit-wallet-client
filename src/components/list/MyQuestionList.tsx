@@ -52,7 +52,8 @@ const MyQuestionList = () => {
 					<HeadlineText numberOfLines={1}>{item.content}</HeadlineText>
 				</RowWrapper>
 				<SubheadlineText>
-					{moment(item.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
+					{moment(item.createdAt).format('D MMM YYYY ・ ') + item.bountyAmount}{' '}
+					sats
 				</SubheadlineText>
 			</ItemWrapper>
 		);

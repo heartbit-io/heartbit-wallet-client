@@ -16,7 +16,7 @@ type Props = {
 const ArrowButtonWithText = ({ title, btnText, onPress }: Props) => {
 	return (
 		<Wrapper>
-			<Title weight="bold">{title}</Title>
+			<Title>{title}</Title>
 			<Button onPress={onPress}>
 				<ButtonText>{btnText}</ButtonText>
 				<Icon source={ChevronRight} />
@@ -37,6 +37,7 @@ const Wrapper = styled.View`
 
 const Title = styled(Title1)`
 	color: #8e8e93;
+	font-weight: bold;
 `;
 
 const Button = styled.TouchableOpacity`

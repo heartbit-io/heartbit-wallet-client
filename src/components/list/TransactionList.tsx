@@ -27,10 +27,10 @@ const TransactionList = ({ isTransactionsScreen }: Props) => {
 		return (
 			<ItemWrapper>
 				<Subheadline color="#8E8E93">
-					{moment(item.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
+					{moment(item.createdAt).format('D MMM YYYY ・ hh:mm')}
 				</Subheadline>
 				<RowWrapper>
-					<Headline>{item.type}</Headline>
+					<HeadlineText>{item.type}</HeadlineText>
 					<Subheadline>{`${item.amount} sats (${item.fee} sats fee)`}</Subheadline>
 				</RowWrapper>
 			</ItemWrapper>
@@ -97,4 +97,8 @@ const RowWrapper = styled.View`
 	align-items: center;
 	justify-content: space-between;
 	margin-top: 8px;
+`;
+
+const HeadlineText = styled(Headline)`
+	font-weight: bold;
 `;

@@ -47,6 +47,7 @@ function Forum({ navigation, route }: Props) {
 				headerLeft={true}
 				headerRight={true}
 				hearderRightTitle={'Delete'}
+				onPressHeaderLeft={() => navigation.replace('DrawerTabs')}
 				onPressHeaderRight={async () => {
 					Alert.alert(
 						`Are you sure you want to permanently delete this? Your question, doctor's note, and medical record will be deleted.`,
@@ -115,7 +116,7 @@ function Forum({ navigation, route }: Props) {
 						</GPTLoadingWrapper>
 					) : (
 						<Text>
-							{answer.reply + '\n\n Please wait for an answer by human doctor.'}
+							{answer.reply + '\n\nPlease wait for an answer by human doctor.'}
 						</Text>
 					)}
 				</PostWrapper>

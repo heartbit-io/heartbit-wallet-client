@@ -134,7 +134,7 @@ function Bounty({ navigation, route }: Props) {
 					>
 						<Container>
 							<RowWrapper>
-								<Title3 weight="bold">Set amount for bounty</Title3>
+								<BountyInputText>Set amount for bounty</BountyInputText>
 							</RowWrapper>
 							<InputWrapper>
 								<Input
@@ -224,6 +224,10 @@ const BountyMinimumText = styled(Caption1)`
 	color: #ff3b30;
 	margin-bottom: 8px;
 	text-align: center;
+`;
+
+const BountyInputText = styled(Title3)`
+	font-weight: bold;
 `;
 
 const BountyAmountContainer = styled.View`
@@ -343,7 +347,7 @@ const InputWrapper = styled.TouchableOpacity`
 
 const Input = styled.TextInput`
 	flex: 1;
-	height: 100%;
+	height: 68px;
 	text-align: right;
 	margin-right: 12px;
 	font-size: 34px;

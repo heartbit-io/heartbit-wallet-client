@@ -40,8 +40,8 @@ const BottomTabs = () => {
 				headerShadowVisible: false,
 				headerStyle: { backgroundColor: '#FFF5ED' },
 				tabBarStyle: {
-					height: OS === 'ios' ? 84 : 60,
-					paddingBottom: OS === 'ios' ? 37 : 24,
+					height: OS === 'ios' ? 85 : 60,
+					paddingBottom: OS === 'ios' ? 30 : 10,
 					paddingTop: 7,
 					borderTopWidth: 0.5,
 					borderColor: 'rgba(60, 60, 67, 0.36)',
