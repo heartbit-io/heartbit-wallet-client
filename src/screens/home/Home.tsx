@@ -75,7 +75,7 @@ function Home({ navigation }: Props) {
 					/>
 				</Wrapper>
 				<WrapperNotCenter>
-					{questions[0]?.status === '' ? (
+					{questions && questions[0]?.status === '' ? (
 						<EmptyWrapper>
 							<Empty source={empty} />
 							<TextSubHeadline>
@@ -89,7 +89,7 @@ function Home({ navigation }: Props) {
 								<TextTitle>Recent</TextTitle>
 								<TextBody>See all {'>'}</TextBody>
 							</SpaceWrapper>
-							{questions.map(question => {
+							{questions?.map(question => {
 								return (
 									<QuestionWrapper>
 										<TextHeadline>
