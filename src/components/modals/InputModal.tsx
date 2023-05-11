@@ -23,7 +23,7 @@ type Props = {
 	type: 'deposit' | 'withdraw';
 	modalVisible: boolean;
 	USDPerSat?: number;
-	onPressConfirm: (value: number) => void;
+	onPressConfirm: (email: string, amount: number) => void;
 	closeModal: () => void;
 };
 
@@ -112,7 +112,7 @@ const InputModal = ({
 						{renderInputBelow()}
 						<MainButton
 							text="Confirm"
-							onPress={() => onPressConfirm(value)}
+							onPress={() => onPressConfirm(userData.email, value)}
 							buttonStyle={{ borderRadius: 8 }}
 						/>
 					</Container>

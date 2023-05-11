@@ -20,6 +20,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 // store
 import { getTransactionsList } from 'store/slices/transactionsSlice';
 import { getBtcRates } from 'apis/coinApi';
+import { getDepositRequest, getWithdrawalRequest } from 'apis/lndApi';
 
 type Props = NativeStackScreenProps<BottomTabTypes, 'Wallet'>;
 
@@ -32,16 +33,34 @@ const Wallet = ({ navigation }: Props) => {
 	const [depositModalVisible, setDepositModalVisible] = useState(false);
 	const [depositQRVisible, setDepositQRVisible] = useState(false);
 	const [withdrawQRVisible, setWithdrawQRVisible] = useState(false);
+	const [qrAddress, setQrAddress] = useState('');
 
-	const confirmHandler = (type: 'deposit' | 'withdraw', val: number) => {
-		setSatsValue(val);
-
-		if (type === 'deposit') {
-			setDepositModalVisible(false);
-			setDepositQRVisible(true);
-		} else {
-			setWithdrawModalVisible(false);
-			setWithdrawQRVisible(true);
+	const confirmHandler = async (
+		type: 'deposit' | 'withdraw',
+		email: string,
+		amount: number,
+	) => {
+		setSatsValue(amount);
+		try {
+			if (type === 'deposit') {
+				const responseDto: ResponseDto<string> = await getDepositRequest(
+					email,
+					amount,
+				);
+				setQrAddress(responseDto.data as string);
+				setDepositModalVisible(false);
+				setDepositQRVisible(true);
+			} else {
+				const responseDto: ResponseDto<string> = await getWithdrawalRequest(
+					email,
+					amount,
+				);
+				setQrAddress(responseDto.data as string);
+				setWithdrawModalVisible(false);
+				setWithdrawQRVisible(true);
+			}
+		} catch (err) {
+			console.error(err);
 		}
 	};
 
@@ -90,14 +109,18 @@ const Wallet = ({ navigation }: Props) => {
 				type={'deposit'}
 				modalVisible={depositModalVisible}
 				USDPerSat={USDPerSat}
-				onPressConfirm={val => confirmHandler('deposit', val)}
+				onPressConfirm={async (email, amount) =>
+					await confirmHandler('deposit', email, amount)
+				}
 				closeModal={() => setDepositModalVisible(false)}
 			/>
 			<InputModal
 				title={'Withdraw with Lightning'}
 				type={'withdraw'}
 				modalVisible={withdrawModalVisible}
-				onPressConfirm={val => confirmHandler('withdraw', val)}
+				onPressConfirm={async (email, amount) =>
+					await confirmHandler('withdraw', email, amount)
+				}
 				closeModal={() => setWithdrawModalVisible(false)}
 			/>
 			<QRModal
@@ -105,12 +128,14 @@ const Wallet = ({ navigation }: Props) => {
 				type="deposit"
 				modalVisible={depositQRVisible}
 				closeModal={() => setDepositQRVisible(false)}
+				qrAddress={qrAddress}
 			/>
 			<QRModal
 				title={'Withdraw with Lightning'}
 				type="withdraw"
 				modalVisible={withdrawQRVisible}
 				closeModal={() => setWithdrawQRVisible(false)}
+				qrAddress={qrAddress}
 			/>
 		</Wrapper>
 	);
