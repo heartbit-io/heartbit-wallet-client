@@ -13,7 +13,7 @@ import EmptyArrow from 'assets/img/emptyArrow.svg';
 
 // hooks
 import { useNavigation } from '@react-navigation/native';
-import { useAppSelector } from 'hooks';
+import { useAppSelector } from 'hooks/hooks';
 
 type Props = {
 	isTransactionsScreen?: boolean;
@@ -37,42 +37,33 @@ const TransactionList = ({ isTransactionsScreen }: Props) => {
 		);
 	};
 
-	const renderHeaderComponent = () => {
-		if (!isTransactionsScreen && transactions.length > 0) {
-			return (
-				<ArrowButtonWithText
-					title="Transactions"
-					btnText="See all"
-					onPress={() => navigation.navigate('Transactions')}
-				/>
-			);
-		}
-		return null;
-	};
-
-	const renderEmptyComponent = () => {
-		if (isTransactionsScreen) {
-			return (
-				<Footnote style={{ textAlign: 'center', marginTop: 50 }}>
-					There is no any transactions
-				</Footnote>
-			);
-		} else {
-			return (
-				<EmptyList
-					icon={EmptyArrow}
-					text={'Deposit some bitcoin(sats)\nto spend for bounties'}
-				/>
-			);
-		}
-	};
-
 	return (
 		<StyledFlatList
 			data={transactions}
 			renderItem={renderItemHandler}
-			ListHeaderComponent={renderHeaderComponent()}
-			ListEmptyComponent={renderEmptyComponent()}
+			ListHeaderComponent={
+				!isTransactionsScreen && transactions.length > 0 ? (
+					<ArrowButtonWithText
+						title="Transactions"
+						btnText="See all"
+						onPress={() => navigation.navigate('Transactions')}
+					/>
+				) : (
+					<></>
+				)
+			}
+			ListEmptyComponent={
+				isTransactionsScreen ? (
+					<Footnote style={{ textAlign: 'center', marginTop: 50 }}>
+						There is no any transactions
+					</Footnote>
+				) : (
+					<EmptyList
+						icon={EmptyArrow}
+						text={'Deposit some bitcoin(sats)\nto spend for bounties'}
+					/>
+				)
+			}
 			stickyHeaderIndices={isTransactionsScreen ? [] : [0]}
 			marginTop={isTransactionsScreen ? 0 : transactions.length > 0 ? 64 : 22}
 		/>

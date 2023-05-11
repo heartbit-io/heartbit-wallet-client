@@ -30,7 +30,9 @@ function Ask(props: Props) {
 					onSubmitEditing={() => {
 						navigateToBounty(askContent, props);
 					}}
-					placeholder="Ask questions along with explaining your symptoms, medical history, and current medications. At least 50 characters."
+					placeholder={
+						'Explain your symptoms(how and when started), any related medical treatment or tests you have received(and when), current medications, and age and gender.\n\nThe more detailed you are, the more likely you will get a good answer.'
+					}
 				/>
 			</WrapperLeft>
 			<Wrapper>

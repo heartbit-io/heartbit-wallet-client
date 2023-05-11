@@ -82,7 +82,7 @@ function Home({ navigation }: Props) {
 					/>
 				</Wrapper>
 				<WrapperNotCenter>
-					{questions && questions[0]?.status === '' ? (
+					{questions.length === 0 || questions[0]?.status === '' ? (
 						<EmptyWrapper>
 							<Empty source={empty} />
 							<TextSubHeadline>
@@ -219,4 +219,5 @@ const TextSubHeadlineBlue = styled(Subheadline)`
 const TextSubHeadline = styled(Subheadline)`
 	margin-top: 40px;
 	margin-horizontal: 70px;
+	margin-bottom: 166px;
 `;

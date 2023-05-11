@@ -15,7 +15,7 @@ import {
 } from 'components';
 
 // hooks
-import { useAppDispatch, useAppSelector } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
 // store
 import { getTransactionsList } from 'store/slices/transactionsSlice';
@@ -89,6 +89,7 @@ const Wallet = ({ navigation }: Props) => {
 				title={'Deposit with Lightning'}
 				type={'deposit'}
 				modalVisible={depositModalVisible}
+				USDPerSat={USDPerSat}
 				onPressConfirm={val => confirmHandler('deposit', val)}
 				closeModal={() => setDepositModalVisible(false)}
 			/>
