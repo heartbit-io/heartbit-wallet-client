@@ -19,6 +19,8 @@ import {
 	MyQuestions,
 	Transactions,
 } from 'screens';
+import DoctorQRScan from 'screens/setting/DoctorQRScan';
+import MyAccount from 'screens/drawer/MyAccount';
 
 const Stack = createNativeStackNavigator<RootStackType>();
 export const navigationRef = createNavigationContainerRef<any>();
@@ -58,6 +60,8 @@ const Root = () => {
 			<Stack.Screen name="Forum" component={Forum} />
 			<Stack.Screen name="MyQuestions" component={MyQuestions} />
 			<Stack.Screen name="Transactions" component={Transactions} />
+			<Stack.Screen name="MyAccount" component={MyAccount} />
+			<Stack.Screen name="DoctorQRScan" component={DoctorQRScan} />
 		</Stack.Navigator>
 	);
 };

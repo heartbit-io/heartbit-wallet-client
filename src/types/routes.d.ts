@@ -13,6 +13,8 @@ type RootStackType = {
 	};
 	MyQuestions: undefined;
 	Transactions: undefined;
+	DoctorQRScan: undefined;
+	MyAccount: undefined;
 };
 
 type BottomTabTypes = {
