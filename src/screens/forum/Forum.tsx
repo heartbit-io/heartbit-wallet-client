@@ -241,6 +241,7 @@ const GPTLoadingWrapper = styled.View`
 const LoadingGif = styled.Image`
 	width: 100px;
 	height: 100px;
+	margin-left: -20px;
 `;
 
 const CautionLogo = styled.Image`
