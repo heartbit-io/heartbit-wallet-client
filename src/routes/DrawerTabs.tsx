@@ -76,7 +76,10 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 				</SocialWrapper>
 			</Container>
 			<Container>
-				<RowWrapper borderTop={true}>
+				<RowWrapper
+					borderTop={true}
+					onPress={() => navigation.navigate('MyAccount')}
+				>
 					<HeadLineText>{userData?.email}</HeadLineText>
 					<Icon source={ChevronRight} />
 				</RowWrapper>

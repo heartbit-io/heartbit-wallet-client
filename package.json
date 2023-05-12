@@ -33,6 +33,7 @@
     "moment": "^2.29.4",
     "react": "18.2.0",
     "react-native": "0.71.1",
+    "react-native-camera-kit": "^13.0.0",
     "react-native-gesture-handler": "^2.9.0",
     "react-native-get-random-values": "^1.8.0",
     "react-native-health": "^1.7.2",
