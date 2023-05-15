@@ -14,7 +14,7 @@ const DoctorQRScan = () => {
 			try {
 				Vibration.vibrate();
 				const responseDto: ResponseDto<string> = await authDoctor();
-				responseDto.statusCode === 201
+				responseDto.statusCode === 200
 					? Alert.alert(
 							responseDto.message,
 							'Welcome to Heartbit doctor portal',

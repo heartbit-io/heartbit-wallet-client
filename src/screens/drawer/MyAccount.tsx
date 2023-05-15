@@ -54,8 +54,7 @@ const MyAccount = ({ navigation }: Props) => {
 					buttonStyle={{ marginTop: 8 }}
 					active={isValidEmail}
 				/>
-				{userData?.role ===
-				'doctor' /* will be replaced by user after conference */ ? (
+				{userData?.role === 'user' ? (
 					<SubheadlineText
 						onPress={() => {
 							Linking.openURL('https://airtable.com/shrRcckkSSQoKQzYe');

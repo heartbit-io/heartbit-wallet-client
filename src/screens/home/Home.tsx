@@ -28,17 +28,7 @@ type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Home'>;
 
 function Home({ navigation }: Props) {
 	const { userData } = useAppSelector(state => state.user);
-	const [questions, setQuestions] = useState<GetQuestionResponse[]>([
-		{
-			id: 0,
-			userId: 0,
-			content: '',
-			bountyAmount: 0,
-			status: '',
-			updatedAt: '',
-			createdAt: '',
-		},
-	]);
+	const [questions, setQuestions] = useState<GetQuestionResponse[]>([]);
 	const getDateFormatted = (createdAt?: string) => {
 		return createdAt === undefined || createdAt === ''
 			? moment().format('MMM D YYYY')
@@ -82,7 +72,7 @@ function Home({ navigation }: Props) {
 					/>
 				</Wrapper>
 				<WrapperNotCenter>
-					{questions?.length === 0 || questions[0]?.status === '' ? (
+					{questions === undefined || questions?.length === 0 ? (
 						<EmptyWrapper>
 							<Empty source={empty} />
 							<TextSubHeadline>
