@@ -21,6 +21,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { getTransactionsList } from 'store/slices/transactionsSlice';
 import { getBtcRates } from 'apis/coinApi';
 import { getDepositRequest, getWithdrawalRequest } from 'apis/lndApi';
+import { Alert } from 'react-native';
 
 type Props = NativeStackScreenProps<BottomTabTypes, 'Wallet'>;
 
@@ -47,17 +48,25 @@ const Wallet = ({ navigation }: Props) => {
 					email,
 					amount,
 				);
-				setQrAddress(responseDto.data as string);
-				setDepositModalVisible(false);
-				setDepositQRVisible(true);
+				if (responseDto.statusCode === 200) {
+					setQrAddress(responseDto.data as string);
+					setDepositModalVisible(false);
+					setDepositQRVisible(true);
+				} else {
+					Alert.alert('Error while creating invoice', 'Try again later');
+				}
 			} else {
 				const responseDto: ResponseDto<string> = await getWithdrawalRequest(
 					email,
 					amount,
 				);
-				setQrAddress(responseDto.data as string);
-				setWithdrawModalVisible(false);
-				setWithdrawQRVisible(true);
+				if (responseDto.statusCode === 200) {
+					setQrAddress(responseDto.data as string);
+					setWithdrawModalVisible(false);
+					setWithdrawQRVisible(true);
+				} else {
+					Alert.alert('Amount is invalid', 'Check your balance');
+				}
 			}
 		} catch (err) {
 			console.error(err);
