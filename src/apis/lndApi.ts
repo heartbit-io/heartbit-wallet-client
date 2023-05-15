@@ -9,7 +9,6 @@ export const getDepositRequest = async (
 	try {
 		const path: string = '/deposits/';
 		const query: string = `?email=${email}&amount=${amount}`;
-		console.log(apiLND.getUri() + url + path + query);
 		const response = await apiLND.get(url + path + query);
 		const responseDto = await response.data;
 
