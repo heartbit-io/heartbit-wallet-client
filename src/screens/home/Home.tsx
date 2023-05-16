@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styled from 'styled-components/native';
@@ -23,8 +23,9 @@ import {
 import { getQuestionList } from 'apis/questionApi';
 
 import moment from 'moment';
-import { useAppSelector } from 'hooks/hooks';
-import { DrawerActions } from '@react-navigation/native';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { DrawerActions, useFocusEffect } from '@react-navigation/native';
+import { getTransactionsList } from 'store/slices/transactionsSlice';
 
 // utils
 import { OS } from 'utils/utility';
@@ -33,6 +34,7 @@ type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Home'>;
 
 function Home({ navigation }: Props) {
 	const statusBarHeight = useSafeAreaInsets().top;
+	const dispatch = useAppDispatch();
 	const { userData } = useAppSelector(state => state.user);
 	const [questions, setQuestions] = useState<GetQuestionResponse[]>([]);
 	const getDateFormatted = (createdAt?: string) => {
@@ -41,17 +43,21 @@ function Home({ navigation }: Props) {
 			: moment(createdAt).format('MMM D YYYY');
 	};
 
-	useEffect(() => {
-		(async () => {
-			try {
-				const responseDto: ResponseDto<GetQuestionResponse[]> =
-					await getQuestionList(10, 0);
-				setQuestions(responseDto.data as GetQuestionResponse[]);
-			} catch (err) {
-				console.error(err);
-			}
-		})();
-	}, []);
+	useFocusEffect(
+		useCallback(() => {
+			dispatch(getTransactionsList());
+			(async () => {
+				try {
+					const responseDto: ResponseDto<GetQuestionResponse[]> =
+						await getQuestionList(10, 0);
+					setQuestions(responseDto.data as GetQuestionResponse[]);
+				} catch (err) {
+					console.error(err);
+				}
+			})();
+			console.log(userData);
+		}, [questions?.length]),
+	);
 
 	return (
 		<Gradient>

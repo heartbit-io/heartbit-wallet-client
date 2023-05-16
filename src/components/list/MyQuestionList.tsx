@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import moment from 'moment';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -8,7 +8,7 @@ import { Footnote, Headline, Subheadline } from 'components/common';
 
 // hooks
 import { getQuestionList } from 'apis/questionApi';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 const MyQuestionList = () => {
 	const navigation = useNavigation<NativeStackNavigationProp<RootStackType>>();
@@ -24,17 +24,19 @@ const MyQuestionList = () => {
 			createdAt: '',
 		},
 	]);
-	useEffect(() => {
-		(async () => {
-			try {
-				const responseDto: ResponseDto<GetQuestionResponse[]> =
-					await getQuestionList(20, 0);
-				setQuestions(responseDto.data as GetQuestionResponse[]);
-			} catch (err) {
-				console.error(err);
-			}
-		})();
-	}, []);
+	useFocusEffect(
+		useCallback(() => {
+			(async () => {
+				try {
+					const responseDto: ResponseDto<GetQuestionResponse[]> =
+						await getQuestionList(20, 0);
+					setQuestions(responseDto.data as GetQuestionResponse[]);
+				} catch (err) {
+					console.error(err);
+				}
+			})();
+		}, [questions?.length]),
+	);
 
 	const renderItemHandler = ({ item }: { item: GetQuestionResponse }) => {
 		return (

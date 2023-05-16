@@ -39,7 +39,7 @@ const Header = ({
 		if (onPressHeaderRight) {
 			onPressHeaderRight();
 		} else {
-			navigation.replace('DrawerTabs');
+			navigation.navigate('DrawerTabs');
 		}
 	};
 
