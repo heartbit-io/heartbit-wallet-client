@@ -47,7 +47,7 @@ function Forum({ navigation, route }: Props) {
 				headerLeft={true}
 				headerRight={true}
 				hearderRightTitle={'Delete'}
-				onPressHeaderLeft={() => navigation.replace('DrawerTabs')}
+				onPressHeaderLeft={() => navigation.navigate('DrawerTabs')}
 				onPressHeaderRight={async () => {
 					Alert.alert(
 						`Are you sure you want to permanently delete this? Your question, doctor's note, and medical record will be deleted.`,
@@ -61,7 +61,7 @@ function Forum({ navigation, route }: Props) {
 									);
 									if (responseDto.statusCode === 200) {
 										Alert.alert(responseDto.message);
-										navigation.replace('DrawerTabs');
+										navigation.navigate('DrawerTabs');
 									} else {
 										Alert.alert(responseDto.message, 'Try again later');
 									}

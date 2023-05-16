@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styled from 'styled-components/native';
@@ -24,7 +24,7 @@ import { getQuestionList } from 'apis/questionApi';
 
 import moment from 'moment';
 import { useAppSelector } from 'hooks/hooks';
-import { DrawerActions } from '@react-navigation/native';
+import { DrawerActions, useFocusEffect } from '@react-navigation/native';
 
 // utils
 import { OS } from 'utils/utility';
@@ -41,17 +41,20 @@ function Home({ navigation }: Props) {
 			: moment(createdAt).format('MMM D YYYY');
 	};
 
-	useEffect(() => {
-		(async () => {
-			try {
-				const responseDto: ResponseDto<GetQuestionResponse[]> =
-					await getQuestionList(10, 0);
-				setQuestions(responseDto.data as GetQuestionResponse[]);
-			} catch (err) {
-				console.error(err);
-			}
-		})();
-	}, []);
+	useFocusEffect(
+		useCallback(() => {
+			(async () => {
+				try {
+					const responseDto: ResponseDto<GetQuestionResponse[]> =
+						await getQuestionList(10, 0);
+					setQuestions(responseDto.data as GetQuestionResponse[]);
+				} catch (err) {
+					console.error(err);
+				}
+			})();
+			console.log(userData);
+		}, [questions?.length]),
+	);
 
 	return (
 		<Gradient>
