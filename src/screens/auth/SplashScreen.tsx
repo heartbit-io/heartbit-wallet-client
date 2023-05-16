@@ -13,7 +13,7 @@ import heartBit from 'assets/logo/heartBit.svg';
 import { Gradient } from 'components';
 
 // apis
-import { api } from 'apis';
+import { api, apiLND } from 'apis';
 
 type Props = NativeStackScreenProps<RootStackType, 'SplashScreen'>;
 
@@ -35,6 +35,7 @@ const SplashScreen = ({ navigation }: Props) => {
 	useEffect(() => {
 		if (idToken) {
 			api.defaults.headers.common['Authorization'] = `Bearer ${idToken}`;
+			apiLND.defaults.headers.common['Authorization'] = `Bearer ${idToken}`;
 		}
 	}, [idToken]);
 
