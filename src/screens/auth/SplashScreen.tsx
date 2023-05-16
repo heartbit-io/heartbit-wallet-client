@@ -23,12 +23,12 @@ const SplashScreen = ({ navigation }: Props) => {
 
 	useEffect(() => {
 		if (authStatus === 'authorized' || signInStatus === 'signedIn') {
-			navigation.replace('DrawerTabs');
+			navigation.navigate('DrawerTabs');
 		} else if (
 			authStatus === 'unauthorized' &&
 			signInStatus === 'notSignedIn'
 		) {
-			navigation.replace('EmailSignUp');
+			navigation.navigate('EmailSignUp');
 		}
 	}, [authStatus, signInStatus]);
 
