@@ -13,7 +13,7 @@ import heartBit from 'assets/logo/heartBit.svg';
 import { Gradient } from 'components';
 
 // apis
-import { api } from 'apis';
+import { api, apiLND } from 'apis';
 
 type Props = NativeStackScreenProps<RootStackType, 'SplashScreen'>;
 
@@ -23,18 +23,19 @@ const SplashScreen = ({ navigation }: Props) => {
 
 	useEffect(() => {
 		if (authStatus === 'authorized' || signInStatus === 'signedIn') {
-			navigation.navigate('DrawerTabs');
+			navigation.replace('DrawerTabs');
 		} else if (
 			authStatus === 'unauthorized' &&
 			signInStatus === 'notSignedIn'
 		) {
-			navigation.navigate('EmailSignUp');
+			navigation.replace('EmailSignUp');
 		}
 	}, [authStatus, signInStatus]);
 
 	useEffect(() => {
 		if (idToken) {
 			api.defaults.headers.common['Authorization'] = `Bearer ${idToken}`;
+			apiLND.defaults.headers.common['Authorization'] = `Bearer ${idToken}`;
 		}
 	}, [idToken]);
 
