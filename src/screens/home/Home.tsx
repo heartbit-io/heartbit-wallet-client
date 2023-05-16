@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styled from 'styled-components/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 // assets
 import logo from 'assets/logo/logo.svg';
 import empty from 'assets/img/ic_empty_recent_q.png';
@@ -24,9 +26,13 @@ import moment from 'moment';
 import { useAppSelector } from 'hooks/hooks';
 import { DrawerActions } from '@react-navigation/native';
 
+// utils
+import { OS } from 'utils/utility';
+
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Home'>;
 
 function Home({ navigation }: Props) {
+	const statusBarHeight = useSafeAreaInsets().top;
 	const { userData } = useAppSelector(state => state.user);
 	const [questions, setQuestions] = useState<GetQuestionResponse[]>([]);
 	const getDateFormatted = (createdAt?: string) => {
@@ -49,7 +55,7 @@ function Home({ navigation }: Props) {
 
 	return (
 		<Gradient>
-			<HeaderWrapper>
+			<HeaderWrapper statusBarHeight={statusBarHeight}>
 				<Satoshi>
 					<SatoshiIcon source={sat} />
 					<TextCallout> {userData?.btcBalance.toLocaleString()}</TextCallout>
@@ -129,11 +135,12 @@ const WrapperNotCenter = styled.View`
 	padding-top: 64px;
 `;
 
-const HeaderWrapper = styled.View`
+const HeaderWrapper = styled.View<{ statusBarHeight: number }>`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	margin-top: 70px;
+	height: ${() => (OS === 'ios' ? 44 : 56)}px;
+	margin-top: ${({ statusBarHeight }) => statusBarHeight}px;
 	margin-horizontal: 16px;
 `;
 
