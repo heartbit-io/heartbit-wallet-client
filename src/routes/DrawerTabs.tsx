@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
 import {
 	DrawerContentComponentProps,
@@ -7,6 +7,8 @@ import {
 import { useAppSelector } from 'hooks';
 import auth from '@react-native-firebase/auth';
 import { navigationRef } from 'routes';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 // tabs
 import BottomTabs from './BottomTabs';
@@ -22,6 +24,14 @@ import Message from 'assets/img/message.svg';
 const Drawer = createDrawerNavigator<DrawerTabTypes>();
 
 const DrawerTabs = () => {
+	const navigation = useNavigation<NativeStackNavigationProp<RootStackType>>();
+
+	useEffect(() => {
+		navigation.addListener('beforeRemove', e => {
+			e.preventDefault();
+		});
+	}, []);
+
 	return (
 		<Drawer.Navigator
 			drawerContent={props => <DrawerView {...props} />}
