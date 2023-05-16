@@ -23,8 +23,9 @@ import {
 import { getQuestionList } from 'apis/questionApi';
 
 import moment from 'moment';
-import { useAppSelector } from 'hooks/hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { DrawerActions, useFocusEffect } from '@react-navigation/native';
+import { getTransactionsList } from 'store/slices/transactionsSlice';
 
 // utils
 import { OS } from 'utils/utility';
@@ -33,6 +34,7 @@ type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Home'>;
 
 function Home({ navigation }: Props) {
 	const statusBarHeight = useSafeAreaInsets().top;
+	const dispatch = useAppDispatch();
 	const { userData } = useAppSelector(state => state.user);
 	const [questions, setQuestions] = useState<GetQuestionResponse[]>([]);
 	const getDateFormatted = (createdAt?: string) => {
@@ -43,6 +45,7 @@ function Home({ navigation }: Props) {
 
 	useFocusEffect(
 		useCallback(() => {
+			dispatch(getTransactionsList());
 			(async () => {
 				try {
 					const responseDto: ResponseDto<GetQuestionResponse[]> =

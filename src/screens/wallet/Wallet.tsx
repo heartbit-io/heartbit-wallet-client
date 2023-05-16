@@ -15,10 +15,9 @@ import {
 } from 'components';
 
 // hooks
-import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { useAppSelector } from 'hooks/hooks';
 
 // store
-import { getTransactionsList } from 'store/slices/transactionsSlice';
 import { getBtcRates } from 'apis/coinApi';
 import { getDepositRequest, getWithdrawalRequest } from 'apis/lndApi';
 import { Alert } from 'react-native';
@@ -26,7 +25,6 @@ import { Alert } from 'react-native';
 type Props = NativeStackScreenProps<BottomTabTypes, 'Wallet'>;
 
 const Wallet = ({ navigation }: Props) => {
-	const dispatch = useAppDispatch();
 	const { userData } = useAppSelector(state => state.user);
 	const [satsValue, setSatsValue] = useState(0);
 	const [USDPerSat, setUSDPerSat] = useState(0);
@@ -74,7 +72,6 @@ const Wallet = ({ navigation }: Props) => {
 	};
 
 	useEffect(() => {
-		dispatch(getTransactionsList());
 		(async () => {
 			try {
 				const responseDto: ResponseDto<ExchangeRateResponse> =
