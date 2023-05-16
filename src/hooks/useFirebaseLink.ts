@@ -100,6 +100,8 @@ const useFirebaseLink = () => {
 				const initialLink = await Linking.getInitialURL();
 				if (!initialLink) {
 					setSignInStatus('notSignedIn');
+				} else {
+					handleDynamicLink(initialLink);
 				}
 			};
 
