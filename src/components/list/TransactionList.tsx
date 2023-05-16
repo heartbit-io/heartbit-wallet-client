@@ -66,6 +66,7 @@ const TransactionList = ({ isTransactionsScreen }: Props) => {
 			}
 			stickyHeaderIndices={isTransactionsScreen ? [] : [0]}
 			marginTop={isTransactionsScreen ? 0 : transactions.length > 0 ? 64 : 22}
+			scrollEnabled={transactions.length > 0}
 		/>
 	);
 };
