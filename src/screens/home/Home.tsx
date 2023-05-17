@@ -74,7 +74,7 @@ function Home({ navigation }: Props) {
 					<BurgerIcon source={menu} />
 				</ButtonWrapper>
 			</HeaderWrapper>
-			<ScrollView>
+			<ScrollView scrollEnabled={questions?.length > 0}>
 				<Wrapper>
 					<Logo source={logo} />
 					<MainButton
