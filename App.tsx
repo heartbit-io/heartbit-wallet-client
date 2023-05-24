@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
+import { ActivityIndicatorProvider } from 'contexts';
 
 // components
 import Layout from 'routes';
@@ -14,8 +15,10 @@ import 'utils/initializeDefaultProps';
 function App(): JSX.Element {
 	return (
 		<Provider store={store}>
-			<Layout />
-			<StatusBar backgroundColor={'#000'} />
+			<ActivityIndicatorProvider>
+				<Layout />
+				<StatusBar backgroundColor={'#000'} />
+			</ActivityIndicatorProvider>
 		</Provider>
 	);
 }

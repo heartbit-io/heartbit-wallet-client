@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
+import styled from 'styled-components/native';
 
 interface ActivityIndicatorInterface {
 	toggleActivityIndicator: (loading: boolean) => void;
@@ -23,7 +24,23 @@ export const ActivityIndicatorProvider: React.FC<Props> = ({ children }) => {
 			value={{ loadableVisible: visible, toggleActivityIndicator }}
 		>
 			{children}
-			<ActivityIndicator />
+			{visible && (
+				<Backdrop>
+					<ActivityIndicator color={'#F68F2A'} size={'large'} />
+				</Backdrop>
+			)}
 		</ActivityIndicatorContext.Provider>
 	);
 };
+
+const Backdrop = styled.View`
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, 0);
+`;
