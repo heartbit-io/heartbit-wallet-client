@@ -20,9 +20,9 @@ const useAuth = () => {
 			const token = await user.getIdToken();
 			console.log('REFRESHED TOKEN>>>>', token);
 			onIdTokenChange(token);
-			setAuthStatus('authorized');
 			if (user.email) {
 				dispatch(getUserData(user.email));
+				setAuthStatus('authorized');
 			}
 		});
 		return () => unsubscribe();
