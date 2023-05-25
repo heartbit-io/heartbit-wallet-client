@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ActivityIndicator } from 'react-native';
 
 // hooks
 import { useAuth, useFirebaseLink } from 'hooks';
@@ -44,6 +45,11 @@ const SplashScreen = ({ navigation }: Props) => {
 			<Wrapper>
 				<Logo source={logo} />
 				<HeartBit source={heartBit} />
+				<ActivityIndicator
+					color={'#F68F2A'}
+					size={'large'}
+					style={{ marginTop: 30 }}
+				/>
 			</Wrapper>
 		</Gradient>
 	);

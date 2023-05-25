@@ -15,13 +15,18 @@ import { Gradient, InputField, MainButton, Subheadline } from 'components';
 // utils
 import { validateEmail } from 'utils/utility';
 
+// hooks
+import { useActivityIndicator } from 'hooks/useActivityIndicator';
+
 type Props = NativeStackScreenProps<RootStackType, 'EmailSignUp'>;
 
 const EmailSignUp = ({ navigation }: Props) => {
+	const { toggleActivityIndicator } = useActivityIndicator();
 	const [email, setEmail] = useState('');
 	const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
 
 	const onPressHandler = async () => {
+		toggleActivityIndicator(true);
 		auth()
 			.sendSignInLinkToEmail(email, {
 				android: { packageName: 'com.heartbitwalletclient' },
@@ -33,7 +38,8 @@ const EmailSignUp = ({ navigation }: Props) => {
 				AsyncStorage.setItem('email', email);
 				navigation.navigate('EmailSent', { email });
 			})
-			.catch(err => console.log(err));
+			.catch(err => console.log(err))
+			.finally(() => toggleActivityIndicator(false));
 	};
 
 	const onEmailChange = (text: string) => {
