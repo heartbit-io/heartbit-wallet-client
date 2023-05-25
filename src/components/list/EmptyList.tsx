@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageSourcePropType } from 'react-native';
+import { ImageSourcePropType, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
 
 // components
@@ -8,11 +8,12 @@ import { Subheadline } from 'components/common';
 type Props = {
 	icon: ImageSourcePropType;
 	text: string;
+	wrapperStyle?: ViewStyle;
 };
 
-const EmptyList = ({ icon, text }: Props) => {
+const EmptyList = ({ icon, text, wrapperStyle }: Props) => {
 	return (
-		<Wrapper>
+		<Wrapper style={wrapperStyle}>
 			<Icon source={icon} />
 			<Subheadline style={{ textAlign: 'center', color: '#3A3A3C' }}>
 				{text}

@@ -30,7 +30,6 @@ export default ArrowButtonWithText;
 const Wrapper = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
-	background-color: #fff5ed;
 	margin-bottom: 15px;
 	margin-horizontal: 16px;
 `;
