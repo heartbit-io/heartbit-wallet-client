@@ -17,7 +17,7 @@ type Props = {
 	children: string | JSX.Element | JSX.Element[];
 };
 
-export const ActivityIndicatorProvider: React.FC<Props> = ({ children }) => {
+export const ActivityIndicatorProvider = ({ children }: Props) => {
 	const [visible, toggleActivityIndicator] = useState<boolean>(false);
 	return (
 		<ActivityIndicatorContext.Provider
