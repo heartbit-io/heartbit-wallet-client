@@ -22,7 +22,6 @@ import {
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
 // store
-import { getTransactionsList } from 'store/slices/transactionsSlice';
 import { fetchQuestionsList } from 'store/slices/questionsSlice';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Home'>;
@@ -35,7 +34,6 @@ function Home({ navigation }: Props) {
 
 	useFocusEffect(
 		useCallback(() => {
-			dispatch(getTransactionsList());
 			dispatch(fetchQuestionsList(true));
 		}, []),
 	);
@@ -49,7 +47,7 @@ function Home({ navigation }: Props) {
 					<MainButton
 						text={'Ask doctors anything'}
 						onPress={() => navigation.navigate('Ask')}
-						buttonStyle={{ marginTop: 85, height: 50 }}
+						buttonStyle={{ marginTop: 82, height: 50 }}
 					/>
 				</LogoWrapper>
 				{questionsLoading && questions.length === 0 ? (
