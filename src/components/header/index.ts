@@ -1,3 +1,4 @@
 import HeaderTitle from './HeaderTitle';
+import HomeHeader from './HomeHeader';
 
-export { HeaderTitle };
+export { HeaderTitle, HomeHeader };
