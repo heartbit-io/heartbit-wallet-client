@@ -47,16 +47,23 @@ export const { setQuestions, setLoading, setError, setOffset, resetQuestions } =
 export default questionsSlice.reducer;
 
 export const fetchQuestionsList =
-	(): AppThunk => async (dispatch, getState) => {
+	(refresh: boolean): AppThunk =>
+	async (dispatch, getState) => {
 		try {
-			const { questions, offset, questionsLoading } = getState().questions;
+			let { questions, offset, questionsLoading } = getState().questions;
 			if (!questionsLoading) {
 				dispatch(setLoading(true));
+				offset = refresh ? 0 : offset;
 				getQuestionList(10, offset)
 					.then(res => {
-						if (res.data && res?.data?.length > 0) {
-							dispatch(setQuestions([...questions, ...res.data]));
-							dispatch(setOffset(questions?.length + 10));
+						if (res.data) {
+							if (refresh) {
+								dispatch(setQuestions(res.data));
+								dispatch(setOffset(0));
+							} else {
+								dispatch(setQuestions([...questions, ...res.data]));
+								dispatch(setOffset([...questions, ...res.data].length));
+							}
 						}
 					})
 					.catch(err => dispatch(setError(err)))

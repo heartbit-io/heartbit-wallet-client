@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { ActivityIndicator, ScrollView } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useFocusEffect } from '@react-navigation/native';
 import styled from 'styled-components/native';
 
 // assets
@@ -32,10 +33,12 @@ function Home({ navigation }: Props) {
 		state => state.questions,
 	);
 
-	useEffect(() => {
-		dispatch(getTransactionsList());
-		dispatch(fetchQuestionsList());
-	}, []);
+	useFocusEffect(
+		useCallback(() => {
+			dispatch(getTransactionsList());
+			dispatch(fetchQuestionsList(true));
+		}, []),
+	);
 
 	return (
 		<Gradient>
@@ -49,7 +52,7 @@ function Home({ navigation }: Props) {
 						buttonStyle={{ marginTop: 85, height: 50 }}
 					/>
 				</LogoWrapper>
-				{questionsLoading ? (
+				{questionsLoading && questions.length === 0 ? (
 					<ActivityIndicator
 						color={'#F68F2A'}
 						size={'large'}
