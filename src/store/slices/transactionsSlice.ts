@@ -3,15 +3,17 @@ import { getTransactions } from 'apis/transactionsApi';
 import { AppThunk } from 'store';
 
 interface TransactionsSlice {
-	transactions: any;
-	loading: boolean;
+	transactions: TransactionProps[];
+	transactionsLoading: boolean;
 	error: string;
+	offset: number;
 }
 
 const initialState: TransactionsSlice = {
 	transactions: [],
-	loading: false,
+	transactionsLoading: false,
 	error: '',
+	offset: 0,
 };
 
 export const transactionsSlice = createSlice({
@@ -24,11 +26,15 @@ export const transactionsSlice = createSlice({
 		}),
 		setLoading: (state, action) => ({
 			...state,
-			loading: action.payload,
+			transactionsLoading: action.payload,
 		}),
 		setError: (state, action) => ({
 			...state,
 			error: action.payload,
+		}),
+		setOffset: (state, action) => ({
+			...state,
+			offset: action.payload,
 		}),
 		resetTransactions: () => ({
 			...initialState,
@@ -36,24 +42,43 @@ export const transactionsSlice = createSlice({
 	},
 });
 
-export const { setTransactions, setLoading, setError, resetTransactions } =
-	transactionsSlice.actions;
+export const {
+	setTransactions,
+	setLoading,
+	setError,
+	setOffset,
+	resetTransactions,
+} = transactionsSlice.actions;
+
 export default transactionsSlice.reducer;
 
 export const getTransactionsList =
-	(): AppThunk => async (dispatch, getState) => {
+	(refresh?: boolean): AppThunk =>
+	async (dispatch, getState) => {
 		try {
 			const { pubkey } = getState().user.userData;
-			const res: any = await getTransactions(pubkey);
-
-			if (res.statusCode === 200 && res?.success) {
-				dispatch(setTransactions(res.data));
-				return true;
-			} else {
-				return false;
+			let { transactions, offset, transactionsLoading } =
+				getState().transactions;
+			if (!transactionsLoading) {
+				dispatch(setLoading(true));
+				offset = refresh ? 0 : offset;
+				getTransactions(pubkey, 10, offset)
+					.then(res => {
+						if (res.data) {
+							if (refresh) {
+								dispatch(setTransactions(res.data));
+								dispatch(setOffset(0));
+							} else {
+								dispatch(setTransactions([...transactions, ...res.data]));
+								dispatch(setOffset([...transactions, ...res.data].length));
+							}
+						}
+					})
+					.catch(err => dispatch(setError(err)))
+					.finally(() => dispatch(setLoading(false)));
 			}
 		} catch (err) {
-			console.log('>>>>>>', err);
-			return false;
+			console.log('FETCH TRANSACTIONS LIST ERR:', err);
+			dispatch(setError(err));
 		}
 	};
