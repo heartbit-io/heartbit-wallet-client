@@ -1,3 +1,4 @@
 import InputField from './InputField';
+import LabelInput from './LabelInput';
 
-export { InputField };
+export { InputField, LabelInput };
