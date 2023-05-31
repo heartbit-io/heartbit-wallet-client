@@ -7,6 +7,7 @@ interface TransactionsSlice {
 	transactionsLoading: boolean;
 	error: string;
 	offset: number;
+	refreshing: boolean;
 }
 
 const initialState: TransactionsSlice = {
@@ -14,6 +15,7 @@ const initialState: TransactionsSlice = {
 	transactionsLoading: false,
 	error: '',
 	offset: 0,
+	refreshing: false,
 };
 
 export const transactionsSlice = createSlice({
@@ -36,6 +38,10 @@ export const transactionsSlice = createSlice({
 			...state,
 			offset: action.payload,
 		}),
+		setRefreshing: (state, action) => ({
+			...state,
+			refreshing: action.payload,
+		}),
 		resetTransactions: () => ({
 			...initialState,
 		}),
@@ -47,22 +53,24 @@ export const {
 	setLoading,
 	setError,
 	setOffset,
+	setRefreshing,
 	resetTransactions,
 } = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;
 
 export const getTransactionsList =
-	(refresh?: boolean): AppThunk =>
+	(refresh = false): AppThunk =>
 	async (dispatch, getState) => {
 		try {
 			const { pubkey } = getState().user.userData;
-			let { transactions, offset, transactionsLoading } =
+			let { transactions, offset, transactionsLoading, refreshing } =
 				getState().transactions;
-			if (!transactionsLoading) {
+			if (!transactionsLoading && !refreshing) {
+				dispatch(setRefreshing(refresh));
 				dispatch(setLoading(true));
 				offset = refresh ? 0 : offset;
-				getTransactions(pubkey, 10, offset)
+				getTransactions(pubkey, 50, offset)
 					.then(res => {
 						if (res.data) {
 							if (refresh) {
@@ -75,7 +83,10 @@ export const getTransactionsList =
 						}
 					})
 					.catch(err => dispatch(setError(err)))
-					.finally(() => dispatch(setLoading(false)));
+					.finally(() => {
+						dispatch(setLoading(false));
+						dispatch(setRefreshing(false));
+					});
 			}
 		} catch (err) {
 			console.log('FETCH TRANSACTIONS LIST ERR:', err);

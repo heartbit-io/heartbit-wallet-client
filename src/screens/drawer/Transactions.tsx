@@ -8,7 +8,7 @@ const Transactions = () => {
 	return (
 		<Wrapper>
 			<Header headerTitle={'Transactions'} headerLeft={true} />
-			<TransactionList isTransactionsScreen={true} />
+			<TransactionList />
 		</Wrapper>
 	);
 };
