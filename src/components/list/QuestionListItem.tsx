@@ -9,7 +9,7 @@ type Props = {
 	question: GetQuestionResponse;
 };
 
-const QuestionListItem: React.FC<Props> = ({ question }) => {
+const QuestionListItem = ({ question }: Props) => {
 	const getDateFormatted = (createdAt?: string) => {
 		return createdAt === undefined || createdAt === ''
 			? moment().format('MMM D YYYY')

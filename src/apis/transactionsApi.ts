@@ -1,8 +1,18 @@
 import { api } from 'apis';
 
-export const getTransactions = async (pubkey: string) => {
+export const getTransactions = async (
+	pubkey: string,
+	limit: number,
+	offset: number,
+	order?: 'ASC' | 'DESC',
+) => {
 	try {
-		const response = await api.get(`transactions/${pubkey}`);
+		const query: string = `?limit=${limit}&offset=${offset}${
+			order === undefined ? '' : order
+		}`;
+
+		const response = await api.get(`transactions/${pubkey}${query}`);
+
 		return response.data;
 	} catch (err: any) {
 		return err;

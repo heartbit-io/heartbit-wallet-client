@@ -26,7 +26,7 @@ export default Button;
 
 const Wrapper = styled.TouchableOpacity`
 	flex: 1;
-	height: 54px;
+	height: 50px;
 	border-radius: 14px;
 	background-color: #5856d6;
 	align-items: center;

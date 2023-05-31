@@ -1,32 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import { ActivityIndicator, Alert, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useFocusEffect } from '@react-navigation/native';
 
 // components
 import {
+	ArrowButtonWithText,
 	Body,
 	Button,
+	EmptyList,
 	HeaderTitle,
 	InputModal,
 	LargeTitle,
 	QRModal,
 	Space,
-	TransactionList,
 } from 'components';
+import TransactionListItem from 'components/list/TransactionListItem';
 
 // hooks
-import { useAppSelector } from 'hooks/hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
-// store
+// store & apis
 import { getBtcRates } from 'apis/coinApi';
 import { getDepositRequest, getWithdrawalRequest } from 'apis/lndApi';
-import { Alert } from 'react-native';
+import { getTransactionsList } from 'store/slices/transactionsSlice';
 
-type Props = NativeStackScreenProps<BottomTabTypes, 'Wallet'>;
+// assets
+import EmptyArrow from 'assets/img/emptyArrow.svg';
+
+type Props = NativeStackScreenProps<RootStackType, 'Wallet'>;
 
 const Wallet = ({ navigation }: Props) => {
+	const dispatch = useAppDispatch();
 	const { userData } = useAppSelector(state => state.user);
-	const [satsValue, setSatsValue] = useState(0);
+	const { transactions, transactionsLoading } = useAppSelector(
+		state => state.transactions,
+	);
 	const [USDPerSat, setUSDPerSat] = useState(0);
 	const [withdrawModalVisible, setWithdrawModalVisible] = useState(false);
 	const [depositModalVisible, setDepositModalVisible] = useState(false);
@@ -34,12 +44,20 @@ const Wallet = ({ navigation }: Props) => {
 	const [withdrawQRVisible, setWithdrawQRVisible] = useState(false);
 	const [qrAddress, setQrAddress] = useState('');
 
+	useFocusEffect(
+		useCallback(() => {
+			dispatch(getTransactionsList(true));
+			getBtcRates().then(res =>
+				setUSDPerSat(res.data?.customSatoshi as number),
+			);
+		}, []),
+	);
+
 	const confirmHandler = async (
 		type: 'deposit' | 'withdraw',
 		email: string,
 		amount: number,
 	) => {
-		setSatsValue(amount);
 		try {
 			if (type === 'deposit') {
 				const responseDto: ResponseDto<string> = await getDepositRequest(
@@ -71,25 +89,13 @@ const Wallet = ({ navigation }: Props) => {
 		}
 	};
 
-	useEffect(() => {
-		(async () => {
-			try {
-				const responseDto: ResponseDto<ExchangeRateResponse> =
-					await getBtcRates();
-				setUSDPerSat(responseDto.data?.customSatoshi as number);
-			} catch (err) {
-				console.error(err);
-			}
-		})();
-	}, []);
-
 	return (
 		<Wrapper>
 			<HeaderTitle />
 			<TextsWrapper>
-				<LargeTitleText>
+				<LargeTitle weight="bold">
 					{userData?.btcBalance?.toLocaleString()} sats
-				</LargeTitleText>
+				</LargeTitle>
 				<Body style={{ marginTop: 16, color: '#3A3A3C' }}>
 					{(userData?.btcBalance * USDPerSat).toLocaleString(undefined, {
 						maximumFractionDigits: 2,
@@ -109,7 +115,37 @@ const Wallet = ({ navigation }: Props) => {
 					btnStyle={{ backgroundColor: '#007AFF' }}
 				/>
 			</ButtonsWrapper>
-			<TransactionList />
+
+			{transactionsLoading && transactions.length === 0 ? (
+				<ActivityIndicator
+					color={'#5856d6'}
+					size={'large'}
+					style={{ marginTop: 40 }}
+				/>
+			) : transactions.length === 0 ? (
+				<EmptyList
+					icon={EmptyArrow}
+					text={'Deposit some bitcoin(sats)\nto spend for bounties'}
+					wrapperStyle={{ marginTop: 22 }}
+				/>
+			) : (
+				<TransactionsWrapper>
+					<ArrowButtonWithText
+						title="Transactions"
+						btnText="See all"
+						onPress={() => navigation.navigate('Transactions')}
+					/>
+					<ScrollView>
+						{transactions.map(transaction => (
+							<TransactionListItem
+								key={transaction.id}
+								transaction={transaction}
+							/>
+						))}
+					</ScrollView>
+				</TransactionsWrapper>
+			)}
+
 			<InputModal
 				title={'Deposit with Lightning'}
 				type={'deposit'}
@@ -166,6 +202,7 @@ const ButtonsWrapper = styled.View`
 	margin-horizontal: 32px;
 `;
 
-const LargeTitleText = styled(LargeTitle)`
-	font-weight: bold;
+const TransactionsWrapper = styled.View`
+	flex: 1;
+	margin-top: 64px;
 `;

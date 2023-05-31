@@ -15,6 +15,8 @@ type RootStackType = {
 	Transactions: undefined;
 	DoctorQRScan: undefined;
 	MyAccount: undefined;
+	Home: undefined;
+	Wallet: undefined;
 };
 
 type BottomTabTypes = {
@@ -48,3 +50,5 @@ type HomeNavigatorParamList = {
 	MyQuestions: undefined;
 	DrawerTabs: undefined;
 };
+
+
