@@ -7,6 +7,7 @@ interface QuestionsSlice {
 	offset: number;
 	questionsLoading: boolean;
 	error: string;
+	refreshing: boolean;
 }
 
 const initialState: QuestionsSlice = {
@@ -14,6 +15,7 @@ const initialState: QuestionsSlice = {
 	offset: 0,
 	questionsLoading: false,
 	error: '',
+	refreshing: false,
 };
 
 export const questionsSlice = createSlice({
@@ -36,25 +38,37 @@ export const questionsSlice = createSlice({
 			...state,
 			offset: action.payload,
 		}),
+		setRefreshing: (state, action) => ({
+			...state,
+			refreshing: action.payload,
+		}),
 		resetQuestions: () => ({
 			...initialState,
 		}),
 	},
 });
 
-export const { setQuestions, setLoading, setError, setOffset, resetQuestions } =
-	questionsSlice.actions;
+export const {
+	setQuestions,
+	setLoading,
+	setError,
+	setOffset,
+	setRefreshing,
+	resetQuestions,
+} = questionsSlice.actions;
 export default questionsSlice.reducer;
 
 export const fetchQuestionsList =
-	(refresh: boolean): AppThunk =>
+	(refresh = false): AppThunk =>
 	async (dispatch, getState) => {
 		try {
-			let { questions, offset, questionsLoading } = getState().questions;
-			if (!questionsLoading) {
+			let { questions, offset, questionsLoading, refreshing } =
+				getState().questions;
+			if (!questionsLoading && !refreshing) {
+				dispatch(setRefreshing(refresh));
 				dispatch(setLoading(true));
 				offset = refresh ? 0 : offset;
-				getQuestionList(10, offset)
+				getQuestionList(50, offset)
 					.then(res => {
 						if (res.data) {
 							if (refresh) {
@@ -67,7 +81,10 @@ export const fetchQuestionsList =
 						}
 					})
 					.catch(err => dispatch(setError(err)))
-					.finally(() => dispatch(setLoading(false)));
+					.finally(() => {
+						dispatch(setLoading(false));
+						dispatch(setRefreshing(false));
+					});
 			}
 		} catch (err) {
 			console.log('FETCH QUESTIONS LIST ERR:', err);

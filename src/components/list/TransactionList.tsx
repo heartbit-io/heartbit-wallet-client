@@ -1,96 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
-import moment from 'moment';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 // components
-import { Footnote, Headline, Subheadline } from 'components/common';
-import { ArrowButtonWithText } from 'components';
-import EmptyList from './EmptyList';
-
-// assets
-import EmptyArrow from 'assets/img/emptyArrow.svg';
+import { Footnote } from 'components/common';
+import TransactionListItem from './TransactionListItem';
 
 // hooks
-import { useNavigation } from '@react-navigation/native';
-import { useAppSelector } from 'hooks/hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
-type Props = {
-	isTransactionsScreen?: boolean;
-};
+// store
+import { getTransactionsList } from 'store/slices/transactionsSlice';
 
-const TransactionList = ({ isTransactionsScreen }: Props) => {
-	const navigation = useNavigation<NativeStackNavigationProp<RootStackType>>();
-	const { transactions } = useAppSelector(state => state.transactions);
+const TransactionList = () => {
+	const dispatch = useAppDispatch();
+	const { transactions, transactionsLoading, refreshing } = useAppSelector(
+		state => state.transactions,
+	);
 
-	const renderItemHandler = ({ item }: { item: any }) => {
-		return (
-			<ItemWrapper>
-				<Subheadline color="#8E8E93">
-					{moment(item.createdAt).format('D MMM YYYY ・ hh:mm')}
-				</Subheadline>
-				<RowWrapper>
-					<HeadlineText>{item.type}</HeadlineText>
-					<Subheadline>{`${item.amount} sats (${item.fee} sats fee)`}</Subheadline>
-				</RowWrapper>
-			</ItemWrapper>
-		);
+	useEffect(() => {
+		dispatch(getTransactionsList(true));
+	}, []);
+
+	const renderItemHandler: any = ({ item }: { item: TransactionProps }) => {
+		return <TransactionListItem transaction={item} />;
 	};
+
+	const renderListEmptyComponent = () => (
+		<Footnote style={{ textAlign: 'center', marginTop: 50 }}>
+			There is no any transactions
+		</Footnote>
+	);
 
 	return (
 		<StyledFlatList
 			data={transactions}
 			renderItem={renderItemHandler}
-			ListHeaderComponent={
-				!isTransactionsScreen && transactions.length > 0 ? (
-					<ArrowButtonWithText
-						title="Transactions"
-						btnText="See all"
-						onPress={() => navigation.navigate('Transactions')}
-					/>
-				) : (
-					<></>
-				)
-			}
-			ListEmptyComponent={
-				isTransactionsScreen ? (
-					<Footnote style={{ textAlign: 'center', marginTop: 50 }}>
-						There is no any transactions
-					</Footnote>
-				) : (
-					<EmptyList
-						icon={EmptyArrow}
-						text={'Deposit some bitcoin(sats)\nto spend for bounties'}
-					/>
-				)
-			}
-			stickyHeaderIndices={isTransactionsScreen ? [] : [0]}
-			marginTop={isTransactionsScreen ? 0 : transactions.length > 0 ? 64 : 22}
-			scrollEnabled={transactions.length > 0}
+			ListEmptyComponent={renderListEmptyComponent()}
+			refreshing={refreshing}
+			onRefresh={() => dispatch(getTransactionsList(true))}
+			// onEndReached={() => dispatch(getTransactionsList())}
 		/>
 	);
 };
 
 export default TransactionList;
 
-const StyledFlatList = styled.FlatList<{ marginTop: number }>`
-	margin-top: ${({ marginTop }) => marginTop}px;
-`;
-
-const ItemWrapper = styled.View`
-	border-bottom-width: 0.5px;
-	border-bottom-color: rgba(60, 60, 67, 0.36);
-	padding-vertical: 15px;
-	margin-horizontal: 16px;
-`;
-
-const RowWrapper = styled.View`
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-	margin-top: 8px;
-`;
-
-const HeadlineText = styled(Headline)`
-	font-weight: bold;
-`;
+const StyledFlatList = styled.FlatList``;
