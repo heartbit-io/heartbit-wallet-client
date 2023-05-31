@@ -12,12 +12,12 @@ const Tab = createBottomTabNavigator<BottomTabTypes>();
 
 const Icons = [
 	{
-		active: require('assets/img/ic_home_selected.png'),
-		inactive: require('assets/img/ic_home_unselected.png'),
+		active: require('assets/img/ic_home_selected.svg'),
+		inactive: require('assets/img/ic_home_unselected.svg'),
 	},
 	{
-		active: require('assets/img/ic_wallet_selected.png'),
-		inactive: require('assets/img/ic_wallet_unselected.png'),
+		active: require('assets/img/ic_wallet_selected.svg'),
+		inactive: require('assets/img/ic_wallet_unselected.svg'),
 	},
 ];
 
