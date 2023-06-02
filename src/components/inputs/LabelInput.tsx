@@ -26,6 +26,7 @@ export default LabelInput;
 const Wrapper = styled.View``;
 
 const Input = styled.TextInput`
+	max-height: 150px;
 	border-radius: 8px;
 	border: 0.5px solid #8e8e93;
 	background-color: #fff;

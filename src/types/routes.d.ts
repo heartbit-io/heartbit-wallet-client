@@ -4,7 +4,15 @@ type RootStackType = {
 	EmailSent: { email: string };
 	DrawerTabs: undefined;
 	Ask: undefined;
-	Bounty: { askContent: string };
+	Bounty: { 
+		isGeneralQuestion: boolean;
+		generalQuestion: string;
+		history: string;
+		medications: string;
+		pastIllness: string;
+		personalInfo: string;
+		others: string;
+	 };
 	Forum: {
 		questionId: number;
 		bountyAmount: number;
