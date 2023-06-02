@@ -12,9 +12,9 @@ type Props = {
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-const navigation = useNavigation<NativeStackNavigationProp<RootStackType>>();
-
 const QuestionListItem = ({ question }: Props) => {
+	const navigation = useNavigation<NativeStackNavigationProp<RootStackType>>();
+
 	const getDateFormatted = (createdAt?: string) => {
 		return createdAt === undefined || createdAt === ''
 			? moment().format('MMM D YYYY')
