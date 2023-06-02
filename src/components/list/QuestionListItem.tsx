@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import moment from 'moment';
+import { useNavigation } from '@react-navigation/native';
 
 // components
 import { Headline, Subheadline } from 'components/common';
@@ -8,6 +9,10 @@ import { Headline, Subheadline } from 'components/common';
 type Props = {
 	question: GetQuestionResponse;
 };
+
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+const navigation = useNavigation<NativeStackNavigationProp<RootStackType>>();
 
 const QuestionListItem = ({ question }: Props) => {
 	const getDateFormatted = (createdAt?: string) => {
@@ -17,7 +22,16 @@ const QuestionListItem = ({ question }: Props) => {
 	};
 
 	return (
-		<QuestionWrapper>
+		<QuestionWrapper
+			onPress={() =>
+				navigation.navigate('Forum', {
+					questionId: question.id,
+					bountyAmount: question.bountyAmount,
+					askContent: question.content,
+					createdAt: question.createdAt,
+				})
+			}
+		>
 			<TextHeadline numberOfLines={1}>{question.content}</TextHeadline>
 			<SpaceWrapper>
 				<Subheadline color="#8E8E93">
@@ -39,7 +53,7 @@ const SpaceWrapper = styled.View`
 	justify-content: space-between;
 	align-items: center;
 `;
-const QuestionWrapper = styled.View`
+const QuestionWrapper = styled.TouchableOpacity`
 	flex-direction: column;
 	justify-content: center;
 	border-bottom-width: 0.5px;
