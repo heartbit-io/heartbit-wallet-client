@@ -55,7 +55,7 @@ const InputModal = ({
 						/>
 						<Caption1 style={{ marginTop: 8 }}>
 							${' '}
-							{(100000 * (USDPerSat as number)).toLocaleString(undefined, {
+							{(100000 * (USDPerSat as number))?.toLocaleString(undefined, {
 								maximumFractionDigits: 2,
 							})}
 						</Caption1>
@@ -67,7 +67,7 @@ const InputModal = ({
 						/>
 						<Caption1 style={{ marginTop: 8 }}>
 							${' '}
-							{(10000 * (USDPerSat as number)).toLocaleString(undefined, {
+							{(10000 * (USDPerSat as number))?.toLocaleString(undefined, {
 								maximumFractionDigits: 2,
 							})}
 						</Caption1>
@@ -81,7 +81,7 @@ const InputModal = ({
 					<Footnote
 						style={{ textDecorationLine: 'underline', fontWeight: 'bold' }}
 					>
-						{userData?.btcBalance.toLocaleString()}
+						{userData?.btcBalance?.toLocaleString()}
 					</Footnote>{' '}
 					sats
 				</Footnote>
@@ -100,7 +100,7 @@ const InputModal = ({
 						</RowWrapper>
 						<InputWrapper>
 							<Input
-								value={value.toLocaleString()}
+								value={value?.toLocaleString()}
 								onChangeText={value =>
 									setValue(Number(value.replace(/,/g, '')))
 								}
