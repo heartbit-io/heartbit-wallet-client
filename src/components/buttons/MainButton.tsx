@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewStyle } from 'react-native';
+import { TextStyle, ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
 
 // components
@@ -10,9 +10,16 @@ type Props = {
 	onPress: () => void;
 	active?: boolean;
 	buttonStyle?: ViewStyle;
+	textStyle?: TextStyle;
 };
 
-const MainButton = ({ text, onPress, active = true, buttonStyle }: Props) => {
+const MainButton = ({
+	text,
+	onPress,
+	active = true,
+	buttonStyle,
+	textStyle,
+}: Props) => {
 	return (
 		<Wrapper
 			style={buttonStyle}
@@ -21,7 +28,9 @@ const MainButton = ({ text, onPress, active = true, buttonStyle }: Props) => {
 			activeOpacity={active ? 0.2 : 1}
 			disabled={!active}
 		>
-			<Text>{text}</Text>
+			<Body weight="bold" color="#fff" style={textStyle}>
+				{text}
+			</Body>
 		</Wrapper>
 	);
 };
@@ -35,8 +44,4 @@ const Wrapper = styled.TouchableOpacity<{ active?: boolean }>`
 	align-items: center;
 	border-radius: 14px;
 	background-color: ${({ active }) => (active ? '#F68F2A' : '#E5E5EA')};
-`;
-const Text = styled(Body)`
-	color: #fff;
-	font-weight: bold;
 `;
