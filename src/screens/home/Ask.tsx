@@ -1,81 +1,179 @@
 import React, { useState } from 'react';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styled from 'styled-components/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // components
-import { Header, LargeTitle, MainButton } from 'components';
+import {
+	Footnote,
+	Header,
+	LabelInput,
+	LargeTitle,
+	MainButton,
+	Space,
+} from 'components';
 
-type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Ask'>;
+// assets
+import Arrow from 'assets/img/Arrow.svg';
 
-function Ask(props: Props) {
-	const [askContent, setAskContent] = useState('');
+type Props = NativeStackScreenProps<RootStackType, 'Ask'>;
 
-	const navigateToBounty = (askContent: string, { navigation }: Props) => {
-		askContent.length < 50
-			? ''
-			: navigation.navigate('Bounty', { askContent: askContent });
+function Ask({ navigation }: Props) {
+	const bottom = useSafeAreaInsets().bottom;
+	const [isGeneralQuestion, setIsGeneralQuestion] = useState(false);
+	const [generalQuestion, setGeneralQuestion] = useState('');
+	const [history, setHistory] = useState('');
+	const [medications, setMedications] = useState('');
+	const [pastIllness, setPastIllness] = useState('');
+	const [personalInfo, setPersonalInfo] = useState('');
+	const [others, setOthers] = useState('');
+
+	const navigateToBounty = () => {
+		navigation.navigate('Bounty', {
+			isGeneralQuestion,
+			generalQuestion,
+			history,
+			medications,
+			pastIllness,
+			personalInfo,
+			others,
+		});
 	};
 
+	const renderHealthInputs = () => (
+		<>
+			<LabelInput
+				label="History of your present illness"
+				inputProps={{
+					placeholder: 'Explain how and when started, what bothers most.',
+					value: history,
+					onChangeText: setHistory,
+					style: { minHeight: 88 },
+				}}
+			/>
+			<Space height={16} />
+			<LabelInput
+				label="Current medications (Optional)"
+				inputProps={{
+					placeholder: 'e.g., MTX 1.5 tablets (2 weeks duration)',
+					value: medications,
+					onChangeText: setMedications,
+				}}
+			/>
+			<Space height={16} />
+			<LabelInput
+				label="Past illness history of you or your family (Optional)"
+				inputProps={{
+					placeholder: 'e.g., Early cataracts, Arthritis',
+					value: pastIllness,
+					onChangeText: setPastIllness,
+				}}
+			/>
+			<Space height={16} />
+			<LabelInput
+				label="Age, Sex, and Ethnicity (Optional)"
+				inputProps={{
+					placeholder: 'e.g., 24 yr old, male, Korean american',
+					value: personalInfo,
+					onChangeText: setPersonalInfo,
+				}}
+			/>
+			<Space height={16} />
+			<LabelInput
+				label="Others (Optional)"
+				inputProps={{
+					placeholder: 'Share anything that might help',
+					value: others,
+					onChangeText: setOthers,
+				}}
+			/>
+			<Space height={30} />
+		</>
+	);
+
+	const renderGeneralInputs = () => (
+		<>
+			<LabelInput
+				label="General question"
+				inputProps={{
+					placeholder: 'Enter your question here',
+					value: generalQuestion,
+					onChangeText: setGeneralQuestion,
+					style: { height: 88 },
+				}}
+			/>
+			<Space height={16} />
+			<LabelInput
+				label="Age, Sex, and Ethnicity (Optional)"
+				inputProps={{
+					placeholder: 'e.g., 24 yr old, male, Korean american',
+					value: personalInfo,
+					onChangeText: setPersonalInfo,
+				}}
+			/>
+			<Space height={30} />
+		</>
+	);
+
 	return (
-		<ScrollWrapper>
-			<Header headerLeft={true} headerRight={true} />
-			<WrapperLeft>
-				<Text>What do you want to ask?</Text>
-				<Input
-					textAlign="center"
-					returnKeyType="go"
-					multiline={true}
-					blurOnSubmit
-					onChangeText={(question: string) => setAskContent(question)}
-					onSubmitEditing={() => {
-						navigateToBounty(askContent, props);
-					}}
-					placeholder={
-						'Explain your symptoms(how and when started), any related medical treatment or tests you have received(and when), current medications, and age and gender.\n\nThe more detailed you are, the more likely you will get a good answer.'
+		<Wrapper>
+			<Header headerRight={true} />
+			<ScrollWrapper extraHeight={120}>
+				<LargeTitle weight="bold">What's bothering you?</LargeTitle>
+				<Switch onPress={() => setIsGeneralQuestion(!isGeneralQuestion)}>
+					<Icon source={Arrow} />
+					<Footnote weight="bold" color="#007AFF">
+						{isGeneralQuestion
+							? 'I’d like to ask about my sickness'
+							: 'I’m not sick, but I have a general health question'}
+					</Footnote>
+				</Switch>
+				{isGeneralQuestion ? renderGeneralInputs() : renderHealthInputs()}
+			</ScrollWrapper>
+			<ButtonWrapper paddingBottom={bottom}>
+				<MainButton
+					text={'Next'}
+					onPress={navigateToBounty}
+					buttonStyle={{ height: 50 }}
+					active={
+						isGeneralQuestion
+							? generalQuestion.length > 50
+							: history.length > 50 &&
+							  medications.length > 50 &&
+							  pastIllness.length > 50
 					}
 				/>
-			</WrapperLeft>
-			<Wrapper>
-				<MainButton
-					onPress={() => navigateToBounty(askContent, props)}
-					active={askContent.length < 50 ? false : true}
-					text={'Next'}
-				/>
-			</Wrapper>
-		</ScrollWrapper>
+			</ButtonWrapper>
+		</Wrapper>
 	);
 }
 
 export default Ask;
 
-const Text = styled(LargeTitle)`
-	font-weight: bold;
-`;
-
-const Input = styled.TextInput`
-	text-align: left;
-	font-size: 20px;
-	margin-top: 18px;
-`;
-
-const ScrollWrapper = styled.ScrollView`
+const Wrapper = styled.KeyboardAvoidingView`
 	flex: 1;
 	background-color: #fff5ed;
 `;
 
-const Wrapper = styled.View`
-	flex: 1;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	margin-top: 300px;
-	padding-horizontal: 25px;
+const ScrollWrapper = styled(KeyboardAwareScrollView)`
+	padding-top: 5px;
+	padding-horizontal: 30px;
 `;
 
-const WrapperLeft = styled.View`
-	flex: 1;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
-	margin-horizontal: 25px;
+const Switch = styled.TouchableOpacity`
+	flex-direction: row;
+	align-items: center;
+	margin-top: 16px;
+	margin-bottom: 34px;
+`;
+
+const Icon = styled.Image`
+	margin-right: 9px;
+`;
+
+const ButtonWrapper = styled.View<{ paddingBottom: number }>`
+	padding-top: 12px;
+	padding-bottom: ${({ paddingBottom }) => paddingBottom || 20}px;
+	padding-horizontal: 16px;
 `;

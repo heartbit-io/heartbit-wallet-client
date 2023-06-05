@@ -59,4 +59,5 @@ export const Title1 = styled(Text)`
 export const LargeTitle = styled(Text)`
 	font-size: 34px;
 	line-height: 41px;
+	letter-spacing: 0.37px;
 `;

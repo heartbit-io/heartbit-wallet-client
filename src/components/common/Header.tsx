@@ -52,7 +52,7 @@ const Header = ({
 				</Wrapper>
 			);
 		}
-		return null;
+		return '';
 	};
 
 	const renderHeaderRight = () => {
