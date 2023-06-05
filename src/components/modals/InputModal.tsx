@@ -96,7 +96,7 @@ const InputModal = ({
 					<Container>
 						<RowWrapper>
 							<Icon source={Lightening} />
-							<Title3Text>{title}</Title3Text>
+							<Title3 weight="bold">{title}</Title3>
 						</RowWrapper>
 						<InputWrapper>
 							<Input
@@ -177,8 +177,4 @@ const SelectBtnsWrapper = styled.View`
 
 const SelectBtnWrapper = styled.View`
 	align-items: center;
-`;
-
-const Title3Text = styled(Title3)`
-	font-weight: bold;
 `;
