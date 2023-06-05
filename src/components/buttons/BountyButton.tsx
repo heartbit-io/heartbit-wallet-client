@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components/native';
 
 // components
@@ -7,24 +7,23 @@ import { Body, Caption1, Footnote } from 'components/common';
 // assets
 import arrowRight from 'assets/img/ic_chevron.right.svg';
 
-// apis
-import { getBtcRates } from 'apis/coinApi';
-
 type Props = {
 	title: string;
+	USDPerSat: number;
 	sats: number;
 	active: boolean;
 	isManual?: boolean;
 	onPress: () => void;
 };
 
-const BountyButton = ({ title, sats, active, isManual, onPress }: Props) => {
-	const [USDPerSat, setUSDPerSat] = useState(0);
-
-	useEffect(() => {
-		getBtcRates().then(res => setUSDPerSat(res.data?.customSatoshi as number));
-	}, []);
-
+const BountyButton = ({
+	title,
+	USDPerSat,
+	sats,
+	active,
+	isManual,
+	onPress,
+}: Props) => {
 	return (
 		<Wrapper active={active} onPress={onPress}>
 			<Footnote weight="bold" color="#3A3A3C">
