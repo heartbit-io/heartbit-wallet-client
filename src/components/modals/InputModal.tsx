@@ -93,7 +93,7 @@ const InputModal = ({
 		<Modal animationType="fade" transparent={true} visible={modalVisible}>
 			<KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
 				<Wrapper onPress={closeModal} activeOpacity={1}>
-					<Container>
+					<Container activeOpacity={1}>
 						<RowWrapper>
 							<Icon source={Lightening} />
 							<Title3 weight="bold">{title}</Title3>
@@ -130,7 +130,7 @@ const Wrapper = styled.TouchableOpacity`
 	background-color: rgba(0, 0, 0, 0.75);
 `;
 
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
 	background-color: #fff5ed;
 	padding-top: 19px;
 	padding-bottom: 16px;

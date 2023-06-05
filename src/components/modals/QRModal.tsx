@@ -26,7 +26,7 @@ const QRModal = ({
 	return (
 		<Modal animationType="fade" transparent={true} visible={modalVisible}>
 			<Wrapper onPress={closeModal} activeOpacity={1}>
-				<Container>
+				<Container activeOpacity={1}>
 					<RowWrapper>
 						<Icon source={Lightening} />
 						<Title3 weight="bold">{title}</Title3>
@@ -55,7 +55,7 @@ const Wrapper = styled.TouchableOpacity`
 	background-color: rgba(0, 0, 0, 0.75);
 `;
 
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
 	align-items: center;
 	background-color: #fff5ed;
 	padding-top: 19px;
