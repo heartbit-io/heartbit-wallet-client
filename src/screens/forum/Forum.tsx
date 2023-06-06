@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styled from 'styled-components/native';
 import { Body, Caption1, Subheadline, Title1 } from 'components/common';
@@ -7,6 +7,7 @@ import Header from 'components/common/Header';
 import { Alert } from 'react-native';
 import { deleteQuestion, getReply, postGPTReply } from 'apis/questionApi';
 import moment from 'moment';
+import Question from 'assets/img/question.svg';
 
 type Props = NativeStackScreenProps<RootStackType, 'Forum'>;
 
@@ -18,12 +19,6 @@ function Forum({ navigation, route }: Props) {
 		reply: 'I’m preparing my answer. (Could take up to 10 ~ 20 secs)',
 		createdAt: '',
 	});
-
-	const getDateFormatted = (createdAt?: string) => {
-		return createdAt === undefined || createdAt === ''
-			? moment().format('MMM D YYYY')
-			: moment(createdAt).format('MMM D YYYY');
-	};
 
 	useEffect(() => {
 		(async () => {
@@ -41,45 +36,53 @@ function Forum({ navigation, route }: Props) {
 		})();
 	}, []);
 
+	const getDateFormatted = (createdAt?: string) => {
+		return createdAt === undefined || createdAt === ''
+			? moment().format('MMM D YYYY')
+			: moment(createdAt).format('MMM D YYYY');
+	};
+
+	const onPressHeaderLeft = () => navigation.navigate('DrawerTabs');
+
+	const onPressHeaderRight = async () => {
+		Alert.alert(
+			`Are you sure you want to permanently delete this? Your question, doctor's note, and medical record will be deleted.`,
+			'',
+			[
+				{
+					text: 'Delete',
+					onPress: async () => {
+						const responseDto: ResponseDto<any> = await deleteQuestion(
+							route.params.questionId,
+						);
+						if (responseDto.statusCode === 200) {
+							Alert.alert(responseDto.message);
+							navigation.navigate('DrawerTabs');
+						} else {
+							Alert.alert(responseDto.message, 'Try again later');
+						}
+					},
+				},
+				{
+					text: 'Cancel',
+					onPress: async () => '',
+				},
+			],
+		);
+	};
+
 	return (
 		<Wrapper>
 			<Header
 				headerLeft={true}
 				headerRight={true}
-				hearderRightTitle={'Delete'}
-				onPressHeaderLeft={() => navigation.navigate('DrawerTabs')}
-				onPressHeaderRight={async () => {
-					Alert.alert(
-						`Are you sure you want to permanently delete this? Your question, doctor's note, and medical record will be deleted.`,
-						'',
-						[
-							{
-								text: 'Delete',
-								onPress: async () => {
-									const responseDto: ResponseDto<any> = await deleteQuestion(
-										route.params.questionId,
-									);
-									if (responseDto.statusCode === 200) {
-										Alert.alert(responseDto.message);
-										navigation.navigate('DrawerTabs');
-									} else {
-										Alert.alert(responseDto.message, 'Try again later');
-									}
-								},
-							},
-							{
-								text: 'Cancel',
-								onPress: async () => '',
-							},
-						],
-					);
-				}}
+				headerRightTitle={'Delete'}
+				onPressHeaderLeft={onPressHeaderLeft}
+				onPressHeaderRight={onPressHeaderRight}
 			/>
 			<PostWrapper>
 				<ProfileWrapper>
-					<CircleSky>
-						<ProfileText>Q</ProfileText>
-					</CircleSky>
+					<Icon source={Question} />
 					<PostInfoWrapper>
 						<TextBold>You</TextBold>
 						<TextCaption>
@@ -141,18 +144,17 @@ export default Forum;
 
 const Wrapper = styled.View`
 	flex: 1;
-	background-color: #fff5ed;
+	background-color: #fff;
 `;
 
 const PostWrapper = styled.View`
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
 	border-color: #bdbdbd;
 	border-top-width: 1px;
 	padding-vertical: 25px;
 	padding-horizontal: 25px;
 `;
+
+const Icon = styled.Image``;
 
 const PostInfoWrapper = styled.View`
 	margin-top: 2px;
