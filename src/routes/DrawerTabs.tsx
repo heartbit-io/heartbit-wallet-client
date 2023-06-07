@@ -133,7 +133,7 @@ const SocialWrapper = styled.View`
 
 const Social = styled.TouchableOpacity`
 	padding: 10px;
-	margin-right: 5;
+	margin-right: 5px;
 `;
 
 const Icon = styled.Image``;

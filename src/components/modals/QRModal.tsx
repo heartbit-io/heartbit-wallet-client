@@ -26,10 +26,10 @@ const QRModal = ({
 	return (
 		<Modal animationType="fade" transparent={true} visible={modalVisible}>
 			<Wrapper onPress={closeModal} activeOpacity={1}>
-				<Container>
+				<Container activeOpacity={1}>
 					<RowWrapper>
 						<Icon source={Lightening} />
-						<Title3Text>{title}</Title3Text>
+						<Title3 weight="bold">{title}</Title3>
 					</RowWrapper>
 					<Subheadline>
 						Scan the QR code or input the invoice address below with a{' '}
@@ -55,7 +55,7 @@ const Wrapper = styled.TouchableOpacity`
 	background-color: rgba(0, 0, 0, 0.75);
 `;
 
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
 	align-items: center;
 	background-color: #fff5ed;
 	padding-top: 19px;
@@ -72,8 +72,4 @@ const RowWrapper = styled.View`
 
 const Icon = styled.Image`
 	margin-right: 7px;
-`;
-
-const Title3Text = styled(Title3)`
-	font-weight: bold;
 `;

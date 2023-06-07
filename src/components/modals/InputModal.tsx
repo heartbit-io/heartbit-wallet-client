@@ -93,10 +93,10 @@ const InputModal = ({
 		<Modal animationType="fade" transparent={true} visible={modalVisible}>
 			<KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
 				<Wrapper onPress={closeModal} activeOpacity={1}>
-					<Container>
+					<Container activeOpacity={1}>
 						<RowWrapper>
 							<Icon source={Lightening} />
-							<Title3Text>{title}</Title3Text>
+							<Title3 weight="bold">{title}</Title3>
 						</RowWrapper>
 						<InputWrapper>
 							<Input
@@ -130,7 +130,7 @@ const Wrapper = styled.TouchableOpacity`
 	background-color: rgba(0, 0, 0, 0.75);
 `;
 
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
 	background-color: #fff5ed;
 	padding-top: 19px;
 	padding-bottom: 16px;
@@ -177,8 +177,4 @@ const SelectBtnsWrapper = styled.View`
 
 const SelectBtnWrapper = styled.View`
 	align-items: center;
-`;
-
-const Title3Text = styled(Title3)`
-	font-weight: bold;
 `;
