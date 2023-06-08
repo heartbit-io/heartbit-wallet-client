@@ -13,7 +13,7 @@ import { fetchQuestionsList } from 'store/slices/questionsSlice';
 
 const MyQuestionList = () => {
 	const dispatch = useAppDispatch();
-	const { questions, questionsLoading, refreshing } = useAppSelector(
+	const { questions, questionsLoading, hasMore, refreshing } = useAppSelector(
 		state => state.questions,
 	);
 
@@ -38,7 +38,7 @@ const MyQuestionList = () => {
 			ListEmptyComponent={renderEmptyComponent()}
 			refreshing={refreshing}
 			onRefresh={() => dispatch(fetchQuestionsList(true))}
-			// onEndReached={() => dispatch(fetchQuestionsList())}
+			onEndReached={() => hasMore && dispatch(fetchQuestionsList())}
 		/>
 	);
 };
