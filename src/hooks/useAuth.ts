@@ -4,6 +4,7 @@ import { useAppDispatch } from './hooks';
 
 // store
 import { getUserData } from 'store/slices/userSlice';
+import { api, apiLND } from 'apis';
 
 const useAuth = () => {
 	const dispatch = useAppDispatch();
@@ -20,6 +21,8 @@ const useAuth = () => {
 			const token = await user.getIdToken();
 			console.log('REFRESHED TOKEN>>>>', token);
 			onIdTokenChange(token);
+			api.defaults.headers.common['Authorization'] = `Bearer ${idToken}`;
+			apiLND.defaults.headers.common['Authorization'] = `Bearer ${idToken}`;
 			if (user.email) {
 				dispatch(getUserData(user.email));
 				setAuthStatus('authorized');
