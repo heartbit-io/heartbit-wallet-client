@@ -13,13 +13,10 @@ import heartBit from 'assets/logo/heartBit.svg';
 // components
 import { Gradient } from 'components';
 
-// apis
-import { api, apiLND } from 'apis';
-
 type Props = NativeStackScreenProps<RootStackType, 'SplashScreen'>;
 
 const SplashScreen = ({ navigation }: Props) => {
-	const { authStatus, idToken } = useAuth();
+	const { authStatus } = useAuth();
 	const { signInStatus } = useFirebaseLink();
 
 	useEffect(() => {
@@ -32,13 +29,6 @@ const SplashScreen = ({ navigation }: Props) => {
 			navigation.navigate('EmailSignUp');
 		}
 	}, [authStatus, signInStatus]);
-
-	useEffect(() => {
-		if (idToken) {
-			api.defaults.headers.common['Authorization'] = `Bearer ${idToken}`;
-			apiLND.defaults.headers.common['Authorization'] = `Bearer ${idToken}`;
-		}
-	}, [idToken]);
 
 	return (
 		<Gradient>
