@@ -21,8 +21,12 @@ const useAuth = () => {
 			const token = await user.getIdToken();
 			console.log('REFRESHED TOKEN>>>>', token);
 			onIdTokenChange(token);
-			api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-			apiLND.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+			setInterval(async () => {
+				const token = await user.getIdToken();
+				onIdTokenChange(token);
+				api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+				apiLND.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+			}, 1000 * 60 * 59);
 			if (user.email) {
 				dispatch(getUserData(user.email));
 				setAuthStatus('authorized');
