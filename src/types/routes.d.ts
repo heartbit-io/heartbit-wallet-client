@@ -14,10 +14,8 @@ type RootStackType = {
 		others: string;
 	 };
 	Forum: {
-		questionId: number;
-		bountyAmount: number;
-		askContent: string;
-		createdAt?: string;
+		question: QuestionResponse;
+		isFromBountyScreen: boolean;
 	};
 	MyQuestions: undefined;
 	Transactions: undefined;
