@@ -1,19 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import styled from 'styled-components/native';
-import { Body, Caption1, Footnote, Subheadline } from 'components/common';
-import loading_dot from 'assets/gif/loading_dot.gif';
-import Header from 'components/common/Header';
 import { Alert } from 'react-native';
-import { deleteQuestion, getReply, postGPTReply } from 'apis/questionApi';
+import styled from 'styled-components/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import moment from 'moment';
+
+// components
+import Header from 'components/common/Header';
+import {
+	Body,
+	Caption1,
+	Footnote,
+	Space,
+	Subheadline,
+} from 'components/common';
+
+// apis
+import { deleteQuestion, getReply, postGPTReply } from 'apis/questionApi';
+
+// assets
+import loading_dot from 'assets/gif/loading_dot.gif';
 import Question from 'assets/img/question.svg';
 import Answer from 'assets/img/answer.svg';
 import AILogo from 'assets/img/aiLogo.svg';
+import Caution from 'assets/img/alert-circle.svg';
 
 type Props = NativeStackScreenProps<RootStackType, 'Forum'>;
 
+const questionContent = [
+	{ type: 'content', title: 'History of your present illness' },
+	{ type: 'currentMedication', title: 'Current medications' },
+	{
+		type: 'pastIllnessHistory',
+		title: 'Past illness history of you or your family',
+	},
+	{ type: 'ageSexEthnicity', title: 'Age, Sex, and Ethnicity' },
+	{ type: 'others', title: 'Others' },
+];
+
 function Forum({ navigation, route }: Props) {
+	const { question, isFromBountyScreen } = route.params;
 	const [loading, setLoading] = useState(false);
 	const [answer, setAnswer] = useState<ReplyResponse>({
 		replyType: 'ai',
@@ -25,19 +50,18 @@ function Forum({ navigation, route }: Props) {
 
 	useEffect(() => {
 		setLoading(true);
-		if (false) {
-			postGPTReply(route.params.questionId)
+		if (isFromBountyScreen) {
+			postGPTReply(question.id)
 				.then(res => setAnswer({ ...res.data } as ReplyResponse))
 				.catch(err => Alert.alert(err as string, 'Try again later'))
 				.finally(() => setLoading(false));
 		} else {
-			getReply(route.params.questionId)
+			getReply(question.id)
 				.then(res => setAnswer({ ...res.data } as ReplyResponse))
 				.catch(err => Alert.alert(err as string, 'Try again later'))
 				.finally(() => setLoading(false));
 		}
 	}, []);
-
 	const getDateFormatted = (createdAt?: string) => {
 		return createdAt === undefined || createdAt === ''
 			? moment().format('MMM D YYYY')
@@ -55,7 +79,7 @@ function Forum({ navigation, route }: Props) {
 					text: 'Delete',
 					onPress: async () => {
 						const responseDto: ResponseDto<any> = await deleteQuestion(
-							route.params.questionId,
+							question.id,
 						);
 						if (responseDto.statusCode === 200) {
 							Alert.alert(responseDto.message);
@@ -74,103 +98,88 @@ function Forum({ navigation, route }: Props) {
 	};
 
 	return (
-		<Wrapper>
-			<ScrollWrapper>
-				<Header
-					headerLeft={true}
-					headerRight={true}
-					headerRightTitle={'Delete'}
-					onPressHeaderLeft={onPressHeaderLeft}
-					onPressHeaderRight={onPressHeaderRight}
-				/>
-				<PostWrapper>
-					<ProfileWrapper>
-						<Icon source={Question} />
-						<PostInfoWrapper>
-							<Body weight="bold">You</Body>
-							<Caption1 color="rgba(60, 60, 67, 0.6)">
-								{getDateFormatted(route.params.createdAt)} ・{' '}
-								{route.params.bountyAmount.toLocaleString()} sats
-							</Caption1>
-						</PostInfoWrapper>
-					</ProfileWrapper>
-					<Container>
-						<Footnote weight="bold" color="#8E8E93">
-							History of your present illness
-						</Footnote>
-						<Body color="#3A3A3C" style={{ marginTop: 8 }}>
-							I’ve been experiencing fatigue for the past 6 months. Despite
-							sleeping 8-10 hours each night, I wake up feeling tired and her
-							energy only worsens as the day goes on. She reports that her daily
-							activities have become significantly impaired because of her
-							exhaustion. She denies experiencing any pain, fever, palpitations,
-							shortness of breath, or sleep disturbances.
+		<ScrollWrapper>
+			<Header
+				headerLeft={true}
+				headerRight={true}
+				headerRightTitle={'Delete'}
+				onPressHeaderLeft={onPressHeaderLeft}
+				onPressHeaderRight={onPressHeaderRight}
+			/>
+			<PostWrapper>
+				<ProfileWrapper>
+					<Icon source={Question} />
+					<PostInfoWrapper>
+						<Body weight="bold">You</Body>
+						<Caption1 color="rgba(60, 60, 67, 0.6)">
+							{getDateFormatted(question.createdAt)} ・{' '}
+							{question.bountyAmount.toLocaleString()} sats
+						</Caption1>
+					</PostInfoWrapper>
+				</ProfileWrapper>
+				{questionContent.map(
+					el =>
+						!!question[el.type as keyof typeof question] && (
+							<Container key={el.type}>
+								{!(question.type === 'general' && el.type === 'content') && (
+									<Footnote
+										weight="bold"
+										color="#8E8E93"
+										style={{ marginBottom: 8 }}
+									>
+										{el.title}
+									</Footnote>
+								)}
+								<Body color="#3A3A3C">
+									{question[el.type as keyof typeof question]}
+								</Body>
+							</Container>
+						),
+				)}
+			</PostWrapper>
+			<PostWrapper>
+				<ProfileWrapper>
+					<Icon source={answer.replyType === 'ai' ? AILogo : Answer} />
+					<PostInfoWrapper>
+						<Body weight="bold">{answer.name}</Body>
+						<Caption1 color="rgba(60, 60, 67, 0.6)">
+							{answer.classification} ・ {getDateFormatted(answer.createdAt)}
+						</Caption1>
+					</PostInfoWrapper>
+				</ProfileWrapper>
+				{loading ? (
+					<GPTLoadingWrapper>
+						<Body color="#3A3A3C">
+							I'm preparing my answer. (Could take up to 10 ~ 20 secs)
 						</Body>
-					</Container>
-					<Container>
-						<Footnote weight="bold" color="#8E8E93">
-							Current medications
-						</Footnote>
-						<Body color="#3A3A3C" style={{ marginTop: 8 }}>
-							I am taking levothyroxine daily for hypothyroidism.
-						</Body>
-					</Container>
-					<Container>
-						<Footnote weight="bold" color="#8E8E93">
-							Age, Sex, and Ethnicity
-						</Footnote>
-						<Body color="#3A3A3C" style={{ marginTop: 8 }}>
-							24, male, Korean american
-						</Body>
-					</Container>
-				</PostWrapper>
-				<PostWrapper>
-					<ProfileWrapper>
-						<Icon source={answer.replyType === 'ai' ? AILogo : Answer} />
-						<PostInfoWrapper>
-							<Body weight="bold">{answer.name}</Body>
-							<Caption1 color="rgba(60, 60, 67, 0.6)">
-								{answer.classification} ・ {getDateFormatted(answer.createdAt)}
-							</Caption1>
-						</PostInfoWrapper>
-					</ProfileWrapper>
-					{answer.createdAt === '' ? (
-						<GPTLoadingWrapper>
-							<Text>
-								I’m preparing my answer. (Could take up to 10 ~ 20 secs)
-							</Text>
-							<LoadingGif source={loading_dot} />
-						</GPTLoadingWrapper>
-					) : (
-						<Text>
-							{answer.reply + '\n\nPlease wait for an answer by human doctor.'}
-						</Text>
-					)}
-				</PostWrapper>
-				<CautionWrapper>
-					<CautionLogo source={require('assets/img/ic_alert_circle.png')} />
-					<TextCaution>
-						Answers provided by AI and human doctors are for reference purposes
-						only, not a substitute for professional medical advice, diagnosis,
-						or treatment. The answers should not be considered the final medical
-						opinion or legally binding for the providers involved. {'\n\n'} If
-						you think you may have a medical emergency, call doctors or
-						emergency services immediately. Reliance on any information AI or
-						online doctors provides is solely at your own risk.
-					</TextCaution>
-				</CautionWrapper>
-			</ScrollWrapper>
-		</Wrapper>
+						<LoadingGif source={loading_dot} />
+					</GPTLoadingWrapper>
+				) : (
+					<Body color="#3A3A3C" style={{ marginBottom: 26 }}>
+						{answer.reply + '\n\nPlease wait for an answer by human doctor.'}
+					</Body>
+				)}
+			</PostWrapper>
+			<CautionWrapper>
+				<Icon source={Caution} />
+				<Space height={8} />
+				<Subheadline color={'#8E8E93'}>
+					Answers provided by AI and human doctors are for reference purposes
+					only, not a substitute for professional medical advice, diagnosis, or
+					treatment. The answers should not be considered the final medical
+					opinion or legally binding for the providers involved. {'\n\n'} If you
+					think you may have a medical emergency, call doctors or emergency
+					services immediately. Reliance on any information AI or online doctors
+					provides is solely at your own risk.
+				</Subheadline>
+			</CautionWrapper>
+		</ScrollWrapper>
 	);
 }
 
 export default Forum;
 
-const Container = styled.View`
-	margin-bottom: 26px;
-`;
-
-const Wrapper = styled.View`
+const ScrollWrapper = styled.ScrollView`
 	flex: 1;
 	background-color: #fff;
 	border-top-width: 0.5px;
@@ -184,58 +193,37 @@ const PostWrapper = styled.View`
 	padding-horizontal: 26px;
 `;
 
-const Icon = styled.Image``;
-
-const PostInfoWrapper = styled.View`
-	margin-left: 12px;
-`;
-
-const ScrollWrapper = styled.ScrollView`
-	flex: 1;
-	background-color: white;
-`;
-
-const CautionWrapper = styled.View`
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
-	border-color: #bdbdbd;
-	border-top-width: 1px;
-	padding-vertical: 25px;
-	background-color: white;
-	padding-horizontal: 25px;
-`;
-
-const Text = styled(Body)`
-	text-align: left;
-`;
-
-const TextCaution = styled(Subheadline)`
-	color: gray;
-	margin-bottom: 66px;
-`;
-
 const ProfileWrapper = styled.View`
 	flex-direction: row;
 	align-items: center;
 	margin-bottom: 15.5px;
 `;
 
+const Icon = styled.Image``;
+
+const PostInfoWrapper = styled.View`
+	margin-left: 12px;
+`;
+
+const Container = styled.View`
+	margin-bottom: 26px;
+`;
+
 const GPTLoadingWrapper = styled.View`
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
+	padding-bottom: 45px;
 `;
 
 const LoadingGif = styled.Image`
+	position: absolute;
+	bottom: 17px;
 	width: 100px;
-	height: 100px;
-	margin-left: -20px;
+	height: 30px;
+	margin-left: -32px;
+	z-index: -5;
 `;
 
-const CautionLogo = styled.Image`
-	width: 24px;
-	height: 24px;
-	margin-top: 27px;
-	margin-bottom: 11px;
+const CautionWrapper = styled.View`
+	padding-top: 24px;
+	padding-bottom: 50px;
+	padding-horizontal: 26px;
 `;
