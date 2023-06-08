@@ -1,22 +1,28 @@
 import { Footnote } from 'components/common';
 import React from 'react';
-import { TextInputProps } from 'react-native';
+import { TextInputProps, TextStyle } from 'react-native';
 import styled from 'styled-components/native';
 
 type Props = {
 	label?: string;
+	labelStyle?: TextStyle;
 	inputProps: TextInputProps;
 };
 
-const LabelInput = ({ label, inputProps }: Props) => {
+const LabelInput = ({ label, labelStyle, inputProps }: Props) => {
 	return (
 		<Wrapper>
 			{!!label && (
-				<Footnote weight="bold" color="#8E8E93">
+				<Footnote weight="bold" color="#8E8E93" style={labelStyle}>
 					{label}
 				</Footnote>
 			)}
-			<Input {...inputProps} placeholderTextColor={'#AEAEB2'} multiline />
+			<Input
+				placeholderTextColor={'#AEAEB2'}
+				editable={true}
+				multiline
+				{...inputProps}
+			/>
 		</Wrapper>
 	);
 };
@@ -25,11 +31,11 @@ export default LabelInput;
 
 const Wrapper = styled.View``;
 
-const Input = styled.TextInput`
+const Input = styled.TextInput<{ editable?: boolean }>`
 	max-height: 150px;
 	border-radius: 8px;
 	border: 0.5px solid #8e8e93;
-	background-color: #fff;
+	background-color: ${({ editable }) => (editable ? '#fff' : '#F2F2F7')};
 	font-size: 17px;
 	line-height: 22px;
 	font-family: 'Pretendard-Regular';

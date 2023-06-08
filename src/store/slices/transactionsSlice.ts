@@ -7,6 +7,7 @@ interface TransactionsSlice {
 	transactionsLoading: boolean;
 	error: string;
 	offset: number;
+	hasMore: boolean;
 	refreshing: boolean;
 }
 
@@ -15,6 +16,7 @@ const initialState: TransactionsSlice = {
 	transactionsLoading: false,
 	error: '',
 	offset: 0,
+	hasMore: true,
 	refreshing: false,
 };
 
@@ -38,6 +40,10 @@ export const transactionsSlice = createSlice({
 			...state,
 			offset: action.payload,
 		}),
+		setHasMore: (state, action) => ({
+			...state,
+			hasMore: action.payload,
+		}),
 		setRefreshing: (state, action) => ({
 			...state,
 			refreshing: action.payload,
@@ -53,6 +59,7 @@ export const {
 	setLoading,
 	setError,
 	setOffset,
+	setHasMore,
 	setRefreshing,
 	resetTransactions,
 } = transactionsSlice.actions;
@@ -73,12 +80,17 @@ export const getTransactionsList =
 				getTransactions(pubkey, 50, offset)
 					.then(res => {
 						if (res.data) {
+							dispatch(setHasMore(res.data.hasMore));
 							if (refresh) {
-								dispatch(setTransactions(res.data));
+								dispatch(setTransactions(res.data.transactions));
 								dispatch(setOffset(0));
 							} else {
-								dispatch(setTransactions([...transactions, ...res.data]));
-								dispatch(setOffset([...transactions, ...res.data].length));
+								dispatch(
+									setTransactions([...transactions, ...res.data.transactions]),
+								);
+								dispatch(
+									setOffset([...transactions, ...res.data.transactions].length),
+								);
 							}
 						}
 					})

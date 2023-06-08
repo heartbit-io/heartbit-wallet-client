@@ -1,93 +1,99 @@
 import React, { useState } from 'react';
+import { Alert, Linking } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 // components
 import {
-	Body,
 	Footnote,
 	Header,
-	InputField,
+	Headline,
+	LabelInput,
 	MainButton,
+	Space,
 	Subheadline,
 } from 'components';
+
+// utils
 import { validateEmail } from 'utils/utility';
-import { Alert, Linking } from 'react-native';
+
+// hooks
 import { useAppSelector } from 'hooks';
+
 // assets
-import ChevronRight from 'assets/img/ic_chevron.right.svg';
+import Check from 'assets/img/check-circle-fill.svg';
 
 type Props = NativeStackScreenProps<RootStackType, 'MyAccount'>;
 
 const MyAccount = ({ navigation }: Props) => {
+	const { userData } = useAppSelector(state => state.user);
 	const [email, setEmail] = useState('');
 	const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
-	const { userData } = useAppSelector(state => state.user);
 
 	const onEmailChange = (text: string) => {
 		setEmail(text);
 		setIsValidEmail(validateEmail(text) ? true : false);
 	};
 
+	const linkingHandler = () =>
+		Linking.openURL('https://airtable.com/shrRcckkSSQoKQzYe');
+
 	return (
 		<Wrapper>
-			<ScrollWrapper>
-				<Header headerTitle={'My Account'} headerLeft={true} />
-				<FootnoteText>Current Email Address</FootnoteText>
-				<BodyText>{userData?.email}</BodyText>
-				<FootnoteText>New Email Address</FootnoteText>
-				<InputField
-					style={{ textAlign: 'left', paddingLeft: 16 }}
-					value={email}
-					onChangeText={onEmailChange}
-					placeholder="Enter new email here"
-					placeholderTextColor={'rgba(60, 60, 67, 0.6)'}
-					textAlign="center"
-					keyboardType={'email-address'}
-					autoCapitalize={'none'}
-				/>
-				<MainButton
-					text={'Change'}
-					onPress={() => {
-						Alert.alert('Please check your email');
-					}}
-					buttonStyle={{ marginTop: 8 }}
-					active={isValidEmail}
-				/>
-				{userData?.role === 'user' ? (
-					<SubheadlineText
-						onPress={() => {
-							Linking.openURL('https://airtable.com/shrRcckkSSQoKQzYe');
-						}}
-					>
-						Are you a doctor?
-					</SubheadlineText>
-				) : (
-					<DoctorWrapper>
-						<FootnoteText>Verified as as doctor</FootnoteText>
-						<DoctorButton
-							onPress={() => {
-								navigation.navigate('DoctorQRScan');
-							}}
-						>
-							<SignInText>Sign-in to Doctor's Portal</SignInText>
-							<Icon source={ChevronRight} />
-						</DoctorButton>
-						<DoctorButton
-							onPress={() => {
-								Alert.alert('Will be implemented soon');
-							}}
-						>
-							<ProfileText>Name, profile picture</ProfileText>
-							<Icon source={ChevronRight} />
-						</DoctorButton>
-						<FootnoteRegular>
-							If you hide your name and profile picture, others can only see if
-							you've been verified with which license.
-						</FootnoteRegular>
-					</DoctorWrapper>
-				)}
-			</ScrollWrapper>
+			<Header headerTitle={'Your Account'} headerLeft={true} />
+			<LabelInput
+				label="Current Email Address"
+				labelStyle={{ marginHorizontal: 16 }}
+				inputProps={{
+					value: userData?.email,
+					editable: false,
+					multiline: false,
+					style: { color: '#8E8E93' },
+				}}
+			/>
+			<Space height={24} />
+			<LabelInput
+				label="New Email Address"
+				labelStyle={{ marginHorizontal: 16 }}
+				inputProps={{
+					value: email,
+					onChangeText: onEmailChange,
+					placeholder: 'Enter new email here',
+					keyboardType: 'email-address',
+					autoCapitalize: 'none',
+					multiline: false,
+				}}
+			/>
+			<MainButton
+				text={'Change'}
+				onPress={() => Alert.alert('Please check your email')}
+				buttonStyle={{ marginTop: 8, borderRadius: 8 }}
+				active={isValidEmail}
+			/>
+			{userData?.role === 'user' ? (
+				<SubheadlineText onPress={linkingHandler}>
+					Are you a doctor?
+				</SubheadlineText>
+			) : (
+				<DoctorWrapper>
+					<RowWrapper>
+						<Icon source={Check} />
+						<Footnote weight="bold" color="#34C759">
+							Verified as a doctor
+						</Footnote>
+					</RowWrapper>
+					<Headline style={{ marginVertical: 19 }}>
+						https://doctor.heartbit.io
+					</Headline>
+					<Subheadline color="#8E8E93">
+						To start answering patient questions, access the above address from
+						your{' '}
+						<Subheadline weight="bold" color="#8E8E93">
+							desktop.
+						</Subheadline>
+					</Subheadline>
+				</DoctorWrapper>
+			)}
 		</Wrapper>
 	);
 };
@@ -97,67 +103,28 @@ export default MyAccount;
 const Wrapper = styled.View`
 	flex: 1;
 	background-color: #fff5ed;
-`;
-
-const ScrollWrapper = styled.ScrollView`
-	flex: 1;
-	margin-horizontal: 16px;
-	margin-top: 24px;
-`;
-
-const DoctorWrapper = styled.View`
-	margin-top: 50px;
-	margin-bottom 290px;
-`;
-
-const BodyText = styled(Body)`
-	height: 44px;
-	width: 100%;
-	background-color: #fff;
-	border: 1px solid #d1d1d6;
-	border-radius: 14px;
-	text-align: left;
-	line-height: 40px;
-	color: #8e8e93;
-	background-color: #f2f2f7;
-	padding-left: 16px;
-	margin-bottom: 24px;
-`;
-
-const FootnoteText = styled(Footnote)`
-	font-weight: bold;
-	color: #8e8e93;
-	margin-left: 16px;
-	margin-bottom: 8px;
-`;
-
-const FootnoteRegular = styled(Footnote)`
-	color: #8e8e93;
-	margin-horizontal: 16px;
-`;
-
-const DoctorButton = styled.TouchableOpacity`
-	height: 44px;
-	width: 100%;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	border-radius: 14px;
-	background-color: white;
-	margin-bottom: 8px;
+	border-top-width: 0.5px;
+	border-color: #d1d1d6;
+	padding-top: 24px;
 	padding-horizontal: 16px;
 `;
 
-const SignInText = styled(Body)`
-	color: #ff2d55;
-`;
-
-const ProfileText = styled(Body)``;
-
 const SubheadlineText = styled(Subheadline)`
-	margin-top: 56px;
+	margin-top: 50px;
 	color: #ff2d55;
 	text-align: center;
 `;
 
-const Icon = styled.Image``;
+const DoctorWrapper = styled.View`
+	margin-top: 50px;
+	margin-horizontal: 16px;
+`;
+
+const RowWrapper = styled.View`
+	flex-direction: row;
+	align-items: center;
+`;
+
+const Icon = styled.Image`
+	margin-right: 8px;
+`;

@@ -15,6 +15,11 @@ interface CreateQuestionResponse {
 }
 
 interface GetQuestionResponse {
+	hasMore: boolean;
+	questions: QuestionResponse[]
+}
+
+interface QuestionResponse {
 	id: number;
 	userId: number;
 	content: string;

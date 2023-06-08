@@ -13,9 +13,8 @@ import { getTransactionsList } from 'store/slices/transactionsSlice';
 
 const TransactionList = () => {
 	const dispatch = useAppDispatch();
-	const { transactions, transactionsLoading, refreshing } = useAppSelector(
-		state => state.transactions,
-	);
+	const { transactions, transactionsLoading, hasMore, refreshing } =
+		useAppSelector(state => state.transactions);
 
 	useEffect(() => {
 		dispatch(getTransactionsList(true));
@@ -38,7 +37,7 @@ const TransactionList = () => {
 			ListEmptyComponent={renderListEmptyComponent()}
 			refreshing={refreshing}
 			onRefresh={() => dispatch(getTransactionsList(true))}
-			// onEndReached={() => dispatch(getTransactionsList())}
+			onEndReached={() => hasMore && dispatch(getTransactionsList())}
 		/>
 	);
 };

@@ -38,7 +38,7 @@ export const getQuestionList = async (
 	limit: number,
 	offset: number,
 	order?: 'ASC' | 'DESC',
-): Promise<ResponseDto<GetQuestionResponse[]>> => {
+): Promise<ResponseDto<GetQuestionResponse>> => {
 	try {
 		const query: string = `?limit=${limit}&offset=${offset}${
 			order === undefined ? '' : order
@@ -48,7 +48,7 @@ export const getQuestionList = async (
 
 		const responseDto = await response.data;
 
-		return responseDto as ResponseDto<GetQuestionResponse[]>;
+		return responseDto as ResponseDto<GetQuestionResponse>;
 	} catch (err: any) {
 		return err;
 	}
