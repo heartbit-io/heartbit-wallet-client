@@ -20,13 +20,21 @@ interface GetQuestionResponse {
 }
 
 interface QuestionResponse {
-	id: number;
-	userId: number;
-	content: string;
+	ageSexEthnicity: string;
 	bountyAmount: number;
-	status: string;
-	updatedAt: string;
+	content: string;
 	createdAt: string;
+	currentMedication: string;
+	deletedAt: string;
+	id: number;
+	others: string;
+	pastIllnessHistory:string;
+	rawContent:string;
+	rawContentLanguage:string;
+	status:string;
+	type:string;
+	updatedAt:string;
+	userId: number;
 }
 
 interface ReplyResponse {

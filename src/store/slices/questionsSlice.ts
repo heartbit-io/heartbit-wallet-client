@@ -3,7 +3,7 @@ import { AppThunk } from 'store';
 import { getQuestionList } from 'apis/questionApi';
 
 interface QuestionsSlice {
-	questions: GetQuestionResponse[];
+	questions: QuestionResponse[];
 	offset: number;
 	hasMore: boolean;
 	questionsLoading: boolean;
