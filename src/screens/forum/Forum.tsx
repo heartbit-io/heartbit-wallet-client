@@ -68,30 +68,31 @@ function Forum({ navigation, route }: Props) {
 			: moment(createdAt).format('MMM D YYYY');
 	};
 
-	const onPressHeaderLeft = () => navigation.navigate('DrawerTabs');
+	const onPressHeaderLeft = () =>
+		isFromBountyScreen ? navigation.popToTop() : navigation.goBack();
 
-	const onPressHeaderRight = async () => {
+	const onPressHeaderRight = () => {
 		Alert.alert(
 			`Are you sure you want to permanently delete this? Your question, doctor's note, and medical record will be deleted.`,
 			'',
 			[
 				{
 					text: 'Delete',
-					onPress: async () => {
-						const responseDto: ResponseDto<any> = await deleteQuestion(
-							question.id,
-						);
-						if (responseDto.statusCode === 200) {
-							Alert.alert(responseDto.message);
-							navigation.navigate('DrawerTabs');
-						} else {
-							Alert.alert(responseDto.message, 'Try again later');
-						}
-					},
+					onPress: () =>
+						deleteQuestion(question.id)
+							.then(res => {
+								if (res.statusCode === 200) {
+									Alert.alert(res.message);
+									isFromBountyScreen
+										? navigation.popToTop()
+										: navigation.goBack();
+								}
+							})
+							.catch(res => Alert.alert(res.message, 'Try again later')),
 				},
 				{
 					text: 'Cancel',
-					onPress: async () => '',
+					onPress: () => {},
 				},
 			],
 		);
