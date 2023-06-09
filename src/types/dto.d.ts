@@ -5,6 +5,16 @@ interface ResponseDto<T> {
 	data?: T;
 }
 
+interface CreateQuestionProps {
+	bountyAmount: number;
+	type: string;
+	content: string;
+	currentMedication: string;
+	ageSexEthnicity: string;
+	pastIllnessHistory: string;
+	others: string;
+}
+
 interface CreateQuestionResponse {
 	id: number;
 	status: string;
@@ -20,13 +30,21 @@ interface GetQuestionResponse {
 }
 
 interface QuestionResponse {
-	id: number;
-	userId: number;
-	content: string;
+	ageSexEthnicity: string;
 	bountyAmount: number;
-	status: string;
-	updatedAt: string;
+	content: string;
 	createdAt: string;
+	currentMedication: string;
+	deletedAt: string;
+	id: number;
+	others: string;
+	pastIllnessHistory:string;
+	rawContent:string;
+	rawContentLanguage:string;
+	status:string;
+	type:string;
+	updatedAt:string;
+	userId: number;
 }
 
 interface ReplyResponse {

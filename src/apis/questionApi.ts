@@ -3,18 +3,14 @@ import { api } from 'apis';
 const url = 'questions';
 
 export const postQuestion = async (
-	askContent: string,
-	bounty: number,
-): Promise<ResponseDto<CreateQuestionResponse>> => {
+	data: CreateQuestionProps,
+): Promise<ResponseDto<QuestionResponse>> => {
 	try {
-		const response = await api.post(url, {
-			content: askContent,
-			bountyAmount: bounty,
-		});
+		const response = await api.post(url, data);
 
 		const responseDto = await response.data;
 
-		return responseDto as ResponseDto<CreateQuestionResponse>;
+		return responseDto as ResponseDto<QuestionResponse>;
 	} catch (err: any) {
 		return err;
 	}

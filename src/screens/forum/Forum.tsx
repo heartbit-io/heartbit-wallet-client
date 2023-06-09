@@ -1,16 +1,45 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import styled from 'styled-components/native';
-import { Body, Caption1, Subheadline, Title1 } from 'components/common';
-import loading_dot from 'assets/gif/loading_dot.gif';
-import Header from 'components/common/Header';
+import React, { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
-import { deleteQuestion, getReply, postGPTReply } from 'apis/questionApi';
+import styled from 'styled-components/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import moment from 'moment';
+
+// components
+import Header from 'components/common/Header';
+import {
+	Body,
+	Caption1,
+	Footnote,
+	Space,
+	Subheadline,
+} from 'components/common';
+
+// apis
+import { deleteQuestion, getReply, postGPTReply } from 'apis/questionApi';
+
+// assets
+import loading_dot from 'assets/gif/loading_dot.gif';
+import Question from 'assets/img/question.svg';
+import Answer from 'assets/img/answer.svg';
+import AILogo from 'assets/img/aiLogo.svg';
+import Caution from 'assets/img/alert-circle.svg';
 
 type Props = NativeStackScreenProps<RootStackType, 'Forum'>;
 
+const questionContent = [
+	{ type: 'content', title: 'History of your present illness' },
+	{ type: 'currentMedication', title: 'Current medications' },
+	{
+		type: 'pastIllnessHistory',
+		title: 'Past illness history of you or your family',
+	},
+	{ type: 'ageSexEthnicity', title: 'Age, Sex, and Ethnicity' },
+	{ type: 'others', title: 'Others' },
+];
+
 function Forum({ navigation, route }: Props) {
+	const { question, isFromBountyScreen } = route.params;
+	const [loading, setLoading] = useState(false);
 	const [answer, setAnswer] = useState<ReplyResponse>({
 		replyType: 'ai',
 		name: 'Advice by GPT-3.5',
@@ -19,234 +48,187 @@ function Forum({ navigation, route }: Props) {
 		createdAt: '',
 	});
 
+	useEffect(() => {
+		setLoading(true);
+		if (isFromBountyScreen) {
+			postGPTReply(question.id)
+				.then(res => setAnswer({ ...res.data } as ReplyResponse))
+				.catch(err => Alert.alert(err as string, 'Try again later'))
+				.finally(() => setLoading(false));
+		} else {
+			getReply(question.id)
+				.then(res => setAnswer({ ...res.data } as ReplyResponse))
+				.catch(err => Alert.alert(err as string, 'Try again later'))
+				.finally(() => setLoading(false));
+		}
+	}, []);
 	const getDateFormatted = (createdAt?: string) => {
 		return createdAt === undefined || createdAt === ''
 			? moment().format('MMM D YYYY')
 			: moment(createdAt).format('MMM D YYYY');
 	};
 
-	useEffect(() => {
-		(async () => {
-			try {
-				let responseDto: ResponseDto<ReplyResponse>;
+	const onPressHeaderLeft = () =>
+		isFromBountyScreen
+			? navigation.navigate('DrawerTabs')
+			: navigation.goBack();
 
-				route.params.createdAt === undefined
-					? (responseDto = await postGPTReply(route.params.questionId))
-					: (responseDto = await getReply(route.params.questionId));
-				console.log(responseDto.data);
-				setAnswer({ ...responseDto.data } as ReplyResponse);
-			} catch (err) {
-				Alert.alert(err as string, 'Try again later');
-			}
-		})();
-	}, []);
+	const onPressHeaderRight = () => {
+		Alert.alert(
+			`Are you sure you want to permanently delete this? Your question, doctor's note, and medical record will be deleted.`,
+			'',
+			[
+				{
+					text: 'Delete',
+					onPress: () =>
+						deleteQuestion(question.id)
+							.then(res => {
+								if (res.statusCode === 200) {
+									Alert.alert(res.message);
+									isFromBountyScreen
+										? navigation.navigate('DrawerTabs')
+										: navigation.goBack();
+								}
+							})
+							.catch(res => Alert.alert(res.message, 'Try again later')),
+				},
+				{
+					text: 'Cancel',
+					onPress: () => {},
+				},
+			],
+		);
+	};
 
 	return (
-		<Wrapper>
+		<ScrollWrapper>
 			<Header
 				headerLeft={true}
 				headerRight={true}
-				hearderRightTitle={'Delete'}
-				onPressHeaderLeft={() => navigation.navigate('DrawerTabs')}
-				onPressHeaderRight={async () => {
-					Alert.alert(
-						`Are you sure you want to permanently delete this? Your question, doctor's note, and medical record will be deleted.`,
-						'',
-						[
-							{
-								text: 'Delete',
-								onPress: async () => {
-									const responseDto: ResponseDto<any> = await deleteQuestion(
-										route.params.questionId,
-									);
-									if (responseDto.statusCode === 200) {
-										Alert.alert(responseDto.message);
-										navigation.navigate('DrawerTabs');
-									} else {
-										Alert.alert(responseDto.message, 'Try again later');
-									}
-								},
-							},
-							{
-								text: 'Cancel',
-								onPress: async () => '',
-							},
-						],
-					);
-				}}
+				headerRightTitle={'Delete'}
+				onPressHeaderLeft={onPressHeaderLeft}
+				onPressHeaderRight={onPressHeaderRight}
 			/>
 			<PostWrapper>
 				<ProfileWrapper>
-					<CircleSky>
-						<ProfileText>Q</ProfileText>
-					</CircleSky>
+					<Icon source={Question} />
 					<PostInfoWrapper>
-						<TextBold>You</TextBold>
-						<TextCaption>
-							{getDateFormatted(route.params.createdAt)} ・{' '}
-							{route.params.bountyAmount.toLocaleString()} sats
-						</TextCaption>
+						<Body weight="bold">You</Body>
+						<Caption1 color="rgba(60, 60, 67, 0.6)">
+							{getDateFormatted(question.createdAt)} ・{' '}
+							{question.bountyAmount.toLocaleString()} sats
+						</Caption1>
 					</PostInfoWrapper>
 				</ProfileWrapper>
-				<Text>{route.params.askContent}</Text>
+				{questionContent.map(
+					el =>
+						!!question[el.type as keyof typeof question] && (
+							<Container key={el.type}>
+								{!(question.type === 'general' && el.type === 'content') && (
+									<Footnote
+										weight="bold"
+										color="#8E8E93"
+										style={{ marginBottom: 8 }}
+									>
+										{el.title}
+									</Footnote>
+								)}
+								<Body color="#3A3A3C">
+									{question[el.type as keyof typeof question]}
+								</Body>
+							</Container>
+						),
+				)}
 			</PostWrapper>
-			<ScrollWrapper>
-				<PostWrapper>
-					<ProfileWrapper>
-						{answer.replyType === 'ai' ? (
-							<GPTLogo source={require('assets/img/ic_gpt_logo.png')} />
-						) : (
-							<CircleIndigo>
-								<ProfileText>A</ProfileText>
-							</CircleIndigo>
-						)}
-						<PostInfoWrapper>
-							<TextBold>{answer.name}</TextBold>
-							<TextCaption>
-								{answer.classification} ・ {getDateFormatted(answer.createdAt)}
-							</TextCaption>
-						</PostInfoWrapper>
-					</ProfileWrapper>
-					{answer.createdAt === '' ? (
-						<GPTLoadingWrapper>
-							<Text>
-								I’m preparing my answer. (Could take up to 10 ~ 20 secs)
-							</Text>
-							<LoadingGif source={loading_dot} />
-						</GPTLoadingWrapper>
-					) : (
-						<Text>
-							{answer.reply + '\n\nPlease wait for an answer by human doctor.'}
-						</Text>
-					)}
-				</PostWrapper>
-				<CautionWrapper>
-					<CautionLogo source={require('assets/img/ic_alert_circle.png')} />
-					<TextCaution>
-						Answers provided by AI and human doctors are for reference purposes
-						only, not a substitute for professional medical advice, diagnosis,
-						or treatment. The answers should not be considered the final medical
-						opinion or legally binding for the providers involved. {'\n\n'} If
-						you think you may have a medical emergency, call doctors or
-						emergency services immediately. Reliance on any information AI or
-						online doctors provides is solely at your own risk.
-					</TextCaution>
-				</CautionWrapper>
-			</ScrollWrapper>
-		</Wrapper>
+			<PostWrapper>
+				<ProfileWrapper>
+					<Icon source={answer.replyType === 'ai' ? AILogo : Answer} />
+					<PostInfoWrapper>
+						<Body weight="bold">{answer.name}</Body>
+						<Caption1 color="rgba(60, 60, 67, 0.6)">
+							{answer.classification} ・ {getDateFormatted(answer.createdAt)}
+						</Caption1>
+					</PostInfoWrapper>
+				</ProfileWrapper>
+				{loading ? (
+					<GPTLoadingWrapper>
+						<Body color="#3A3A3C">
+							I'm preparing my answer. (Could take up to 10 ~ 20 secs)
+						</Body>
+						<LoadingGif source={loading_dot} />
+					</GPTLoadingWrapper>
+				) : (
+					<Body color="#3A3A3C" style={{ marginBottom: 26 }}>
+						{answer.reply + answer.replyType === 'ai'
+							? '\n\nPlease wait for an answer by human doctor.'
+							: ''}
+					</Body>
+				)}
+			</PostWrapper>
+			<CautionWrapper>
+				<Icon source={Caution} />
+				<Space height={8} />
+				<Subheadline color={'#8E8E93'}>
+					Answers provided by AI and human doctors are for reference purposes
+					only, not a substitute for professional medical advice, diagnosis, or
+					treatment. The answers should not be considered the final medical
+					opinion or legally binding for the providers involved. {'\n\n'} If you
+					think you may have a medical emergency, call doctors or emergency
+					services immediately. Reliance on any information AI or online doctors
+					provides is solely at your own risk.
+				</Subheadline>
+			</CautionWrapper>
+		</ScrollWrapper>
 	);
 }
 
 export default Forum;
 
-const Wrapper = styled.View`
+const ScrollWrapper = styled.ScrollView`
 	flex: 1;
-	background-color: #fff5ed;
+	background-color: #fff;
+	border-top-width: 0.5px;
+	border-top-color: rgba(60, 60, 67, 0.36);
 `;
 
 const PostWrapper = styled.View`
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
-	border-color: #bdbdbd;
-	border-top-width: 1px;
-	padding-vertical: 25px;
-	padding-horizontal: 25px;
-`;
-
-const PostInfoWrapper = styled.View`
-	margin-top: 2px;
-`;
-
-const ScrollWrapper = styled.ScrollView`
-	flex: 1;
-	background-color: white;
-`;
-
-const CautionWrapper = styled.View`
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
-	border-color: #bdbdbd;
-	border-top-width: 1px;
-	padding-vertical: 25px;
-	background-color: white;
-	padding-horizontal: 25px;
-`;
-
-const Text = styled(Body)`
-	text-align: left;
-`;
-
-const TextBold = styled(Body)`
-	text-align: left;
-	font-weight: bold;
-	padding-horizontal: 12px;
-`;
-
-const TextCaption = styled(Caption1)`
-	color: gray;
-	padding-horizontal: 12px;
-	padding-top: 3px;
-`;
-const TextCaution = styled(Subheadline)`
-	color: gray;
-	margin-bottom: 66px;
+	border-bottom-width: 0.5px;
+	border-bottom-color: rgba(60, 60, 67, 0.36);
+	margin-top: 15.5px;
+	padding-horizontal: 26px;
 `;
 
 const ProfileWrapper = styled.View`
 	flex-direction: row;
-	align-items: flex-start;
-	justify-content: flex-start;
-	margin-bottom: 15px;
-`;
-
-const ProfileText = styled(Title1)`
-	text-align: center;
-	color: white;
-	font-weight: bold;
-`;
-
-const CircleSky = styled.View`
-	background-color: #5ac8fa;
-	width: 45px;
-	height: 45px;
-	border-radius: 22.5px;
-	text-align: center;
-	justify-content: center;
 	align-items: center;
+	margin-bottom: 15.5px;
 `;
 
-const CircleIndigo = styled.View`
-	background-color: #5856d6;
-	width: 45px;
-	height: 45px;
-	border-radius: 22.5px;
-	text-align: center;
-	justify-content: center;
-	align-items: center;
+const Icon = styled.Image``;
+
+const PostInfoWrapper = styled.View`
+	margin-left: 12px;
 `;
 
-const GPTLogo = styled.Image`
-	width: 45px;
-	height: 45px;
+const Container = styled.View`
+	margin-bottom: 26px;
 `;
 
 const GPTLoadingWrapper = styled.View`
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
+	padding-bottom: 45px;
 `;
 
 const LoadingGif = styled.Image`
+	position: absolute;
+	bottom: 17px;
 	width: 100px;
-	height: 100px;
-	margin-left: -20px;
+	height: 30px;
+	margin-left: -32px;
+	z-index: -5;
 `;
 
-const CautionLogo = styled.Image`
-	width: 24px;
-	height: 24px;
-	margin-top: 27px;
-	margin-bottom: 11px;
+const CautionWrapper = styled.View`
+	padding-top: 24px;
+	padding-bottom: 50px;
+	padding-horizontal: 26px;
 `;

@@ -95,7 +95,7 @@ function Ask({ navigation }: Props) {
 	const renderGeneralInputs = () => (
 		<>
 			<LabelInput
-				label="General question"
+				label="General health question"
 				inputProps={{
 					placeholder: 'Enter your question here',
 					value: generalQuestion,
@@ -139,9 +139,7 @@ function Ask({ navigation }: Props) {
 					active={
 						isGeneralQuestion
 							? generalQuestion.length > 50
-							: history.length > 50 &&
-							  medications.length > 50 &&
-							  pastIllness.length > 50
+							: history.length > 50
 					}
 				/>
 			</ButtonWrapper>

@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Headline, Subheadline } from 'components/common';
 
 type Props = {
-	question: GetQuestionResponse;
+	question: QuestionResponse;
 };
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -25,10 +25,8 @@ const QuestionListItem = ({ question }: Props) => {
 		<QuestionWrapper
 			onPress={() =>
 				navigation.navigate('Forum', {
-					questionId: question.id,
-					bountyAmount: question.bountyAmount,
-					askContent: question.content,
-					createdAt: question.createdAt,
+					question: question,
+					isFromBountyScreen: false,
 				})
 			}
 		>

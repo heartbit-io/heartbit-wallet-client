@@ -32,18 +32,28 @@ function Bounty({ navigation, route }: Props) {
 	}, []);
 
 	const navigateHandler = async ({ navigation, route }: Props) => {
-		// (async () => {
-		// 	const responseDto: ResponseDto<CreateQuestionResponse> =
-		// 		await postQuestion(route.params.askContent, bounty);
-		// 	responseDto.statusCode === 201
-		// 		? navigation.navigate('Forum', {
-		// 				questionId: (responseDto.data as CreateQuestionResponse).id,
-		// 				bountyAmount: (responseDto.data as CreateQuestionResponse)
-		// 					.bountyAmount,
-		// 				askContent: route.params.askContent,
-		// 		  })
-		// 		: Alert.alert(responseDto.message, 'Try again later');
-		// })();
+		postQuestion({
+			bountyAmount: bounty || inputBounty,
+			type: route.params.isGeneralQuestion ? 'general' : 'illness',
+			content: route.params.isGeneralQuestion
+				? route.params.generalQuestion
+				: route.params.history,
+			currentMedication: route.params.medications,
+			ageSexEthnicity: route.params.personalInfo,
+			pastIllnessHistory: route.params.pastIllness,
+			others: route.params.others,
+		})
+			.then(res => {
+				if (res.success && res.statusCode === 201 && res.data) {
+					navigation.navigate('Forum', {
+						question: res.data,
+						isFromBountyScreen: true,
+					});
+				} else {
+					Alert.alert(res.message, 'Try again later');
+				}
+			})
+			.catch(res => Alert.alert(res.message, 'Try again later'));
 	};
 
 	return (

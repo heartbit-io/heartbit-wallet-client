@@ -10,10 +10,10 @@ type Props = {
 	headerTitle?: string;
 	headerLeft?: boolean;
 	headerRight?: boolean;
-	onPressHeaderLeft?: () => {};
-	onPressHeaderRight?: () => {};
+	onPressHeaderLeft?: () => void;
+	onPressHeaderRight?: () => void;
 	headerLeftTitle?: string;
-	hearderRightTitle?: string;
+	headerRightTitle?: string;
 };
 
 const Header = ({
@@ -23,7 +23,7 @@ const Header = ({
 	onPressHeaderLeft,
 	onPressHeaderRight,
 	headerLeftTitle = 'Back',
-	hearderRightTitle = 'Cancel',
+	headerRightTitle = 'Cancel',
 }: Props) => {
 	const navigation = useNavigation<NativeStackNavigationProp<RootStackType>>();
 
@@ -59,7 +59,7 @@ const Header = ({
 		if (headerRight) {
 			return (
 				<Wrapper onPress={onPressHeaderRightHandler}>
-					<Cancel>{hearderRightTitle}</Cancel>
+					<Cancel>{headerRightTitle}</Cancel>
 				</Wrapper>
 			);
 		}
