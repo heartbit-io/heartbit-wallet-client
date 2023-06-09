@@ -2,18 +2,8 @@ import { api } from 'apis';
 
 const url = 'questions';
 
-type Props = {
-	bountyAmount: number;
-	type: string;
-	content: string;
-	currentMedication: string;
-	ageSexEthnicity: string;
-	pastIllnessHistory: string;
-	others: string;
-};
-
 export const postQuestion = async (
-	data: Props,
+	data: CreateQuestionProps,
 ): Promise<ResponseDto<QuestionResponse>> => {
 	try {
 		const response = await api.post(url, data);
