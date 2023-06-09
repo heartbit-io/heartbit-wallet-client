@@ -69,7 +69,9 @@ function Forum({ navigation, route }: Props) {
 	};
 
 	const onPressHeaderLeft = () =>
-		isFromBountyScreen ? navigation.popToTop() : navigation.goBack();
+		isFromBountyScreen
+			? navigation.navigate('DrawerTabs')
+			: navigation.goBack();
 
 	const onPressHeaderRight = () => {
 		Alert.alert(
@@ -84,7 +86,7 @@ function Forum({ navigation, route }: Props) {
 								if (res.statusCode === 200) {
 									Alert.alert(res.message);
 									isFromBountyScreen
-										? navigation.popToTop()
+										? navigation.navigate('DrawerTabs')
 										: navigation.goBack();
 								}
 							})
@@ -157,7 +159,9 @@ function Forum({ navigation, route }: Props) {
 					</GPTLoadingWrapper>
 				) : (
 					<Body color="#3A3A3C" style={{ marginBottom: 26 }}>
-						{answer.reply + '\n\nPlease wait for an answer by human doctor.'}
+						{answer.reply + answer.replyType === 'ai'
+							? '\n\nPlease wait for an answer by human doctor.'
+							: ''}
 					</Body>
 				)}
 			</PostWrapper>
