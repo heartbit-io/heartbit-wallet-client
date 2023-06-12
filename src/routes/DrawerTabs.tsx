@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Linking } from 'react-native';
 import styled from 'styled-components/native';
 import {
 	DrawerContentComponentProps,
@@ -68,19 +69,29 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 					<HeadLineText>Transactions</HeadLineText>
 					<Icon source={ChevronRight} />
 				</RowWrapper>
-				<RowWrapper>
+				<RowWrapper
+					onPress={() =>
+						Linking.openURL('https://community.heartbit.io/c/bugs/')
+					}
+				>
 					<HeadLineText>Help</HeadLineText>
 					<Icon source={ChevronRight} />
 				</RowWrapper>
-				<RowWrapper>
+				<RowWrapper
+					onPress={() =>
+						Linking.openURL('https://community.heartbit.io/c/feature-requests/')
+					}
+				>
 					<HeadLineText>Send Feedback</HeadLineText>
 					<Icon source={ChevronRight} />
 				</RowWrapper>
 				<SocialWrapper>
-					<Social>
+					<Social
+						onPress={() => Linking.openURL('https://twitter.com/heartbit_io')}
+					>
 						<Icon source={Twitter} />
 					</Social>
-					<Social>
+					<Social onPress={() => Linking.openURL('mailto:social@heartbit.io')}>
 						<Icon source={Message} />
 					</Social>
 				</SocialWrapper>
