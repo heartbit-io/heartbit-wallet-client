@@ -10,7 +10,13 @@ import logo from 'assets/logo/logo.svg';
 import heartBit from 'assets/logo/heartBit.svg';
 
 // components
-import { Gradient, InputField, MainButton, Subheadline } from 'components';
+import {
+	Caption1,
+	Gradient,
+	InputField,
+	MainButton,
+	Subheadline,
+} from 'components';
 
 // utils
 import { validateEmail } from 'utils/utility';
@@ -47,6 +53,18 @@ const EmailSignUp = ({ navigation }: Props) => {
 		setIsValidEmail(validateEmail(text) ? true : false);
 	};
 
+	const navigateToTerms = () => {
+		navigation.navigate('WebViewScreen', {
+			link: 'https://www.heartbit.io/terms',
+		});
+	};
+
+	const navigateToPrivacy = () => {
+		navigation.navigate('WebViewScreen', {
+			link: 'https://www.heartbit.io/privacy',
+		});
+	};
+
 	return (
 		<Gradient>
 			<KeyboardAwareScrollView
@@ -73,6 +91,17 @@ const EmailSignUp = ({ navigation }: Props) => {
 						buttonStyle={{ marginTop: 8 }}
 						active={isValidEmail}
 					/>
+					<Footnote>
+						By clicking “Get started” above, you acknowledge that you have read
+						and understood, and agree to HeartBit{' '}
+						<Caption1 color="#FF2D55" onPress={navigateToTerms}>
+							Terms of Conditions
+						</Caption1>{' '}
+						and{' '}
+						<Caption1 color="#FF2D55" onPress={navigateToPrivacy}>
+							Privacy Policy
+						</Caption1>
+					</Footnote>
 				</Wrapper>
 			</KeyboardAwareScrollView>
 		</Gradient>
@@ -98,4 +127,11 @@ const Description = styled(Subheadline)`
 	color: #3a3a3c;
 	margin-top: 24px;
 	margin-bottom: 52px;
+`;
+
+const Footnote = styled(Caption1)`
+	color: #3a3a3c;
+	text-align: center;
+	margin-top: 40px;
+	margin-horizontal: 20px;
 `;
