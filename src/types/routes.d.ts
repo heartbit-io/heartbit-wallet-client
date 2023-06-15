@@ -23,6 +23,7 @@ type RootStackType = {
 	MyAccount: undefined;
 	Home: undefined;
 	Wallet: undefined;
+	WebViewScreen: {link: string}
 };
 
 type BottomTabTypes = {

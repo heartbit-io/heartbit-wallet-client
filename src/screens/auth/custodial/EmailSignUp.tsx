@@ -53,6 +53,18 @@ const EmailSignUp = ({ navigation }: Props) => {
 		setIsValidEmail(validateEmail(text) ? true : false);
 	};
 
+	const navigateToTerms = () => {
+		navigation.navigate('WebViewScreen', {
+			link: 'https://www.heartbit.io/terms',
+		});
+	};
+
+	const navigateToPrivacy = () => {
+		navigation.navigate('WebViewScreen', {
+			link: 'https://www.heartbit.io/privacy',
+		});
+	};
+
 	return (
 		<Gradient>
 			<KeyboardAwareScrollView
@@ -82,8 +94,13 @@ const EmailSignUp = ({ navigation }: Props) => {
 					<Footnote>
 						By clicking “Get started” above, you acknowledge that you have read
 						and understood, and agree to HeartBit{' '}
-						<Caption1 color="#FF2D55">Terms of Conditions</Caption1> and{' '}
-						<Caption1 color="#FF2D55">Privacy Policy</Caption1>
+						<Caption1 color="#FF2D55" onPress={navigateToTerms}>
+							Terms of Conditions
+						</Caption1>{' '}
+						and{' '}
+						<Caption1 color="#FF2D55" onPress={navigateToPrivacy}>
+							Privacy Policy
+						</Caption1>
 					</Footnote>
 				</Wrapper>
 			</KeyboardAwareScrollView>
