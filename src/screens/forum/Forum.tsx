@@ -159,7 +159,7 @@ function Forum({ navigation, route }: Props) {
 					</GPTLoadingWrapper>
 				) : (
 					<Body color="#3A3A3C" style={{ marginBottom: 26 }}>
-						{answer.reply +
+						{answer.doctorNote +
 							(answer.replyType === 'ai'
 								? '\n\nPlease wait for an answer by human doctor.'
 								: '')}
