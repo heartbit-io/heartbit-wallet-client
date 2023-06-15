@@ -15,7 +15,17 @@ const TransactionListItem = ({ transaction }: Props) => {
 			</Subheadline>
 			<RowWrapper>
 				<HeadlineText>{transaction.type}</HeadlineText>
-				<Subheadline>{`${transaction.amount} sats (${transaction.fee} sats fee)`}</Subheadline>
+				<Subheadline>
+					{transaction.type === 'withdraw' ||
+					transaction.type === 'bounty_pledged'
+						? '- '
+						: '+ '}
+					{`${transaction.amount} sats `}
+					{transaction.type === 'withdraw' ||
+					transaction.type === 'bounty_earned'
+						? `(${transaction.fee} sats fee)`
+						: ''}
+				</Subheadline>
 			</RowWrapper>
 		</ItemWrapper>
 	);
