@@ -24,6 +24,7 @@ type RootStackType = {
 	Home: undefined;
 	Wallet: undefined;
 	WebViewScreen: {link: string}
+	HealthRecord: {replies: ReplyResponse}
 };
 
 type BottomTabTypes = {

@@ -49,25 +49,25 @@ interface QuestionResponse {
 
 interface ReplyResponse {
 	replyType: 'doctor' | 'ai' | string;
-	assessment?:string;
+	assessment:string;
 	classification:string;
-	content?:string;
+	content:string;
 	createdAt:string;
-	currentMedications?:string;
-	deletedAt?:string;
-	doctorNote?:string;
-	id?:number;
-	majorComplaint?:string;
-	medicalHistory?:string;
+	currentMedications:string;
+	deletedAt:string;
+	doctorNote:string;
+	id:number;
+	majorComplaint:string;
+	medicalHistory:string;
 	name:string;
-	plan?:string;
-	questionId?:number;
+	plan:string;
+	questionId:number;
 	reply:string;
-	status?:string;
-	title?:string;
-	triage?:string;
-	updatedAt?:string;
-	userId?:number;
+	status:string;
+	title:string;
+	triage:string;
+	updatedAt:string;
+	userId:number;
 }
 
 interface ExchangeRateResponse {
