@@ -44,7 +44,7 @@ function Ask({ navigation }: Props) {
 	const renderHealthInputs = () => (
 		<>
 			<LabelInput
-				label="History of your present illness"
+				label="What are your symptoms?"
 				inputProps={{
 					placeholder: 'Explain how and when started, what bothers most.',
 					value: history,
@@ -54,7 +54,7 @@ function Ask({ navigation }: Props) {
 			/>
 			<Space height={16} />
 			<LabelInput
-				label="Current medications (Optional)"
+				label="What medication do you currently take?"
 				inputProps={{
 					placeholder: 'e.g., MTX 1.5 tablets (2 weeks duration)',
 					value: medications,
@@ -120,7 +120,7 @@ function Ask({ navigation }: Props) {
 		<Wrapper>
 			<Header headerRight={true} />
 			<ScrollWrapper extraHeight={120}>
-				<LargeTitle weight="bold">What's bothering you?</LargeTitle>
+				<LargeTitle weight="bold">What brings you in today?</LargeTitle>
 				<Switch onPress={() => setIsGeneralQuestion(!isGeneralQuestion)}>
 					<Icon source={Arrow} />
 					<Footnote weight="bold" color="#007AFF">
