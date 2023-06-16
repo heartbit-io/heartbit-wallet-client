@@ -36,7 +36,9 @@ const MyAccount = ({ navigation }: Props) => {
 	};
 
 	const linkingHandler = () =>
-		Linking.openURL('https://airtable.com/shrRcckkSSQoKQzYe');
+		Linking.openURL(
+			`https://airtable.com/shrRcckkSSQoKQzYe?prefill_Email+address=${userData?.email}`,
+		);
 
 	return (
 		<Wrapper>
