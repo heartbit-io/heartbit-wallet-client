@@ -100,6 +100,14 @@ function Forum({ navigation, route }: Props) {
 		);
 	};
 
+	let reply = '';
+
+	if (answer.replyType === 'ai') {
+		reply = answer?.reply + `\n\nPlease wait for an answer by human doctor.`;
+	} else {
+		reply = answer?.doctorNote || '';
+	}
+
 	return (
 		<ScrollWrapper>
 			<Header
@@ -159,10 +167,7 @@ function Forum({ navigation, route }: Props) {
 					</GPTLoadingWrapper>
 				) : (
 					<Body color="#3A3A3C" style={{ marginBottom: 26 }}>
-						{answer.doctorNote +
-							(answer.replyType === 'ai'
-								? '\n\nPlease wait for an answer by human doctor.'
-								: '')}
+						{reply}
 					</Body>
 				)}
 			</PostWrapper>
