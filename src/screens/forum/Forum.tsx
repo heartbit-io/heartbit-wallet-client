@@ -5,7 +5,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import moment from 'moment';
 
 // components
-import Header from 'components/common/Header';
+import { ArrowButton, Header } from 'components';
 import {
 	Body,
 	Caption1,
@@ -40,7 +40,7 @@ const questionContent = [
 function Forum({ navigation, route }: Props) {
 	const { question, isFromBountyScreen } = route.params;
 	const [loading, setLoading] = useState(false);
-	const [answer, setAnswer] = useState<ReplyResponse>({
+	const [answer, setAnswer] = useState<ReplyResponse | any>({
 		replyType: 'ai',
 		name: 'Advice by GPT-3.5',
 		classification: 'Open AI',
@@ -111,6 +111,7 @@ function Forum({ navigation, route }: Props) {
 	return (
 		<ScrollWrapper>
 			<Header
+				headerTitle={answer?.title}
 				headerLeft={true}
 				headerRight={true}
 				headerRightTitle={'Delete'}
@@ -166,9 +167,20 @@ function Forum({ navigation, route }: Props) {
 						<LoadingGif source={loading_dot} />
 					</GPTLoadingWrapper>
 				) : (
-					<Body color="#3A3A3C" style={{ marginBottom: 26 }}>
-						{reply}
-					</Body>
+					<>
+						<Body color="#3A3A3C" style={{ marginBottom: 26 }}>
+							{reply}
+						</Body>
+						{answer.replyType !== 'ai' && (
+							<ArrowButton
+								text="See in health record format"
+								btnStyle={{ marginBottom: 24 }}
+								onPress={() =>
+									navigation.navigate('HealthRecord', { replies: answer })
+								}
+							/>
+						)}
+					</>
 				)}
 			</PostWrapper>
 			<CautionWrapper>
