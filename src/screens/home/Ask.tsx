@@ -46,7 +46,8 @@ function Ask({ navigation }: Props) {
 			<LabelInput
 				label="What are your symptoms?"
 				inputProps={{
-					placeholder: 'Explain how and when started, what bothers most.',
+					placeholder:
+						'Explain how and when started, what bothers most. (At least 50 characters)',
 					value: history,
 					onChangeText: setHistory,
 					style: { minHeight: 88 },
