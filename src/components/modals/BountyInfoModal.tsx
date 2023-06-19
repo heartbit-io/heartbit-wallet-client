@@ -9,7 +9,11 @@ import { MainButton } from 'components';
 // assets
 import Info from 'assets/img/ic_info.svg';
 
-export function BountyInfoModal() {
+type Props = {
+	onPressOK: () => void;
+};
+
+export function BountyInfoModal({ onPressOK }: Props) {
 	const [modalVisible, setModalVisible] = useState(false);
 
 	return (
@@ -29,7 +33,13 @@ export function BountyInfoModal() {
 							higher you set the bounty, the more likely you are to get a
 							response quickly.
 						</Body>
-						<MainButton onPress={() => setModalVisible(false)} text={'OK'} />
+						<MainButton
+							onPress={() => {
+								setModalVisible(false);
+								onPressOK();
+							}}
+							text={'OK'}
+						/>
 					</Container>
 				</ModalWrapper>
 			</Modal>
