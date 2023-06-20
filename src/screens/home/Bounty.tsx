@@ -71,7 +71,7 @@ function Bounty({ navigation, route }: Props) {
 		<Wrapper>
 			<Header headerLeft={true} headerRight={true} />
 			<LargeTitle weight="bold">Set a bounty for faster answer</LargeTitle>
-			<BountyInfoModal onPressOK={() => setInputBounty(5000)} />
+			<BountyInfoModal />
 
 			<BountyButton
 				title="Faster"
