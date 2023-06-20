@@ -7,6 +7,15 @@ import { Headline, Subheadline } from 'components/common';
 
 type Props = { transaction: TransactionProps };
 
+enum TransactionType {
+	deposit = 'Deposit',
+	withdraw = 'Withdraw',
+	bounty_pledged = 'Express fee paid',
+	bounty_earned = 'Tip earned',
+	bounty_refunded = 'Express fee refunded',
+	sign_up_bonus = 'Sign-up bonus',
+}
+
 const TransactionListItem = ({ transaction }: Props) => {
 	return (
 		<ItemWrapper>
@@ -14,7 +23,9 @@ const TransactionListItem = ({ transaction }: Props) => {
 				{moment(transaction.createdAt).format('D MMM YYYY ・ hh:mm')}
 			</Subheadline>
 			<RowWrapper>
-				<HeadlineText>{transaction.type}</HeadlineText>
+				<HeadlineText>
+					{TransactionType[transaction.type as keyof typeof TransactionType]}
+				</HeadlineText>
 				<Subheadline>
 					{transaction.type === 'withdraw' ||
 					transaction.type === 'bounty_pledged'
