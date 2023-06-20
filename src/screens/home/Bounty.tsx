@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useAppSelector } from 'hooks/hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
 // components
 import { LargeTitle, Subheadline } from 'components/common';
@@ -18,9 +18,13 @@ import {
 import { postQuestion } from 'apis/questionApi';
 import { getBtcRates } from 'apis/coinApi';
 
+// store
+import { updateUserData } from 'store/slices/userSlice';
+
 type Props = NativeStackScreenProps<RootStackType, 'Bounty'>;
 
 function Bounty({ navigation, route }: Props) {
+	const dispatch = useAppDispatch();
 	const { userData } = useAppSelector(state => state.user);
 	const [USDPerSat, setUSDPerSat] = useState(0);
 	const [bounty, setBounty] = useState(0);
@@ -31,29 +35,36 @@ function Bounty({ navigation, route }: Props) {
 		getBtcRates().then(res => setUSDPerSat(res.data?.customSatoshi as number));
 	}, []);
 
-	const navigateHandler = async ({ navigation, route }: Props) => {
-		postQuestion({
-			bountyAmount: bounty || inputBounty,
-			type: route.params.isGeneralQuestion ? 'general' : 'illness',
-			content: route.params.isGeneralQuestion
-				? route.params.generalQuestion
-				: route.params.history,
-			currentMedication: route.params.medications,
-			ageSexEthnicity: route.params.personalInfo,
-			pastIllnessHistory: route.params.pastIllness,
-			others: route.params.others,
-		})
-			.then(res => {
-				if (res.success && res.statusCode === 201 && res.data) {
-					navigation.navigate('Forum', {
-						question: res.data,
-						isFromBountyScreen: true,
-					});
-				} else {
-					Alert.alert(res.message, 'Try again later');
-				}
+	const navigateHandler = (sats: number) => {
+		if (sats < userData.btcBalance) {
+			postQuestion({
+				bountyAmount: sats,
+				type: route.params.isGeneralQuestion ? 'general' : 'illness',
+				content: route.params.isGeneralQuestion
+					? route.params.generalQuestion
+					: route.params.history,
+				currentMedication: route.params.medications,
+				ageSexEthnicity: route.params.personalInfo,
+				pastIllnessHistory: route.params.pastIllness,
+				others: route.params.others,
 			})
-			.catch(res => Alert.alert(res.message, 'Try again later'));
+				.then(res => {
+					if (res.success && res.statusCode === 201 && res.data) {
+						dispatch(
+							updateUserData({ btcBalance: userData.btcBalance - sats }),
+						);
+						navigation.navigate('Forum', {
+							question: res.data,
+							isFromBountyScreen: true,
+						});
+					} else {
+						Alert.alert(res.message, 'Try again later');
+					}
+				})
+				.catch(res => Alert.alert(res.message, 'Try again later'));
+		} else {
+			Alert.alert("You don't have enough sats to post a question.");
+		}
 	};
 
 	return (
@@ -96,16 +107,13 @@ function Bounty({ navigation, route }: Props) {
 					Balance: {userData?.btcBalance.toLocaleString()} sats
 				</Subheadline>
 				<MainButton
-					onPress={async () => await navigateHandler({ navigation, route })}
+					onPress={() => navigateHandler(bounty || inputBounty)}
 					text={'Confirm'}
 					active={!!bounty || !!inputBounty}
 					buttonStyle={{ marginTop: 32 }}
 				/>
 				<MainButton
-					onPress={async () => {
-						setBounty(0);
-						await navigateHandler({ navigation, route });
-					}}
+					onPress={() => navigateHandler(0)}
 					text={'Continue without setting a bounty'}
 					active={true}
 					buttonStyle={{ backgroundColor: 'transparent', marginTop: 8 }}

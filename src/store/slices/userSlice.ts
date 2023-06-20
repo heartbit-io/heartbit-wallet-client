@@ -25,6 +25,13 @@ export const userSlice = createSlice({
 			...state,
 			userData: action.payload,
 		}),
+		updateUserData: (state, action) => ({
+			...state,
+			userData: {
+				...state.userData,
+				...action.payload,
+			},
+		}),
 		setLoading: (state, action) => ({
 			...state,
 			loading: action.payload,
@@ -39,8 +46,13 @@ export const userSlice = createSlice({
 	},
 });
 
-export const { setUserData, setLoading, setError, resetUserData } =
-	userSlice.actions;
+export const {
+	setUserData,
+	updateUserData,
+	setLoading,
+	setError,
+	resetUserData,
+} = userSlice.actions;
 export default userSlice.reducer;
 
 export const getUserData =
