@@ -8,6 +8,7 @@
 // (hyunsub): add react-native-health
 #import "RCTAppleHealthKit.h"
 #import <RNFBDynamicLinksAppDelegateInterceptor.h>
+#import <IntercomModule.h> 
 
 @implementation AppDelegate
 
@@ -15,6 +16,7 @@
 {
   [RNFBDynamicLinksAppDelegateInterceptor sharedInstance];
   [FIRApp configure];
+  [IntercomModule initialize:@"ios_sdk-e7c0aaa82ffe9f0c543b6f3e58e4841ca08d2d30" withAppId:@"v55v85ev"];
   self.moduleName = @"heartBitWalletClient";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.

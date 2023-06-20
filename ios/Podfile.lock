@@ -97,6 +97,10 @@ PODS:
   - GoogleUtilities/UserDefaults (7.11.1):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (3.1.1)
+  - Intercom (15.0.0)
+  - intercom-react-native (5.1.1):
+    - Intercom (~> 15.0.0)
+    - React-Core
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -470,6 +474,7 @@ DEPENDENCIES:
   - FirebaseAnalytics
   - FirebaseAuth
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - "intercom-react-native (from `../node_modules/@intercom/intercom-react-native`)"
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -529,6 +534,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - GTMSessionFetcher
+    - Intercom
     - nanopb
     - PromisesObjC
 
@@ -545,6 +551,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/React/FBReactNativeSpec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  intercom-react-native:
+    :path: "../node_modules/@intercom/intercom-react-native"
   RCT-Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec"
   RCTRequired:
@@ -652,6 +660,8 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 373bcbead1bb6a85be7a64d5d8f96284b762ea9c
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
+  Intercom: c4d9286eb12277dd104e7a49aead819337772716
+  intercom-react-native: a9174e41c57228fa94ee832f771b6977826254a3
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
@@ -699,6 +709,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   Yoga: 921eb014669cf9c718ada68b08d362517d564e0c
 
-PODFILE CHECKSUM: 3169f74ba0cbf2fad8d6860e542aafe9f551b511
+PODFILE CHECKSUM: 8d42219ddd6a4331d0ffc46192afe3c4300514da
 
 COCOAPODS: 1.11.3
