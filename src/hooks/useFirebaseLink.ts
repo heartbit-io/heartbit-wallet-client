@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import dynamicLinks from '@react-native-firebase/dynamic-links';
 import auth from '@react-native-firebase/auth';
 import { useAppDispatch } from './hooks';
+import Intercom from '@intercom/intercom-react-native';
 
 // utils
 import { OS } from 'utils/utility';
@@ -43,6 +44,10 @@ const useFirebaseLink = () => {
 					if (res.success) {
 						dispatch(setUserData(res.data));
 						setSignInStatus('signedIn');
+						Intercom.loginUserWithUserAttributes({
+							email: res.data.email,
+							userId: res.data.id,
+						});
 					}
 				}
 			}
