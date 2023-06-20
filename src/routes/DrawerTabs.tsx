@@ -10,6 +10,7 @@ import auth from '@react-native-firebase/auth';
 import { navigationRef } from 'routes';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import Intercom from '@intercom/intercom-react-native';
 
 // tabs
 import BottomTabs from './BottomTabs';
@@ -52,6 +53,7 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 
 	const signOutHandler = () => {
 		auth().signOut();
+		Intercom.logout();
 		navigationRef.resetRoot({
 			index: 0,
 			routes: [{ name: 'EmailSignUp' }],
