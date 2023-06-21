@@ -5,7 +5,7 @@ import {
 	DrawerContentComponentProps,
 	createDrawerNavigator,
 } from '@react-navigation/drawer';
-import { useAppSelector } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import auth from '@react-native-firebase/auth';
 import { navigationRef } from 'routes';
 import { useNavigation } from '@react-navigation/native';
@@ -22,6 +22,11 @@ import { Footnote, Headline } from 'components';
 import ChevronRight from 'assets/img/ic_chevron.right.svg';
 import Twitter from 'assets/img/twitter.svg';
 import Message from 'assets/img/message.svg';
+
+// store
+import { resetUserData } from 'store/slices/userSlice';
+import { resetQuestions } from 'store/slices/questionsSlice';
+import { resetTransactions } from 'store/slices/transactionsSlice';
 
 const Drawer = createDrawerNavigator<DrawerTabTypes>();
 
@@ -49,11 +54,15 @@ const DrawerTabs = () => {
 };
 
 const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
+	const dispatch = useAppDispatch();
 	const { userData } = useAppSelector(state => state.user);
 
 	const signOutHandler = () => {
 		auth().signOut();
 		Intercom.logout();
+		dispatch(resetUserData());
+		dispatch(resetQuestions());
+		dispatch(resetTransactions());
 		navigationRef.resetRoot({
 			index: 0,
 			routes: [{ name: 'EmailSignUp' }],
