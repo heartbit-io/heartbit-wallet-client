@@ -10,7 +10,7 @@ import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import java.util.List;
 import com.BV.LinearGradient.LinearGradientPackage;
-
+import com.intercom.reactnative.IntercomModule;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -55,6 +55,7 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+    IntercomModule.initialize(this, "android_sdk-b9c2ebc5b0c99716a4e9af676286bc5ec35ba051", "v55v85ev");
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
       // If you opted-in for the New Architecture, we load the native entry point for this app.
       DefaultNewArchitectureEntryPoint.load();

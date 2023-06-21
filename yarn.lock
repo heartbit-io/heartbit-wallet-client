@@ -1256,6 +1256,11 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@intercom/intercom-react-native@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@intercom/intercom-react-native/-/intercom-react-native-5.1.1.tgz#ca84636ae01556b549ef9025c5b053f34f9badbd"
+  integrity sha512-dnvPm7WVrU6Wx3UCmJfbOkaMFYg9iMZx/eY4ChB9EgckXAYB+otZ0FyDtWVkU+lN39PqwlFayU7PQ1VD97dJ2Q==
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
   resolved "https://registry.npmjs.org/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz"
