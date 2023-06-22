@@ -81,12 +81,8 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 					<HeadLineText>Transactions</HeadLineText>
 					<Icon source={ChevronRight} />
 				</RowWrapper>
-				<RowWrapper
-					onPress={() =>
-						Linking.openURL('https://community.heartbit.io/c/bugs/')
-					}
-				>
-					<HeadLineText>Help</HeadLineText>
+				<RowWrapper onPress={() => Intercom.present()}>
+					<HeadLineText>Get Support</HeadLineText>
 					<Icon source={ChevronRight} />
 				</RowWrapper>
 				<RowWrapper
