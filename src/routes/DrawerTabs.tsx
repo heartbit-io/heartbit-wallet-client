@@ -63,6 +63,7 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 		dispatch(resetUserData());
 		dispatch(resetQuestions());
 		dispatch(resetTransactions());
+		navigation.closeDrawer();
 		navigationRef.resetRoot({
 			index: 0,
 			routes: [{ name: 'EmailSignUp' }],

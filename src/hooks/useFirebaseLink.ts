@@ -36,18 +36,18 @@ const useFirebaseLink = () => {
 
 			const res = await auth().signInWithEmailLink(email, url);
 			if (res.user) {
+				Intercom.loginUserWithUserAttributes({
+					email: email,
+				});
 				const token = await auth().currentUser?.getIdToken();
 				if (token) {
 					api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 					apiLND.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 					const res = await postUser(email);
+
 					if (res.success) {
 						dispatch(setUserData(res.data));
 						setSignInStatus('signedIn');
-						Intercom.loginUserWithUserAttributes({
-							email: res.data.email,
-							userId: res.data.id,
-						});
 					}
 				}
 			}
