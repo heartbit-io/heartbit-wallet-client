@@ -32,10 +32,6 @@ const TransactionListItem = ({ transaction }: Props) => {
 						? '- '
 						: '+ '}
 					{`${transaction.amount} sats `}
-					{transaction.type === 'withdraw' ||
-					transaction.type === 'bounty_earned'
-						? `(${transaction.fee} sats fee)`
-						: ''}
 				</Subheadline>
 			</RowWrapper>
 		</ItemWrapper>
