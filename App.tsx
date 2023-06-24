@@ -18,6 +18,7 @@ function App(): JSX.Element {
 		Intercom.setLauncherVisibility('VISIBLE');
 		Intercom.setBottomPadding(50);
 	});
+
 	return (
 		<Provider store={store}>
 			<ActivityIndicatorProvider>
