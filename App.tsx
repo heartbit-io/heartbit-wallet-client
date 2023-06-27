@@ -21,6 +21,7 @@ function App(): JSX.Element {
 		Intercom.setLauncherVisibility('VISIBLE');
 		Intercom.setBottomPadding(50);
 
+		notifee.requestPermission();
 		messaging().onMessage(onMessageReceived);
 		checkInitialNotification();
 		return notifee.onForegroundEvent(({ type, detail }) => {
