@@ -22,7 +22,7 @@ const HomeHeader = () => {
 
 	return (
 		<HeaderWrapper statusBarHeight={statusBarHeight}>
-			<LeftContainer>
+			<LeftContainer onPress={() => navigation.navigate('Wallet')}>
 				<Icon style={{ marginHorizontal: 6 }} source={sat} />
 				<TextCallout> {userData?.btcBalance.toLocaleString()}</TextCallout>
 			</LeftContainer>
@@ -48,7 +48,7 @@ const HeaderWrapper = styled.View<{ statusBarHeight: number }>`
 
 const ButtonWrapper = styled.TouchableOpacity``;
 
-const LeftContainer = styled.View`
+const LeftContainer = styled.TouchableOpacity`
 	flex-direction: row;
 	border-radius: 8px;
 	background: #ffffff66;
