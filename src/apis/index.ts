@@ -8,6 +8,6 @@ export const api = axios.create({
 export const apiLND = axios.create({
 	baseURL: LND_API_URL,
 	headers: {
-		Authorization: LND_API_KEY,
+		apiKey: LND_API_KEY,
 	},
 });
