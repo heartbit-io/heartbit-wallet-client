@@ -10,7 +10,7 @@ import Intercom from '@intercom/intercom-react-native';
 import { OS } from 'utils/utility';
 
 // apis
-import { api } from 'apis';
+import { api, apiLND } from 'apis';
 import { postUser } from 'apis/userApi';
 
 // store
@@ -42,6 +42,7 @@ const useFirebaseLink = () => {
 				const token = await auth().currentUser?.getIdToken();
 				if (token) {
 					api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+					apiLND.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 					const res = await postUser(email);
 
 					if (res.success) {

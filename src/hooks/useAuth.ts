@@ -29,6 +29,7 @@ const useAuth = () => {
 			}
 			const token = await user.getIdToken();
 			api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+			apiLND.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 			if (user.email) {
 				dispatch(getUserData(user.email));
 				setAuthStatus('authorized');
