@@ -171,7 +171,7 @@ function Forum({ navigation, route }: Props) {
 						<Body color="#3A3A3C" style={{ marginBottom: 26 }}>
 							{reply}
 						</Body>
-						{answer.replyType !== 'ai' && (
+						{answer.replyType !== 'ai' && question.type === 'illness' && (
 							<ArrowButton
 								text="See in health record format"
 								btnStyle={{ marginBottom: 24 }}
