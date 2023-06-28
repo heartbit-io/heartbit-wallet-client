@@ -36,7 +36,7 @@ function Bounty({ navigation, route }: Props) {
 	}, []);
 
 	const navigateHandler = (sats: number) => {
-		if (sats < userData.btcBalance) {
+		if (sats <= userData.btcBalance) {
 			postQuestion({
 				bountyAmount: sats,
 				type: route.params.isGeneralQuestion ? 'general' : 'illness',

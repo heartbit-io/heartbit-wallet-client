@@ -55,7 +55,7 @@ function Ask({ navigation }: Props) {
 			/>
 			<Space height={16} />
 			<LabelInput
-				label="What medication do you currently take?"
+				label="What medication do you currently take? (Optional)"
 				inputProps={{
 					placeholder: 'e.g., MTX 1.5 tablets (2 weeks duration)',
 					value: medications,
