@@ -3,6 +3,7 @@ import { Linking } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import dynamicLinks from '@react-native-firebase/dynamic-links';
 import auth from '@react-native-firebase/auth';
+import messaging from '@react-native-firebase/messaging';
 import { useAppDispatch } from './hooks';
 import Intercom from '@intercom/intercom-react-native';
 
@@ -40,10 +41,12 @@ const useFirebaseLink = () => {
 					email: email,
 				});
 				const token = await auth().currentUser?.getIdToken();
+				const fcmToken = await messaging().getToken();
+
 				if (token) {
 					api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 					apiLND.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-					const res = await postUser(email);
+					const res = await postUser(email, fcmToken);
 
 					if (res.success) {
 						dispatch(setUserData(res.data));
