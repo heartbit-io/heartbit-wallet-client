@@ -237,11 +237,10 @@ const GPTLoadingWrapper = styled.View`
 `;
 
 const LoadingGif = styled.Image`
-	position: absolute;
 	bottom: 17px;
-	width: 100px;
-	height: 30px;
-	margin-left: -32px;
+	width: 32px;
+	height: 32px;
+	margin-top: 30px;
 	z-index: -5;
 `;
 
