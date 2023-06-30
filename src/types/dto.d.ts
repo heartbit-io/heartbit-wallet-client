@@ -26,7 +26,7 @@ interface CreateQuestionResponse {
 
 interface GetQuestionResponse {
 	hasMore: boolean;
-	questions: QuestionResponse[]
+	questions: QuestionResponse[];
 }
 
 interface QuestionResponse {
@@ -38,36 +38,36 @@ interface QuestionResponse {
 	deletedAt: string;
 	id: number;
 	others: string;
-	pastIllnessHistory:string;
-	rawContent:string;
-	rawContentLanguage:string;
-	status:string;
-	type:string;
-	updatedAt:string;
+	pastIllnessHistory: string;
+	rawContent: string;
+	rawContentLanguage: string;
+	status: string;
+	type: string;
+	updatedAt: string;
 	userId: number;
 }
 
 interface ReplyResponse {
 	replyType: 'doctor' | 'ai' | string;
-	assessment:string;
-	classification:string;
-	content:string;
-	createdAt:string;
-	currentMedications:string;
-	deletedAt:string;
-	doctorNote:string;
-	id:number;
-	majorComplaint:string;
-	medicalHistory:string;
-	name:string;
-	plan:string;
-	questionId:number;
-	reply:string;
-	status:string;
-	title:string;
-	triage:string;
-	updatedAt:string;
-	userId:number;
+	assessment: string;
+	classification: string;
+	content: string;
+	createdAt: string;
+	currentMedications: string;
+	deletedAt: string;
+	doctorNote: string;
+	id: number;
+	majorComplaint: string;
+	medicalHistory: string;
+	name: string;
+	plan: string;
+	questionId: number;
+	reply: string;
+	status: string;
+	title: string;
+	triage: string;
+	updatedAt: string;
+	userId: number;
 }
 
 interface ExchangeRateResponse {
