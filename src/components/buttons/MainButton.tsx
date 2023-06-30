@@ -43,5 +43,6 @@ const Wrapper = styled.TouchableOpacity<{ active?: boolean }>`
 	justify-content: center;
 	align-items: center;
 	border-radius: 14px;
-	background-color: ${({ active }) => (active ? '#F68F2A' : '#E5E5EA')};
+	opacity: ${({ active }) => (active ? '1' : '0.4')};
+	background-color: #f68f2a;
 `;
