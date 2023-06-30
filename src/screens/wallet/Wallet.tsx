@@ -28,6 +28,7 @@ import { getTransactionsList } from 'store/slices/transactionsSlice';
 
 // assets
 import EmptyArrow from 'assets/img/emptyArrow.svg';
+import { View } from 'react-native';
 
 type Props = NativeStackScreenProps<RootStackType, 'Wallet'>;
 
@@ -135,14 +136,14 @@ const Wallet = ({ navigation }: Props) => {
 						btnText="See all"
 						onPress={() => navigation.navigate('Transactions')}
 					/>
-					<ScrollView>
+					<View>
 						{transactions.map(transaction => (
 							<TransactionListItem
 								key={transaction.id}
 								transaction={transaction}
 							/>
 						))}
-					</ScrollView>
+					</View>
 				</TransactionsWrapper>
 			)}
 
@@ -185,7 +186,7 @@ const Wallet = ({ navigation }: Props) => {
 
 export default Wallet;
 
-const Wrapper = styled.View`
+const Wrapper = styled.ScrollView`
 	flex: 1;
 	background-color: #fff5ed;
 `;
