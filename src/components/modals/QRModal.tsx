@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from 'react-native';
+import { Linking, Modal } from 'react-native';
 import styled from 'styled-components/native';
 
 // assets
@@ -23,6 +23,11 @@ const QRModal = ({
 	closeModal,
 	qrAddress,
 }: Props) => {
+	const linkingHandler = () =>
+		Linking.openURL(
+			`https://community.heartbit.io/c/blog/how-to-deposit-and-withdraw-bitcoin-with-lightning-network`,
+		);
+
 	return (
 		<Modal animationType="fade" transparent={true} visible={modalVisible}>
 			<Wrapper onPress={closeModal} activeOpacity={1}>
@@ -34,6 +39,7 @@ const QRModal = ({
 					<Subheadline>
 						Scan the QR code or input the invoice address below with a{' '}
 						<Subheadline
+							onPress={linkingHandler}
 							style={{ color: '#FF2D55', textDecorationLine: 'underline' }}
 						>
 							Lightning Wallet
