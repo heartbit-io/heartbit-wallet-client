@@ -4,7 +4,7 @@ type RootStackType = {
 	EmailSent: { email: string };
 	DrawerTabs: undefined;
 	Ask: undefined;
-	Bounty: { 
+	Bounty: {
 		isGeneralQuestion: boolean;
 		generalQuestion: string;
 		history: string;
@@ -12,7 +12,7 @@ type RootStackType = {
 		pastIllness: string;
 		personalInfo: string;
 		others: string;
-	 };
+	};
 	Forum: {
 		question: QuestionResponse;
 		isFromBountyScreen: boolean;
@@ -23,8 +23,8 @@ type RootStackType = {
 	MyAccount: undefined;
 	Home: undefined;
 	Wallet: undefined;
-	WebViewScreen: {link: string}
-	HealthRecord: {replies: ReplyResponse}
+	WebViewScreen: { link: string };
+	HealthRecord: { replies: ReplyResponse };
 };
 
 type BottomTabTypes = {
@@ -58,5 +58,3 @@ type HomeNavigatorParamList = {
 	MyQuestions: undefined;
 	DrawerTabs: undefined;
 };
-
-

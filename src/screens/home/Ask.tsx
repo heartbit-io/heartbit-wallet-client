@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // components
 import {
+	Caption1,
 	Footnote,
 	Header,
 	LabelInput,
@@ -46,13 +47,27 @@ function Ask({ navigation }: Props) {
 			<LabelInput
 				label="What are your symptoms?"
 				inputProps={{
-					placeholder:
-						'Explain how and when started, what bothers most. (At least 50 characters)',
+					placeholder: 'Explain how and when started, what bothers most.',
 					value: history,
 					onChangeText: setHistory,
-					style: { minHeight: 88 },
+					style:
+						0 < history.length && history.length < 50
+							? {
+									minHeight: 88,
+									borderColor: 'red',
+							  }
+							: {
+									minHeight: 88,
+							  },
 				}}
 			/>
+			{0 < history.length && history.length < 50 ? (
+				<ErrorMessage>
+					Tell us a little more, using at least 50 characters.
+				</ErrorMessage>
+			) : (
+				''
+			)}
 			<Space height={16} />
 			<LabelInput
 				label="What medication do you currently take? (Optional)"
@@ -101,9 +116,25 @@ function Ask({ navigation }: Props) {
 					placeholder: 'Enter your question here',
 					value: generalQuestion,
 					onChangeText: setGeneralQuestion,
-					style: { height: 88 },
+					style:
+						0 < generalQuestion.length && generalQuestion.length < 20
+							? {
+									height: 88,
+									borderColor: 'red',
+							  }
+							: {
+									height: 88,
+							  },
 				}}
 			/>
+			{0 < generalQuestion.length && generalQuestion.length < 20 ? (
+				<ErrorMessage>
+					Tell us a little more, using at least 20 characters.
+				</ErrorMessage>
+			) : (
+				''
+			)}
+
 			<Space height={16} />
 			<LabelInput
 				label="Age, Sex, and Ethnicity (Optional)"
@@ -139,8 +170,8 @@ function Ask({ navigation }: Props) {
 					buttonStyle={{ height: 50 }}
 					active={
 						isGeneralQuestion
-							? generalQuestion.length > 50
-							: history.length > 50
+							? generalQuestion.length >= 20
+							: history.length >= 50
 					}
 				/>
 			</ButtonWrapper>
@@ -175,4 +206,9 @@ const ButtonWrapper = styled.View<{ paddingBottom: number }>`
 	padding-top: 12px;
 	padding-bottom: ${({ paddingBottom }) => paddingBottom || 20}px;
 	padding-horizontal: 16px;
+`;
+
+const ErrorMessage = styled(Caption1)`
+	color: red;
+	margin-top: 5px;
 `;
