@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { ActivityIndicator, ScrollView } from 'react-native';
+import { ActivityIndicator, ScrollView, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useFocusEffect } from '@react-navigation/native';
 import styled from 'styled-components/native';
@@ -40,8 +40,8 @@ function Home({ navigation }: Props) {
 
 	return (
 		<Gradient>
-			<HomeHeader />
 			<Wrapper>
+				<HomeHeader />
 				<LogoWrapper>
 					<Icon source={logo} />
 					<MainButton
@@ -71,11 +71,11 @@ function Home({ navigation }: Props) {
 							btnText="See all"
 							onPress={() => navigation.navigate('MyQuestions')}
 						/>
-						<ScrollView>
+						<View>
 							{questions?.map(question => (
 								<QuestionListItem key={question.id} question={question} />
 							))}
-						</ScrollView>
+						</View>
 					</RecentWrapper>
 				)}
 			</Wrapper>
@@ -85,7 +85,7 @@ function Home({ navigation }: Props) {
 
 export default Home;
 
-const Wrapper = styled.View`
+const Wrapper = styled.ScrollView`
 	flex: 1;
 `;
 
