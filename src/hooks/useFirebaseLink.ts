@@ -15,7 +15,7 @@ import { api, apiLND } from 'apis';
 import { postUser } from 'apis/userApi';
 
 // store
-import { setUserData } from 'store/slices/userSlice';
+import { getUserData } from 'store/slices/userSlice';
 
 const useFirebaseLink = () => {
 	const dispatch = useAppDispatch();
@@ -49,7 +49,7 @@ const useFirebaseLink = () => {
 					const res = await postUser(email, fcmToken);
 
 					if (res.success) {
-						dispatch(setUserData(res.data));
+						dispatch(getUserData(email));
 						setSignInStatus('signedIn');
 					}
 				}
