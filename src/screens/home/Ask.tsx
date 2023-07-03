@@ -111,7 +111,7 @@ function Ask({ navigation }: Props) {
 	const renderGeneralInputs = () => (
 		<>
 			<LabelInput
-				label="General health question"
+				label=""
 				inputProps={{
 					placeholder: 'Enter your question here',
 					value: generalQuestion,
@@ -152,7 +152,7 @@ function Ask({ navigation }: Props) {
 		<Wrapper>
 			<Header headerRight={true} />
 			<ScrollWrapper extraHeight={120}>
-				<LargeTitle weight="bold">What brings you in today?</LargeTitle>
+				<LargeTitle weight="bold">What do you want to ask?</LargeTitle>
 				<Switch onPress={() => setIsGeneralQuestion(!isGeneralQuestion)}>
 					<Icon source={Arrow} />
 					<Footnote weight="bold" color="#007AFF">
