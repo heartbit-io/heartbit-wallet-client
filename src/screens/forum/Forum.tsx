@@ -27,8 +27,11 @@ import Caution from 'assets/img/alert-circle.svg';
 type Props = NativeStackScreenProps<RootStackType, 'Forum'>;
 
 const questionContent = [
-	{ type: 'content', title: 'History of your present illness' },
-	{ type: 'currentMedication', title: 'Current medications' },
+	{ type: 'content', title: 'What are your symptoms?' },
+	{
+		type: 'currentMedication',
+		title: 'What medication do you currently take?',
+	},
 	{
 		type: 'pastIllnessHistory',
 		title: 'Past illness history of you or your family',

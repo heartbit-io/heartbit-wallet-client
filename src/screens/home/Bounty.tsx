@@ -63,7 +63,7 @@ function Bounty({ navigation, route }: Props) {
 				})
 				.catch(res => Alert.alert(res.message, 'Try again later'));
 		} else {
-			Alert.alert("You don't have enough sats to post a question.");
+			Alert.alert("You don't have enough balance.");
 		}
 	};
 
