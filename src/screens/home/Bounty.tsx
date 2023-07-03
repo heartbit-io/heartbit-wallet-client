@@ -74,25 +74,36 @@ function Bounty({ navigation, route }: Props) {
 			<BountyInfoModal />
 
 			<BountyButton
+				title="Fastest"
+				USDPerSat={USDPerSat}
+				sats={Math.floor(30 / USDPerSat)}
+				active={bounty === Math.floor(30 / USDPerSat)}
+				onPress={() => {
+					setBounty(Math.floor(30 / USDPerSat));
+					setInputBounty(0);
+				}}
+			/>
+			<BountyButton
 				title="Faster"
 				USDPerSat={USDPerSat}
-				sats={10000}
-				active={bounty === 10000}
+				sats={Math.floor(10 / USDPerSat)}
+				active={bounty === Math.floor(10 / USDPerSat)}
 				onPress={() => {
-					setBounty(10000);
+					setBounty(Math.floor(10 / USDPerSat));
 					setInputBounty(0);
 				}}
 			/>
 			<BountyButton
 				title="Normal"
 				USDPerSat={USDPerSat}
-				sats={1000}
-				active={bounty === 1000}
+				sats={Math.floor(1 / USDPerSat)}
+				active={bounty === Math.floor(1 / USDPerSat)}
 				onPress={() => {
-					setBounty(1000);
+					setBounty(Math.floor(1 / USDPerSat));
 					setInputBounty(0);
 				}}
 			/>
+
 			<BountyButton
 				title="Set manually"
 				USDPerSat={USDPerSat}
