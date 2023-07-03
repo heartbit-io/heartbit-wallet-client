@@ -23,6 +23,7 @@ import Question from 'assets/img/question.svg';
 import Answer from 'assets/img/answer.svg';
 import AILogo from 'assets/img/aiLogo.svg';
 import Caution from 'assets/img/alert-circle.svg';
+import { getBtcRates } from 'apis/coinApi';
 
 type Props = NativeStackScreenProps<RootStackType, 'Forum'>;
 
@@ -50,9 +51,11 @@ function Forum({ navigation, route }: Props) {
 		reply: 'I’m preparing my answer. (Could take up to 10 ~ 20 secs)',
 		createdAt: '',
 	});
+	const [USDPerSat, setUSDPerSat] = useState(0);
 
 	useEffect(() => {
 		setLoading(true);
+		getBtcRates().then(res => setUSDPerSat(res.data?.customSatoshi as number));
 		if (isFromBountyScreen) {
 			postGPTReply(question.id)
 				.then(res => setAnswer({ ...res.data } as ReplyResponse))
@@ -128,7 +131,11 @@ function Forum({ navigation, route }: Props) {
 						<Body weight="bold">You</Body>
 						<Caption1 color="rgba(60, 60, 67, 0.6)">
 							{getDateFormatted(question.createdAt)} ・{' '}
-							{question.bountyAmount.toLocaleString()} sats
+							{question.bountyAmount.toLocaleString()} sats{' '}
+							{`($${(question.bountyAmount * USDPerSat).toLocaleString(
+								undefined,
+								{ maximumFractionDigits: 2 },
+							)})`}
 						</Caption1>
 					</PostInfoWrapper>
 				</ProfileWrapper>
