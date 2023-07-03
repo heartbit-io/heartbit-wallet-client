@@ -31,13 +31,8 @@ const BountyButton = ({
 			</Footnote>
 			{!isManual || (sats > 0 && isManual) ? (
 				<BountyAmountContainer>
-					<Body weight="bold">{sats.toLocaleString()} sats</Body>
-					<Caption1 color="#8E8E93">
-						{(sats * USDPerSat).toLocaleString(undefined, {
-							maximumFractionDigits: 2,
-						})}{' '}
-						USD
-					</Caption1>
+					<Body weight="bold"> {(sats * USDPerSat).toLocaleString()} USD</Body>
+					<Caption1 color="#8E8E93">{sats.toLocaleString()} sats</Caption1>
 				</BountyAmountContainer>
 			) : (
 				<Icon source={arrowRight} />

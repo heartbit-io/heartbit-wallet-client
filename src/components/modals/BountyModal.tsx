@@ -14,7 +14,7 @@ type Props = {
 };
 
 const BountyModal = ({ visible, USDPerSat, setBounty, closeModal }: Props) => {
-	const [val, setVal] = useState(0);
+	const [val, setVal] = useState('');
 
 	return (
 		<Modal animationType="fade" transparent={true} visible={visible}>
@@ -27,27 +27,22 @@ const BountyModal = ({ visible, USDPerSat, setBounty, closeModal }: Props) => {
 						<InputWrapper>
 							<Input
 								value={val.toLocaleString()}
-								onChangeText={bounty =>
-									setVal(Number(bounty.replace(/,/g, '')))
-								}
+								onChangeText={bounty => setVal(bounty)}
 								keyboardType="numeric"
 								autoFocus
 							/>
-							<Subheadline>sats</Subheadline>
+							<Subheadline>USD</Subheadline>
 						</InputWrapper>
 						<USDValue>
-							{(val * USDPerSat).toLocaleString(undefined, {
-								maximumFractionDigits: 2,
-							})}{' '}
-							USD
+							{Math.floor(val / USDPerSat).toLocaleString()} sats
 						</USDValue>
 						<BountyMinimumText>
 							Bounty must be at least 1,000 sats
 						</BountyMinimumText>
 						<MainButton
 							text="Confirm"
-							onPress={() => setBounty(val)}
-							active={visible && val >= 1000}
+							onPress={() => setBounty(Math.floor(val / USDPerSat))}
+							active={visible && Math.floor(val / USDPerSat) >= 1000}
 							buttonStyle={{ borderRadius: 8 }}
 						/>
 					</Container>
