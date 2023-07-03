@@ -14,8 +14,7 @@ export const getDepositRequest = async (
 
 		return responseDto as ResponseDto<string>;
 	} catch (err: any) {
-		console.error(err);
-		return err;
+		return err.response.data.message;
 	}
 };
 
@@ -31,7 +30,6 @@ export const getWithdrawalRequest = async (
 
 		return responseDto as ResponseDto<string>;
 	} catch (err: any) {
-		console.error(err);
-		return err;
+		return err.response.data.message;
 	}
 };

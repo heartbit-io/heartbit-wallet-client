@@ -12,7 +12,7 @@ export const postUser = async (email: string, fcmToken: string) => {
 
 		return response.data;
 	} catch (err: any) {
-		return err;
+		return err.response.data.message;
 	}
 };
 
@@ -21,6 +21,6 @@ export const getUser = async (email: string) => {
 		const response = await api.get(`users/${email}`);
 		return response.data;
 	} catch (err: any) {
-		return err;
+		return err.response.data.message;
 	}
 };
