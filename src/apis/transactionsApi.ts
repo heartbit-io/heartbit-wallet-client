@@ -15,6 +15,6 @@ export const getTransactions = async (
 
 		return response.data;
 	} catch (err: any) {
-		return err;
+		return err.response.data.message;
 	}
 };

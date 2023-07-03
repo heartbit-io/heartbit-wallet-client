@@ -12,7 +12,7 @@ export const postQuestion = async (
 
 		return responseDto as ResponseDto<QuestionResponse>;
 	} catch (err: any) {
-		return err;
+		return err.response.data.message;
 	}
 };
 
@@ -26,7 +26,7 @@ export const deleteQuestion = async (
 
 		return responseDto as ResponseDto<any>;
 	} catch (err: any) {
-		return err;
+		return err.response.data.message;
 	}
 };
 
@@ -46,7 +46,7 @@ export const getQuestionList = async (
 
 		return responseDto as ResponseDto<GetQuestionResponse>;
 	} catch (err: any) {
-		return err;
+		return err.response.data.message;
 	}
 };
 
@@ -64,7 +64,7 @@ export const postGPTReply = async (
 
 		return responseDto as ResponseDto<ReplyResponse>;
 	} catch (err: any) {
-		return err;
+		return err.response.data.message;
 	}
 };
 
@@ -80,6 +80,6 @@ export const getReply = async (
 
 		return responseDto as ResponseDto<ReplyResponse>;
 	} catch (err: any) {
-		return err;
+		return err.response.data.message;
 	}
 };
