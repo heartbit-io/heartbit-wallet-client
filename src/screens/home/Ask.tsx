@@ -119,11 +119,11 @@ function Ask({ navigation }: Props) {
 					style:
 						0 < generalQuestion.length && generalQuestion.length < 20
 							? {
-									height: 88,
+									height: 87,
 									borderColor: 'red',
 							  }
 							: {
-									height: 88,
+									height: 87,
 							  },
 				}}
 			/>
