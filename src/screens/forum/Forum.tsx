@@ -18,7 +18,6 @@ import {
 import { deleteQuestion, getReply, postGPTReply } from 'apis/questionApi';
 
 // assets
-import loading_dot from 'assets/gif/loading_dot.gif';
 import Question from 'assets/img/question.svg';
 import Answer from 'assets/img/answer.svg';
 import AILogo from 'assets/img/aiLogo.svg';
