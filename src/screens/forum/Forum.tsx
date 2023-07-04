@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert } from 'react-native';
+import { ActivityIndicator, Alert } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import moment from 'moment';
@@ -18,7 +18,6 @@ import {
 import { deleteQuestion, getReply, postGPTReply } from 'apis/questionApi';
 
 // assets
-import loading_dot from 'assets/gif/loading_dot.gif';
 import Question from 'assets/img/question.svg';
 import Answer from 'assets/img/answer.svg';
 import AILogo from 'assets/img/aiLogo.svg';
@@ -174,7 +173,14 @@ function Forum({ navigation, route }: Props) {
 						<Body color="#3A3A3C">
 							I'm preparing my answer. (Could take up to 10 ~ 20 secs)
 						</Body>
-						<LoadingGif source={loading_dot} />
+						<ActivityIndicator
+							style={{
+								alignItems: 'flex-start',
+								marginTop: 20,
+							}}
+							size={'large'}
+							color={'#FF9E32'}
+						/>
 					</GPTLoadingWrapper>
 				) : (
 					<>
@@ -244,14 +250,6 @@ const Container = styled.View`
 
 const GPTLoadingWrapper = styled.View`
 	padding-bottom: 45px;
-`;
-
-const LoadingGif = styled.Image`
-	bottom: 17px;
-	width: 32px;
-	height: 32px;
-	margin-top: 30px;
-	z-index: -5;
 `;
 
 const CautionWrapper = styled.View`
