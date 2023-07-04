@@ -7,7 +7,6 @@ import {
 } from '@react-navigation/drawer';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import auth from '@react-native-firebase/auth';
-import { navigationRef } from 'routes';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Intercom from '@intercom/intercom-react-native';
@@ -64,10 +63,11 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 		dispatch(resetQuestions());
 		dispatch(resetTransactions());
 		navigation.closeDrawer();
-		navigationRef.resetRoot({
-			index: 0,
-			routes: [{ name: 'EmailSignUp' }],
+		navigation.reset({
+			index: 1,
+			routes: [{ name: 'Home' }],
 		});
+		navigation.navigate('EmailSignUp');
 	};
 
 	return (
