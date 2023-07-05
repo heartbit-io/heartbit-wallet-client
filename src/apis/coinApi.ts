@@ -14,6 +14,6 @@ export const getBtcRates = async (
 
 		return responseDto as ResponseDto<ExchangeRateResponse>;
 	} catch (err: any) {
-		return err.response.data.message;
+		return err.response.data;
 	}
 };
