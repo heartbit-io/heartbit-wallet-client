@@ -24,7 +24,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 // store
 import { fetchQuestionsList } from 'store/slices/questionsSlice';
 
-type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Home'>;
+type Props = NativeStackScreenProps<RootStackType, 'Home'>;
 
 function Home({ navigation }: Props) {
 	const dispatch = useAppDispatch();
@@ -46,7 +46,7 @@ function Home({ navigation }: Props) {
 					<Icon source={logo} />
 					<MainButton
 						text={'Ask doctors anything'}
-						onPress={() => navigation.navigate('Ask')}
+						onPress={() => navigation.navigate('IllnessAsk')}
 						buttonStyle={{ marginTop: 82, height: 50 }}
 					/>
 				</LogoWrapper>

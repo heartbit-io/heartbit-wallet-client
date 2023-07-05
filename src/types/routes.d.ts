@@ -3,7 +3,8 @@ type RootStackType = {
 	EmailSignUp: undefined;
 	EmailSent: { email: string };
 	DrawerTabs: undefined;
-	Ask: undefined;
+	GeneralAsk: undefined;
+	IllnessAsk: undefined;
 	Bounty: {
 		isGeneralQuestion: boolean;
 		generalQuestion: string;
