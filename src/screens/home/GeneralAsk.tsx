@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { InputAccessoryView, Button } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -69,6 +70,15 @@ function GeneralAsk({ navigation }: Props) {
 				/>
 				<Space height={30} />
 			</ScrollWrapper>
+			<InputAccessoryView nativeID={'labelInput'}>
+				<InputAccessoryWrapper>
+					<PrevNextWrapper>
+						<Button onPress={() => {}} title="Prev" />
+						<Button onPress={() => {}} title="Next" />
+					</PrevNextWrapper>
+					<Button onPress={() => {}} title="Done" />
+				</InputAccessoryWrapper>
+			</InputAccessoryView>
 			<ButtonWrapper paddingBottom={bottom}>
 				<MainButton
 					text={'Next'}
@@ -108,4 +118,13 @@ const ButtonWrapper = styled.View<{ paddingBottom: number }>`
 	padding-top: 12px;
 	padding-bottom: ${({ paddingBottom }) => paddingBottom || 20}px;
 	padding-horizontal: 16px;
+`;
+
+const InputAccessoryWrapper = styled.View`
+	flex-direction: row;
+	justify-content: space-between;
+`;
+
+const PrevNextWrapper = styled.View`
+	flex-direction: row;
 `;

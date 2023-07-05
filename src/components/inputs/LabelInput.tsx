@@ -33,6 +33,7 @@ const LabelInput = ({
 				multiline
 				{...inputProps}
 				error={showError}
+				inputAccessoryViewID={'labelInput'}
 			/>
 			{showError && <ErrorMessage>{errorMsg}</ErrorMessage>}
 		</Wrapper>
