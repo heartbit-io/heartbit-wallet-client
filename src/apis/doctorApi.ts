@@ -9,6 +9,6 @@ export const authDoctor = async () => {
 
 		return response.data;
 	} catch (err: any) {
-		return err.response.data.message;
+		return err.response.data;
 	}
 };

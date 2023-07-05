@@ -70,7 +70,7 @@ const Wallet = ({ navigation }: Props) => {
 					setDepositModalVisible(false);
 					setDepositQRVisible(true);
 				} else {
-					Alert.alert('Error while creating invoice', 'Try again later');
+					Alert.alert(responseDto.message, 'Try again later');
 				}
 			} else {
 				const responseDto: ResponseDto<string> = await getWithdrawalRequest(
@@ -82,7 +82,7 @@ const Wallet = ({ navigation }: Props) => {
 					setWithdrawModalVisible(false);
 					setWithdrawQRVisible(true);
 				} else {
-					Alert.alert('Amount is invalid', 'Check your balance');
+					Alert.alert(responseDto.message, 'Try again later');
 				}
 			}
 		} catch (err) {
