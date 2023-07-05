@@ -10,7 +10,8 @@ import DrawerTabs from './DrawerTabs';
 
 // screens
 import {
-	Ask,
+	IllnessAsk,
+	GeneralAsk,
 	Bounty,
 	EmailSignUp,
 	SplashScreen,
@@ -57,7 +58,16 @@ const Root = () => {
 					gestureEnabled: false,
 				}}
 			/>
-			<Stack.Screen name="Ask" component={Ask} />
+			<Stack.Screen
+				name="IllnessAsk"
+				component={IllnessAsk}
+				options={{ animationTypeForReplace: 'pop' }}
+			/>
+			<Stack.Screen
+				name="GeneralAsk"
+				component={GeneralAsk}
+				options={{ animationTypeForReplace: 'push' }}
+			/>
 			<Stack.Screen name="Bounty" component={Bounty} />
 			<Stack.Screen name="Forum" component={Forum} />
 			<Stack.Screen name="MyQuestions" component={MyQuestions} />

@@ -1,6 +1,7 @@
 import Home from './Home';
-import Ask from './Ask';
 import Bounty from './Bounty';
 import HealthRecord from './HealthRecord';
+import IllnessAsk from './IllnessAsk';
+import GeneralAsk from './GeneralAsk';
 
-export { Home, Ask, Bounty, HealthRecord };
+export { Home, Bounty, HealthRecord, IllnessAsk, GeneralAsk };
