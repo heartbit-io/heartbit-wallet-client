@@ -1,15 +1,25 @@
-import { Footnote } from 'components/common';
 import React from 'react';
 import { TextInputProps, TextStyle } from 'react-native';
 import styled from 'styled-components/native';
+
+// components
+import { Caption1, Footnote } from 'components/common';
 
 type Props = {
 	label?: string;
 	labelStyle?: TextStyle;
 	inputProps: TextInputProps;
+	errorMsg?: string;
+	showError?: boolean;
 };
 
-const LabelInput = ({ label, labelStyle, inputProps }: Props) => {
+const LabelInput = ({
+	label,
+	labelStyle,
+	inputProps,
+	errorMsg,
+	showError,
+}: Props) => {
 	return (
 		<Wrapper>
 			{!!label && (
@@ -22,7 +32,9 @@ const LabelInput = ({ label, labelStyle, inputProps }: Props) => {
 				editable={true}
 				multiline
 				{...inputProps}
+				error={showError}
 			/>
+			{showError && <ErrorMessage>{errorMsg}</ErrorMessage>}
 		</Wrapper>
 	);
 };
@@ -31,10 +43,11 @@ export default LabelInput;
 
 const Wrapper = styled.View``;
 
-const Input = styled.TextInput<{ editable?: boolean }>`
+const Input = styled.TextInput<{ editable?: boolean; error?: boolean }>`
 	max-height: 150px;
 	border-radius: 8px;
-	border: 0.5px solid #8e8e93;
+	border-color: ${({ error }) => (error ? '#FF3B30' : '#8e8e93')};
+	border-width: ${({ error }) => (error ? 1 : 0.5)}px;
 	background-color: ${({ editable }) => (editable ? '#fff' : '#F2F2F7')};
 	font-size: 17px;
 	line-height: 22px;
@@ -43,4 +56,9 @@ const Input = styled.TextInput<{ editable?: boolean }>`
 	margin-top: 8px;
 	padding-horizontal: 16px;
 	padding-vertical: 11px;
+`;
+
+const ErrorMessage = styled(Caption1)`
+	color: #ff3b30;
+	margin-top: 8px;
 `;
