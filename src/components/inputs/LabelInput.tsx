@@ -1,15 +1,28 @@
-import { Footnote } from 'components/common';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TextInputProps, TextStyle } from 'react-native';
 import styled from 'styled-components/native';
+
+// components
+import { Caption1, Footnote } from 'components/common';
 
 type Props = {
 	label?: string;
 	labelStyle?: TextStyle;
 	inputProps: TextInputProps;
+	errorMsg?: string;
+	showError?: boolean;
 };
 
-const LabelInput = ({ label, labelStyle, inputProps }: Props) => {
+const LabelInput = ({
+	label,
+	labelStyle,
+	inputProps,
+	errorMsg,
+	showError,
+}: Props) => {
+	useEffect(() => {
+		console.log('>>>>>>>>>>>>>>>>.');
+	}, []);
 	return (
 		<Wrapper>
 			{!!label && (
@@ -23,6 +36,7 @@ const LabelInput = ({ label, labelStyle, inputProps }: Props) => {
 				multiline
 				{...inputProps}
 			/>
+			{showError && <ErrorMessage>{errorMsg}</ErrorMessage>}
 		</Wrapper>
 	);
 };
@@ -43,4 +57,9 @@ const Input = styled.TextInput<{ editable?: boolean }>`
 	margin-top: 8px;
 	padding-horizontal: 16px;
 	padding-vertical: 11px;
+`;
+
+const ErrorMessage = styled(Caption1)`
+	color: red;
+	margin-top: 8px;
 `;

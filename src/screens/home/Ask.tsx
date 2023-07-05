@@ -50,24 +50,13 @@ function Ask({ navigation }: Props) {
 					placeholder: 'Explain how and when started, what bothers most.',
 					value: history,
 					onChangeText: setHistory,
-					style:
-						0 < history.length && history.length < 50
-							? {
-									minHeight: 88,
-									borderColor: 'red',
-							  }
-							: {
-									minHeight: 88,
-							  },
+					style: {
+						minHeight: 88,
+					},
 				}}
+				errorMsg={'Tell us a little more, using at least 50 characters.'}
+				showError={0 < history.length && history.length < 50}
 			/>
-			{0 < history.length && history.length < 50 ? (
-				<ErrorMessage>
-					Tell us a little more, using at least 50 characters.
-				</ErrorMessage>
-			) : (
-				''
-			)}
 			<Space height={16} />
 			<LabelInput
 				label="What medication do you currently take? (Optional)"
@@ -116,25 +105,11 @@ function Ask({ navigation }: Props) {
 					placeholder: 'Enter your question here',
 					value: generalQuestion,
 					onChangeText: setGeneralQuestion,
-					style:
-						0 < generalQuestion.length && generalQuestion.length < 20
-							? {
-									height: 87,
-									borderColor: 'red',
-							  }
-							: {
-									height: 87,
-							  },
+					style: { height: 88 },
 				}}
+				errorMsg={'Tell us a little more, using at least 20 characters.'}
+				showError={0 < generalQuestion.length && generalQuestion.length < 20}
 			/>
-			{0 < generalQuestion.length && generalQuestion.length < 20 ? (
-				<ErrorMessage>
-					Tell us a little more, using at least 20 characters.
-				</ErrorMessage>
-			) : (
-				''
-			)}
-
 			<Space height={16} />
 			<LabelInput
 				label="Age, Sex, and Ethnicity (Optional)"
@@ -152,7 +127,11 @@ function Ask({ navigation }: Props) {
 		<Wrapper>
 			<Header headerRight={true} />
 			<ScrollWrapper extraHeight={120}>
-				<LargeTitle weight="bold">What do you want to ask?</LargeTitle>
+				<LargeTitle weight="bold">
+					{isGeneralQuestion
+						? 'What do you want to ask?'
+						: 'What brings you in today?'}
+				</LargeTitle>
 				<Switch onPress={() => setIsGeneralQuestion(!isGeneralQuestion)}>
 					<Icon source={Arrow} />
 					<Footnote weight="bold" color="#007AFF">
