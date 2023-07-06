@@ -3,7 +3,7 @@ import { getTransactions } from 'apis/transactionsApi';
 import { getUser } from 'apis/userApi';
 import { store } from 'store';
 import { setOffset, setTransactions } from 'store/slices/transactionsSlice';
-import { setUserData, updateUserData } from 'store/slices/userSlice';
+import { updateUserData } from 'store/slices/userSlice';
 
 export const onMessageReceived = async (message: any) => {
 	try {
@@ -43,9 +43,12 @@ export const onMessageReceived = async (message: any) => {
 			  )
 			: console.log(userResponse);
 		console.log(txListResponse);
-		txListResponse.statusCode === 200
-			? store.dispatch(setTransactions(txListResponse.data.transactions))
-			: console.log(txListResponse);
+		if (txListResponse.statusCode === 200) {
+			store.dispatch(setTransactions(txListResponse.data.transactions));
+			store.dispatch(setOffset(0));
+		} else {
+			console.log(txListResponse);
+		}
 	} catch (err) {
 		console.log(err);
 	}
