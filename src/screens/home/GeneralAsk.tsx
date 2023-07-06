@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { InputAccessoryView, Button } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { InputAccessoryView, Button, TextInput } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -22,6 +22,8 @@ type Props = NativeStackScreenProps<RootStackType, 'GeneralAsk'>;
 
 function GeneralAsk({ navigation }: Props) {
 	const bottom = useSafeAreaInsets().bottom;
+	const input1Ref = useRef<TextInput>(null);
+	const input2Ref = useRef<TextInput>(null);
 	const [generalQuestion, setGeneralQuestion] = useState('');
 	const [personalInfo, setPersonalInfo] = useState('');
 
@@ -37,6 +39,22 @@ function GeneralAsk({ navigation }: Props) {
 		});
 	};
 
+	const onPressPrev = () => {
+		if (input1Ref.current && input2Ref.current && input2Ref.current.isFocused())
+			input1Ref.current.focus();
+	};
+
+	const onPressNext = () => {
+		if (input1Ref.current && input1Ref.current.isFocused() && input2Ref.current)
+			input2Ref.current.focus();
+	};
+
+	const onPressDone = () => {
+		if (generalQuestion.length >= 20) {
+			navigateToBounty();
+		}
+	};
+
 	return (
 		<Wrapper>
 			<Header headerRight={true} />
@@ -50,11 +68,12 @@ function GeneralAsk({ navigation }: Props) {
 				</Switch>
 				<LabelInput
 					label=""
+					inputRef={input1Ref}
 					inputProps={{
 						placeholder: 'Enter your question here',
 						value: generalQuestion,
-						onChangeText: setGeneralQuestion,
 						style: { height: 88 },
+						onChangeText: setGeneralQuestion,
 					}}
 					errorMsg={'Tell us a little more, using at least 20 characters.'}
 					showError={0 < generalQuestion.length && generalQuestion.length < 20}
@@ -62,6 +81,7 @@ function GeneralAsk({ navigation }: Props) {
 				<Space height={16} />
 				<LabelInput
 					label="Age, Sex, and Ethnicity (Optional)"
+					inputRef={input2Ref}
 					inputProps={{
 						placeholder: 'e.g., 24 yr old, male, Korean american',
 						value: personalInfo,
@@ -73,10 +93,10 @@ function GeneralAsk({ navigation }: Props) {
 			<InputAccessoryView nativeID={'labelInput'}>
 				<InputAccessoryWrapper>
 					<PrevNextWrapper>
-						<Button onPress={() => {}} title="Prev" />
-						<Button onPress={() => {}} title="Next" />
+						<Button onPress={onPressPrev} title="Prev" />
+						<Button onPress={onPressNext} title="Next" />
 					</PrevNextWrapper>
-					<Button onPress={() => {}} title="Done" />
+					<Button onPress={onPressDone} title="Done" />
 				</InputAccessoryWrapper>
 			</InputAccessoryView>
 			<ButtonWrapper paddingBottom={bottom}>
@@ -123,6 +143,9 @@ const ButtonWrapper = styled.View<{ paddingBottom: number }>`
 const InputAccessoryWrapper = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
+	background-color: #f4f4f4;
+	border-top-width: 1px;
+	border-top-color: #c7c7cc;
 `;
 
 const PrevNextWrapper = styled.View`
