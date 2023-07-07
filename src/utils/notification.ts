@@ -8,16 +8,13 @@ import { updateUserData } from 'store/slices/userSlice';
 
 export const onMessageReceived = async (message: any) => {
 	try {
-		const notiType = message.notification.title.split(' ').at(-1);
-		const title = message.notification.title.replace(' ' + notiType);
-
 		const channelId = await notifee.createChannel({
 			id: 'default',
 			name: 'Default Channel',
 		});
 
 		await notifee.displayNotification({
-			title: `<body style="font-size: 16px; font-weight: 500;">${title}</body>`,
+			title: `<body style="font-size: 16px; font-weight: 500;">${message.notification.title}</body>`,
 			body: message.notification.body,
 			android: {
 				channelId,
@@ -37,6 +34,9 @@ export const onMessageReceived = async (message: any) => {
 				},
 			},
 		});
+
+		const notiType = message.notification.type;
+
 		if (notiType === 'TRANSACTION') {
 			// update user balance and transactions in redux
 			const email: string = store.getState().user.userData.email;
