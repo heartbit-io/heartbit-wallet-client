@@ -39,7 +39,9 @@ const useFirebaseLink = () => {
 			if (res.user) {
 				Intercom.loginUserWithUserAttributes({
 					email: email,
+					userId: email,
 				});
+
 				const token = await auth().currentUser?.getIdToken();
 				const fcmToken = await messaging().getToken();
 
