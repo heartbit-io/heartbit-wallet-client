@@ -35,7 +35,7 @@ export const onMessageReceived = async (message: any) => {
 			},
 		});
 
-		const notiType = message.notification.data.type;
+		const notiType = message.data.type;
 
 		if (notiType === 'TRANSACTION') {
 			// update user balance and transactions in redux
