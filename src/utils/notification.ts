@@ -1,10 +1,10 @@
 import notifee from '@notifee/react-native';
-import { getQuestionList } from 'apis/questionApi';
-import { getTransactions } from 'apis/transactionsApi';
-import { getUser } from 'apis/userApi';
+
+// store
 import { store } from 'store';
-import { setOffset, setTransactions } from 'store/slices/transactionsSlice';
-import { updateUserData } from 'store/slices/userSlice';
+import { fetchQuestionsList } from 'store/slices/questionsSlice';
+import { getTransactionsList } from 'store/slices/transactionsSlice';
+import { getUserData } from 'store/slices/userSlice';
 
 export const onMessageReceived = async (message: any) => {
 	try {
@@ -40,29 +40,11 @@ export const onMessageReceived = async (message: any) => {
 		if (notiType === 'TRANSACTION') {
 			// update user balance and transactions in redux
 			const email: string = store.getState().user.userData.email;
-			const userResponse = await getUser(email);
-			const txListResponse = await getTransactions(email, 50, 0);
-			userResponse.statusCode === 200
-				? store.dispatch(
-						updateUserData({ btcBalance: userResponse.data.btcBalance }),
-				  )
-				: console.log(userResponse);
-			if (txListResponse.statusCode === 200) {
-				store.dispatch(setTransactions(txListResponse.data.transactions));
-				store.dispatch(setOffset(0));
-			} else {
-				console.log(txListResponse);
-			}
+			store.dispatch(getUserData(email));
+			store.dispatch(getTransactionsList(true));
 		} else if (notiType === 'DOCTOR_ANSWER') {
 			// update user questions
-			const questionListResponse: ResponseDto<GetQuestionResponse> =
-				await getQuestionList(50, 0);
-			if (questionListResponse.statusCode === 200) {
-				store.dispatch(setTransactions(questionListResponse.data?.questions));
-				store.dispatch(setOffset(0));
-			} else {
-				console.log(questionListResponse);
-			}
+			store.dispatch(fetchQuestionsList(true));
 		}
 	} catch (err) {
 		console.log(err);
