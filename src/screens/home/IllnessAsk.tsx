@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { InputAccessoryView, TextInput, Button } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -21,6 +22,11 @@ type Props = NativeStackScreenProps<RootStackType, 'IllnessAsk'>;
 
 function IllnessAsk({ navigation }: Props) {
 	const bottom = useSafeAreaInsets().bottom;
+	const input1Ref = useRef<TextInput>(null);
+	const input2Ref = useRef<TextInput>(null);
+	const input3Ref = useRef<TextInput>(null);
+	const input4Ref = useRef<TextInput>(null);
+	const input5Ref = useRef<TextInput>(null);
 	const [history, setHistory] = useState('');
 	const [medications, setMedications] = useState('');
 	const [pastIllness, setPastIllness] = useState('');
@@ -39,6 +45,42 @@ function IllnessAsk({ navigation }: Props) {
 		});
 	};
 
+	const onPressPrev = () => {
+		if (
+			input1Ref.current &&
+			input2Ref.current &&
+			input3Ref.current &&
+			input4Ref.current &&
+			input5Ref.current
+		) {
+			if (input2Ref.current.isFocused()) input1Ref.current.focus();
+			else if (input3Ref.current.isFocused()) input2Ref.current.focus();
+			else if (input4Ref.current.isFocused()) input3Ref.current.focus();
+			else if (input5Ref.current.isFocused()) input4Ref.current.focus();
+		}
+	};
+
+	const onPressNext = () => {
+		if (
+			input1Ref.current &&
+			input2Ref.current &&
+			input3Ref.current &&
+			input4Ref.current &&
+			input5Ref.current
+		) {
+			if (input1Ref.current.isFocused()) input2Ref.current.focus();
+			else if (input2Ref.current.isFocused()) input3Ref.current.focus();
+			else if (input3Ref.current.isFocused()) input4Ref.current.focus();
+			else if (input4Ref.current.isFocused()) input5Ref.current.focus();
+		}
+	};
+
+	const onPressDone = () => {
+		if (history.length >= 50) {
+			navigateToBounty();
+		}
+	};
+
 	return (
 		<Wrapper>
 			<Header headerRight={true} />
@@ -51,6 +93,7 @@ function IllnessAsk({ navigation }: Props) {
 					</Footnote>
 				</Switch>
 				<LabelInput
+					inputRef={input1Ref}
 					label="What are your symptoms?"
 					inputProps={{
 						placeholder: 'Explain how and when started, what bothers most.',
@@ -65,6 +108,7 @@ function IllnessAsk({ navigation }: Props) {
 				/>
 				<Space height={16} />
 				<LabelInput
+					inputRef={input2Ref}
 					label="What medication do you currently take? (Optional)"
 					inputProps={{
 						placeholder: 'e.g., MTX 1.5 tablets (2 weeks duration)',
@@ -74,6 +118,7 @@ function IllnessAsk({ navigation }: Props) {
 				/>
 				<Space height={16} />
 				<LabelInput
+					inputRef={input3Ref}
 					label="Past illness history of you or your family (Optional)"
 					inputProps={{
 						placeholder: 'e.g., Early cataracts, Arthritis',
@@ -83,6 +128,7 @@ function IllnessAsk({ navigation }: Props) {
 				/>
 				<Space height={16} />
 				<LabelInput
+					inputRef={input4Ref}
 					label="Age, Sex, and Ethnicity (Optional)"
 					inputProps={{
 						placeholder: 'e.g., 24 yr old, male, Korean american',
@@ -92,6 +138,7 @@ function IllnessAsk({ navigation }: Props) {
 				/>
 				<Space height={16} />
 				<LabelInput
+					inputRef={input5Ref}
 					label="Others (Optional)"
 					inputProps={{
 						placeholder: 'Share anything that might help',
@@ -101,6 +148,15 @@ function IllnessAsk({ navigation }: Props) {
 				/>
 				<Space height={30} />
 			</ScrollWrapper>
+			<InputAccessoryView nativeID={'labelInput'}>
+				<InputAccessoryWrapper>
+					<PrevNextWrapper>
+						<Button onPress={onPressPrev} title="Prev" />
+						<Button onPress={onPressNext} title="Next" />
+					</PrevNextWrapper>
+					<Button onPress={onPressDone} title="Done" />
+				</InputAccessoryWrapper>
+			</InputAccessoryView>
 			<ButtonWrapper paddingBottom={bottom}>
 				<MainButton
 					text={'Next'}
@@ -140,4 +196,16 @@ const ButtonWrapper = styled.View<{ paddingBottom: number }>`
 	padding-top: 12px;
 	padding-bottom: ${({ paddingBottom }) => paddingBottom || 20}px;
 	padding-horizontal: 16px;
+`;
+
+const InputAccessoryWrapper = styled.View`
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: #f4f4f4;
+	border-top-width: 1px;
+	border-top-color: #c7c7cc;
+`;
+
+const PrevNextWrapper = styled.View`
+	flex-direction: row;
 `;

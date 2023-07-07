@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInputProps, TextStyle } from 'react-native';
+import { TextInput, TextInputProps, TextStyle } from 'react-native';
 import styled from 'styled-components/native';
 
 // components
@@ -7,6 +7,7 @@ import { Caption1, Footnote } from 'components/common';
 
 type Props = {
 	label?: string;
+	inputRef?: React.Ref<TextInput> | undefined;
 	labelStyle?: TextStyle;
 	inputProps: TextInputProps;
 	errorMsg?: string;
@@ -15,6 +16,7 @@ type Props = {
 
 const LabelInput = ({
 	label,
+	inputRef,
 	labelStyle,
 	inputProps,
 	errorMsg,
@@ -28,11 +30,13 @@ const LabelInput = ({
 				</Footnote>
 			)}
 			<Input
+				ref={inputRef}
 				placeholderTextColor={'#AEAEB2'}
 				editable={true}
 				multiline
 				{...inputProps}
 				error={showError}
+				inputAccessoryViewID={'labelInput'}
 			/>
 			{showError && <ErrorMessage>{errorMsg}</ErrorMessage>}
 		</Wrapper>
