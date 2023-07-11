@@ -73,6 +73,9 @@ const Wallet = ({ navigation }: Props) => {
 					Alert.alert(responseDto.message, 'Try again later');
 				}
 			} else {
+				if (amount > userData?.withdrawableBtcBalance) {
+					Alert.alert("You don't have enough withdrawable balance.");
+				}
 				const responseDto: ResponseDto<string> = await getWithdrawalRequest(
 					email,
 					amount,
