@@ -6,7 +6,7 @@ export const postUser = async (email: string, fcmToken: string) => {
 			pubkey: email,
 			email: email,
 			role: 'user',
-			btcBalance: 1000,
+			btcBalance: 0,
 			fcm_token: fcmToken,
 		});
 
