@@ -61,15 +61,19 @@ const Root = () => {
 			<Stack.Screen
 				name="IllnessAsk"
 				component={IllnessAsk}
-				options={{ animationTypeForReplace: 'pop' }}
+				options={{ animationTypeForReplace: 'pop', gestureEnabled: false }}
 			/>
 			<Stack.Screen
 				name="GeneralAsk"
 				component={GeneralAsk}
-				options={{ animationTypeForReplace: 'push' }}
+				options={{ animationTypeForReplace: 'push', gestureEnabled: false }}
 			/>
 			<Stack.Screen name="Bounty" component={Bounty} />
-			<Stack.Screen name="Forum" component={Forum} />
+			<Stack.Screen
+				name="Forum"
+				component={Forum}
+				options={{ gestureEnabled: false }}
+			/>
 			<Stack.Screen name="MyQuestions" component={MyQuestions} />
 			<Stack.Screen name="Transactions" component={Transactions} />
 			<Stack.Screen name="MyAccount" component={MyAccount} />
