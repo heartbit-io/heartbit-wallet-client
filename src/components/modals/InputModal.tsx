@@ -81,7 +81,7 @@ const InputModal = ({
 					<Footnote
 						style={{ textDecorationLine: 'underline', fontWeight: 'bold' }}
 					>
-						{userData?.btcBalance?.toLocaleString()}
+						{userData?.withdrawableBtcBalance?.toLocaleString()}
 					</Footnote>{' '}
 					sats
 				</Footnote>
