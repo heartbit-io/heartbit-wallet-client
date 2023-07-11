@@ -7,7 +7,7 @@ export const postUser = async (email: string, fcmToken: string) => {
 			email: email,
 			role: 'user',
 			btcBalance: 0,
-			fcm_token: fcmToken,
+			fcmToken: fcmToken,
 		});
 
 		return response.data;
