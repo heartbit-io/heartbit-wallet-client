@@ -95,7 +95,7 @@ const Wallet = ({ navigation }: Props) => {
 	};
 
 	return (
-		<Wrapper>
+		<Wrapper keyboardShouldPersistTaps="always">
 			<HeaderTitle />
 			<TextsWrapper>
 				<LargeTitle weight="bold">
