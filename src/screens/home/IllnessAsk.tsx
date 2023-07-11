@@ -76,8 +76,18 @@ function IllnessAsk({ navigation }: Props) {
 	};
 
 	const onPressDone = () => {
-		if (history.length >= 50) {
-			navigateToBounty();
+		if (
+			input1Ref.current &&
+			input2Ref.current &&
+			input3Ref.current &&
+			input4Ref.current &&
+			input5Ref.current
+		) {
+			input1Ref.current.blur();
+			input2Ref.current.blur();
+			input3Ref.current.blur();
+			input4Ref.current.blur();
+			input5Ref.current.blur();
 		}
 	};
 
@@ -152,6 +162,7 @@ function IllnessAsk({ navigation }: Props) {
 				<InputAccessoryWrapper>
 					<PrevNextWrapper>
 						<Button onPress={onPressPrev} title="Prev" />
+						<Space width={5} />
 						<Button onPress={onPressNext} title="Next" />
 					</PrevNextWrapper>
 					<Button onPress={onPressDone} title="Done" />
@@ -204,6 +215,7 @@ const InputAccessoryWrapper = styled.View`
 	background-color: #f4f4f4;
 	border-top-width: 1px;
 	border-top-color: #c7c7cc;
+	padding-horizontal: 10px;
 `;
 
 const PrevNextWrapper = styled.View`
