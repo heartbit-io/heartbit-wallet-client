@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { AppThunk } from 'store';
 
 // apis
-import { getUser } from 'apis/userApi';
+import { getUser, updateUserFcmToken } from 'apis/userApi';
+
+import messaging from '@react-native-firebase/messaging';
 
 interface UserSlice {
 	userData: any;
@@ -60,12 +62,22 @@ export const getUserData =
 	async dispatch => {
 		try {
 			if (email) {
-				const res: any = await getUser(email);
-				if (res.statusCode === 200 && res?.success) {
-					dispatch(setUserData(res.data));
+				const user: ResponseDto<UserResponse> = await getUser(email);
+				if (user.statusCode !== 200 || !user?.success) {
+					return false;
+				} else if (user?.data?.fcmToken) {
+					dispatch(setUserData(user.data));
 					return true;
 				} else {
-					return false;
+					const fcmToken = await messaging().getToken();
+					const updatedUser: ResponseDto<UserResponse> =
+						await updateUserFcmToken(fcmToken);
+					if (updatedUser.statusCode !== 200 || !updatedUser.success) {
+						return false;
+					} else {
+						dispatch(updateUserData(updatedUser.data));
+						return true;
+					}
 				}
 			} else {
 				return false;
