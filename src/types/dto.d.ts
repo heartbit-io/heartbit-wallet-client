@@ -5,6 +5,20 @@ interface ResponseDto<T> {
 	data?: T;
 }
 
+interface UserResponse {
+	id: number;
+	pubkey: string;
+	role: string;
+	email: string;
+	btcBalance: number;
+	promotionBtcBalance: number;
+	airTableRecordId: any;
+	fcmToken: string;
+	createdAt: string;
+	updatedAt: string;
+	deletedAt: string;
+}
+
 interface CreateQuestionProps {
 	bountyAmount: number;
 	type: string;
