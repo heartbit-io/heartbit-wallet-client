@@ -83,7 +83,7 @@ export const getTransactionsList =
 							dispatch(setHasMore(res.data.hasMore));
 							if (refresh) {
 								dispatch(setTransactions(res.data.transactions));
-								dispatch(setOffset(0));
+								dispatch(setOffset(res.data.transactions.length));
 							} else {
 								dispatch(
 									setTransactions([...transactions, ...res.data.transactions]),
