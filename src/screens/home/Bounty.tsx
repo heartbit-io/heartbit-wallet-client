@@ -30,12 +30,14 @@ function Bounty({ navigation, route }: Props) {
 	const [bounty, setBounty] = useState(0);
 	const [inputBounty, setInputBounty] = useState(0);
 	const [modalVisible, setModalVisible] = useState(false);
+	const [isPressed, setIsPressed] = useState(false);
 
 	useEffect(() => {
 		getBtcRates().then(res => setUSDPerSat(res.data?.customSatoshi as number));
 	}, []);
 
-	const navigateHandler = (sats: number) => {
+	const navigateHandler = async (sats: number) => {
+		setIsPressed(true);
 		if (sats <= userData.btcBalance) {
 			postQuestion({
 				bountyAmount: sats,
@@ -58,11 +60,16 @@ function Bounty({ navigation, route }: Props) {
 							isFromBountyScreen: true,
 						});
 					} else {
+						setIsPressed(false);
 						Alert.alert(res.message, 'Try again later');
 					}
 				})
-				.catch(res => Alert.alert(res.message, 'Try again later'));
+				.catch(res => {
+					setIsPressed(false);
+					Alert.alert(res.message, 'Try again later');
+				});
 		} else {
+			setIsPressed(false);
 			Alert.alert("You don't have enough balance.");
 		}
 	};
@@ -118,15 +125,15 @@ function Bounty({ navigation, route }: Props) {
 					Balance: {userData?.btcBalance.toLocaleString()} sats
 				</Subheadline>
 				<MainButton
-					onPress={() => navigateHandler(bounty || inputBounty)}
+					onPress={async () => await navigateHandler(bounty || inputBounty)}
 					text={'Confirm'}
-					active={!!bounty || !!inputBounty}
+					active={(!!bounty || !!inputBounty) && !isPressed}
 					buttonStyle={{ marginTop: 32 }}
 				/>
 				<MainButton
-					onPress={() => navigateHandler(0)}
+					onPress={async () => await navigateHandler(0)}
 					text={'Continue without setting a bounty'}
-					active={true}
+					active={!isPressed}
 					buttonStyle={{ backgroundColor: 'transparent', marginTop: 8 }}
 					textStyle={{ color: '#f68f2a' }}
 				/>
