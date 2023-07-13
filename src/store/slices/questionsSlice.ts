@@ -81,7 +81,7 @@ export const fetchQuestionsList =
 							dispatch(setHasMore(res.data.hasMore));
 							if (refresh) {
 								dispatch(setQuestions(res.data.questions));
-								dispatch(setOffset(0));
+								dispatch(setOffset(res.data.questions.length));
 							} else {
 								dispatch(setQuestions([...questions, ...res.data.questions]));
 								dispatch(

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
 
 // components
-import { Footnote } from 'components/common';
+import { Footnote, Space } from 'components/common';
 import TransactionListItem from './TransactionListItem';
 
 // hooks
@@ -34,10 +34,11 @@ const TransactionList = () => {
 		<StyledFlatList
 			data={transactions}
 			renderItem={renderItemHandler}
-			ListEmptyComponent={renderListEmptyComponent()}
 			refreshing={refreshing}
 			onRefresh={() => dispatch(getTransactionsList(true))}
 			onEndReached={() => hasMore && dispatch(getTransactionsList())}
+			ListEmptyComponent={renderListEmptyComponent()}
+			ListFooterComponent={<Space height={100} />}
 		/>
 	);
 };

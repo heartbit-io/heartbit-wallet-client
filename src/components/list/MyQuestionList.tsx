@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
 
 // components
-import { Footnote } from 'components/common';
+import { Footnote, Space } from 'components/common';
 import QuestionListItem from './QuestionListItem';
 
 // hooks
@@ -21,7 +21,7 @@ const MyQuestionList = () => {
 		dispatch(fetchQuestionsList(true));
 	}, []);
 
-	const renderItemHandler: any = ({ item }: { item: GetQuestionResponse }) => {
+	const renderItemHandler: any = ({ item }: { item: QuestionResponse }) => {
 		return <QuestionListItem question={item} />;
 	};
 
@@ -35,10 +35,11 @@ const MyQuestionList = () => {
 		<StyledFlatList
 			data={questions}
 			renderItem={renderItemHandler}
-			ListEmptyComponent={renderEmptyComponent()}
 			refreshing={refreshing}
 			onRefresh={() => dispatch(fetchQuestionsList(true))}
 			onEndReached={() => hasMore && dispatch(fetchQuestionsList())}
+			ListEmptyComponent={renderEmptyComponent()}
+			ListFooterComponent={<Space height={100} />}
 		/>
 	);
 };
