@@ -3,6 +3,7 @@ import { Alert } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { useActivityIndicator } from 'hooks/useActivityIndicator';
 
 // components
 import { LargeTitle, Subheadline } from 'components/common';
@@ -24,6 +25,7 @@ import { updateUserData } from 'store/slices/userSlice';
 type Props = NativeStackScreenProps<RootStackType, 'Bounty'>;
 
 function Bounty({ navigation, route }: Props) {
+	const { toggleActivityIndicator } = useActivityIndicator();
 	const dispatch = useAppDispatch();
 	const { userData } = useAppSelector(state => state.user);
 	const [USDPerSat, setUSDPerSat] = useState(0);
@@ -37,6 +39,7 @@ function Bounty({ navigation, route }: Props) {
 
 	const navigateHandler = (sats: number) => {
 		if (sats <= userData.btcBalance) {
+			toggleActivityIndicator(true);
 			postQuestion({
 				bountyAmount: sats,
 				type: route.params.isGeneralQuestion ? 'general' : 'illness',
@@ -61,7 +64,8 @@ function Bounty({ navigation, route }: Props) {
 						Alert.alert(res.message, 'Try again later');
 					}
 				})
-				.catch(res => Alert.alert(res.message, 'Try again later'));
+				.catch(res => Alert.alert(res.message, 'Try again later'))
+				.finally(() => toggleActivityIndicator(false));
 		} else {
 			Alert.alert("You don't have enough balance.");
 		}
