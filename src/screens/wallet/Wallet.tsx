@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { ActivityIndicator, Alert, ScrollView } from 'react-native';
+import { ActivityIndicator, Alert } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useFocusEffect } from '@react-navigation/native';
@@ -22,9 +22,9 @@ import TransactionListItem from 'components/list/TransactionListItem';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
 // store & apis
-import { getBtcRates } from 'apis/coinApi';
 import { getDepositRequest, getWithdrawalRequest } from 'apis/lndApi';
 import { getTransactionsList } from 'store/slices/transactionsSlice';
+import { fetchLatestBtcRate } from 'store/slices/coinSlice';
 
 // assets
 import EmptyArrow from 'assets/img/emptyArrow.svg';
@@ -35,10 +35,10 @@ type Props = NativeStackScreenProps<RootStackType, 'Wallet'>;
 const Wallet = ({ navigation }: Props) => {
 	const dispatch = useAppDispatch();
 	const { userData } = useAppSelector(state => state.user);
+	const { USDPerSat } = useAppSelector(state => state.coin);
 	const { transactions, transactionsLoading } = useAppSelector(
 		state => state.transactions,
 	);
-	const [USDPerSat, setUSDPerSat] = useState(0);
 	const [withdrawModalVisible, setWithdrawModalVisible] = useState(false);
 	const [depositModalVisible, setDepositModalVisible] = useState(false);
 	const [depositQRVisible, setDepositQRVisible] = useState(false);
@@ -48,9 +48,7 @@ const Wallet = ({ navigation }: Props) => {
 	useFocusEffect(
 		useCallback(() => {
 			dispatch(getTransactionsList(true));
-			getBtcRates().then(res =>
-				setUSDPerSat(res.data?.customSatoshi as number),
-			);
+			dispatch(fetchLatestBtcRate());
 		}, []),
 	);
 

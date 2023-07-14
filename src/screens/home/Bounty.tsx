@@ -17,10 +17,10 @@ import {
 
 // apis
 import { postQuestion } from 'apis/questionApi';
-import { getBtcRates } from 'apis/coinApi';
 
 // store
 import { updateUserData } from 'store/slices/userSlice';
+import { fetchLatestBtcRate } from 'store/slices/coinSlice';
 
 type Props = NativeStackScreenProps<RootStackType, 'Bounty'>;
 
@@ -28,14 +28,14 @@ function Bounty({ navigation, route }: Props) {
 	const { toggleActivityIndicator } = useActivityIndicator();
 	const dispatch = useAppDispatch();
 	const { userData } = useAppSelector(state => state.user);
-	const [USDPerSat, setUSDPerSat] = useState(0);
+	const { USDPerSat } = useAppSelector(state => state.coin);
 	const [bounty, setBounty] = useState(0);
 	const [inputBounty, setInputBounty] = useState(0);
 	const [modalVisible, setModalVisible] = useState(false);
 	const [isPressed, setIsPressed] = useState(false);
 
 	useEffect(() => {
-		getBtcRates().then(res => setUSDPerSat(res.data?.customSatoshi as number));
+		dispatch(fetchLatestBtcRate());
 	}, []);
 
 	const navigateHandler = (sats: number) => {
