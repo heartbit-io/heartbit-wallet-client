@@ -14,7 +14,7 @@ export const onMessageReceived = async (message: any) => {
 		});
 
 		await notifee.displayNotification({
-			title: `<body style="font-size: 16px; font-weight: 500;">${message.notification.title}</body>`,
+			title: message.notification.title,
 			body: message.notification.body,
 			android: {
 				channelId,
