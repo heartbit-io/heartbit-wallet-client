@@ -20,9 +20,10 @@ import { getUserData } from 'store/slices/userSlice';
 const useFirebaseLink = () => {
 	const dispatch = useAppDispatch();
 	const [isSignInError, setSignInError] = useState(false);
-	const [signInStatus, setSignInStatus] = useState<string>('loading');
+	const [signInStatus, setSignInStatus] = useState<string>('');
 
 	const handleDynamicLink = useCallback<(url: string) => void>(async url => {
+		setSignInStatus('loading');
 		try {
 			const email = await AsyncStorage.getItem('email');
 			if (!auth().isSignInWithEmailLink(url)) {
@@ -59,6 +60,7 @@ const useFirebaseLink = () => {
 		} catch (error) {
 			console.error('Error while signing user in:', error);
 			setSignInError(true);
+			setSignInStatus('notSignedIn');
 		}
 	}, []);
 
