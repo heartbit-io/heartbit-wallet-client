@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AppThunk } from 'store';
+import messaging from '@react-native-firebase/messaging';
 
 // apis
 import { getUser, updateUserFcmToken } from 'apis/userApi';
-
-import messaging from '@react-native-firebase/messaging';
+import { fetchLatestBtcRate } from './coinSlice';
 
 interface UserSlice {
 	userData: any;
@@ -59,31 +59,37 @@ export default userSlice.reducer;
 
 export const getUserData =
 	(email: string): AppThunk =>
-	async dispatch => {
-		try {
-			if (email) {
-				const user: ResponseDto<UserResponse> = await getUser(email);
-				if (user.statusCode !== 200 || !user?.success) {
-					return false;
-				} else if (user?.data?.fcmToken) {
-					dispatch(setUserData(user.data));
-					return true;
-				} else {
-					const fcmToken = await messaging().getToken();
-					const updatedUser: ResponseDto<UserResponse> =
-						await updateUserFcmToken(fcmToken);
-					if (updatedUser.statusCode !== 200 || !updatedUser.success) {
-						return false;
+	async (dispatch, getState) => {
+		const { loading } = getState().user;
+
+		if (email && !loading) {
+			dispatch(setLoading(true));
+			getUser(email)
+				.then(async (user: ResponseDto<UserResponse>) => {
+					if (user.statusCode === 200 && user.success) {
+						if (!!user.data?.fcmToken) {
+							dispatch(setUserData(user.data));
+							dispatch(fetchLatestBtcRate());
+						} else {
+							const fcmToken = await messaging().getToken();
+							updateUserFcmToken(fcmToken).then(
+								(updatedUser: ResponseDto<UserResponse>) => {
+									if (user.statusCode === 200 && user.success) {
+										dispatch(updateUserData(updatedUser.data));
+										dispatch(fetchLatestBtcRate());
+									} else {
+										console.log('Update User Data Error', updatedUser);
+									}
+								},
+							);
+						}
 					} else {
-						dispatch(updateUserData(updatedUser.data));
-						return true;
+						console.log('Fetch User Data Error', user);
 					}
-				}
-			} else {
-				return false;
-			}
-		} catch (err) {
-			console.log('>>>>>>', err);
-			return false;
+				})
+				.catch(err => console.log('Fetch User Data Error', err))
+				.finally(() => dispatch(setLoading(false)));
+		} else {
+			console.log('EMAIL IS NOT EXIST');
 		}
 	};
