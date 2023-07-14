@@ -37,16 +37,30 @@ export const onMessageReceived = async (message: any) => {
 
 		const notiType = message.data.type;
 
-		if (notiType === 'TRANSACTION') {
-			// update user balance and transactions in redux
-			const email: string = store.getState().user.userData.email;
-			store.dispatch(getUserData(email));
-			store.dispatch(getTransactionsList(true));
-		} else if (notiType === 'DOCTOR_ANSWER') {
-			// update user questions
-			store.dispatch(fetchQuestionsList(true));
-		}
+		await _stateHandler(notiType);
 	} catch (err) {
 		console.log(err);
+	}
+};
+
+export const onMessageReceivedBackground = async (message: any) => {
+	try {
+		const notiType = message?.data?.type as string;
+
+		await _stateHandler(notiType);
+	} catch (err) {
+		console.log(err);
+	}
+};
+
+const _stateHandler = async (notiType: string) => {
+	if (notiType === 'TRANSACTION') {
+		// update user balance and transactions in redux
+		const email: string = store.getState().user.userData.email;
+		store.dispatch(getUserData(email));
+		store.dispatch(getTransactionsList(true));
+	} else if (notiType === 'DOCTOR_ANSWER') {
+		// update user questions
+		store.dispatch(fetchQuestionsList(true));
 	}
 };
