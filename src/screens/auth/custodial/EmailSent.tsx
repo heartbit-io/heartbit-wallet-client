@@ -1,7 +1,9 @@
 import React from 'react';
+import { ActivityIndicator } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
+import { useAuth, useFirebaseLink } from 'hooks';
 
 // assets
 import logo from 'assets/logo/logo.svg';
@@ -13,6 +15,8 @@ type Props = NativeStackScreenProps<RootStackType, 'EmailSent'>;
 
 const EmailSent = ({ route }: Props) => {
 	const email = route?.params?.email;
+	const { authStatus } = useAuth();
+	const { signInStatus } = useFirebaseLink();
 
 	const onPressHandler = async () => {
 		auth()
@@ -37,6 +41,13 @@ const EmailSent = ({ route }: Props) => {
 							{email}
 						</Subheadline>
 					</Container>
+					{(authStatus === 'loading' || signInStatus === 'loading') && (
+						<ActivityIndicator
+							color={'#F68F2A'}
+							size={'large'}
+							style={{ marginTop: 30 }}
+						/>
+					)}
 				</Main>
 				<Container>
 					<Footnote color="#3A3A3C">

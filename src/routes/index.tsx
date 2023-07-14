@@ -26,7 +26,7 @@ import DoctorQRScan from 'screens/setting/DoctorQRScan';
 import MyAccount from 'screens/drawer/MyAccount';
 
 const Stack = createNativeStackNavigator<RootStackType>();
-export const navigationRef = createNavigationContainerRef<any>();
+export const navigationRef = createNavigationContainerRef<RootStackType>();
 
 const Root = () => {
 	return (

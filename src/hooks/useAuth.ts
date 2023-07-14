@@ -10,7 +10,7 @@ import { api, apiLND } from 'apis';
 
 const useAuth = () => {
 	const dispatch = useAppDispatch();
-	const [authStatus, setAuthStatus] = useState<string>('loading');
+	const [authStatus, setAuthStatus] = useState<string>('');
 
 	useEffect(() => {
 		const interval = setInterval(
@@ -23,6 +23,7 @@ const useAuth = () => {
 
 	useEffect(() => {
 		const unsubscribe = auth().onIdTokenChanged(async user => {
+			setAuthStatus('loading');
 			if (!user) {
 				setAuthStatus('unauthorized');
 				return;
