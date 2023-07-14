@@ -32,12 +32,6 @@ const Drawer = createDrawerNavigator<DrawerTabTypes>();
 const DrawerTabs = () => {
 	const navigation = useNavigation<NativeStackNavigationProp<RootStackType>>();
 
-	useEffect(() => {
-		navigation.addListener('beforeRemove', e => {
-			e.preventDefault();
-		});
-	}, []);
-
 	return (
 		<Drawer.Navigator
 			drawerContent={props => <DrawerView {...props} />}
@@ -62,12 +56,10 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 		dispatch(resetUserData());
 		dispatch(resetQuestions());
 		dispatch(resetTransactions());
-		navigation.closeDrawer();
 		navigation.reset({
 			index: 1,
-			routes: [{ name: 'Home' }],
+			routes: [{ name: 'SplashScreen' }, { name: 'EmailSignUp' }],
 		});
-		navigation.navigate('EmailSignUp');
 	};
 
 	return (
