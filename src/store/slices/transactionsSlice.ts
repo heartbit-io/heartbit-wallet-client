@@ -77,7 +77,7 @@ export const getTransactionsList =
 				dispatch(setRefreshing(refresh));
 				dispatch(setLoading(true));
 				offset = refresh ? 0 : offset;
-				getTransactions(pubkey, 50, offset)
+				getTransactions(pubkey, 10, offset)
 					.then(res => {
 						if (res.data) {
 							dispatch(setHasMore(res.data.hasMore));
