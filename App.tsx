@@ -22,7 +22,7 @@ import {
 function App(): JSX.Element {
 	useEffect(() => {
 		Intercom.setLauncherVisibility('VISIBLE');
-		Intercom.setBottomPadding(50);
+		Intercom.setBottomPadding(40);
 
 		notifee.requestPermission();
 		messaging().onMessage(onMessageReceived);
