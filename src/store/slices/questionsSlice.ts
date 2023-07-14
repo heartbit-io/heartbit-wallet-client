@@ -75,7 +75,7 @@ export const fetchQuestionsList =
 				dispatch(setRefreshing(refresh));
 				dispatch(setLoading(true));
 				offset = refresh ? 0 : offset;
-				getQuestionList(50, offset)
+				getQuestionList(10, offset)
 					.then(res => {
 						if (res.data) {
 							dispatch(setHasMore(res.data.hasMore));
