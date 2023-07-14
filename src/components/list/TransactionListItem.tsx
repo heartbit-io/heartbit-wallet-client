@@ -10,9 +10,9 @@ type Props = { transaction: TransactionProps };
 enum TransactionType {
 	deposit = 'Deposit',
 	withdraw = 'Withdraw',
-	bounty_pledged = 'Express fee paid',
-	bounty_earned = 'Tip earned',
-	bounty_refunded = 'Express fee refunded',
+	bounty_pledged = 'Bounty paid',
+	bounty_earned = 'Bounty earned',
+	bounty_refunded = 'Bounty refunded',
 	sign_up_bonus = 'Sign-up bonus',
 }
 
