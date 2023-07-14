@@ -53,7 +53,7 @@ const MyAccount = ({ navigation }: Props) => {
 					style: { color: '#8E8E93' },
 				}}
 			/>
-			<Space height={24} />
+			{/* <Space height={24} />
 			<LabelInput
 				label="New Email Address"
 				labelStyle={{ marginHorizontal: 16 }}
@@ -71,7 +71,7 @@ const MyAccount = ({ navigation }: Props) => {
 				onPress={() => Alert.alert('Please check your email')}
 				buttonStyle={{ marginTop: 8, borderRadius: 8 }}
 				active={isValidEmail}
-			/>
+			/> */}
 			{userData?.role === 'user' ? (
 				<SubheadlineText onPress={linkingHandler}>
 					Are you a doctor?
