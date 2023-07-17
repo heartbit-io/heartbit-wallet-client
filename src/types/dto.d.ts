@@ -60,6 +60,8 @@ interface QuestionResponse {
 	type: string;
 	updatedAt: string;
 	userId: number;
+	lifestyle: string;
+	specificQuestion: string;
 }
 
 interface ReplyResponse {
