@@ -138,7 +138,7 @@ function IllnessAsk({ navigation }: Props) {
 				<Space height={16} />
 				<LabelInput
 					inputRef={input3Ref}
-					label="Past or pre-existing medical history of you or your family"
+					label="Past or pre-existing medical history of you or your family (Optional)"
 					inputProps={{
 						placeholder: 'e.g., Early cataracts, Arthritis',
 						value: pastIllness,
