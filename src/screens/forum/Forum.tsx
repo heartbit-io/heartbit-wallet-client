@@ -3,6 +3,7 @@ import { ActivityIndicator, Alert } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import moment from 'moment';
+import { useAppDispatch, useAppSelector } from 'hooks';
 
 // components
 import { ArrowButton, Header } from 'components';
@@ -16,13 +17,13 @@ import {
 
 // apis
 import { deleteQuestion, getReply, postGPTReply } from 'apis/questionApi';
+import { fetchLatestBtcRate } from 'store/slices/coinSlice';
 
 // assets
 import Question from 'assets/img/question.svg';
 import Answer from 'assets/img/answer.svg';
 import AILogo from 'assets/img/aiLogo.svg';
 import Caution from 'assets/img/alert-circle.svg';
-import { getBtcRates } from 'apis/coinApi';
 
 type Props = NativeStackScreenProps<RootStackType, 'Forum'>;
 
@@ -42,6 +43,8 @@ const questionContent = [
 
 function Forum({ navigation, route }: Props) {
 	const { question, isFromBountyScreen } = route.params;
+	const dispatch = useAppDispatch();
+	const { USDPerSat } = useAppSelector(state => state.coin);
 	const [loading, setLoading] = useState(false);
 	const [answer, setAnswer] = useState<ReplyResponse | any>({
 		replyType: 'ai',
@@ -50,11 +53,10 @@ function Forum({ navigation, route }: Props) {
 		reply: 'I’m preparing my answer. (Could take up to 10 ~ 20 secs)',
 		createdAt: '',
 	});
-	const [USDPerSat, setUSDPerSat] = useState(0);
 
 	useEffect(() => {
 		setLoading(true);
-		getBtcRates().then(res => setUSDPerSat(res.data?.customSatoshi as number));
+		dispatch(fetchLatestBtcRate());
 		if (isFromBountyScreen) {
 			postGPTReply(question.id)
 				.then(res => setAnswer({ ...res.data } as ReplyResponse))
