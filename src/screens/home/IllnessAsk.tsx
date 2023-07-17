@@ -78,7 +78,7 @@ function IllnessAsk({ navigation }: Props) {
 			else if (input2Ref.current.isFocused()) input3Ref.current.focus();
 			else if (input3Ref.current.isFocused()) input4Ref.current.focus();
 			else if (input4Ref.current.isFocused()) input5Ref.current.focus();
-			else if (input6Ref.current.isFocused()) input5Ref.current.focus();
+			else if (input5Ref.current.isFocused()) input6Ref.current.focus();
 		}
 	};
 
