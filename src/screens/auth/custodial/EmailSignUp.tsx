@@ -11,7 +11,7 @@ import heartBit from 'assets/logo/heartBit.svg';
 
 // components
 import {
-	Caption1,
+	Footnote,
 	Gradient,
 	InputField,
 	MainButton,
@@ -91,17 +91,22 @@ const EmailSignUp = ({ navigation }: Props) => {
 						buttonStyle={{ marginTop: 8 }}
 						active={isValidEmail}
 					/>
-					<Footnote>
+					<StyledFootnote marginTop={32}>
+						<Footnote weight="bold">Pro tip </Footnote>
+						👉 Creating a new email address that you only use for HeartBit will
+						help protect your privacy.
+					</StyledFootnote>
+					<StyledFootnote marginTop={24}>
 						By clicking “Get started” above, you acknowledge that you have read
 						and understood, and agree to HeartBit{' '}
-						<Caption1 color="#FF2D55" onPress={navigateToTerms}>
+						<Footnote color="#FF2D55" onPress={navigateToTerms}>
 							Terms of Conditions
-						</Caption1>{' '}
+						</Footnote>{' '}
 						and{' '}
-						<Caption1 color="#FF2D55" onPress={navigateToPrivacy}>
+						<Footnote color="#FF2D55" onPress={navigateToPrivacy}>
 							Privacy Policy
-						</Caption1>
-					</Footnote>
+						</Footnote>
+					</StyledFootnote>
 				</Wrapper>
 			</KeyboardAwareScrollView>
 		</Gradient>
@@ -129,9 +134,9 @@ const Description = styled(Subheadline)`
 	margin-bottom: 52px;
 `;
 
-const Footnote = styled(Caption1)`
+const StyledFootnote = styled(Footnote)<{ marginTop: number }>`
 	color: #3a3a3c;
 	text-align: center;
-	margin-top: 40px;
-	margin-horizontal: 20px;
+	margin-top: ${({ marginTop }) => marginTop}px;
+	margin-horizontal: 15px;
 `;
