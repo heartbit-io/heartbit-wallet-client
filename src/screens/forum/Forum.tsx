@@ -44,7 +44,7 @@ const questionContent = [
 			'Do you have any allergies or dietary habits? and how often do you exercise?',
 	},
 	{
-		type: 'specificQuestion',
+		type: 'others',
 		title: 'Do you have any specific question about your health issue?',
 	},
 ];

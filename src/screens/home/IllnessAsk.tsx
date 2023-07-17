@@ -33,7 +33,7 @@ function IllnessAsk({ navigation }: Props) {
 	const [pastIllness, setPastIllness] = useState('');
 	const [personalInfo, setPersonalInfo] = useState('');
 	const [lifestyle, setLifestyle] = useState('');
-	const [specificQuestion, setSpecificQuestion] = useState('');
+	const [others, setOthers] = useState('');
 
 	const navigateToBounty = () => {
 		navigation.navigate('Bounty', {
@@ -44,7 +44,7 @@ function IllnessAsk({ navigation }: Props) {
 			pastIllness,
 			personalInfo,
 			lifestyle,
-			specificQuestion,
+			others,
 		});
 	};
 
@@ -171,8 +171,8 @@ function IllnessAsk({ navigation }: Props) {
 					label="Do you have any specific question about your health issue? (Optional)"
 					inputProps={{
 						placeholder: 'e.g., Which specialist should I see?',
-						value: specificQuestion,
-						onChangeText: setSpecificQuestion,
+						value: others,
+						onChangeText: setOthers,
 					}}
 				/>
 				<Space height={30} />

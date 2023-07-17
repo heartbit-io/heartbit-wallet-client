@@ -27,7 +27,7 @@ interface CreateQuestionProps {
 	ageSexEthnicity: string;
 	pastIllnessHistory: string;
 	lifestyle: string;
-	specificQuestion: string;
+	others: string;
 }
 
 interface CreateQuestionResponse {
@@ -61,7 +61,6 @@ interface QuestionResponse {
 	updatedAt: string;
 	userId: number;
 	lifestyle: string;
-	specificQuestion: string;
 }
 
 interface ReplyResponse {

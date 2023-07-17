@@ -52,7 +52,7 @@ function Bounty({ navigation, route }: Props) {
 				ageSexEthnicity: route.params.personalInfo,
 				pastIllnessHistory: route.params.pastIllness,
 				lifestyle: route.params.lifestyle,
-				specificQuestion: route.params.specificQuestion,
+				others: route.params.others,
 			})
 				.then(res => {
 					if (res.success && res.statusCode === 201 && res.data) {

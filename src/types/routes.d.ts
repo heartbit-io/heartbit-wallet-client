@@ -13,7 +13,7 @@ type RootStackType = {
 		pastIllness: string;
 		personalInfo: string;
 		lifestyle: string;
-		specificQuestion: string;
+		others: string;
 	};
 	Forum: {
 		question: QuestionResponse;
