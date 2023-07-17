@@ -51,7 +51,8 @@ function Bounty({ navigation, route }: Props) {
 				currentMedication: route.params.medications,
 				ageSexEthnicity: route.params.personalInfo,
 				pastIllnessHistory: route.params.pastIllness,
-				others: route.params.others,
+				lifestyle: route.params.lifestyle,
+				specificQuestion: route.params.specificQuestion,
 			})
 				.then(res => {
 					if (res.success && res.statusCode === 201 && res.data) {

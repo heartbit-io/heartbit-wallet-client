@@ -27,11 +27,13 @@ function IllnessAsk({ navigation }: Props) {
 	const input3Ref = useRef<TextInput>(null);
 	const input4Ref = useRef<TextInput>(null);
 	const input5Ref = useRef<TextInput>(null);
+	const input6Ref = useRef<TextInput>(null);
 	const [history, setHistory] = useState('');
 	const [medications, setMedications] = useState('');
 	const [pastIllness, setPastIllness] = useState('');
 	const [personalInfo, setPersonalInfo] = useState('');
-	const [others, setOthers] = useState('');
+	const [lifestyle, setLifestyle] = useState('');
+	const [specificQuestion, setSpecificQuestion] = useState('');
 
 	const navigateToBounty = () => {
 		navigation.navigate('Bounty', {
@@ -41,7 +43,8 @@ function IllnessAsk({ navigation }: Props) {
 			medications,
 			pastIllness,
 			personalInfo,
-			others,
+			lifestyle,
+			specificQuestion,
 		});
 	};
 
@@ -51,12 +54,14 @@ function IllnessAsk({ navigation }: Props) {
 			input2Ref.current &&
 			input3Ref.current &&
 			input4Ref.current &&
-			input5Ref.current
+			input5Ref.current &&
+			input6Ref.current
 		) {
 			if (input2Ref.current.isFocused()) input1Ref.current.focus();
 			else if (input3Ref.current.isFocused()) input2Ref.current.focus();
 			else if (input4Ref.current.isFocused()) input3Ref.current.focus();
 			else if (input5Ref.current.isFocused()) input4Ref.current.focus();
+			else if (input6Ref.current.isFocused()) input5Ref.current.focus();
 		}
 	};
 
@@ -66,12 +71,14 @@ function IllnessAsk({ navigation }: Props) {
 			input2Ref.current &&
 			input3Ref.current &&
 			input4Ref.current &&
-			input5Ref.current
+			input5Ref.current &&
+			input6Ref.current
 		) {
 			if (input1Ref.current.isFocused()) input2Ref.current.focus();
 			else if (input2Ref.current.isFocused()) input3Ref.current.focus();
 			else if (input3Ref.current.isFocused()) input4Ref.current.focus();
 			else if (input4Ref.current.isFocused()) input5Ref.current.focus();
+			else if (input6Ref.current.isFocused()) input5Ref.current.focus();
 		}
 	};
 
@@ -81,13 +88,15 @@ function IllnessAsk({ navigation }: Props) {
 			input2Ref.current &&
 			input3Ref.current &&
 			input4Ref.current &&
-			input5Ref.current
+			input5Ref.current &&
+			input6Ref.current
 		) {
 			input1Ref.current.blur();
 			input2Ref.current.blur();
 			input3Ref.current.blur();
 			input4Ref.current.blur();
 			input5Ref.current.blur();
+			input6Ref.current.blur();
 		}
 	};
 
@@ -129,7 +138,7 @@ function IllnessAsk({ navigation }: Props) {
 				<Space height={16} />
 				<LabelInput
 					inputRef={input3Ref}
-					label="Past illness history of you or your family (Optional)"
+					label="Past or pre-existing medical history of you or your family"
 					inputProps={{
 						placeholder: 'e.g., Early cataracts, Arthritis',
 						value: pastIllness,
@@ -149,11 +158,21 @@ function IllnessAsk({ navigation }: Props) {
 				<Space height={16} />
 				<LabelInput
 					inputRef={input5Ref}
-					label="Others (Optional)"
+					label="Do you have any allergies or dietary habits? and how often do you exercise? (Optional)"
 					inputProps={{
-						placeholder: 'Share anything that might help',
-						value: others,
-						onChangeText: setOthers,
+						placeholder: `e.g., I've been a static vegan for 3 yrs`,
+						value: lifestyle,
+						onChangeText: setLifestyle,
+					}}
+				/>
+				<Space height={16} />
+				<LabelInput
+					inputRef={input6Ref}
+					label="Do you have any specific question about your health issue? (Optional)"
+					inputProps={{
+						placeholder: 'e.g., Which specialist should I see?',
+						value: specificQuestion,
+						onChangeText: setSpecificQuestion,
 					}}
 				/>
 				<Space height={30} />

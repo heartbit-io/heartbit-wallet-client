@@ -26,7 +26,8 @@ interface CreateQuestionProps {
 	currentMedication: string;
 	ageSexEthnicity: string;
 	pastIllnessHistory: string;
-	others: string;
+	lifestyle: string;
+	specificQuestion: string;
 }
 
 interface CreateQuestionResponse {
