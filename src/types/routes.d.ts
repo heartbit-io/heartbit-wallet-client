@@ -12,6 +12,7 @@ type RootStackType = {
 		medications: string;
 		pastIllness: string;
 		personalInfo: string;
+		lifestyle: string;
 		others: string;
 	};
 	Forum: {

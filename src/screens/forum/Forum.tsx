@@ -35,10 +35,18 @@ const questionContent = [
 	},
 	{
 		type: 'pastIllnessHistory',
-		title: 'Past illness history of you or your family',
+		title: 'Past or pre-existing medical history of you or your family',
 	},
 	{ type: 'ageSexEthnicity', title: 'Age, Sex, and Ethnicity' },
-	{ type: 'others', title: 'Others' },
+	{
+		type: 'lifestyle',
+		title:
+			'Do you have any allergies or dietary habits? and how often do you exercise?',
+	},
+	{
+		type: 'others',
+		title: 'Do you have any specific question about your health issue?',
+	},
 ];
 
 function Forum({ navigation, route }: Props) {

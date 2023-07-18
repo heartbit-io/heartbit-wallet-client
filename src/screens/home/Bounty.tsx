@@ -51,6 +51,7 @@ function Bounty({ navigation, route }: Props) {
 				currentMedication: route.params.medications,
 				ageSexEthnicity: route.params.personalInfo,
 				pastIllnessHistory: route.params.pastIllness,
+				lifestyle: route.params.lifestyle,
 				others: route.params.others,
 			})
 				.then(res => {
