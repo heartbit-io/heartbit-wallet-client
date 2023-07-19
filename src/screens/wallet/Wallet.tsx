@@ -73,6 +73,8 @@ const Wallet = ({ navigation }: Props) => {
 			} else {
 				if (amount > userData?.withdrawableBtcBalance) {
 					Alert.alert("You don't have enough withdrawable balance.");
+				} else if (amount === 0) {
+					Alert.alert("You can't withdraw zero satoshi.");
 				} else {
 					const responseDto: ResponseDto<string> = await getWithdrawalRequest(
 						email,
