@@ -67,7 +67,7 @@ export const getUserData =
 			getUser(email)
 				.then(async (user: ResponseDto<UserResponse>) => {
 					if (user.statusCode === 200 && user.success) {
-						if (!!user.data?.fcmToken) {
+						if (user.data?.fcmToken) {
 							dispatch(setUserData(user.data));
 							dispatch(fetchLatestBtcRate());
 						} else {
@@ -75,7 +75,10 @@ export const getUserData =
 							updateUserFcmToken(fcmToken).then(
 								(updatedUser: ResponseDto<UserResponse>) => {
 									if (user.statusCode === 200 && user.success) {
-										dispatch(updateUserData(updatedUser.data));
+										const fcmToken = updateUserData.data?.fcmToken as string;
+										dispatch(
+											updateUserData({ ...user.data, fcmToken: fcmToken }),
+										);
 										dispatch(fetchLatestBtcRate());
 									} else {
 										console.log('Update User Data Error', updatedUser);
