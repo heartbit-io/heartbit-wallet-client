@@ -14,10 +14,7 @@ import { store } from 'store';
 
 // utils
 import 'utils/initializeDefaultProps';
-import {
-	onMessageReceived,
-	onMessageReceivedBackground,
-} from 'utils/notification';
+import { onMessageReceived } from 'utils/notification';
 
 function App(): JSX.Element {
 	useEffect(() => {
@@ -26,7 +23,6 @@ function App(): JSX.Element {
 
 		notifee.requestPermission();
 		messaging().onMessage(onMessageReceived);
-		messaging().setBackgroundMessageHandler(onMessageReceivedBackground);
 		checkInitialNotification();
 		return notifee.onForegroundEvent(({ type, detail }) => {
 			switch (type) {

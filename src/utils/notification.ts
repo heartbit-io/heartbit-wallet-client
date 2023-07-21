@@ -43,16 +43,6 @@ export const onMessageReceived = async (message: any) => {
 	}
 };
 
-export const onMessageReceivedBackground = async (message: any) => {
-	try {
-		const notiType = message?.data?.type as string;
-
-		await _stateHandler(notiType);
-	} catch (err) {
-		console.log(err);
-	}
-};
-
 const _stateHandler = async (notiType: string) => {
 	if (notiType === 'TRANSACTION') {
 		// update user balance and transactions in redux
