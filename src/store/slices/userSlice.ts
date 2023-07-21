@@ -75,7 +75,7 @@ export const getUserData =
 							updateUserFcmToken(fcmToken).then(
 								(updatedUser: ResponseDto<UserResponse>) => {
 									if (updatedUser.statusCode === 200 && updatedUser.success) {
-										const fcmToken = updateUserData.data?.fcmToken as string;
+										const fcmToken = updatedUser.data?.fcmToken as string;
 										dispatch(setUserData({ ...user.data, fcmToken: fcmToken }));
 										dispatch(fetchLatestBtcRate());
 									} else {

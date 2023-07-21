@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { AppState } from 'react-native';
 import {
 	NavigationContainer,
 	createNavigationContainerRef,
@@ -25,10 +26,43 @@ import {
 import DoctorQRScan from 'screens/setting/DoctorQRScan';
 import MyAccount from 'screens/drawer/MyAccount';
 
+// store
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { getUserData } from 'store/slices/userSlice';
+import { fetchQuestionsList } from 'store/slices/questionsSlice';
+import { getTransactionsList } from 'store/slices/transactionsSlice';
+
 const Stack = createNativeStackNavigator<RootStackType>();
 export const navigationRef = createNavigationContainerRef<RootStackType>();
 
 const Root = () => {
+	const dispatch = useAppDispatch();
+	const { userData } = useAppSelector(state => state.user);
+	const appState = useRef(AppState.currentState);
+
+	useEffect(() => {
+		if (userData) {
+			const subscription = AppState.addEventListener('change', nextAppState => {
+				if (
+					appState.current.match(/inactive|background/) &&
+					nextAppState === 'active'
+				) {
+					if (userData) {
+						dispatch(getUserData(userData?.email));
+						dispatch(fetchQuestionsList(true));
+						dispatch(getTransactionsList(true));
+					}
+				}
+
+				appState.current = nextAppState;
+			});
+
+			return () => {
+				subscription.remove();
+			};
+		}
+	}, [userData]);
+
 	return (
 		<Stack.Navigator
 			initialRouteName="SplashScreen"
