@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Modal } from 'react-native';
+import { KeyboardAvoidingView, Modal, View } from 'react-native';
 import styled from 'styled-components/native';
 
 // components
 import { MainButton } from 'components/buttons';
 import { Caption1, Subheadline, Title3 } from 'components/common';
+
+// utils
+import { OS } from 'utils/utility';
 
 type Props = {
 	visible: boolean;
@@ -16,9 +19,11 @@ type Props = {
 const BountyModal = ({ visible, USDPerSat, setBounty, closeModal }: Props) => {
 	const [val, setVal] = useState('');
 
+	const CustomComp = OS === 'ios' ? KeyboardAvoidingView : View;
+
 	return (
 		<Modal animationType="fade" transparent={true} visible={visible}>
-			<KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+			<CustomComp behavior={'padding'} style={{ flex: 1 }}>
 				<Wrapper onPress={closeModal} activeOpacity={1}>
 					<Container activeOpacity={1}>
 						<Title3 weight="bold" style={{ textAlign: 'center' }}>
@@ -47,7 +52,7 @@ const BountyModal = ({ visible, USDPerSat, setBounty, closeModal }: Props) => {
 						/>
 					</Container>
 				</Wrapper>
-			</KeyboardAvoidingView>
+			</CustomComp>
 		</Modal>
 	);
 };
