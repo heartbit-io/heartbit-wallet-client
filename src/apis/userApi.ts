@@ -34,9 +34,20 @@ export const updateUserFcmToken = async (
 	fcmToken: string,
 ): Promise<ResponseDto<UserResponse>> => {
 	try {
-		const response = await api.patch(`users/fcmtoken`, {
+		const response = await api.patch(`users/fcmtoken/update`, {
 			fcmToken: fcmToken,
 		});
+		return response.data;
+	} catch (err: any) {
+		return err.response.data;
+	}
+};
+
+export const deleteUserFcmToken = async (): Promise<
+	ResponseDto<UserResponse>
+> => {
+	try {
+		const response = await api.patch(`users/fcmtoken/delete`);
 		return response.data;
 	} catch (err: any) {
 		return err.response.data;
