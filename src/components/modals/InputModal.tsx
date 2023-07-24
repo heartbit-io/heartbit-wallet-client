@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, KeyboardAvoidingView } from 'react-native';
+import { Modal, KeyboardAvoidingView, View } from 'react-native';
 import styled from 'styled-components/native';
 
 // assets
@@ -17,6 +17,9 @@ import {
 
 // hooks
 import { useAppSelector } from 'hooks';
+
+// utils
+import { OS } from 'utils/utility';
 
 type Props = {
 	title: string;
@@ -91,9 +94,11 @@ const InputModal = ({
 		}
 	};
 
+	const CustomComp = OS === 'ios' ? KeyboardAvoidingView : View;
+
 	return (
 		<Modal animationType="fade" transparent={true} visible={modalVisible}>
-			<KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+			<CustomComp behavior="padding" style={{ flex: 1 }}>
 				<Wrapper onPress={closeModal} activeOpacity={1}>
 					<Container activeOpacity={1}>
 						<RowWrapper>
@@ -119,7 +124,7 @@ const InputModal = ({
 						/>
 					</Container>
 				</Wrapper>
-			</KeyboardAvoidingView>
+			</CustomComp>
 		</Modal>
 	);
 };
