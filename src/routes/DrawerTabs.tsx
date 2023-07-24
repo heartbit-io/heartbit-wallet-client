@@ -26,6 +26,8 @@ import Message from 'assets/img/message.svg';
 import { resetUserData } from 'store/slices/userSlice';
 import { resetQuestions } from 'store/slices/questionsSlice';
 import { resetTransactions } from 'store/slices/transactionsSlice';
+import messaging from '@react-native-firebase/messaging';
+import { deleteUserFcmToken } from 'apis/userApi';
 
 const Drawer = createDrawerNavigator<DrawerTabTypes>();
 
@@ -53,6 +55,8 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 	const signOutHandler = () => {
 		auth().signOut();
 		Intercom.logout();
+		deleteUserFcmToken();
+		messaging().deleteToken();
 		dispatch(resetUserData());
 		dispatch(resetQuestions());
 		dispatch(resetTransactions());
