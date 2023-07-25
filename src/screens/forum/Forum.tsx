@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert } from 'react-native';
+import { ActivityIndicator, Alert, View } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import moment from 'moment';
@@ -24,6 +24,9 @@ import Question from 'assets/img/question.svg';
 import Answer from 'assets/img/answer.svg';
 import AILogo from 'assets/img/aiLogo.svg';
 import Caution from 'assets/img/alert-circle.svg';
+
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import { AnswerLoading } from 'components/loading';
 
 type Props = NativeStackScreenProps<RootStackType, 'Forum'>;
 
@@ -55,10 +58,10 @@ function Forum({ navigation, route }: Props) {
 	const { USDPerSat } = useAppSelector(state => state.coin);
 	const [loading, setLoading] = useState(false);
 	const [answer, setAnswer] = useState<ReplyResponse | any>({
-		replyType: 'ai',
-		name: 'Advice by GPT-3.5',
-		classification: 'Open AI',
-		reply: 'I’m preparing my answer. (Could take up to 10 ~ 20 secs)',
+		replyType: '',
+		name: '',
+		classification: '',
+		reply: '',
 		createdAt: '',
 	});
 
@@ -66,6 +69,13 @@ function Forum({ navigation, route }: Props) {
 		setLoading(true);
 		dispatch(fetchLatestBtcRate());
 		if (isFromBountyScreen) {
+			setAnswer({
+				replyType: 'ai',
+				name: 'Advice by GPT-3.5',
+				classification: 'Open AI',
+				reply: 'I’m preparing my answer. (Could take up to 10 ~ 20 secs)',
+				createdAt: '',
+			});
 			postGPTReply(question.id)
 				.then(res => setAnswer({ ...res.data } as ReplyResponse))
 				.catch(err => Alert.alert(err as string, 'Try again later'))
@@ -118,7 +128,7 @@ function Forum({ navigation, route }: Props) {
 	let reply = '';
 
 	if (answer.replyType === 'ai') {
-		reply = answer?.reply + `\n\nPlease wait for an answer by human doctor.`;
+		reply = answer?.reply;
 	} else {
 		reply = answer?.doctorNote || '';
 	}
@@ -169,20 +179,22 @@ function Forum({ navigation, route }: Props) {
 				)}
 			</PostWrapper>
 			<PostWrapper>
-				<ProfileWrapper>
-					<Icon source={answer.replyType === 'ai' ? AILogo : Answer} />
-					<PostInfoWrapper>
-						<Body weight="bold">{answer.name}</Body>
-						<Caption1 color="rgba(60, 60, 67, 0.6)">
-							{answer.classification} ・ {getDateFormatted(answer.createdAt)}
-						</Caption1>
-					</PostInfoWrapper>
-				</ProfileWrapper>
-				{loading ? (
+				{isFromBountyScreen || !loading ? (
+					<ProfileWrapper>
+						<Icon source={answer.replyType === 'ai' ? AILogo : Answer} />
+						<PostInfoWrapper>
+							<Body weight="bold">{answer.name}</Body>
+							<Caption1 color="rgba(60, 60, 67, 0.6)">
+								{answer.classification} ・ {getDateFormatted(answer.createdAt)}
+							</Caption1>
+						</PostInfoWrapper>
+					</ProfileWrapper>
+				) : (
+					<AnswerLoading />
+				)}
+				{isFromBountyScreen && loading ? (
 					<GPTLoadingWrapper>
-						<Body color="#3A3A3C">
-							I'm preparing my answer. (Could take up to 10 ~ 20 secs)
-						</Body>
+						<Body color="#3A3A3C">{answer.reply}</Body>
 						<ActivityIndicator
 							style={{
 								alignItems: 'flex-start',
