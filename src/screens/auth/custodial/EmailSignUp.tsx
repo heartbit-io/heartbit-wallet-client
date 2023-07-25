@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -117,8 +118,9 @@ export default EmailSignUp;
 
 const Wrapper = styled.View`
 	flex: 1;
+	height: ${Dimensions.get('window').height}px;
 	align-items: center;
-	padding-top: 180px;
+	justify-content: center;
 	padding-horizontal: 25px;
 `;
 

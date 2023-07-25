@@ -58,6 +58,7 @@ const Input = styled.TextInput<{ editable?: boolean; error?: boolean }>`
 	font-family: 'Pretendard-Regular';
 	color: #3a3a3c;
 	margin-top: 8px;
+	text-align-vertical: top;
 	padding-horizontal: 16px;
 	padding-vertical: 11px;
 `;
