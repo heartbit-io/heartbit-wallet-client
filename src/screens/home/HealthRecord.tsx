@@ -16,11 +16,12 @@ type Props = NativeStackScreenProps<RootStackType, 'HealthRecord'>;
 
 const records = [
 	{ type: 'majorComplaint', title: 'Chief Complaint' },
-	{ type: 'medicalHistory', title: 'Medical History' },
+	{ type: 'presentIllness', title: 'History of Present Illness' },
+	{ type: 'pastMedicalHistory', title: 'Past Medical History' },
 	{ type: 'currentMedications', title: 'Current Medication' },
 	{ type: 'assessment', title: 'Assessment' },
 	{ type: 'plan', title: 'Plan' },
-	{ type: 'guide', title: 'Guide' },
+	{ type: 'triage', title: 'Guide' },
 ];
 
 const HealthRecord = ({ route, navigation }: Props) => {
