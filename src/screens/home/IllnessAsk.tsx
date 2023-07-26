@@ -122,8 +122,8 @@ function IllnessAsk({ navigation }: Props) {
 							minHeight: 88,
 						},
 					}}
-					errorMsg={'Tell us a little more, using at least 50 characters.'}
-					showError={0 < history.length && history.length < 50}
+					errorMsg={'Tell us a little more, using at least 40 characters.'}
+					showError={0 < history.length && history.length < 40}
 				/>
 				<Space height={16} />
 				<LabelInput
@@ -192,7 +192,7 @@ function IllnessAsk({ navigation }: Props) {
 					text={'Next'}
 					onPress={navigateToBounty}
 					buttonStyle={{ height: 50 }}
-					active={history.length >= 50}
+					active={history.length >= 40}
 				/>
 			</ButtonWrapper>
 		</Wrapper>
