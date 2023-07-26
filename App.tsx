@@ -15,11 +15,12 @@ import { store } from 'store';
 // utils
 import 'utils/initializeDefaultProps';
 import { onMessageReceived } from 'utils/notification';
+import { OS } from 'utils/utility';
 
 function App(): JSX.Element {
 	useEffect(() => {
 		Intercom.setLauncherVisibility('VISIBLE');
-		Intercom.setBottomPadding(40);
+		Intercom.setBottomPadding(OS === 'ios' ? 40 : 230);
 
 		notifee.requestPermission();
 		messaging().onMessage(onMessageReceived);
