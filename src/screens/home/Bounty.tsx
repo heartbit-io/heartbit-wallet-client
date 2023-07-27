@@ -160,7 +160,7 @@ function Bounty({ navigation, route }: Props) {
 
 export default Bounty;
 
-const Wrapper = styled.View`
+const Wrapper = styled.ScrollView`
 	flex: 1;
 	flex-direction: column;
 	background-color: #fff5ed;
