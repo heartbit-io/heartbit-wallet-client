@@ -13,7 +13,6 @@ import Layout from 'routes';
 import { store } from 'store';
 
 // utils
-import 'utils/initializeDefaultProps';
 import { onMessageReceived } from 'utils/notification';
 import { OS } from 'utils/utility';
 
