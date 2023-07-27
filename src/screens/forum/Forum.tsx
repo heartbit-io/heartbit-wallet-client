@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, View } from 'react-native';
+import { Alert } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import moment from 'moment';
@@ -14,6 +14,7 @@ import {
 	Space,
 	Subheadline,
 } from 'components/common';
+import { AnswerLoading } from 'components/loading';
 
 // apis
 import { deleteQuestion, getReply, postGPTReply } from 'apis/questionApi';
@@ -24,9 +25,6 @@ import Question from 'assets/img/question.svg';
 import Answer from 'assets/img/answer.svg';
 import AILogo from 'assets/img/aiLogo.svg';
 import Caution from 'assets/img/alert-circle.svg';
-
-import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
-import { AnswerLoading } from 'components/loading';
 
 type Props = NativeStackScreenProps<RootStackType, 'Forum'>;
 
@@ -179,33 +177,20 @@ function Forum({ navigation, route }: Props) {
 				)}
 			</PostWrapper>
 			<PostWrapper>
-				{isFromBountyScreen || !loading ? (
-					<ProfileWrapper>
-						<Icon source={answer.replyType === 'ai' ? AILogo : Answer} />
-						<PostInfoWrapper>
-							<Body weight="bold">{answer.name}</Body>
-							<Caption1 color="rgba(60, 60, 67, 0.6)">
-								{answer.classification} ・ {getDateFormatted(answer.createdAt)}
-							</Caption1>
-						</PostInfoWrapper>
-					</ProfileWrapper>
-				) : (
+				{loading ? (
 					<AnswerLoading />
-				)}
-				{isFromBountyScreen && loading ? (
-					<GPTLoadingWrapper>
-						<Body color="#3A3A3C">{answer.reply}</Body>
-						<ActivityIndicator
-							style={{
-								alignItems: 'flex-start',
-								marginTop: 20,
-							}}
-							size={'large'}
-							color={'#FF9E32'}
-						/>
-					</GPTLoadingWrapper>
 				) : (
 					<>
+						<ProfileWrapper>
+							<Icon source={answer.replyType === 'ai' ? AILogo : Answer} />
+							<PostInfoWrapper>
+								<Body weight="bold">{answer.name}</Body>
+								<Caption1 color="rgba(60, 60, 67, 0.6)">
+									{answer.classification} ・{' '}
+									{getDateFormatted(answer.createdAt)}
+								</Caption1>
+							</PostInfoWrapper>
+						</ProfileWrapper>
 						<Body color="#3A3A3C" style={{ marginBottom: 26 }}>
 							{reply}
 						</Body>
@@ -268,10 +253,6 @@ const PostInfoWrapper = styled.View`
 
 const Container = styled.View`
 	margin-bottom: 26px;
-`;
-
-const GPTLoadingWrapper = styled.View`
-	padding-bottom: 45px;
 `;
 
 const CautionWrapper = styled.View`
