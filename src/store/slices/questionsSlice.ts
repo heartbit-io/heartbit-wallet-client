@@ -48,6 +48,12 @@ export const questionsSlice = createSlice({
 			...state,
 			refreshing: action.payload,
 		}),
+		removeQuestion: (state, action) => ({
+			...state,
+			questions: state.questions.filter(
+				question => question.id !== action.payload,
+			),
+		}),
 		resetQuestions: () => ({
 			...initialState,
 		}),
@@ -61,6 +67,7 @@ export const {
 	setOffset,
 	setHasMore,
 	setRefreshing,
+	removeQuestion,
 	resetQuestions,
 } = questionsSlice.actions;
 export default questionsSlice.reducer;
