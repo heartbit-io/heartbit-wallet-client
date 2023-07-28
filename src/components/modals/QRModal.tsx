@@ -29,7 +29,12 @@ const QRModal = ({
 		);
 
 	return (
-		<Modal animationType="fade" transparent={true} visible={modalVisible}>
+		<Modal
+			animationType="fade"
+			transparent={true}
+			visible={modalVisible}
+			onRequestClose={closeModal}
+		>
 			<Wrapper onPress={closeModal} activeOpacity={1}>
 				<Container activeOpacity={1}>
 					<RowWrapper>

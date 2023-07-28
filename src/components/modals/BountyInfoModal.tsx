@@ -18,7 +18,12 @@ export function BountyInfoModal() {
 				<Icon source={Info} />
 				<Caption1 color="#8E8E93"> About bounty</Caption1>
 			</InfoButton>
-			<Modal animationType="fade" transparent={true} visible={modalVisible}>
+			<Modal
+				animationType="fade"
+				transparent={true}
+				visible={modalVisible}
+				onRequestClose={() => setModalVisible(false)}
+			>
 				<ModalWrapper activeOpacity={1} onPress={() => setModalVisible(false)}>
 					<Container activeOpacity={1}>
 						<Title1 weight="bold">How does the bounty work?</Title1>

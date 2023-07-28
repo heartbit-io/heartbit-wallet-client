@@ -17,12 +17,17 @@ type Props = {
 };
 
 const BountyModal = ({ visible, USDPerSat, setBounty, closeModal }: Props) => {
-	const [val, setVal] = useState('');
+	const [val, setVal] = useState(0);
 
 	const CustomComp = OS === 'ios' ? KeyboardAvoidingView : View;
 
 	return (
-		<Modal animationType="fade" transparent={true} visible={visible}>
+		<Modal
+			animationType="fade"
+			transparent={true}
+			visible={visible}
+			onRequestClose={closeModal}
+		>
 			<CustomComp behavior={'padding'} style={{ flex: 1 }}>
 				<Wrapper onPress={closeModal} activeOpacity={1}>
 					<Container activeOpacity={1}>
@@ -32,7 +37,7 @@ const BountyModal = ({ visible, USDPerSat, setBounty, closeModal }: Props) => {
 						<InputWrapper>
 							<Input
 								value={val.toLocaleString()}
-								onChangeText={bounty => setVal(bounty)}
+								onChangeText={bounty => setVal(Number(bounty))}
 								keyboardType="numeric"
 								autoFocus
 							/>

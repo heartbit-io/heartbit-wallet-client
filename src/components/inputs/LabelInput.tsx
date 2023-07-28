@@ -5,6 +5,9 @@ import styled from 'styled-components/native';
 // components
 import { Caption1, Footnote } from 'components/common';
 
+// utils
+import { OS } from 'utils/utility';
+
 type Props = {
 	label?: string;
 	inputRef?: React.Ref<TextInput> | undefined;
@@ -51,7 +54,7 @@ const Input = styled.TextInput<{ editable?: boolean; error?: boolean }>`
 	max-height: 150px;
 	border-radius: 8px;
 	border-color: ${({ error }) => (error ? '#FF3B30' : '#8e8e93')};
-	border-width: ${({ error }) => (error ? 1 : 0.5)}px;
+	border-width: ${OS === 'ios' ? ({ error }) => (error ? 1 : 0.5) : 1}px;
 	background-color: ${({ editable }) => (editable ? '#fff' : '#F2F2F7')};
 	font-size: 17px;
 	line-height: 22px;

@@ -97,7 +97,12 @@ const InputModal = ({
 	const CustomComp = OS === 'ios' ? KeyboardAvoidingView : View;
 
 	return (
-		<Modal animationType="fade" transparent={true} visible={modalVisible}>
+		<Modal
+			animationType="fade"
+			transparent={true}
+			visible={modalVisible}
+			onRequestClose={closeModal}
+		>
 			<CustomComp behavior="padding" style={{ flex: 1 }}>
 				<Wrapper onPress={closeModal} activeOpacity={1}>
 					<Container activeOpacity={1}>
@@ -177,9 +182,9 @@ const Input = styled.TextInput`
 
 const SelectBtnsWrapper = styled.View`
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: space-around;
 	margin-bottom: 16px;
-	margin-horizontal: 48px;
+	margin-horizontal: 32px;
 `;
 
 const SelectBtnWrapper = styled.View`
