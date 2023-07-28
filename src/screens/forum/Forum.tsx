@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import moment from 'moment';
 import { useAppDispatch, useAppSelector } from 'hooks';
+import { useActivityIndicator } from 'hooks/useActivityIndicator';
 
 // components
 import { ArrowButton, Header } from 'components';
@@ -19,6 +20,7 @@ import { AnswerLoading } from 'components/loading';
 // apis
 import { deleteQuestion, getReply, postGPTReply } from 'apis/questionApi';
 import { fetchLatestBtcRate } from 'store/slices/coinSlice';
+import { removeQuestion } from 'store/slices/questionsSlice';
 
 // assets
 import Question from 'assets/img/question.svg';
@@ -52,6 +54,7 @@ const questionContent = [
 
 function Forum({ navigation, route }: Props) {
 	const { question, isFromBountyScreen } = route.params;
+	const { toggleActivityIndicator } = useActivityIndicator();
 	const dispatch = useAppDispatch();
 	const { USDPerSat } = useAppSelector(state => state.coin);
 	const [loading, setLoading] = useState(false);
@@ -103,17 +106,21 @@ function Forum({ navigation, route }: Props) {
 			[
 				{
 					text: 'Delete',
-					onPress: () =>
+					onPress: () => {
+						toggleActivityIndicator(true);
 						deleteQuestion(question.id)
 							.then(res => {
 								if (res.statusCode === 200) {
 									Alert.alert(res.message);
+									dispatch(removeQuestion(question.id));
 									isFromBountyScreen
 										? navigation.navigate('DrawerTabs')
 										: navigation.goBack();
 								}
 							})
-							.catch(res => Alert.alert(res.message, 'Try again later')),
+							.catch(res => Alert.alert(res.message, 'Try again later'))
+							.finally(() => toggleActivityIndicator(false));
+					},
 				},
 				{
 					text: 'Cancel',
