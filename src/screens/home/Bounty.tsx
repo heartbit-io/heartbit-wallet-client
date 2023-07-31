@@ -13,6 +13,7 @@ import {
 	Header,
 	MainButton,
 	BountyInfoModal,
+	QRModal,
 } from 'components';
 
 // apis
@@ -21,6 +22,7 @@ import { postQuestion } from 'apis/questionApi';
 // store
 import { updateUserData } from 'store/slices/userSlice';
 import { fetchLatestBtcRate } from 'store/slices/coinSlice';
+import { getDepositRequest } from 'apis/lndApi';
 
 type Props = NativeStackScreenProps<RootStackType, 'Bounty'>;
 
@@ -33,10 +35,29 @@ function Bounty({ navigation, route }: Props) {
 	const [inputBounty, setInputBounty] = useState(0);
 	const [modalVisible, setModalVisible] = useState(false);
 	const [isPressed, setIsPressed] = useState(false);
+	const [depositQRVisible, setDepositQRVisible] = useState(false);
+	const [qrAddress, setQrAddress] = useState('');
 
 	useEffect(() => {
 		dispatch(fetchLatestBtcRate());
 	}, []);
+
+	const confirmHandler = async (email: string, amount: number) => {
+		try {
+			const responseDto: ResponseDto<string> = await getDepositRequest(
+				email,
+				amount,
+			);
+			if (responseDto.statusCode === 200) {
+				setQrAddress(responseDto.data as string);
+				setDepositQRVisible(true);
+			} else {
+				Alert.alert(responseDto.message, 'Try again later');
+			}
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
 	const navigateHandler = (sats: number) => {
 		if (sats <= userData.btcBalance) {
@@ -130,7 +151,7 @@ function Bounty({ navigation, route }: Props) {
 					Balance: {userData?.btcBalance.toLocaleString()} sats
 				</Subheadline>
 				<MainButton
-					onPress={() => navigateHandler(bounty || inputBounty)}
+					onPress={async () => await confirmHandler(userData.email, bounty)}
 					text={'Confirm'}
 					active={(!!bounty || !!inputBounty) && !isPressed}
 					buttonStyle={{ marginTop: 32 }}
@@ -153,6 +174,14 @@ function Bounty({ navigation, route }: Props) {
 					setBounty(0);
 					setInputBounty(val);
 				}}
+			/>
+
+			<QRModal
+				title={'Pay for advanced AI Advice'}
+				type="deposit"
+				modalVisible={depositQRVisible}
+				closeModal={() => setDepositQRVisible(false)}
+				qrAddress={qrAddress}
 			/>
 		</Wrapper>
 	);
