@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { useActivityIndicator } from 'hooks/useActivityIndicator';
 
 // components
-import { LargeTitle, Subheadline } from 'components/common';
+import { LargeTitle, Space, Subheadline } from 'components/common';
 import {
 	BountyButton,
 	BountyModal,
@@ -135,6 +135,7 @@ function Bounty({ navigation, route }: Props) {
 					active={(!!bounty || !!inputBounty) && !isPressed}
 					buttonStyle={{ marginTop: 32 }}
 				/>
+				<Space height={16} />
 				<MainButton
 					onPress={() => navigateHandler(0)}
 					text={'Continue without setting a bounty'}
