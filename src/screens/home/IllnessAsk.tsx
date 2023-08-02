@@ -148,9 +148,9 @@ function IllnessAsk({ navigation }: Props) {
 				<Space height={16} />
 				<LabelInput
 					inputRef={input4Ref}
-					label="Age, Sex, and Ethnicity (Optional)"
+					label="Age and Sex (Optional)"
 					inputProps={{
-						placeholder: 'e.g., 24 yr old, male, Korean american',
+						placeholder: 'e.g., Mid-30s and male',
 						value: personalInfo,
 						onChangeText: setPersonalInfo,
 					}}
@@ -175,7 +175,12 @@ function IllnessAsk({ navigation }: Props) {
 						onChangeText: setOthers,
 					}}
 				/>
-				<Space height={30} />
+				<Space height={32} />
+				<Footnote weight="bold" color="#8E8E93">
+					⚠️ Do not enter any personally identifiable information. Your question
+					will be shared with doctors and OpenAI.
+				</Footnote>
+				<Space height={32} />
 			</ScrollWrapper>
 			<InputAccessoryView nativeID={'labelInput'}>
 				<InputAccessoryWrapper>
