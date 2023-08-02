@@ -40,7 +40,7 @@ const questionContent = [
 		type: 'pastIllnessHistory',
 		title: 'Past or pre-existing medical history of you or your family',
 	},
-	{ type: 'ageSexEthnicity', title: 'Age, Sex, and Ethnicity' },
+	{ type: 'ageSexEthnicity', title: 'Age and Sex' },
 	{
 		type: 'lifestyle',
 		title:
