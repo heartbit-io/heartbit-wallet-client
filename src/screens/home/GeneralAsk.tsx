@@ -1,5 +1,10 @@
-import React, { useRef, useState } from 'react';
-import { InputAccessoryView, Button, TextInput } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+	InputAccessoryView,
+	Button,
+	TextInput,
+	BackHandler,
+} from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -27,6 +32,15 @@ function GeneralAsk({ navigation }: Props) {
 	const [generalQuestion, setGeneralQuestion] = useState('');
 	const [personalInfo, setPersonalInfo] = useState('');
 
+	useEffect(() => {
+		const backHandler = BackHandler.addEventListener(
+			'hardwareBackPress',
+			() => true,
+		);
+
+		return () => backHandler.remove();
+	}, []);
+
 	const navigateToBounty = () => {
 		navigation.navigate('Bounty', {
 			isGeneralQuestion: true,
@@ -35,6 +49,7 @@ function GeneralAsk({ navigation }: Props) {
 			history: '',
 			medications: '',
 			pastIllness: '',
+			lifestyle: '',
 			others: '',
 		});
 	};
