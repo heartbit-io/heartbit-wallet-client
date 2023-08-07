@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert } from 'react-native';
+import { Alert, BackHandler } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
@@ -36,6 +36,15 @@ function Bounty({ navigation, route }: Props) {
 
 	useEffect(() => {
 		dispatch(fetchLatestBtcRate());
+		const backHandler = BackHandler.addEventListener(
+			'hardwareBackPress',
+			() => {
+				navigation.goBack();
+				return true;
+			},
+		);
+
+		return () => backHandler.remove();
 	}, []);
 
 	const navigateHandler = (sats: number) => {
