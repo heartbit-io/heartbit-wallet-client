@@ -19,9 +19,9 @@ const records = [
 	{ type: 'presentIllness', title: 'History of Present Illness' },
 	{ type: 'pastMedicalHistory', title: 'Past Medical History' },
 	{ type: 'currentMedications', title: 'Current Medication' },
-	{ type: 'assessment', title: 'Assessment' },
-	{ type: 'plan', title: 'Plan' },
-	{ type: 'triage', title: 'Guide' },
+	// { type: 'assessment', title: 'Assessment' },
+	// { type: 'plan', title: 'Plan' },
+	{ type: 'triage', title: 'Advice by AI' },
 ];
 
 const HealthRecord = ({ route, navigation }: Props) => {
