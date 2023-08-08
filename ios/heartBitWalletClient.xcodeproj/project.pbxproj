@@ -15,7 +15,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2C21675226DC11018BD933DA /* Pods_heartBitWalletClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90536E8ECAC3BB9310563E20 /* Pods_heartBitWalletClient.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		864F5BCE2A6A459000A51C82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 864F5BCD2A6A459000A51C82 /* GoogleService-Info.plist */; };
+		864F5BCE2A6A459000A51C82 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		869EB0AE2A73A6D900589FBD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869EB0AD2A73A6D800589FBD /* GoogleService-Info.plist */; };
 		86F9B46329F1A1C40020F181 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86F9B45D29F1A1C40020F181 /* Pretendard-Regular.otf */; };
 		86F9B46429F1A1C40020F181 /* RedHatDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86F9B45E29F1A1C40020F181 /* RedHatDisplay-Regular.otf */; };
 		86F9B46529F1A1C40020F181 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86F9B45F29F1A1C40020F181 /* Pretendard-Medium.otf */; };
@@ -51,6 +52,7 @@
 		63D2852C2994B91F000E60CA /* heartBitWalletClient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = heartBitWalletClient.entitlements; path = heartBitWalletClient/heartBitWalletClient.entitlements; sourceTree = "<group>"; };
 		7F52B599CD921321FE99E408 /* Pods-heartBitWalletClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-heartBitWalletClient.debug.xcconfig"; path = "Target Support Files/Pods-heartBitWalletClient/Pods-heartBitWalletClient.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = heartBitWalletClient/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		869EB0AD2A73A6D800589FBD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Documents/heartbit/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86F9B45D29F1A1C40020F181 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.otf"; path = "../src/assets/fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		86F9B45E29F1A1C40020F181 /* RedHatDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RedHatDisplay-Regular.otf"; path = "../src/assets/fonts/RedHatDisplay-Regular.otf"; sourceTree = "<group>"; };
 		86F9B45F29F1A1C40020F181 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Medium.otf"; path = "../src/assets/fonts/Pretendard-Medium.otf"; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		13B07FAE1A68108700A75B9A /* heartBitWalletClient */ = {
 			isa = PBXGroup;
 			children = (
+				869EB0AD2A73A6D800589FBD /* GoogleService-Info.plist */,
 				63D2852C2994B91F000E60CA /* heartBitWalletClient.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -150,7 +153,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				864F5BCD2A6A459000A51C82 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* heartBitWalletClient */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* heartBitWalletClientTests */,
@@ -287,7 +289,8 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				86F9B46429F1A1C40020F181 /* RedHatDisplay-Regular.otf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				864F5BCE2A6A459000A51C82 /* GoogleService-Info.plist in Resources */,
+				869EB0AE2A73A6D900589FBD /* GoogleService-Info.plist in Resources */,
+				864F5BCE2A6A459000A51C82 /* BuildFile in Resources */,
 				86F9B46329F1A1C40020F181 /* Pretendard-Regular.otf in Resources */,
 				86F9B46729F1A1C40020F181 /* Pretendard-SemiBold.otf in Resources */,
 				01EE390450E34C2CAC053366 /* Logo.ts in Resources */,
@@ -636,7 +639,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -708,7 +711,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
