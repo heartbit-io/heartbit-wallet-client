@@ -14,11 +14,27 @@
       },
       "oauth_client": [
         {
+          "client_id": "54710886479-07e9k204ir9fistc1subdpja0cunmm2d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.heartbitwalletclient",
+            "certificate_hash": "e4ab474713f8cb3a3ceaff45b96ddd652572efdc"
+          }
+        },
+        {
           "client_id": "54710886479-95iq0glcn2dd89sq3sbqg936oflt35k0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.heartbitwalletclient",
             "certificate_hash": "0212c3c938e45c7a056bb1439ae8001757a9d558"
+          }
+        },
+        {
+          "client_id": "54710886479-tgvas11dj1j17oeh4l7l03hpd753vdb1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.heartbitwalletclient",
+            "certificate_hash": "76556be930b8af649b356f994563419f46b0d6d0"
           }
         },
         {
@@ -37,6 +53,14 @@
             {
               "client_id": "54710886479-bj91iq3chv8ntcegkd1l5n4pivh6inat.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "54710886479-p3oo1v5k81d5dqradp0kdrm1t0o0bd98.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.heartbit.heartBitWalletClient",
+                "app_store_id": "6448279561"
+              }
             }
           ]
         }

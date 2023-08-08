@@ -99,7 +99,7 @@ android {
         applicationId "com.heartbitwalletclient"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 5
+        versionCode 6
         versionName "0.1"
     }
 
