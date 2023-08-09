@@ -10,7 +10,9 @@
     "lint": "eslint 'src/**/*.ts' --ignore-path ./.eslintignore",
     "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}' --ignore-path ./.eslintignore",
     "format": "prettier 'src/**/*.{ts,tsx}' --ignore-path ./.prettierignore",
-    "format:fix": "prettier --write 'src/**/*.{ts,tsx}' --ignore-path ./.prettierignore"
+    "format:fix": "prettier --write 'src/**/*.{ts,tsx}' --ignore-path ./.prettierignore",
+    "aab-android": "cd android && ./gradlew bundleRelease && cd ..",
+    "apk-android": "cd android && ./gradlew app:assembleRelease && cd .."
   },
   "dependencies": {
     "@haskkor/react-native-pincode": "^1.22.6",
