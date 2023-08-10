@@ -1,10 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {
-	InputAccessoryView,
-	Button,
-	TextInput,
-	BackHandler,
-} from 'react-native';
+import { TextInput, BackHandler } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -14,6 +9,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
 	Footnote,
 	Header,
+	KeyboardAccessory,
 	LabelInput,
 	LargeTitle,
 	MainButton,
@@ -110,25 +106,18 @@ function GeneralAsk({ navigation }: Props) {
 					will be shared with doctors and OpenAI.
 				</Footnote>
 				<Space height={32} />
-			</ScrollWrapper>
-			<InputAccessoryView nativeID={'labelInput'}>
-				<InputAccessoryWrapper>
-					<PrevNextWrapper>
-						<Button onPress={onPressPrev} title="Prev" />
-						<Space width={5} />
-						<Button onPress={onPressNext} title="Next" />
-					</PrevNextWrapper>
-					<Button onPress={onPressDone} title="Done" />
-				</InputAccessoryWrapper>
-			</InputAccessoryView>
-			<ButtonWrapper paddingBottom={bottom}>
 				<MainButton
 					text={'Next'}
 					onPress={navigateToBounty}
-					buttonStyle={{ height: 50 }}
+					buttonStyle={{ height: 50, marginBottom: bottom || 20 }}
 					active={generalQuestion.length >= 20}
 				/>
-			</ButtonWrapper>
+			</ScrollWrapper>
+			<KeyboardAccessory
+				onPressPrev={onPressPrev}
+				onPressNext={onPressNext}
+				onPressDone={onPressDone}
+			/>
 		</Wrapper>
 	);
 }
@@ -154,23 +143,4 @@ const Switch = styled.TouchableOpacity`
 
 const Icon = styled.Image`
 	margin-right: 9px;
-`;
-
-const ButtonWrapper = styled.View<{ paddingBottom: number }>`
-	padding-top: 12px;
-	padding-bottom: ${({ paddingBottom }) => paddingBottom || 20}px;
-	padding-horizontal: 16px;
-`;
-
-const InputAccessoryWrapper = styled.View`
-	flex-direction: row;
-	justify-content: space-between;
-	background-color: #f4f4f4;
-	border-top-width: 1px;
-	border-top-color: #c7c7cc;
-	padding-horizontal: 10px;
-`;
-
-const PrevNextWrapper = styled.View`
-	flex-direction: row;
 `;
