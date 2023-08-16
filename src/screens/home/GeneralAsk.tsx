@@ -101,7 +101,7 @@ function GeneralAsk({ navigation }: Props) {
 					}}
 				/>
 				<Space height={32} />
-				<Footnote weight="bold" color="#8E8E93">
+				<Footnote color="#8E8E93">
 					⚠️ Do not enter any personally identifiable information. Your question
 					will be shared with doctors and OpenAI.
 				</Footnote>
