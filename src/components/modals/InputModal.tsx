@@ -189,4 +189,5 @@ const SelectBtnsWrapper = styled.View`
 
 const SelectBtnWrapper = styled.View`
 	align-items: center;
+	width: 100%;
 `;
