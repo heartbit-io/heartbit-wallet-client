@@ -18,7 +18,7 @@ export const onMessageReceived = async (message: any) => {
 			body: message.notification.body,
 			android: {
 				channelId,
-				smallIcon: 'ic_small_icon', // optional, defaults to 'ic_launcher'.
+				smallIcon: 'ic_notification',
 				color: '#F68F2A',
 				// pressAction is needed if you want the notification to open the app when pressed
 				pressAction: {
