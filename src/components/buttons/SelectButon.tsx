@@ -21,9 +21,10 @@ const SelectButton = ({ text, onPress, active }: Props) => {
 export default SelectButton;
 
 const Wrapper = styled.TouchableOpacity`
+	width: 45%;
+	align-items: center;
 	border: 1px solid #ff2d55;
 	border-radius: 4px;
-	padding-horizontal: 17.5px;
 	padding-vertical: 4.5px;
 `;
 
