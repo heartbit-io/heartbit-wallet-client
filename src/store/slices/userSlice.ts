@@ -67,11 +67,11 @@ export const getUserData =
 			getUser(email)
 				.then(async (user: ResponseDto<UserResponse>) => {
 					if (user.statusCode === 200 && user.success) {
-						if (user.data?.fcmToken) {
+						const fcmToken = await messaging().getToken();
+						if (user.data?.fcmToken && user.data?.fcmToken === fcmToken) {
 							dispatch(setUserData(user.data));
 							dispatch(fetchLatestBtcRate());
 						} else {
-							const fcmToken = await messaging().getToken();
 							updateUserFcmToken(fcmToken).then(
 								(updatedUser: ResponseDto<UserResponse>) => {
 									if (updatedUser.statusCode === 200 && updatedUser.success) {
