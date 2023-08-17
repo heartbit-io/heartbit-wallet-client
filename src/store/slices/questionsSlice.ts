@@ -6,18 +6,20 @@ interface QuestionsSlice {
 	questions: QuestionResponse[];
 	offset: number;
 	hasMore: boolean;
-	questionsLoading: boolean;
+	loading: boolean;
 	error: string;
 	refreshing: boolean;
+	fetchingMore: boolean;
 }
 
 const initialState: QuestionsSlice = {
 	questions: [],
 	offset: 0,
 	hasMore: true,
-	questionsLoading: false,
+	loading: false,
 	error: '',
 	refreshing: false,
+	fetchingMore: false,
 };
 
 export const questionsSlice = createSlice({
@@ -30,7 +32,7 @@ export const questionsSlice = createSlice({
 		}),
 		setLoading: (state, action) => ({
 			...state,
-			questionsLoading: action.payload,
+			loading: action.payload,
 		}),
 		setError: (state, action) => ({
 			...state,
@@ -47,6 +49,10 @@ export const questionsSlice = createSlice({
 		setRefreshing: (state, action) => ({
 			...state,
 			refreshing: action.payload,
+		}),
+		setFetchingMore: (state, action) => ({
+			...state,
+			fetchingMore: action.payload,
 		}),
 		removeQuestion: (state, action) => ({
 			...state,
@@ -67,20 +73,21 @@ export const {
 	setOffset,
 	setHasMore,
 	setRefreshing,
+	setFetchingMore,
 	removeQuestion,
 	resetQuestions,
 } = questionsSlice.actions;
 export default questionsSlice.reducer;
 
 export const fetchQuestionsList =
-	(refresh = false): AppThunk =>
+	(refresh = false, fetchingMore = false): AppThunk =>
 	async (dispatch, getState) => {
 		try {
-			let { questions, offset, questionsLoading, refreshing } =
-				getState().questions;
-			if (!questionsLoading && !refreshing) {
-				dispatch(setRefreshing(refresh));
+			let { questions, offset, loading, refreshing } = getState().questions;
+			if (!loading) {
 				dispatch(setLoading(true));
+				dispatch(setRefreshing(refresh));
+				dispatch(setFetchingMore(fetchingMore));
 				offset = refresh ? 0 : offset;
 				getQuestionList(10, offset)
 					.then(res => {
@@ -101,6 +108,7 @@ export const fetchQuestionsList =
 					.finally(() => {
 						dispatch(setLoading(false));
 						dispatch(setRefreshing(false));
+						dispatch(setFetchingMore(false));
 					});
 			}
 		} catch (err) {
