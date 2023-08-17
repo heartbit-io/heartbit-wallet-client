@@ -4,20 +4,22 @@ import { AppThunk } from 'store';
 
 interface TransactionsSlice {
 	transactions: TransactionProps[];
-	transactionsLoading: boolean;
+	loading: boolean;
 	error: string;
 	offset: number;
 	hasMore: boolean;
 	refreshing: boolean;
+	fetchingMore: boolean;
 }
 
 const initialState: TransactionsSlice = {
 	transactions: [],
-	transactionsLoading: false,
+	loading: false,
 	error: '',
 	offset: 0,
 	hasMore: true,
 	refreshing: false,
+	fetchingMore: false,
 };
 
 export const transactionsSlice = createSlice({
@@ -30,7 +32,7 @@ export const transactionsSlice = createSlice({
 		}),
 		setLoading: (state, action) => ({
 			...state,
-			transactionsLoading: action.payload,
+			loading: action.payload,
 		}),
 		setError: (state, action) => ({
 			...state,
@@ -48,6 +50,10 @@ export const transactionsSlice = createSlice({
 			...state,
 			refreshing: action.payload,
 		}),
+		setFetchingMore: (state, action) => ({
+			...state,
+			fetchingMore: action.payload,
+		}),
 		resetTransactions: () => ({
 			...initialState,
 		}),
@@ -61,21 +67,23 @@ export const {
 	setOffset,
 	setHasMore,
 	setRefreshing,
+	setFetchingMore,
 	resetTransactions,
 } = transactionsSlice.actions;
 
 export default transactionsSlice.reducer;
 
 export const getTransactionsList =
-	(refresh = false): AppThunk =>
+	(refresh = false, fetchingMore = false): AppThunk =>
 	async (dispatch, getState) => {
 		try {
 			const { pubkey } = getState().user.userData;
-			let { transactions, offset, transactionsLoading, refreshing } =
+			let { transactions, offset, loading, refreshing } =
 				getState().transactions;
-			if (!transactionsLoading && !refreshing) {
-				dispatch(setRefreshing(refresh));
+			if (!loading) {
 				dispatch(setLoading(true));
+				dispatch(setRefreshing(refresh));
+				dispatch(setFetchingMore(fetchingMore));
 				offset = refresh ? 0 : offset;
 				getTransactions(pubkey, 10, offset)
 					.then(res => {
@@ -98,6 +106,7 @@ export const getTransactionsList =
 					.finally(() => {
 						dispatch(setLoading(false));
 						dispatch(setRefreshing(false));
+						dispatch(setFetchingMore(false));
 					});
 			}
 		} catch (err) {
