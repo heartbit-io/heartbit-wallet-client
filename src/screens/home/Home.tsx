@@ -28,9 +28,7 @@ type Props = NativeStackScreenProps<RootStackType, 'Home'>;
 
 function Home({ navigation }: Props) {
 	const dispatch = useAppDispatch();
-	const { questions, questionsLoading } = useAppSelector(
-		state => state.questions,
-	);
+	const { questions, loading } = useAppSelector(state => state.questions);
 
 	useFocusEffect(
 		useCallback(() => {
@@ -50,7 +48,7 @@ function Home({ navigation }: Props) {
 						buttonStyle={{ marginTop: 82, height: 50 }}
 					/>
 				</LogoWrapper>
-				{questionsLoading && questions.length === 0 ? (
+				{loading && questions.length === 0 ? (
 					<ActivityIndicator
 						color={'#F68F2A'}
 						size={'large'}
