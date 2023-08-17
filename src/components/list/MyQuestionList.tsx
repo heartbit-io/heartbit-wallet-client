@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
+import { BarIndicator } from 'react-native-indicators';
 
 // components
-import { Footnote, Space } from 'components/common';
+import { Footnote } from 'components/common';
 import QuestionListItem from './QuestionListItem';
 
 // hooks
@@ -13,7 +14,7 @@ import { fetchQuestionsList } from 'store/slices/questionsSlice';
 
 const MyQuestionList = () => {
 	const dispatch = useAppDispatch();
-	const { questions, questionsLoading, hasMore, refreshing } = useAppSelector(
+	const { questions, fetchingMore, hasMore, refreshing } = useAppSelector(
 		state => state.questions,
 	);
 
@@ -31,15 +32,24 @@ const MyQuestionList = () => {
 		</Footnote>
 	);
 
+	const renderFooterComponent = () =>
+		fetchingMore ? (
+			<Footer>
+				<BarIndicator count={5} color="#F68F2A" size={25} />
+			</Footer>
+		) : (
+			<Footer />
+		);
+
 	return (
 		<StyledFlatList
 			data={questions}
 			renderItem={renderItemHandler}
 			refreshing={refreshing}
 			onRefresh={() => dispatch(fetchQuestionsList(true))}
-			onEndReached={() => hasMore && dispatch(fetchQuestionsList())}
+			onEndReached={() => hasMore && dispatch(fetchQuestionsList(false, true))}
 			ListEmptyComponent={renderEmptyComponent()}
-			ListFooterComponent={<Space height={100} />}
+			ListFooterComponent={renderFooterComponent()}
 		/>
 	);
 };
@@ -47,3 +57,7 @@ const MyQuestionList = () => {
 export default MyQuestionList;
 
 const StyledFlatList = styled.FlatList``;
+
+const Footer = styled.View`
+	height: 100px;
+`;

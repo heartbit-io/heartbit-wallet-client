@@ -36,9 +36,7 @@ const Wallet = ({ navigation }: Props) => {
 	const dispatch = useAppDispatch();
 	const { userData } = useAppSelector(state => state.user);
 	const { USDPerSat } = useAppSelector(state => state.coin);
-	const { transactions, transactionsLoading } = useAppSelector(
-		state => state.transactions,
-	);
+	const { transactions, loading } = useAppSelector(state => state.transactions);
 	const [withdrawModalVisible, setWithdrawModalVisible] = useState(false);
 	const [depositModalVisible, setDepositModalVisible] = useState(false);
 	const [depositQRVisible, setDepositQRVisible] = useState(false);
@@ -121,7 +119,7 @@ const Wallet = ({ navigation }: Props) => {
 				/>
 			</ButtonsWrapper>
 
-			{transactionsLoading && transactions.length === 0 ? (
+			{loading && transactions.length === 0 ? (
 				<ActivityIndicator
 					color={'#5856d6'}
 					size={'large'}
