@@ -25,6 +25,7 @@ const EmailSent = ({ route }: Props) => {
 				handleCodeInApp: true,
 				iOS: { bundleId: 'com.heartbit.heartBitWalletClient' },
 				url: 'https://heartbit.page.link/ghHK',
+				dynamicLinkDomain: 'heartbit.page.link',
 			})
 			.catch(err => console.log(err));
 	};

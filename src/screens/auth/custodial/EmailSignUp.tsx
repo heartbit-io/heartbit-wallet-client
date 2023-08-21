@@ -40,6 +40,7 @@ const EmailSignUp = ({ navigation }: Props) => {
 				handleCodeInApp: true,
 				iOS: { bundleId: 'com.heartbit.heartBitWalletClient' },
 				url: 'https://heartbit.page.link/ghHK',
+				dynamicLinkDomain: 'heartbit.page.link',
 			})
 			.then(res => {
 				AsyncStorage.setItem('email', email);
