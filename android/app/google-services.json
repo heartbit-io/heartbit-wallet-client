@@ -22,6 +22,22 @@
           }
         },
         {
+          "client_id": "54710886479-d9fdaa2hlkvis3nb3rhm0hr55c2gaipv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.heartbitwalletclient",
+            "certificate_hash": "e4ab474713f8cb3a3ceaff45b96ddd652572efdc"
+          }
+        },
+        {
+          "client_id": "54710886479-roo1thpnbae94vl1tq8s2ch2bsgfr2mq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.heartbitwalletclient",
+            "certificate_hash": "76556be930b8af649b356f994563419f46b0d6d0"
+          }
+        },
+        {
           "client_id": "54710886479-bj91iq3chv8ntcegkd1l5n4pivh6inat.apps.googleusercontent.com",
           "client_type": 3
         }
