@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react';
+import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { BarIndicator } from 'react-native-indicators';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 // components
-import { Footnote } from 'components/common';
+import { Subheadline } from 'components/common';
 import QuestionListItem from './QuestionListItem';
+import { MainButton } from 'components/buttons';
 
 // hooks
 import { useAppDispatch, useAppSelector } from 'hooks';
@@ -13,6 +17,7 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import { fetchQuestionsList } from 'store/slices/questionsSlice';
 
 const MyQuestionList = () => {
+	const navigation = useNavigation<NativeStackNavigationProp<RootStackType>>();
 	const dispatch = useAppDispatch();
 	const { questions, fetchingMore, hasMore, refreshing } = useAppSelector(
 		state => state.questions,
@@ -27,9 +32,16 @@ const MyQuestionList = () => {
 	};
 
 	const renderEmptyComponent = () => (
-		<Footnote style={{ textAlign: 'center', marginTop: 50 }}>
-			There is no any transactions
-		</Footnote>
+		<EmptyWrapper>
+			<Subheadline color="#3A3A3C">
+				You haven’t asked any questions yet.
+			</Subheadline>
+			<MainButton
+				text={'Ask doctors anything'}
+				onPress={() => navigation.navigate('IllnessAsk')}
+				buttonStyle={{ marginTop: 20, height: 50 }}
+			/>
+		</EmptyWrapper>
 	);
 
 	const renderFooterComponent = () =>
@@ -60,4 +72,11 @@ const StyledFlatList = styled.FlatList``;
 
 const Footer = styled.View`
 	height: 100px;
+`;
+
+const EmptyWrapper = styled.View`
+	align-items: center;
+	justify-content: center;
+	padding-top: ${Dimensions.get('screen').height / 3}px;
+	padding-horizontal: 32px;
 `;
