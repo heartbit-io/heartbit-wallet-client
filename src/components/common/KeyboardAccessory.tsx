@@ -61,7 +61,7 @@ const InputAccessoryWrapper = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	background-color: #f4f4f4;
-	border-top-width: ${OS === 'ios' ? 1 : 0};
+	border-top-width: ${OS === 'ios' ? 1 : 0}px;
 	border-top-color: #c7c7cc;
 	padding-horizontal: 10px;
 `;
