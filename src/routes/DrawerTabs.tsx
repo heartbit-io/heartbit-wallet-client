@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import Intercom from '@intercom/intercom-react-native';
+// import Intercom from '@intercom/intercom-react-native';
 
 // tabs
 import BottomTabs from './BottomTabs';
@@ -54,7 +54,7 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 
 	const signOutHandler = () => {
 		auth().signOut();
-		Intercom.logout();
+		// Intercom.logout();
 		deleteUserFcmToken();
 		messaging().deleteToken();
 		dispatch(resetUserData());
@@ -77,7 +77,9 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 					<HeadLineText>Transactions</HeadLineText>
 					<Icon source={ChevronRight} />
 				</RowWrapper>
-				<RowWrapper onPress={() => Intercom.present()}>
+				<RowWrapper
+					onPress={() => Linking.openURL('mailto:support@heartbit.io')}
+				>
 					<HeadLineText>Get Support</HeadLineText>
 					<Icon source={ChevronRight} />
 				</RowWrapper>
@@ -87,6 +89,12 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 					}
 				>
 					<HeadLineText>Send Feedback</HeadLineText>
+					<Icon source={ChevronRight} />
+				</RowWrapper>
+				<RowWrapper
+					onPress={() => Linking.openURL('https://heartbit.substack.com/')}
+				>
+					<HeadLineText>Blog</HeadLineText>
 					<Icon source={ChevronRight} />
 				</RowWrapper>
 				<SocialWrapper>
