@@ -12,8 +12,9 @@ import { Callout } from 'components/common';
 import { OS } from 'utils/utility';
 
 // assets
-import menu from 'assets/img/ic_menu.svg';
-import sat from 'assets/img/ic_sat.svg';
+import Menu from 'assets/img/ic_menu.svg';
+import Sat from 'assets/img/ic_sat.svg';
+import Alpha from 'assets/img/alpha.svg';
 
 const HomeHeader = () => {
 	const statusBarHeight = useSafeAreaInsets().top;
@@ -23,14 +24,17 @@ const HomeHeader = () => {
 	return (
 		<HeaderWrapper statusBarHeight={statusBarHeight}>
 			<LeftContainer onPress={() => navigation.navigate('Wallet')}>
-				<Icon style={{ marginHorizontal: 6 }} source={sat} />
+				<Icon style={{ marginHorizontal: 6 }} source={Sat} />
 				<TextCallout> {userData?.btcBalance.toLocaleString()}</TextCallout>
 			</LeftContainer>
-			<ButtonWrapper
-				onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-			>
-				<Icon source={menu} />
-			</ButtonWrapper>
+			<RightContainer>
+				<Icon source={Alpha} style={{ marginRight: 16 }} />
+				<ButtonWrapper
+					onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+				>
+					<Icon source={Menu} />
+				</ButtonWrapper>
+			</RightContainer>
 		</HeaderWrapper>
 	);
 };
@@ -45,8 +49,6 @@ const HeaderWrapper = styled.View<{ statusBarHeight: number }>`
 	margin-top: ${({ statusBarHeight }) => statusBarHeight}px;
 	margin-horizontal: 16px;
 `;
-
-const ButtonWrapper = styled.TouchableOpacity``;
 
 const LeftContainer = styled.TouchableOpacity`
 	flex-direction: row;
@@ -63,3 +65,10 @@ const TextCallout = styled(Callout)`
 const Icon = styled.Image`
 	resize-mode: contain;
 `;
+
+const RightContainer = styled.View`
+	flex-direction: row;
+	align-items: center;
+`;
+
+const ButtonWrapper = styled.TouchableOpacity``;

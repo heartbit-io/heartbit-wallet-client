@@ -64,14 +64,12 @@ function IllnessAsk({ navigation }: Props) {
 			input2Ref.current &&
 			input3Ref.current &&
 			input4Ref.current &&
-			input5Ref.current &&
-			input6Ref.current
+			input5Ref.current
 		) {
 			if (input2Ref.current.isFocused()) input1Ref.current.focus();
 			else if (input3Ref.current.isFocused()) input2Ref.current.focus();
 			else if (input4Ref.current.isFocused()) input3Ref.current.focus();
 			else if (input5Ref.current.isFocused()) input4Ref.current.focus();
-			else if (input6Ref.current.isFocused()) input5Ref.current.focus();
 		}
 	};
 
@@ -81,14 +79,12 @@ function IllnessAsk({ navigation }: Props) {
 			input2Ref.current &&
 			input3Ref.current &&
 			input4Ref.current &&
-			input5Ref.current &&
-			input6Ref.current
+			input5Ref.current
 		) {
 			if (input1Ref.current.isFocused()) input2Ref.current.focus();
 			else if (input2Ref.current.isFocused()) input3Ref.current.focus();
 			else if (input3Ref.current.isFocused()) input4Ref.current.focus();
 			else if (input4Ref.current.isFocused()) input5Ref.current.focus();
-			else if (input5Ref.current.isFocused()) input6Ref.current.focus();
 		}
 	};
 
@@ -98,21 +94,22 @@ function IllnessAsk({ navigation }: Props) {
 			input2Ref.current &&
 			input3Ref.current &&
 			input4Ref.current &&
-			input5Ref.current &&
-			input6Ref.current
+			input5Ref.current
 		) {
 			input1Ref.current.blur();
 			input2Ref.current.blur();
 			input3Ref.current.blur();
 			input4Ref.current.blur();
 			input5Ref.current.blur();
-			input6Ref.current.blur();
 		}
 	};
 
 	return (
 		<Wrapper>
-			<Header headerRight={true} />
+			<Header
+				headerRight={true}
+				onPressHeaderRight={() => navigation.goBack()}
+			/>
 			<ScrollWrapper extraHeight={120}>
 				<LargeTitle weight="bold">What brings you in today?</LargeTitle>
 				<Switch onPress={() => navigation.replace('GeneralAsk')}>
@@ -166,7 +163,7 @@ function IllnessAsk({ navigation }: Props) {
 					}}
 				/>
 				<Space height={16} />
-				<LabelInput
+				{/* <LabelInput
 					inputRef={input5Ref}
 					label="Do you have any allergies or dietary habits? and how often do you exercise? (Optional)"
 					inputProps={{
@@ -175,9 +172,9 @@ function IllnessAsk({ navigation }: Props) {
 						onChangeText: setLifestyle,
 					}}
 				/>
-				<Space height={16} />
+				<Space height={16} /> */}
 				<LabelInput
-					inputRef={input6Ref}
+					inputRef={input5Ref}
 					label="Do you have any specific question about your health issue? (Optional)"
 					inputProps={{
 						placeholder: 'e.g., Which specialist should I see?',

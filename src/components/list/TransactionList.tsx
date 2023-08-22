@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
+import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { BarIndicator } from 'react-native-indicators';
 
 // components
-import { Footnote } from 'components/common';
+import { Subheadline } from 'components/common';
 import TransactionListItem from './TransactionListItem';
 
 // hooks
@@ -27,9 +28,15 @@ const TransactionList = () => {
 	};
 
 	const renderListEmptyComponent = () => (
-		<Footnote style={{ textAlign: 'center', marginTop: 50 }}>
+		<Subheadline
+			color="#3A3A3C"
+			style={{
+				textAlign: 'center',
+				marginTop: Dimensions.get('screen').height / 2.5,
+			}}
+		>
 			There is no any transactions
-		</Footnote>
+		</Subheadline>
 	);
 
 	const renderFooterComponent = () =>

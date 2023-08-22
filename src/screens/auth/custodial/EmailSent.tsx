@@ -51,12 +51,21 @@ const EmailSent = ({ route }: Props) => {
 					)}
 				</Main>
 				<Container>
-					<Footnote color="#3A3A3C">
-						Didn’t get your email or something not working?
+					<Subheadline color="#3A3A3C" style={{ textAlign: 'center' }}>
+						Didn't get your email or something not working? Check your spam
+						folder or
+						<Subheadline color="#FF2D55" onPress={onPressHandler}>
+							{' Try again'}
+						</Subheadline>
+						.
+					</Subheadline>
+					<Footnote
+						color="#8E8E93"
+						style={{ textAlign: 'center', marginTop: 24 }}
+					>
+						If you still see this screen even after clicking the link in the
+						email, try killing the app and opening it again.
 					</Footnote>
-					<TryAgain onPress={onPressHandler}>
-						<Footnote color="#FF2D55">Try again</Footnote>
-					</TryAgain>
 				</Container>
 			</Wrapper>
 		</Gradient>
@@ -69,7 +78,7 @@ const Wrapper = styled.View`
 	flex: 1;
 	align-items: center;
 	justify-content: space-around;
-	padding-horizontal: 25px;
+	padding-horizontal: 31px;
 `;
 
 const Main = styled.View`
@@ -88,5 +97,3 @@ const Title = styled(Title2)`
 const Container = styled.View`
 	align-items: center;
 `;
-
-const TryAgain = styled.TouchableOpacity``;

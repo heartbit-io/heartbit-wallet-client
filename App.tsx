@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { ActivityIndicatorProvider } from 'contexts';
-import Intercom from '@intercom/intercom-react-native';
+// import Intercom from '@intercom/intercom-react-native';
 import messaging from '@react-native-firebase/messaging';
 import notifee, { EventType } from '@notifee/react-native';
 
@@ -18,8 +18,8 @@ import { OS } from 'utils/utility';
 
 function App(): JSX.Element {
 	useEffect(() => {
-		Intercom.setLauncherVisibility('VISIBLE');
-		Intercom.setBottomPadding(OS === 'ios' ? 40 : 230);
+		// Intercom.setLauncherVisibility('VISIBLE');
+		// Intercom.setBottomPadding(OS === 'ios' ? 40 : 230);
 
 		notifee.requestPermission();
 		messaging().onMessage(onMessageReceived);
