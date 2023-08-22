@@ -7,8 +7,9 @@ import auth from '@react-native-firebase/auth';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // assets
-import logo from 'assets/logo/logo.svg';
-import heartBit from 'assets/logo/heartBit.svg';
+import LogoIcon from 'assets/logo/logo.svg';
+import HeartBitIcon from 'assets/logo/heartBit.svg';
+import AlphaIcon from 'assets/img/alpha.svg';
 
 // components
 import {
@@ -75,9 +76,12 @@ const EmailSignUp = ({ navigation }: Props) => {
 				extraScrollHeight={20}
 			>
 				<Wrapper>
-					<Logo source={logo} />
-					<HeartBit source={heartBit} />
-					<Description>365, 24/7 lightning health consultations</Description>
+					<Logo source={LogoIcon} />
+					<HeartBitWrapper>
+						<HeartBit source={HeartBitIcon} />
+						<Alpha source={AlphaIcon} />
+					</HeartBitWrapper>
+					<Description>Your 24/7 doctor friend</Description>
 					<InputField
 						value={email}
 						onChangeText={onEmailChange}
@@ -127,8 +131,18 @@ const Wrapper = styled.View`
 
 const Logo = styled.Image``;
 
+const HeartBitWrapper = styled.View`
+	flex-direction: row;
+	align-items: center;
+`;
+
 const HeartBit = styled.Image`
 	margin-top: 39.73px;
+`;
+
+const Alpha = styled.Image`
+	position: absolute;
+	right: -50px;
 `;
 
 const Description = styled(Subheadline)`
