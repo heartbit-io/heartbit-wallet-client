@@ -106,7 +106,10 @@ function IllnessAsk({ navigation }: Props) {
 
 	return (
 		<Wrapper>
-			<Header headerRight={true} />
+			<Header
+				headerRight={true}
+				onPressHeaderRight={() => navigation.goBack()}
+			/>
 			<ScrollWrapper extraHeight={120}>
 				<LargeTitle weight="bold">What brings you in today?</LargeTitle>
 				<Switch onPress={() => navigation.replace('GeneralAsk')}>
