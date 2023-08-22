@@ -58,7 +58,10 @@ function App(): JSX.Element {
 		<Provider store={store}>
 			<ActivityIndicatorProvider>
 				<Layout />
-				<StatusBar backgroundColor={'#000'} />
+				<StatusBar
+					backgroundColor={'#000'}
+					barStyle={OS === 'ios' ? 'dark-content' : 'light-content'}
+				/>
 			</ActivityIndicatorProvider>
 		</Provider>
 	);
