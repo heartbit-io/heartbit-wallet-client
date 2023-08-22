@@ -29,11 +29,9 @@ const HomeHeader = () => {
 			</LeftContainer>
 			<RightContainer>
 				<Icon source={Alpha} style={{ marginRight: 16 }} />
-				<ButtonWrapper
-					onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-				>
+				<Btn onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
 					<Icon source={Menu} />
-				</ButtonWrapper>
+				</Btn>
 			</RightContainer>
 		</HeaderWrapper>
 	);
@@ -71,4 +69,4 @@ const RightContainer = styled.View`
 	align-items: center;
 `;
 
-const ButtonWrapper = styled.TouchableOpacity``;
+const Btn = styled.TouchableOpacity``;
