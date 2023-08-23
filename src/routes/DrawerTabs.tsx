@@ -20,7 +20,8 @@ import { Footnote, Headline } from 'components';
 // assets
 import ChevronRight from 'assets/img/ic_chevron.right.svg';
 import Twitter from 'assets/img/twitter.svg';
-import Message from 'assets/img/message.svg';
+import Instagram from 'assets/img/instagram.svg';
+import Discord from 'assets/img/discord.svg';
 
 // store
 import { resetUserData } from 'store/slices/userSlice';
@@ -85,7 +86,9 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 				</RowWrapper>
 				<RowWrapper
 					onPress={() =>
-						Linking.openURL('https://community.heartbit.io/c/feature-requests/')
+						Linking.openURL(
+							'https://discord.com/channels/1143379003588235376/1143460159973228606',
+						)
 					}
 				>
 					<HeadLineText>Send Feedback</HeadLineText>
@@ -103,8 +106,15 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 					>
 						<Icon source={Twitter} />
 					</Social>
-					<Social onPress={() => Linking.openURL('mailto:social@heartbit.io')}>
-						<Icon source={Message} />
+					<Social
+						onPress={() => Linking.openURL('https://instagram.com/heartbit_io')}
+					>
+						<Icon source={Instagram} />
+					</Social>
+					<Social
+						onPress={() => Linking.openURL('https://discord.gg/rfEzSqYDzy')}
+					>
+						<Icon source={Discord} />
 					</Social>
 				</SocialWrapper>
 			</Container>
@@ -150,7 +160,7 @@ const RowWrapper = styled.TouchableOpacity<{
 
 const SocialWrapper = styled.View`
 	flex-direction: row;
-	margin-top: 20px;
+	margin-top: 8px;
 	margin-left: 15px;
 `;
 

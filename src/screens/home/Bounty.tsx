@@ -91,7 +91,7 @@ function Bounty({ navigation, route }: Props) {
 	return (
 		<Wrapper>
 			<Header headerLeft={true} headerRight={true} />
-			<LargeTitle weight="bold">Set a bounty for faster answer</LargeTitle>
+			<LargeTitle weight="bold">{`Set a tip for \na doctor's advice`}</LargeTitle>
 			<BountyInfoModal />
 
 			<BountyButton
@@ -147,7 +147,7 @@ function Bounty({ navigation, route }: Props) {
 				<Space height={16} />
 				<MainButton
 					onPress={() => navigateHandler(0)}
-					text={'Continue without setting a bounty'}
+					text={'Ask for free'}
 					active={!isPressed}
 					buttonStyle={{ backgroundColor: 'transparent', marginTop: 8 }}
 					textStyle={{ color: '#f68f2a' }}
@@ -181,5 +181,5 @@ const Footer = styled.View`
 	flex: 1;
 	justify-content: flex-end;
 	align-items: center;
-	margin-bottom: 50px;
+	margin-vertical: 50px;
 `;
