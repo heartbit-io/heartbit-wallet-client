@@ -32,7 +32,7 @@ const BountyModal = ({ visible, USDPerSat, setBounty, closeModal }: Props) => {
 				<Wrapper onPress={closeModal} activeOpacity={1}>
 					<Container activeOpacity={1}>
 						<Title3 weight="bold" style={{ textAlign: 'center' }}>
-							Set amount for bounty
+							Set amount for tip
 						</Title3>
 						<InputWrapper>
 							<Input
@@ -47,7 +47,7 @@ const BountyModal = ({ visible, USDPerSat, setBounty, closeModal }: Props) => {
 							{Math.floor((val || 0) / USDPerSat).toLocaleString()} sats
 						</USDValue>
 						<BountyMinimumText>
-							Bounty must be at least 1,000 sats
+							Tip must be at least 1,000 sats
 						</BountyMinimumText>
 						<MainButton
 							text="Confirm"
