@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { BackHandler, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useFocusEffect } from '@react-navigation/native';
 
 // assets
 import LogoIcon from 'assets/logo/logo.svg';
@@ -33,17 +34,19 @@ const EmailSignUp = ({ navigation }: Props) => {
 	const [email, setEmail] = useState('');
 	const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
 
-	useEffect(() => {
-		const backHandler = BackHandler.addEventListener(
-			'hardwareBackPress',
-			() => {
-				BackHandler.exitApp();
-				return true;
-			},
-		);
+	useFocusEffect(
+		useCallback(() => {
+			const backHandler = BackHandler.addEventListener(
+				'hardwareBackPress',
+				() => {
+					BackHandler.exitApp();
+					return true;
+				},
+			);
 
-		return () => backHandler.remove();
-	}, []);
+			return () => backHandler.remove();
+		}, []),
+	);
 
 	const onPressHandler = async () => {
 		toggleActivityIndicator(true);
