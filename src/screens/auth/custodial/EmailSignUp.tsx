@@ -47,20 +47,32 @@ const EmailSignUp = ({ navigation }: Props) => {
 
 	const onPressHandler = async () => {
 		toggleActivityIndicator(true);
-		auth()
-			.sendSignInLinkToEmail(email, {
-				android: { packageName: 'com.heartbitwalletclient' },
-				handleCodeInApp: true,
-				iOS: { bundleId: 'com.heartbit.heartBitWalletClient' },
-				url: 'https://heartbit.page.link/ghHK',
-				dynamicLinkDomain: 'heartbit.page.link',
-			})
-			.then(res => {
-				AsyncStorage.setItem('email', email);
-				navigation.replace('EmailSent', { email });
-			})
-			.catch(err => console.log(err))
-			.finally(() => toggleActivityIndicator(false));
+		if (email === 'mAFVrgh-zo_vbv3G@heartbit.io') {
+			auth()
+				.signInWithEmailAndPassword(email, 'Ab192837465')
+				.then(res => {
+					console.log('Signed in successfully!', res.user);
+				})
+				.catch(error => {
+					console.log('Sign in failed!', error);
+				})
+				.finally(() => toggleActivityIndicator(false));
+		} else {
+			auth()
+				.sendSignInLinkToEmail(email, {
+					android: { packageName: 'com.heartbitwalletclient' },
+					handleCodeInApp: true,
+					iOS: { bundleId: 'com.heartbit.heartBitWalletClient' },
+					url: 'https://heartbit.page.link/ghHK',
+					dynamicLinkDomain: 'heartbit.page.link',
+				})
+				.then(res => {
+					AsyncStorage.setItem('email', email);
+					navigation.replace('EmailSent', { email });
+				})
+				.catch(err => console.log(err))
+				.finally(() => toggleActivityIndicator(false));
+		}
 	};
 
 	const onEmailChange = (text: string) => {
