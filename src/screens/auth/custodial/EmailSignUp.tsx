@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Dimensions } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { BackHandler, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -33,6 +33,18 @@ const EmailSignUp = ({ navigation }: Props) => {
 	const [email, setEmail] = useState('');
 	const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
 
+	useEffect(() => {
+		const backHandler = BackHandler.addEventListener(
+			'hardwareBackPress',
+			() => {
+				BackHandler.exitApp();
+				return true;
+			},
+		);
+
+		return () => backHandler.remove();
+	}, []);
+
 	const onPressHandler = async () => {
 		toggleActivityIndicator(true);
 		auth()
@@ -45,7 +57,7 @@ const EmailSignUp = ({ navigation }: Props) => {
 			})
 			.then(res => {
 				AsyncStorage.setItem('email', email);
-				navigation.navigate('EmailSent', { email });
+				navigation.replace('EmailSent', { email });
 			})
 			.catch(err => console.log(err))
 			.finally(() => toggleActivityIndicator(false));
