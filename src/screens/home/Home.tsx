@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { ActivityIndicator, ScrollView, View } from 'react-native';
+import { ActivityIndicator, BackHandler, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useFocusEffect } from '@react-navigation/native';
 import styled from 'styled-components/native';
@@ -33,6 +33,16 @@ function Home({ navigation }: Props) {
 	useFocusEffect(
 		useCallback(() => {
 			dispatch(fetchQuestionsList(true));
+
+			const backHandler = BackHandler.addEventListener(
+				'hardwareBackPress',
+				() => {
+					BackHandler.exitApp();
+					return true;
+				},
+			);
+
+			return () => backHandler.remove();
 		}, []),
 	);
 
