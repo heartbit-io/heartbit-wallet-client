@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Linking } from 'react-native';
 import styled from 'styled-components/native';
 import {
@@ -7,8 +7,7 @@ import {
 } from '@react-navigation/drawer';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import auth from '@react-native-firebase/auth';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import messaging from '@react-native-firebase/messaging';
 // import Intercom from '@intercom/intercom-react-native';
 
 // tabs
@@ -27,14 +26,13 @@ import Discord from 'assets/img/discord.svg';
 import { resetUserData } from 'store/slices/userSlice';
 import { resetQuestions } from 'store/slices/questionsSlice';
 import { resetTransactions } from 'store/slices/transactionsSlice';
-import messaging from '@react-native-firebase/messaging';
+
+// apis
 import { deleteUserFcmToken } from 'apis/userApi';
 
 const Drawer = createDrawerNavigator<DrawerTabTypes>();
 
 const DrawerTabs = () => {
-	const navigation = useNavigation<NativeStackNavigationProp<RootStackType>>();
-
 	return (
 		<Drawer.Navigator
 			drawerContent={props => <DrawerView {...props} />}
