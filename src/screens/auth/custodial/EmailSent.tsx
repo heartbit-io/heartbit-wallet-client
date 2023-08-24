@@ -1,9 +1,10 @@
-import React from 'react';
-import { ActivityIndicator } from 'react-native';
+import React, { useCallback } from 'react';
+import { ActivityIndicator, BackHandler } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
 import { useAuth, useFirebaseLink } from 'hooks';
+import { useFocusEffect } from '@react-navigation/native';
 
 // assets
 import logo from 'assets/logo/logo.svg';
@@ -17,6 +18,20 @@ const EmailSent = ({ route }: Props) => {
 	const email = route?.params?.email;
 	const { authStatus } = useAuth();
 	const { signInStatus } = useFirebaseLink();
+
+	useFocusEffect(
+		useCallback(() => {
+			const backHandler = BackHandler.addEventListener(
+				'hardwareBackPress',
+				() => {
+					BackHandler.exitApp();
+					return true;
+				},
+			);
+
+			return () => backHandler.remove();
+		}, []),
+	);
 
 	const onPressHandler = async () => {
 		auth()
