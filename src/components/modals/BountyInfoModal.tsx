@@ -28,11 +28,10 @@ export function BountyInfoModal() {
 					<Container activeOpacity={1}>
 						<Title1 weight="bold">How does the tip work?</Title1>
 						<Body style={{ marginVertical: 32 }}>
-							A tip goes to the doctor who gives the advice to your question.
-							{'\n\n'}
-							Since questions with higher-tip are assigned to doctors first, the
-							higher you set the tip, the more likely you are to get a response
-							quickly.
+							The bounty is money given to the doctor who answers your question.
+							If you set a higher bounty, you are more likely to get a quick
+							response. This is because questions with higher bounties are given
+							to doctors first.
 						</Body>
 						<MainButton onPress={() => setModalVisible(false)} text={'OK'} />
 					</Container>
