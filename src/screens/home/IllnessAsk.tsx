@@ -122,7 +122,8 @@ function IllnessAsk({ navigation }: Props) {
 					inputRef={input1Ref}
 					label="What are your symptoms?"
 					inputProps={{
-						placeholder: 'Explain how and when started, what bothers most.',
+						placeholder:
+							'Please explain how and when they started, and what bothers you the most.',
 						value: history,
 						onChangeText: setHistory,
 						style: {
