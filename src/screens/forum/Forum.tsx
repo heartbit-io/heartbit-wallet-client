@@ -112,8 +112,8 @@ function Forum({ navigation, route }: Props) {
 
 	const onPressHeaderRight = () => {
 		Alert.alert(
-			`Are you sure you want to permanently delete this? `,
-			"Your question, doctor's note, and medical record will be deleted.",
+			`Are you sure you want to delete this?`,
+			'Your question and all the advice from AI and doctors will be gone.',
 			[
 				{
 					text: 'Delete',
