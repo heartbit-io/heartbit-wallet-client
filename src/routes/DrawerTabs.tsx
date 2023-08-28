@@ -77,7 +77,7 @@ const DrawerView = ({ navigation }: DrawerContentComponentProps) => {
 					<Icon source={ChevronRight} />
 				</RowWrapper>
 				<RowWrapper
-					onPress={() => Linking.openURL('mailto:support@heartbit.io')}
+					onPress={() => Linking.openURL('mailto:social@heartbit.io')}
 				>
 					<HeadLineText>Get Support</HeadLineText>
 					<Icon source={ChevronRight} />
