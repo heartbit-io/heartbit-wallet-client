@@ -5,7 +5,7 @@ import dynamicLinks from '@react-native-firebase/dynamic-links';
 import auth from '@react-native-firebase/auth';
 import messaging from '@react-native-firebase/messaging';
 import { useAppDispatch } from './hooks';
-import Intercom from '@intercom/intercom-react-native';
+// import Intercom from '@intercom/intercom-react-native';
 
 // utils
 import { OS } from 'utils/utility';
@@ -38,10 +38,10 @@ const useFirebaseLink = () => {
 
 			const res = await auth().signInWithEmailLink(email, url);
 			if (res.user) {
-				Intercom.loginUserWithUserAttributes({
-					email: email,
-					userId: email,
-				});
+				// Intercom.loginUserWithUserAttributes({
+				// 	email: email,
+				// 	userId: email,
+				// });
 
 				const token = await auth().currentUser?.getIdToken();
 				const fcmToken = await messaging().getToken();

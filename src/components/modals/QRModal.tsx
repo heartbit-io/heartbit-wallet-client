@@ -25,7 +25,7 @@ const QRModal = ({
 }: Props) => {
 	const linkingHandler = () =>
 		Linking.openURL(
-			`https://community.heartbit.io/c/blog/how-to-deposit-and-withdraw-bitcoin-with-lightning-network`,
+			`https://www.notion.so/heartbit-io/Things-to-change-7251065a3fce42bea471e6524f6ebbf2?pvs=4#f44ba06ca9fb4ef8ad4623f5fd5796e4`,
 		);
 
 	return (

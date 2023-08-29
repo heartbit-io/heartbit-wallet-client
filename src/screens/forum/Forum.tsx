@@ -112,8 +112,8 @@ function Forum({ navigation, route }: Props) {
 
 	const onPressHeaderRight = () => {
 		Alert.alert(
-			`Are you sure you want to permanently delete this? `,
-			"Your question, doctor's note, and medical record will be deleted.",
+			`Are you sure you want to delete this?`,
+			'Your question and all the advice from AI and doctors will be gone.',
 			[
 				{
 					text: 'Delete',
@@ -212,7 +212,7 @@ function Forum({ navigation, route }: Props) {
 						<Body color="#3A3A3C" style={{ marginBottom: 26 }}>
 							{reply}
 						</Body>
-						{answer.replyType !== 'ai' && question.type === 'illness' && (
+						{/* {answer.replyType !== 'ai' && question.type === 'illness' && (
 							<ArrowButton
 								text="See in health record format"
 								btnStyle={{ marginBottom: 24 }}
@@ -220,7 +220,7 @@ function Forum({ navigation, route }: Props) {
 									navigation.navigate('HealthRecord', { replies: answer })
 								}
 							/>
-						)}
+						)} */}
 					</>
 				)}
 			</PostWrapper>

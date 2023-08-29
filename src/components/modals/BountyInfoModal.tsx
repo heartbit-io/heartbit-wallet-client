@@ -16,7 +16,7 @@ export function BountyInfoModal() {
 		<>
 			<InfoButton onPress={() => setModalVisible(true)}>
 				<Icon source={Info} />
-				<Caption1 color="#8E8E93"> About bounty</Caption1>
+				<Caption1 color="#8E8E93">About tip</Caption1>
 			</InfoButton>
 			<Modal
 				animationType="fade"
@@ -26,13 +26,12 @@ export function BountyInfoModal() {
 			>
 				<ModalWrapper activeOpacity={1} onPress={() => setModalVisible(false)}>
 					<Container activeOpacity={1}>
-						<Title1 weight="bold">How does the bounty work?</Title1>
+						<Title1 weight="bold">How does the tip work?</Title1>
 						<Body style={{ marginVertical: 32 }}>
-							A bounty goes to the doctor who writes the answer to your
-							question. {'\n\n'}
-							Since higher-bounty questions are assigned to doctors first, the
-							higher you set the bounty, the more likely you are to get a
-							response quickly.
+							The bounty is money given to the doctor who answers your question.
+							If you set a higher bounty, you are more likely to get a quick
+							response. This is because questions with higher bounties are given
+							to doctors first.
 						</Body>
 						<MainButton onPress={() => setModalVisible(false)} text={'OK'} />
 					</Container>
@@ -49,7 +48,9 @@ const InfoButton = styled.TouchableOpacity`
 	margin-bottom: 57px;
 `;
 
-const Icon = styled.Image``;
+const Icon = styled.Image`
+	margin-right: 4px;
+`;
 
 const ModalWrapper = styled.TouchableOpacity`
 	flex: 1;

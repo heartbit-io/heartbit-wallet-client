@@ -1,9 +1,10 @@
-import React from 'react';
-import { ActivityIndicator } from 'react-native';
+import React, { useCallback } from 'react';
+import { ActivityIndicator, BackHandler } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
 import { useAuth, useFirebaseLink } from 'hooks';
+import { useFocusEffect } from '@react-navigation/native';
 
 // assets
 import logo from 'assets/logo/logo.svg';
@@ -17,6 +18,20 @@ const EmailSent = ({ route }: Props) => {
 	const email = route?.params?.email;
 	const { authStatus } = useAuth();
 	const { signInStatus } = useFirebaseLink();
+
+	useFocusEffect(
+		useCallback(() => {
+			const backHandler = BackHandler.addEventListener(
+				'hardwareBackPress',
+				() => {
+					BackHandler.exitApp();
+					return true;
+				},
+			);
+
+			return () => backHandler.remove();
+		}, []),
+	);
 
 	const onPressHandler = async () => {
 		auth()
@@ -51,12 +66,21 @@ const EmailSent = ({ route }: Props) => {
 					)}
 				</Main>
 				<Container>
-					<Footnote color="#3A3A3C">
-						Didn’t get your email or something not working?
+					<Subheadline color="#3A3A3C" style={{ textAlign: 'center' }}>
+						Didn't get your email or something not working? Check your spam
+						folder or
+						<Subheadline color="#FF2D55" onPress={onPressHandler}>
+							{' Try again'}
+						</Subheadline>
+						.
+					</Subheadline>
+					<Footnote
+						color="#8E8E93"
+						style={{ textAlign: 'center', marginTop: 24 }}
+					>
+						If you still see this screen even after clicking the link in the
+						email, try killing the app and opening it again.
 					</Footnote>
-					<TryAgain onPress={onPressHandler}>
-						<Footnote color="#FF2D55">Try again</Footnote>
-					</TryAgain>
 				</Container>
 			</Wrapper>
 		</Gradient>
@@ -69,7 +93,7 @@ const Wrapper = styled.View`
 	flex: 1;
 	align-items: center;
 	justify-content: space-around;
-	padding-horizontal: 25px;
+	padding-horizontal: 31px;
 `;
 
 const Main = styled.View`
@@ -88,5 +112,3 @@ const Title = styled(Title2)`
 const Container = styled.View`
 	align-items: center;
 `;
-
-const TryAgain = styled.TouchableOpacity``;

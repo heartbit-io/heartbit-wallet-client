@@ -37,7 +37,7 @@ const QuestionListItem = ({ question }: Props) => {
 					{question.bountyAmount.toLocaleString()} sats
 				</Subheadline>
 				<Subheadline color="#007AFF">
-					{question.status === 'Open' ? '' : 'Got answered ✓'}
+					{question.status === 'Closed' ? 'Got answered ✓' : ''}
 				</Subheadline>
 			</SpaceWrapper>
 		</QuestionWrapper>

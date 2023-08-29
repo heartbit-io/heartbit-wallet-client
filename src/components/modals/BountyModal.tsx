@@ -17,7 +17,7 @@ type Props = {
 };
 
 const BountyModal = ({ visible, USDPerSat, setBounty, closeModal }: Props) => {
-	const [val, setVal] = useState(0);
+	const [val, setVal] = useState<any>();
 
 	const CustomComp = OS === 'ios' ? KeyboardAvoidingView : View;
 
@@ -32,22 +32,22 @@ const BountyModal = ({ visible, USDPerSat, setBounty, closeModal }: Props) => {
 				<Wrapper onPress={closeModal} activeOpacity={1}>
 					<Container activeOpacity={1}>
 						<Title3 weight="bold" style={{ textAlign: 'center' }}>
-							Set amount for bounty
+							Set amount for tip
 						</Title3>
 						<InputWrapper>
 							<Input
-								value={val.toLocaleString()}
-								onChangeText={bounty => setVal(Number(bounty))}
+								value={val}
+								onChangeText={bounty => setVal(bounty)}
 								keyboardType="numeric"
 								autoFocus
 							/>
 							<Subheadline>USD</Subheadline>
 						</InputWrapper>
 						<USDValue>
-							{Math.floor(val / USDPerSat).toLocaleString()} sats
+							{Math.floor((val || 0) / USDPerSat).toLocaleString()} sats
 						</USDValue>
 						<BountyMinimumText>
-							Bounty must be at least 1,000 sats
+							Tip must be at least 1,000 sats
 						</BountyMinimumText>
 						<MainButton
 							text="Confirm"
