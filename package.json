@@ -13,8 +13,8 @@
     "format:fix": "prettier --write 'src/**/*.{ts,tsx}' --ignore-path ./.prettierignore",
     "aab-android": "cd android && ./gradlew bundleRelease && cd ..",
     "apk-android": "cd android && ./gradlew app:assembleRelease && cd ..",
-    "code-push-ios": "appcenter codepush release-react -a HeartBit/HeartBit-IOS -d Production -m true -t 0.1",
-    "code-push-android": "appcenter codepush release-react -a Edwin74/Admin-android -d Production -m true -t 2.7.3"
+    "code-push-ios": "appcenter codepush release-react -a HeartBit/HeartBit-IOS -d Production -m true -t 0.1.1",
+    "code-push-android": "appcenter codepush release-react -a HeartBit/Heartbit-Android -d Production -m true -t 0.1.1"
   },
   "dependencies": {
     "@haskkor/react-native-pincode": "^1.22.6",
