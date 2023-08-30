@@ -22,6 +22,7 @@ import {
 	Transactions,
 	WebViewScreen,
 	HealthRecord,
+	DeleteAccount,
 } from 'screens';
 import DoctorQRScan from 'screens/setting/DoctorQRScan';
 import MyAccount from 'screens/drawer/MyAccount';
@@ -114,6 +115,7 @@ const Root = () => {
 			<Stack.Screen name="DoctorQRScan" component={DoctorQRScan} />
 			<Stack.Screen name="WebViewScreen" component={WebViewScreen} />
 			<Stack.Screen name="HealthRecord" component={HealthRecord} />
+			<Stack.Screen name="DeleteAccount" component={DeleteAccount} />
 		</Stack.Navigator>
 	);
 };

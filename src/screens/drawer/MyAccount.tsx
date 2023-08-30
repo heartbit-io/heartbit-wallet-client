@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Alert, Linking } from 'react-native';
 import styled from 'styled-components/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // components
 import {
@@ -26,6 +27,7 @@ import Check from 'assets/img/check-circle-fill.svg';
 type Props = NativeStackScreenProps<RootStackType, 'MyAccount'>;
 
 const MyAccount = ({ navigation }: Props) => {
+	const bottom = useSafeAreaInsets().bottom;
 	const { userData } = useAppSelector(state => state.user);
 	const [email, setEmail] = useState('');
 	const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
@@ -96,6 +98,19 @@ const MyAccount = ({ navigation }: Props) => {
 					</Subheadline>
 				</DoctorWrapper>
 			)}
+			<Footer>
+				<DeleteBtn
+					bottom={bottom}
+					onPress={() => navigation.navigate('DeleteAccount')}
+				>
+					<Subheadline
+						color="#8E8E93"
+						style={{ textDecorationLine: 'underline' }}
+					>
+						Delete my account
+					</Subheadline>
+				</DeleteBtn>
+			</Footer>
 		</Wrapper>
 	);
 };
@@ -129,4 +144,14 @@ const RowWrapper = styled.View`
 
 const Icon = styled.Image`
 	margin-right: 8px;
+`;
+
+const Footer = styled.View`
+	flex: 1;
+	justify-content: flex-end;
+	align-items: center;
+`;
+
+const DeleteBtn = styled.TouchableOpacity<{ bottom: number }>`
+	margin-bottom: ${({ bottom }) => bottom + 32}px;
 `;

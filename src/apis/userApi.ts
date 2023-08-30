@@ -53,3 +53,14 @@ export const deleteUserFcmToken = async (): Promise<
 		return err.response.data;
 	}
 };
+
+export const deleteAccount = async (
+	userId: string | number,
+): Promise<ResponseDto<UserResponse>> => {
+	try {
+		const response = await api.delete(`/users/${userId}`);
+		return response.data;
+	} catch (err: any) {
+		return err.response.data;
+	}
+};
