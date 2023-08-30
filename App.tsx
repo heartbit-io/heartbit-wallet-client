@@ -5,6 +5,7 @@ import { ActivityIndicatorProvider } from 'contexts';
 // import Intercom from '@intercom/intercom-react-native';
 import messaging from '@react-native-firebase/messaging';
 import notifee, { EventType } from '@notifee/react-native';
+import codePush from 'react-native-code-push';
 
 // components
 import Layout from 'routes';
@@ -67,4 +68,12 @@ function App(): JSX.Element {
 	);
 }
 
-export default App;
+export default codePush({
+	checkFrequency: codePush?.CheckFrequency.ON_APP_RESUME,
+	installMode: codePush?.InstallMode.ON_NEXT_RESTART,
+	mandatoryInstallMode: codePush?.InstallMode.ON_NEXT_RESTART,
+	rollbackRetryOptions: {
+		delayInHours: 3,
+		maxRetryAttempts: 2,
+	},
+})(App);
