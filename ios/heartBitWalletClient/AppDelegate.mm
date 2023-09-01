@@ -5,8 +5,6 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
-// (hyunsub): add react-native-health
-#import "RCTAppleHealthKit.h"
 #import <RNFBDynamicLinksAppDelegateInterceptor.h>
 #import <IntercomModule.h> 
 
@@ -27,9 +25,8 @@
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
 
-  // (hyunsub): add react-native-health
+
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
-  [[RCTAppleHealthKit new] initializeBackgroundObservers:bridge];
 
   [AppCenterReactNative register];
   [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:true];
