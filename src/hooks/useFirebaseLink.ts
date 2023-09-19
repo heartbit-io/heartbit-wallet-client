@@ -1,0 +1,129 @@
+import { useCallback, useEffect, useState } from 'react';
+import { Linking } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import dynamicLinks from '@react-native-firebase/dynamic-links';
+import auth from '@react-native-firebase/auth';
+import messaging from '@react-native-firebase/messaging';
+import { useAppDispatch } from './hooks';
+// import Intercom from '@intercom/intercom-react-native';
+
+// utils
+import { OS } from 'utils/utility';
+
+// apis
+import { api, apiLND } from 'apis';
+import { postUser } from 'apis/userApi';
+
+// store
+import { getUserData } from 'store/slices/userSlice';
+
+const useFirebaseLink = () => {
+	const dispatch = useAppDispatch();
+	const [isSignInError, setSignInError] = useState(false);
+	const [signInStatus, setSignInStatus] = useState<string>('');
+
+	const handleDynamicLink = useCallback<(url: string) => void>(async url => {
+		setSignInStatus('loading');
+		try {
+			const email = await AsyncStorage.getItem('email');
+			if (!auth().isSignInWithEmailLink(url)) {
+				setSignInStatus('notSignedIn');
+				return;
+			}
+
+			if (!email) {
+				setSignInStatus('notSignedIn');
+				return;
+			}
+
+			const res = await auth().signInWithEmailLink(email, url);
+			if (res.user) {
+				// Intercom.loginUserWithUserAttributes({
+				// 	email: email,
+				// 	userId: email,
+				// });
+
+				const token = await auth().currentUser?.getIdToken();
+				const fcmToken = await messaging().getToken();
+
+				if (token) {
+					api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+					apiLND.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+					const res = await postUser(email, fcmToken);
+
+					if (res.success) {
+						dispatch(getUserData(email));
+						setSignInStatus('signedIn');
+					}
+				}
+			}
+		} catch (error) {
+			console.error('Error while signing user in:', error);
+			setSignInError(true);
+			setSignInStatus('notSignedIn');
+		}
+	}, []);
+
+	useEffect(() => {
+		if (OS === 'android') {
+			const unsubscribe = dynamicLinks().onLink(link =>
+				handleDynamicLink(link.url),
+			);
+			return () => {
+				unsubscribe();
+			};
+		}
+	}, [handleDynamicLink]);
+
+	useEffect(() => {
+		if (OS === 'android') {
+			let unsubscribed = false;
+
+			async function getInitialLink() {
+				const initialLink = await dynamicLinks().getInitialLink();
+
+				if (initialLink && !unsubscribed) {
+					handleDynamicLink(initialLink.url);
+				} else {
+					setSignInStatus('notSignedIn');
+				}
+			}
+			getInitialLink();
+
+			return () => {
+				unsubscribed = true;
+			};
+
+			// Remove handleDynamicLink from the deps array to avoid redundant calls.
+
+			// This hook should be called only once, at start.
+
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		}
+	}, []);
+
+	useEffect(() => {
+		if (OS === 'ios') {
+			const linking = Linking.addEventListener('url', ({ url }) => {
+				handleDynamicLink(url);
+			});
+
+			const getInitLink = async () => {
+				const initialLink = await Linking.getInitialURL();
+				if (!initialLink) {
+					setSignInStatus('notSignedIn');
+				} else {
+					handleDynamicLink(initialLink);
+				}
+			};
+
+			getInitLink();
+
+			return () => linking.remove();
+		}
+	}, []);
+
+	return { signInStatus, isSignInError };
+};
+
+export default useFirebaseLink;

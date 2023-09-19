@@ -1,27 +1,27 @@
-import {AppThunk, RootState} from '../../stores/store';
-import {PayloadAction, createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { AppThunk, RootState } from '../../store';
 
-import {BtcAccount} from '../../utils/hippocrat';
+import { BtcAccount } from '../../utils/hippocrat';
 
 export interface DIDState {
-  value: BtcAccount;
-  status: 'idle' | 'loading' | 'failed';
+	value: BtcAccount;
+	status: 'idle' | 'loading' | 'failed';
 }
 
 const initialState: DIDState = {
-  value: undefined,
-  status: 'idle',
+	value: undefined,
+	status: 'idle',
 };
 
 export const DIDSlice = createSlice({
-  name: 'DID',
-  initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
-  reducers: {
-    setDID: (state, action: PayloadAction<BtcAccount>) => {
-      state.value = action.payload;
-    },
-  },
+	name: 'DID',
+	initialState,
+	// The `reducers` field lets us define reducers and generate associated actions
+	reducers: {
+		setDID: (state, action: PayloadAction<BtcAccount>) => {
+			state.value = action.payload;
+		},
+	},
 });
 
 // The function below is called a selector and allows us to select a value from

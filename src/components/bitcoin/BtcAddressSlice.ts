@@ -1,25 +1,29 @@
-import {AppThunk, RootState} from '../../stores/store';
-import {PayloadAction, createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+/*
+
+scope for v2
+
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { AppThunk, RootState } from '../../store';
 
 export interface btcAddressState {
-  value: string;
-  status: 'idle' | 'loading' | 'failed';
+	value: string;
+	status: 'idle' | 'loading' | 'failed';
 }
 
 const initialState: btcAddressState = {
-  value: '',
-  status: 'idle',
+	value: '',
+	status: 'idle',
 };
 
 export const BtcAddressSlice = createSlice({
-  name: 'btcAddress',
-  initialState,
-  // The `reducers` field lets us define reducers and generate associated actions
-  reducers: {
-    setBtcAddress: (state, action: PayloadAction<string>) => {
-      state.value = action.payload;
-    },
-  },
+	name: 'btcAddress',
+	initialState,
+	// The `reducers` field lets us define reducers and generate associated actions
+	reducers: {
+		setBtcAddress: (state, action: PayloadAction<string>) => {
+			state.value = action.payload;
+		},
+	},
 });
 
 // The function below is called a selector and allows us to select a value from
@@ -28,3 +32,4 @@ export const BtcAddressSlice = createSlice({
 export const selectBtcAddress = (state: RootState) => state.btcAddress.value;
 
 export default BtcAddressSlice.reducer;
+*/
