@@ -68,12 +68,4 @@ function App(): JSX.Element {
 	);
 }
 
-export default codePush({
-	checkFrequency: codePush?.CheckFrequency.ON_APP_RESUME,
-	installMode: codePush?.InstallMode.ON_NEXT_RESTART,
-	mandatoryInstallMode: codePush?.InstallMode.ON_NEXT_RESTART,
-	rollbackRetryOptions: {
-		delayInHours: 3,
-		maxRetryAttempts: 2,
-	},
-})(App);
+export default App;
